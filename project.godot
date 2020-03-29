@@ -16,3 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="FreePixelInterface"
+run/main_scene="res://Interface.tscn"
+
+[display]
+
+mouse_cursor/custom_image="res://Sprite/Cursor.png"

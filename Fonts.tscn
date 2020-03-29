@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Fonts/Venice.fnt" type="BitmapFont" id=1]
+[ext_resource path="res://Fonts/Superwhite.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://Fonts/SuperBlack.fnt" type="BitmapFont" id=3]
+
+
+[node name="Fonts" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 20.0
+margin_top = 69.0
+margin_right = 620.0
+margin_bottom = 410.0
+
+[node name="Control1" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 600, 100 )
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Control1"]
+margin_right = 300.0
+margin_bottom = 50.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 3 )
+text = "!\"#$%&\\''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 104.0
+margin_right = 600.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 600, 100 )
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Control2"]
+margin_right = 300.0
+margin_bottom = 50.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 2 )
+text = "!\"#$%&\\''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control3" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 208.0
+margin_right = 600.0
+margin_bottom = 341.0
+rect_min_size = Vector2( 600, 133 )
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Control3"]
+margin_right = 1200.0
+margin_bottom = 288.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 1 )
+text = "!\"#$%&\\''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

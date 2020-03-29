@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/VeniceNew.png-3d841c8c570b545ee324e64abd610972.stex"
+path="res://.import/Venice.png-cb8d5dc4955255bef43ff68e2e2f4f21.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fonts/VeniceNew.png"
-dest_files=[ "res://.import/VeniceNew.png-3d841c8c570b545ee324e64abd610972.stex" ]
+source_file="res://Font/Venice.png"
+dest_files=[ "res://.import/Venice.png-cb8d5dc4955255bef43ff68e2e2f4f21.stex" ]
 
 [params]
 

@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Fonts/SuperBlack.fnt" type="BitmapFont" id=1]
-[ext_resource path="res://Fonts/Venice.fnt" type="BitmapFont" id=2]
-[ext_resource path="res://Fonts/Superwhite.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://Font/SuperBlack.fnt" type="BitmapFont" id=1]
+[ext_resource path="res://Font/Venice.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://Font/Superwhite.fnt" type="BitmapFont" id=3]
+
 
 [node name="TestFonts" type="Control"]
 anchor_right = 1.0

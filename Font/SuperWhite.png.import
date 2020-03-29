@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SuperBlack.png-98d043c28262f84dc0d14a5f515b1b06.stex"
+path="res://.import/SuperWhite.png-a27b64c0d83719e053430ca5bd10fe11.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fonts/SuperBlack.png"
-dest_files=[ "res://.import/SuperBlack.png-98d043c28262f84dc0d14a5f515b1b06.stex" ]
+source_file="res://Font/SuperWhite.png"
+dest_files=[ "res://.import/SuperWhite.png-a27b64c0d83719e053430ca5bd10fe11.stex" ]
 
 [params]
 

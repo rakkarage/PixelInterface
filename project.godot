@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="FreePixelInterface"
+config/name="PixelInterface"
 run/main_scene="res://Control2.tscn"
 
 [display]

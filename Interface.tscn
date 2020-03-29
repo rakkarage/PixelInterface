@@ -1,0 +1,68 @@
+[gd_scene format=2]
+
+[node name="Interface" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+margin_right = 992.0
+margin_bottom = 568.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+margin_right = 328.0
+margin_bottom = 568.0
+size_flags_horizontal = 15
+size_flags_vertical = 15
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer1"]
+margin_right = 328.0
+margin_bottom = 14.0
+text = "test"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+margin_left = 332.0
+margin_right = 660.0
+margin_bottom = 568.0
+size_flags_horizontal = 15
+size_flags_vertical = 15
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 328.0
+margin_bottom = 14.0
+text = "test"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+margin_left = 664.0
+margin_right = 992.0
+margin_bottom = 568.0
+size_flags_horizontal = 15
+size_flags_vertical = 15
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer3"]
+margin_right = 328.0
+margin_bottom = 14.0
+text = "test"

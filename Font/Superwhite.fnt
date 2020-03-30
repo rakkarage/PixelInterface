@@ -1,8 +1,8 @@
-info face="SuperWhite" size=10 bold=0 italic=0 charset="" unicode=0 stretchH=0 smooth=0 aa=0 padding=0,0,0,0 spacing=0,0
+info face="SuperWhite" size=1 bold=0 italic=0 charset="" unicode=0 stretchH=0 smooth=0 aa=0 padding=0,0,0,0 spacing=0,0
 common lineHeight=11 base=9 scaleW=128 scaleH=128 pages=1 packed=0
 page id=0 file="SuperWhite.png"
 chars count=94
-char id=32 x=90   y=94 width=5  height=5  xoffset=5 yoffset=5  xadvance=5  page=0 chnl=0 letter="space"
+char id=32 x=90   y=94 width=5  height=5  xoffset=5 yoffset=0  xadvance=5  page=0 chnl=0 letter="space"
 char id=33 x=2    y=18 width=3  height=9  xoffset=0 yoffset=0  xadvance=3  page=0 chnl=0 letter="!"
 char id=34 x=26   y=94 width=5  height=4  xoffset=0 yoffset=0  xadvance=5  page=0 chnl=0 letter="""
 char id=35 x=50   y=70 width=9  height=9  xoffset=0 yoffset=1  xadvance=9  page=0 chnl=0 letter="#"
@@ -66,7 +66,7 @@ char id=92 x=117  y=2  width=6  height=10 xoffset=0 yoffset=0  xadvance=6  page=
 char id=93 x=40   y=2  width=5  height=11 xoffset=0 yoffset=0  xadvance=5  page=0 chnl=0 letter="]"
 char id=94 x=86   y=94 width=7  height=5  xoffset=0 yoffset=0  xadvance=7  page=0 chnl=0 letter="^"
 char id=95 x=57   y=94 width=8  height=3  xoffset=0 yoffset=7  xadvance=8  page=0 chnl=0 letter="_"
-char id=96 x=35   y=94 width=4  height=4  xoffset=0 yoffset=0 xadvance=4  page=0 chnl=0 letter="`"
+char id=96 x=35   y=94 width=4  height=4  xoffset=0 yoffset=0  xadvance=4  page=0 chnl=0 letter="`"
 char id=97 x=44   y=83 width=6  height=7  xoffset=0 yoffset=2  xadvance=6  page=0 chnl=0 letter="a"
 char id=98 x=24   y=57 width=6  height=9  xoffset=0 yoffset=0  xadvance=6  page=0 chnl=0 letter="b"
 char id=99 x=54   y=83 width=6  height=7  xoffset=0 yoffset=2  xadvance=6  page=0 chnl=0 letter="c"

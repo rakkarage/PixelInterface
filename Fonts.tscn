@@ -4,8 +4,6 @@
 [ext_resource path="res://Font/Superwhite.fnt" type="BitmapFont" id=2]
 [ext_resource path="res://Font/SuperBlack.fnt" type="BitmapFont" id=3]
 
-
-
 [node name="Fonts" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,9 +20,9 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 20.0
-margin_top = 69.0
+margin_top = 86.0
 margin_right = 620.0
-margin_bottom = 410.0
+margin_bottom = 394.0
 
 [node name="Control1" type="Control" parent="CenterContainer/VBoxContainer"]
 margin_right = 600.0
@@ -66,13 +64,13 @@ __meta__ = {
 [node name="Control3" type="Control" parent="CenterContainer/VBoxContainer"]
 margin_top = 208.0
 margin_right = 600.0
-margin_bottom = 341.0
-rect_min_size = Vector2( 600, 133 )
+margin_bottom = 308.0
+rect_min_size = Vector2( 600, 100 )
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Control3"]
-margin_right = 1200.0
-margin_bottom = 288.0
-rect_scale = Vector2( 0.5, 0.5 )
+margin_right = 300.0
+margin_bottom = 50.0
+rect_scale = Vector2( 2, 2 )
 custom_fonts/font = ExtResource( 1 )
 text = "!\"#$%&\\''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
 align = 1

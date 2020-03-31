@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Penel.png-299def9ec114bb756704d7dba278b217.stex"
+path="res://.import/Panel.png-d74d3bda852db0cf09df2d044d3a3a9d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/Penel.png"
-dest_files=[ "res://.import/Penel.png-299def9ec114bb756704d7dba278b217.stex" ]
+source_file="res://Sprite/Panel.png"
+dest_files=[ "res://.import/Panel.png-d74d3bda852db0cf09df2d044d3a3a9d.stex" ]
 
 [params]
 

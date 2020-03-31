@@ -6,11 +6,14 @@
 [ext_resource path="res://Theme/ButtonHover.tres" type="StyleBox" id=4]
 [ext_resource path="res://Font/Venice.fnt" type="BitmapFont" id=5]
 [ext_resource path="res://Theme/ButtonFocus.tres" type="StyleBox" id=6]
-[ext_resource path="res://Theme/Stone.tres" type="StyleBox" id=7]
-[ext_resource path="res://Theme/Paper.tres" type="StyleBox" id=8]
+[ext_resource path="res://Theme/Panel.tres" type="StyleBox" id=7]
+[ext_resource path="res://Theme/PanelContainer.tres" type="StyleBox" id=8]
 [ext_resource path="res://Theme/ButtonDisabled.tres" type="StyleBox" id=9]
 [ext_resource path="res://Theme/EditNormal.tres" type="StyleBox" id=10]
 [ext_resource path="res://Theme/EditReadOnly.tres" type="StyleBox" id=11]
+
+
+
 
 
 

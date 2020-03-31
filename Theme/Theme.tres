@@ -1,6 +1,11 @@
-[gd_resource type="Theme" load_steps=2 format=2]
+[gd_resource type="Theme" load_steps=7 format=2]
 
 [ext_resource path="res://Font/Venice.fnt" type="BitmapFont" id=1]
+[ext_resource path="res://Theme/ButtonHover.tres" type="StyleBox" id=2]
+[ext_resource path="res://Theme/ButtonDisabled.tres" type="StyleBox" id=3]
+[ext_resource path="res://Theme/ButtonNormal.tres" type="StyleBox" id=4]
+[ext_resource path="res://Theme/ButtonFocus.tres" type="StyleBox" id=5]
+[ext_resource path="res://Theme/ButtonPressed.tres" type="StyleBox" id=6]
 
 [resource]
 default_font = ExtResource( 1 )
@@ -10,8 +15,8 @@ Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
 Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 Button/constants/hseparation = 2
 Button/fonts/font = null
-Button/styles/disabled = null
-Button/styles/focus = null
-Button/styles/hover = null
-Button/styles/normal = null
-Button/styles/pressed = null
+Button/styles/disabled = ExtResource( 3 )
+Button/styles/focus = ExtResource( 5 )
+Button/styles/hover = ExtResource( 2 )
+Button/styles/normal = ExtResource( 4 )
+Button/styles/pressed = ExtResource( 6 )

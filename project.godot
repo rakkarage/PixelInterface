@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="PixelInterface"
-run/main_scene="res://Fonts.tscn"
+run/main_scene="res://Control.tscn"
 
 [display]
 

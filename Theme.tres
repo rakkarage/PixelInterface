@@ -12,12 +12,6 @@
 [ext_resource path="res://Theme/EditNormal.tres" type="StyleBox" id=10]
 [ext_resource path="res://Theme/EditReadOnly.tres" type="StyleBox" id=11]
 
-
-
-
-
-
-
 [resource]
 default_font = ExtResource( 5 )
 Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )

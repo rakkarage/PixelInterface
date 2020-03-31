@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cloud.png-526b8007e7db2abec84ff0ca1c154dcb.stex"
+path="res://.import/Button1.png-64050f4ac63211285e71876412aac7a5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/Cloud.png"
-dest_files=[ "res://.import/Cloud.png-526b8007e7db2abec84ff0ca1c154dcb.stex" ]
+source_file="res://Theme/Button1.png"
+dest_files=[ "res://.import/Button1.png-64050f4ac63211285e71876412aac7a5.stex" ]
 
 [params]
 

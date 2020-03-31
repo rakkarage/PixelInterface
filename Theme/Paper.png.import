@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Tooltip.png-df10f359b0af0a4e928f51214aa83d84.stex"
+path="res://.import/Paper.png-b8e630d9b5b65f644d51be0529a13300.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/Tooltip.png"
-dest_files=[ "res://.import/Tooltip.png-df10f359b0af0a4e928f51214aa83d84.stex" ]
+source_file="res://Theme/Paper.png"
+dest_files=[ "res://.import/Paper.png-b8e630d9b5b65f644d51be0529a13300.stex" ]
 
 [params]
 

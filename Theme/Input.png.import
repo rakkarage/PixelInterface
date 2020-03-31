@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Speed.png-4134d9208cac078c20e10c723d01a585.stex"
+path="res://.import/Input.png-4805113f04b8736e6b7ace81c5a7098b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/Speed.png"
-dest_files=[ "res://.import/Speed.png-4134d9208cac078c20e10c723d01a585.stex" ]
+source_file="res://Theme/Input.png"
+dest_files=[ "res://.import/Input.png-4805113f04b8736e6b7ace81c5a7098b.stex" ]
 
 [params]
 

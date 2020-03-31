@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/North.png-f060238a15db1596bbe85355b266959b.stex"
+path="res://.import/Pause.png-bba86bbee36c499216b7e25af654111e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/North.png"
-dest_files=[ "res://.import/North.png-f060238a15db1596bbe85355b266959b.stex" ]
+source_file="res://Theme/Pause.png"
+dest_files=[ "res://.import/Pause.png-bba86bbee36c499216b7e25af654111e.stex" ]
 
 [params]
 

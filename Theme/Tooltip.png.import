@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Skip.png-57bc017877d926befc07ea89d5fae4d8.stex"
+path="res://.import/Tooltip.png-09e5cd657b25ffb41298c08058383167.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/Skip.png"
-dest_files=[ "res://.import/Skip.png-57bc017877d926befc07ea89d5fae4d8.stex" ]
+source_file="res://Theme/Tooltip.png"
+dest_files=[ "res://.import/Tooltip.png-09e5cd657b25ffb41298c08058383167.stex" ]
 
 [params]
 

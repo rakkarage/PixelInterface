@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CloudBlue.png-50040b584273fbebb8717ad48653e590.stex"
+path="res://.import/Panel.png-1ebd9e64d5545ed170ebffd5641cfe43.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/CloudBlue.png"
-dest_files=[ "res://.import/CloudBlue.png-50040b584273fbebb8717ad48653e590.stex" ]
+source_file="res://Theme/Panel.png"
+dest_files=[ "res://.import/Panel.png-1ebd9e64d5545ed170ebffd5641cfe43.stex" ]
 
 [params]
 

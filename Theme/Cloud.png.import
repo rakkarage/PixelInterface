@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/East.png-bec425bf74c3423bddf94c8c63cb6c99.stex"
+path="res://.import/Cloud.png-e160cb6d07f42e810eac5a885c475d22.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/East.png"
-dest_files=[ "res://.import/East.png-bec425bf74c3423bddf94c8c63cb6c99.stex" ]
+source_file="res://Theme/Cloud.png"
+dest_files=[ "res://.import/Cloud.png-e160cb6d07f42e810eac5a885c475d22.stex" ]
 
 [params]
 

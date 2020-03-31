@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/FastForward.png-f1713fb95121a09d2dbf499c8b751637.stex"
+path="res://.import/North.png-9cf58d9f145a9df173c41a438a809bdf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/FastForward.png"
-dest_files=[ "res://.import/FastForward.png-f1713fb95121a09d2dbf499c8b751637.stex" ]
+source_file="res://Theme/North.png"
+dest_files=[ "res://.import/North.png-9cf58d9f145a9df173c41a438a809bdf.stex" ]
 
 [params]
 

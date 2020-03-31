@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Button0.png-71ab96e0009691a75201e93c202de4a5.stex"
+path="res://.import/West.png-b5ca9e60747caa370f18f98d3f223866.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/Button0.png"
-dest_files=[ "res://.import/Button0.png-71ab96e0009691a75201e93c202de4a5.stex" ]
+source_file="res://Theme/West.png"
+dest_files=[ "res://.import/West.png-b5ca9e60747caa370f18f98d3f223866.stex" ]
 
 [params]
 

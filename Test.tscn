@@ -67,6 +67,7 @@ margin_left = 31.0
 margin_top = 31.0
 margin_right = 194.0
 margin_bottom = 325.0
+disabled = true
 
 [node name="PanelContainer2" type="PanelContainer" parent="Panel/PanelContainer/HBoxContainer"]
 margin_left = 291.0

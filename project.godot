@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="PixelInterface"
 run/main_scene="res://Test.tscn"
+config/icon="res://icon.png"
 
 [display]
 

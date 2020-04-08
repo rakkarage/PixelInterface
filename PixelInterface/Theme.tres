@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=16 format=2]
+[gd_resource type="Theme" load_steps=18 format=2]
 
 [ext_resource path="res://PixelInterface/Sprites/Panel.tres" type="StyleBox" id=1]
 [ext_resource path="res://PixelInterface/Sprites/Tooltip.tres" type="StyleBox" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://PixelInterface/Sprites/ScrollTrack.tres" type="StyleBox" id=13]
 [ext_resource path="res://PixelInterface/Sprites/ScrollProgress.tres" type="StyleBox" id=14]
 [ext_resource path="res://PixelInterface/Sprites/South.png" type="Texture" id=15]
+[ext_resource path="res://PixelInterface/Sprites/ScrollThumb.png" type="Texture" id=16]
+[ext_resource path="res://PixelInterface/Sprites/Tooltip.png" type="Texture" id=17]
 
 [resource]
 default_font = ExtResource( 5 )
@@ -29,19 +31,19 @@ Button/styles/focus = ExtResource( 8 )
 Button/styles/hover = ExtResource( 6 )
 Button/styles/normal = ExtResource( 4 )
 Button/styles/pressed = ExtResource( 3 )
-HScrollBar/icons/decrement = null
-HScrollBar/icons/decrement_highlight = null
-HScrollBar/icons/increment = null
-HScrollBar/icons/increment_highlight = null
+HScrollBar/icons/decrement = ExtResource( 15 )
+HScrollBar/icons/decrement_highlight = ExtResource( 15 )
+HScrollBar/icons/increment = ExtResource( 12 )
+HScrollBar/icons/increment_highlight = ExtResource( 12 )
 HScrollBar/styles/grabber = ExtResource( 14 )
 HScrollBar/styles/grabber_highlight = ExtResource( 14 )
 HScrollBar/styles/grabber_pressed = ExtResource( 14 )
 HScrollBar/styles/scroll = ExtResource( 13 )
 HScrollBar/styles/scroll_focus = ExtResource( 8 )
-HSlider/icons/grabber = null
-HSlider/icons/grabber_disabled = null
-HSlider/icons/grabber_highlight = null
-HSlider/icons/tick = null
+HSlider/icons/grabber = ExtResource( 16 )
+HSlider/icons/grabber_disabled = ExtResource( 16 )
+HSlider/icons/grabber_highlight = ExtResource( 16 )
+HSlider/icons/tick = ExtResource( 17 )
 HSlider/styles/grabber_area = ExtResource( 14 )
 HSlider/styles/slider = ExtResource( 13 )
 LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
@@ -187,9 +189,9 @@ VScrollBar/styles/grabber_highlight = ExtResource( 14 )
 VScrollBar/styles/grabber_pressed = ExtResource( 14 )
 VScrollBar/styles/scroll = ExtResource( 13 )
 VScrollBar/styles/scroll_focus = ExtResource( 8 )
-VSlider/icons/grabber = null
-VSlider/icons/grabber_disabled = null
-VSlider/icons/grabber_highlight = null
-VSlider/icons/tick = null
+VSlider/icons/grabber = ExtResource( 16 )
+VSlider/icons/grabber_disabled = ExtResource( 16 )
+VSlider/icons/grabber_highlight = ExtResource( 16 )
+VSlider/icons/tick = ExtResource( 17 )
 VSlider/styles/grabber_area = ExtResource( 14 )
 VSlider/styles/slider = ExtResource( 13 )

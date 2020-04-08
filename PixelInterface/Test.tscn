@@ -26,10 +26,6 @@ __meta__ = {
 [node name="PanelContainer" type="PanelContainer" parent="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 16.0
-margin_right = -16.0
-margin_bottom = -16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -92,3 +88,11 @@ margin_left = 31.0
 margin_top = 31.0
 margin_right = 194.0
 margin_bottom = 325.0
+
+[node name="TabContainer" type="TabContainer" parent="Panel/PanelContainer/HBoxContainer/PanelContainer2/PanelContainer2/Button"]
+modulate = Color( 1, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

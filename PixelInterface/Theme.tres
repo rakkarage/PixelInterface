@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=2]
+[gd_resource type="Theme" load_steps=12 format=2]
 
 [ext_resource path="res://PixelInterface/Sprites/Panel.tres" type="StyleBox" id=1]
 [ext_resource path="res://PixelInterface/Sprites/Tooltip.tres" type="StyleBox" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://PixelInterface/Sprites/ButtonFocus.tres" type="StyleBox" id=8]
 [ext_resource path="res://PixelInterface/Sprites/Input.tres" type="StyleBox" id=9]
 [ext_resource path="res://PixelInterface/Sprites/InputDisabled.tres" type="StyleBox" id=10]
+[ext_resource path="res://PixelInterface/Sprites/Tab.tres" type="StyleBox" id=11]
 
 [resource]
 default_font = ExtResource( 5 )
@@ -54,10 +55,10 @@ TabContainer/icons/increment = null
 TabContainer/icons/increment_highlight = null
 TabContainer/icons/menu = null
 TabContainer/icons/menu_highlight = null
-TabContainer/styles/panel = ExtResource( 1 )
-TabContainer/styles/tab_bg = ExtResource( 1 )
-TabContainer/styles/tab_disabled = ExtResource( 1 )
-TabContainer/styles/tab_fg = ExtResource( 1 )
+TabContainer/styles/panel = ExtResource( 11 )
+TabContainer/styles/tab_bg = ExtResource( 11 )
+TabContainer/styles/tab_disabled = ExtResource( 11 )
+TabContainer/styles/tab_fg = ExtResource( 11 )
 Tabs/colors/font_color_bg = Color( 0.69, 0.69, 0.69, 1 )
 Tabs/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Tabs/colors/font_color_fg = Color( 0.94, 0.94, 0.94, 1 )
@@ -71,12 +72,12 @@ Tabs/icons/decrement = null
 Tabs/icons/decrement_highlight = null
 Tabs/icons/increment = null
 Tabs/icons/increment_highlight = null
-Tabs/styles/button = ExtResource( 1 )
-Tabs/styles/button_pressed = ExtResource( 1 )
-Tabs/styles/panel = ExtResource( 1 )
-Tabs/styles/tab_bg = ExtResource( 1 )
-Tabs/styles/tab_disabled = ExtResource( 1 )
-Tabs/styles/tab_fg = ExtResource( 1 )
+Tabs/styles/button = ExtResource( 11 )
+Tabs/styles/button_pressed = ExtResource( 11 )
+Tabs/styles/panel = ExtResource( 11 )
+Tabs/styles/tab_bg = ExtResource( 11 )
+Tabs/styles/tab_disabled = ExtResource( 11 )
+Tabs/styles/tab_fg = ExtResource( 11 )
 TextEdit/colors/background_color = Color( 0, 0, 0, 0 )
 TextEdit/colors/bookmark_color = Color( 0.08, 0.49, 0.98, 1 )
 TextEdit/colors/brace_mismatch_color = Color( 1, 0.2, 0.2, 1 )
@@ -122,3 +123,39 @@ TooltipLabel/constants/shadow_offset_x = 3
 TooltipLabel/constants/shadow_offset_y = 3
 TooltipLabel/fonts/font = null
 TooltipPanel/styles/panel = ExtResource( 2 )
+Tree/colors/custom_button_font_highlight = Color( 0.94, 0.94, 0.94, 1 )
+Tree/colors/drop_position_color = Color( 1, 0.3, 0.2, 1 )
+Tree/colors/font_color = Color( 0.69, 0.69, 0.69, 1 )
+Tree/colors/font_color_selected = Color( 1, 1, 1, 1 )
+Tree/colors/guide_color = Color( 0, 0, 0, 0.1 )
+Tree/colors/relationship_line_color = Color( 0.27, 0.27, 0.27, 1 )
+Tree/colors/title_button_color = Color( 0.88, 0.88, 0.88, 1 )
+Tree/constants/button_margin = 4
+Tree/constants/draw_guides = 1
+Tree/constants/draw_relationship_lines = 0
+Tree/constants/hseparation = 4
+Tree/constants/item_margin = 12
+Tree/constants/scroll_border = 4
+Tree/constants/scroll_speed = 12
+Tree/constants/vseparation = 4
+Tree/fonts/font = null
+Tree/fonts/title_button_font = null
+Tree/icons/arrow = null
+Tree/icons/arrow_collapsed = null
+Tree/icons/checked = null
+Tree/icons/select_arrow = null
+Tree/icons/unchecked = null
+Tree/icons/updown = null
+Tree/styles/bg = ExtResource( 1 )
+Tree/styles/bg_focus = null
+Tree/styles/button_pressed = null
+Tree/styles/cursor = null
+Tree/styles/cursor_unfocused = null
+Tree/styles/custom_button = null
+Tree/styles/custom_button_hover = null
+Tree/styles/custom_button_pressed = null
+Tree/styles/selected = null
+Tree/styles/selected_focus = null
+Tree/styles/title_button_hover = null
+Tree/styles/title_button_normal = null
+Tree/styles/title_button_pressed = null

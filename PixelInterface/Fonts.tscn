@@ -4,7 +4,6 @@
 [ext_resource path="res://PixelInterface/Font/Superwhite.fnt" type="BitmapFont" id=2]
 [ext_resource path="res://PixelInterface/Font/SuperBlack.fnt" type="BitmapFont" id=3]
 
-
 [node name="Fonts" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0

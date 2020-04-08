@@ -11,9 +11,6 @@
 [ext_resource path="res://PixelInterface/Sprites/Input.tres" type="StyleBox" id=9]
 [ext_resource path="res://PixelInterface/Sprites/InputDisabled.tres" type="StyleBox" id=10]
 
-
-
-
 [resource]
 default_font = ExtResource( 5 )
 Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )

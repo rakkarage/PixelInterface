@@ -8,3 +8,5 @@ Pixel-perfect fonts and user interface elements.
 ## TODO
 
 - try bloom/etc for focus!!!???
+- make pixel scale shader for panels
+- stretch shrink

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://PixelInterface/Sprites/Stone.tres" type="StyleBox" id=2]
+
+[node name="ViewportContainer" type="ViewportContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 640, 480 )
+
+[node name="Panel" type="Panel" parent="Viewport"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+custom_styles/panel = ExtResource( 2 )

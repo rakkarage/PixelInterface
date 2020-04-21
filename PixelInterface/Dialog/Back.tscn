@@ -26,4 +26,4 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="resized" from="." to="TextureRect" method="OnResized"]
+[connection signal="resized" from="." to="TextureRect" method="_on_Control_resized"]

@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://PixelInterface/Sprites/Stone.tres" type="StyleBox" id=1]
 [ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=2]
 [ext_resource path="res://PixelInterface/Sprites/Paper.tres" type="StyleBox" id=3]
+[ext_resource path="res://PixelInterface/Sprites/No.png" type="Texture" id=4]
+[ext_resource path="res://PixelInterface/Sprites/Circle.png" type="Texture" id=5]
 
 [node name="Panel" type="Panel"]
 margin_right = 320.0
 margin_bottom = 235.0
-rect_min_size = Vector2( 320, 200 )
+rect_min_size = Vector2( 320, 235 )
 theme = ExtResource( 2 )
 custom_styles/panel = ExtResource( 1 )
 __meta__ = {
@@ -126,6 +128,36 @@ margin_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Reset"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+modulate = Color( 0.74902, 0.494118, 0.494118, 1 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -18.0
+margin_top = -18.0
+texture_normal = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="TextureButton"]
+margin_right = 22.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 36, 36 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="TextureButton/CenterContainer"]
+self_modulate = Color( 0.623529, 0.690196, 1, 1 )
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 29.0
+margin_bottom = 29.0
+texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

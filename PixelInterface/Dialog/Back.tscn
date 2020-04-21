@@ -1,7 +1,243 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://PixelInterface/Sprites/Back.png" type="Texture" id=1]
-[ext_resource path="res://PixelInterface/Dialog/Back.vs" type="Script" id=2]
+
+[sub_resource type="VisualScriptFunction" id=1]
+resource_name = "_ready"
+
+[sub_resource type="VisualScriptFunctionCall" id=3]
+_default_input_values = [ null ]
+call_mode = 2
+base_type = "_OS"
+base_script = ""
+argument_cache = {
+"args": [  ],
+"default_args": [  ],
+"flags": 9,
+"id": 0,
+"name": "",
+"return": {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 5,
+"usage": 7
+}
+}
+function = "get_real_window_size"
+
+[sub_resource type="VisualScriptCondition" id=4]
+_default_input_values = [ false ]
+
+[sub_resource type="VisualScriptDeconstruct" id=5]
+_default_input_values = [ Vector2( 0, 0 ) ]
+type = 5
+elem_cache = [ "x", 3, "y", 3 ]
+
+[sub_resource type="VisualScriptOperator" id=6]
+_default_input_values = [ 0.0, 0.0 ]
+operator = 2
+type = 3
+
+[sub_resource type="VisualScriptEngineSingleton" id=7]
+constant = "OS"
+
+[sub_resource type="VisualScriptPropertySet" id=8]
+_default_input_values = [ 0.0 ]
+base_type = "TextureRect"
+type_cache = {
+"class_name": "",
+"hint": 1,
+"hint_string": "-360,360,0.1,or_lesser,or_greater",
+"name": "rect_rotation",
+"type": 3,
+"usage": 7
+}
+property = "rect_rotation"
+
+[sub_resource type="VisualScriptPropertySet" id=9]
+_default_input_values = [ Vector2( 0, 0 ) ]
+base_type = "TextureRect"
+type_cache = {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "rect_scale",
+"type": 5,
+"usage": 7
+}
+property = "rect_scale"
+index = ""
+
+[sub_resource type="VisualScriptPropertySet" id=10]
+_default_input_values = [ 90.0 ]
+base_type = "TextureRect"
+type_cache = {
+"class_name": "",
+"hint": 1,
+"hint_string": "-360,360,0.1,or_lesser,or_greater",
+"name": "rect_rotation",
+"type": 3,
+"usage": 7
+}
+property = "rect_rotation"
+
+[sub_resource type="VisualScriptPropertySet" id=11]
+_default_input_values = [ Vector2( 0, 0 ) ]
+base_type = "TextureRect"
+type_cache = {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "rect_scale",
+"type": 5,
+"usage": 7
+}
+property = "rect_scale"
+index = ""
+
+[sub_resource type="VisualScriptPropertyGet" id=12]
+base_type = "TextureRect"
+type_cache = 5
+property = "rect_size"
+index = ""
+
+[sub_resource type="VisualScriptConstructor" id=13]
+_default_input_values = [ 0.0, 0.0 ]
+type = 5
+constructor = {
+"args": [ {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "x",
+"type": 3,
+"usage": 7
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "y",
+"type": 3,
+"usage": 7
+} ],
+"default_args": [  ],
+"flags": 1,
+"id": 0,
+"name": "Vector2",
+"return": {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 5,
+"usage": 7
+}
+}
+
+[sub_resource type="VisualScriptDeconstruct" id=14]
+_default_input_values = [ Vector2( 0, 0 ) ]
+type = 5
+elem_cache = [ "x", 3, "y", 3 ]
+
+[sub_resource type="VisualScriptOperator" id=15]
+_default_input_values = [ 0.0, 0.0 ]
+operator = 9
+type = 3
+
+[sub_resource type="VisualScriptOperator" id=16]
+_default_input_values = [ 0.0, 0.0 ]
+operator = 9
+type = 3
+
+[sub_resource type="VisualScriptPropertyGet" id=17]
+base_type = "TextureRect"
+type_cache = 5
+property = "rect_size"
+index = ""
+
+[sub_resource type="VisualScriptConstructor" id=18]
+_default_input_values = [ 0.0, 0.0 ]
+type = 5
+constructor = {
+"args": [ {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "x",
+"type": 3,
+"usage": 7
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "y",
+"type": 3,
+"usage": 7
+} ],
+"default_args": [  ],
+"flags": 1,
+"id": 0,
+"name": "Vector2",
+"return": {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 5,
+"usage": 7
+}
+}
+
+[sub_resource type="VisualScriptDeconstruct" id=19]
+_default_input_values = [ Vector2( 0, 0 ) ]
+type = 5
+elem_cache = [ "x", 3, "y", 3 ]
+
+[sub_resource type="VisualScriptOperator" id=20]
+_default_input_values = [ 0.0, 0.0 ]
+operator = 9
+type = 3
+
+[sub_resource type="VisualScriptOperator" id=21]
+_default_input_values = [ 0.0, 0.0 ]
+operator = 9
+type = 3
+
+[sub_resource type="VisualScriptFunction" id=2]
+resource_name = "OnResized"
+
+[sub_resource type="VisualScript" id=22]
+data = {
+"base_type": "TextureRect",
+"functions": [ {
+"data_connections": [ 8, 0, 4, 0, 7, 0, 5, 0, 4, 1, 6, 0, 6, 0, 7, 0, 16, 0, 10, 0, 24, 0, 13, 0, 19, 0, 16, 0, 15, 0, 18, 0, 6, 1, 19, 0, 6, 0, 21, 0, 26, 0, 24, 0, 23, 0, 25, 0, 6, 0, 26, 0, 6, 1, 27, 0, 6, 1, 7, 1, 21, 0, 16, 1, 18, 0, 19, 1, 18, 1, 21, 1, 27, 0, 24, 1, 25, 0, 26, 1, 25, 1, 27, 1 ],
+"function_id": 1,
+"name": "_ready",
+"nodes": [ 1, Vector2( 0, 80 ), SubResource( 1 ), 4, Vector2( 160, 80 ), SubResource( 3 ), 5, Vector2( 840, 60 ), SubResource( 4 ), 6, Vector2( 440, 160 ), SubResource( 5 ), 7, Vector2( 680, 160 ), SubResource( 6 ), 8, Vector2( -80, 200 ), SubResource( 7 ), 9, Vector2( 1200, -140 ), SubResource( 8 ), 10, Vector2( 1200, 0 ), SubResource( 9 ), 12, Vector2( 1200, 300 ), SubResource( 10 ), 13, Vector2( 1200, 160 ), SubResource( 11 ), 15, Vector2( 240, -160 ), SubResource( 12 ), 16, Vector2( 880, -140 ), SubResource( 13 ), 18, Vector2( 440, -160 ), SubResource( 14 ), 19, Vector2( 700, -180 ), SubResource( 15 ), 21, Vector2( 700, -60 ), SubResource( 16 ), 23, Vector2( 260, 340 ), SubResource( 17 ), 24, Vector2( 900, 340 ), SubResource( 18 ), 25, Vector2( 460, 340 ), SubResource( 19 ), 26, Vector2( 720, 280 ), SubResource( 20 ), 27, Vector2( 720, 400 ), SubResource( 21 ) ],
+"scroll": Vector2( -85.5, -74 ),
+"sequence_connections": [ 1, 0, 4, 4, 0, 5, 10, 0, 9, 5, 0, 10, 13, 0, 12, 5, 1, 13 ]
+}, {
+"data_connections": [  ],
+"function_id": -1,
+"name": "f_312843592",
+"nodes": [  ],
+"scroll": Vector2( 530, -198.5 ),
+"sequence_connections": [  ]
+}, {
+"data_connections": [  ],
+"function_id": 0,
+"name": "OnResized",
+"nodes": [ 0, Vector2( 0, 0 ), SubResource( 2 ) ],
+"scroll": Vector2( -308.5, -309.5 ),
+"sequence_connections": [  ]
+} ],
+"is_tool_script": false,
+"signals": [  ],
+"variables": [  ],
+"vs_unify": true
+}
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -21,7 +257,7 @@ margin_right = 384.0
 margin_bottom = 512.0
 texture = ExtResource( 1 )
 stretch_mode = 4
-script = ExtResource( 2 )
+script = SubResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

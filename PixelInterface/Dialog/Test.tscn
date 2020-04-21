@@ -1,0 +1,131 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://PixelInterface/Sprites/Stone.tres" type="StyleBox" id=1]
+[ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=2]
+[ext_resource path="res://PixelInterface/Sprites/Paper.tres" type="StyleBox" id=3]
+
+[node name="Panel" type="Panel"]
+margin_right = 320.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 300, 240 )
+theme = ExtResource( 2 )
+custom_styles/panel = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+margin_right = 304.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 100, 118 )
+custom_styles/panel = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input" type="VBoxContainer" parent="VBoxContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/Input"]
+margin_right = 288.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel/Input/HBoxContainer"]
+margin_top = 16.0
+margin_right = 50.0
+margin_bottom = 34.0
+text = "Name"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Panel/Input/HBoxContainer"]
+margin_left = 54.0
+margin_right = 288.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Panel/Input"]
+margin_top = 54.0
+margin_right = 288.0
+margin_bottom = 102.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel/Input/HBoxContainer2"]
+margin_top = 15.0
+margin_right = 82.0
+margin_bottom = 33.0
+text = "Password"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Panel/Input/HBoxContainer2"]
+margin_left = 86.0
+margin_right = 288.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="Buttons" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 122.0
+margin_right = 304.0
+margin_bottom = 218.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="VBoxContainer/Buttons"]
+margin_right = 304.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Sign In"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Buttons"]
+margin_top = 50.0
+margin_right = 304.0
+margin_bottom = 96.0
+
+[node name="Button" type="Button" parent="VBoxContainer/Buttons/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Sign Up"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="VBoxContainer/Buttons/HBoxContainer"]
+margin_left = 154.0
+margin_right = 304.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Reset"
+__meta__ = {
+"_edit_use_anchors_": false
+}

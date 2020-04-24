@@ -3,7 +3,7 @@
 [ext_resource path="res://PixelInterface/Transition/Gate.tres" type="Shader" id=1]
 [ext_resource path="res://PixelInterface/Transition/Gate.vs" type="Script" id=2]
 
-[sub_resource type="ShaderMaterial" id=11]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/ScalarUniform = 3.0
 
@@ -15,7 +15,7 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource( 11 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )

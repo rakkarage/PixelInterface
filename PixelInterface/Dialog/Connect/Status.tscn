@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=1]
-[ext_resource path="res://PixelInterface/Texture/CloudFocus.tres" type="StyleBox" id=2]
-[ext_resource path="res://PixelInterface/Texture/CloudHover.tres" type="StyleBox" id=3]
-[ext_resource path="res://PixelInterface/Texture/CloudDisabled.tres" type="StyleBox" id=4]
-[ext_resource path="res://PixelInterface/Texture/CloudPressed.tres" type="StyleBox" id=5]
-[ext_resource path="res://PixelInterface/Texture/CloudNormal.tres" type="StyleBox" id=6]
+[ext_resource path="res://PixelInterface/Dialog/Connect/CloudFocus.tres" type="StyleBox" id=2]
+[ext_resource path="res://PixelInterface/Dialog/Connect/CloudHover.tres" type="StyleBox" id=3]
+[ext_resource path="res://PixelInterface/Dialog/Connect/CloudDisabled.tres" type="StyleBox" id=4]
+[ext_resource path="res://PixelInterface/Dialog/Connect/CloudPressed.tres" type="StyleBox" id=5]
+[ext_resource path="res://PixelInterface/Dialog/Connect/CloudNormal.tres" type="StyleBox" id=6]
 
 [node name="Status" type="Control"]
 anchor_right = 1.0
@@ -30,11 +30,13 @@ margin_left = -20.0
 margin_top = -15.0
 margin_right = 20.0
 margin_bottom = 15.0
+focus_mode = 0
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/focus = ExtResource( 2 )
 custom_styles/disabled = ExtResource( 4 )
 custom_styles/normal = ExtResource( 6 )
+enabled_focus_mode = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }

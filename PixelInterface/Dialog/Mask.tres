@@ -1,0 +1,106 @@
+[gd_resource type="VisualShader" load_steps=8 format=2]
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=1]
+uniform_name = "Scale"
+
+[sub_resource type="VisualShaderNodeExpression" id=2]
+size = Vector2( 484, 213 )
+expression = "output = (uv - pivot) * scale + pivot;"
+
+[sub_resource type="VisualShaderNodeTextureUniform" id=3]
+uniform_name = "mask"
+
+[sub_resource type="VisualShaderNodeColorUniform" id=9]
+uniform_name = "Color"
+
+[sub_resource type="VisualShaderNodeScalarOp" id=5]
+default_input_values = [ 0, 1.0, 1, 0.0 ]
+operator = 1
+
+[sub_resource type="VisualShaderNodeInput" id=6]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=8]
+constant = 0.5
+
+[resource]
+code = "shader_type canvas_item;
+uniform vec4 Color : hint_color;
+uniform float Scale;
+uniform sampler2D mask;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// ColorUniform:15
+	vec3 n_out15p0 = Color.rgb;
+	float n_out15p1 = Color.a;
+
+// Input:5
+	vec3 n_out5p0 = vec3(UV, 0.0);
+
+// Scalar:8
+	float n_out8p0 = 0.500000;
+
+// ScalarUniform:12
+	float n_out12p0 = Scale;
+
+// Expression:13
+	vec3 n_out13p0;
+	n_out13p0 = vec3(0.0, 0.0, 0.0);
+	{
+		n_out13p0 = (n_out5p0 - n_out8p0) * n_out12p0 + n_out8p0;
+	}
+
+// TextureUniform:14
+	vec3 n_out14p0;
+	float n_out14p1;
+	{
+		vec4 n_tex_read = texture(mask, n_out13p0.xy);
+		n_out14p0 = n_tex_read.rgb;
+		n_out14p1 = n_tex_read.a;
+	}
+
+// ScalarOp:3
+	float n_in3p0 = 1.00000;
+	float n_out3p0 = n_in3p0 - n_out14p1;
+
+// Output:0
+	COLOR.rgb = n_out15p0;
+	COLOR.a = n_out3p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -305, 51 )
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2( 640, 160 )
+nodes/fragment/3/node = SubResource( 5 )
+nodes/fragment/3/position = Vector2( 460, 220 )
+nodes/fragment/5/node = SubResource( 6 )
+nodes/fragment/5/position = Vector2( -460, 140 )
+nodes/fragment/8/node = SubResource( 8 )
+nodes/fragment/8/position = Vector2( -460, 220 )
+nodes/fragment/12/node = SubResource( 1 )
+nodes/fragment/12/position = Vector2( -460, 300 )
+nodes/fragment/13/node = SubResource( 2 )
+nodes/fragment/13/position = Vector2( -260, 140 )
+nodes/fragment/13/size = Vector2( 484, 213 )
+nodes/fragment/13/input_ports = "0,1,uv;1,0,pivot;2,0,scale;"
+nodes/fragment/13/output_ports = "0,1,output;"
+nodes/fragment/13/expression = "output = (uv - pivot) * scale + pivot;"
+nodes/fragment/14/node = SubResource( 3 )
+nodes/fragment/14/position = Vector2( 260, 140 )
+nodes/fragment/15/node = SubResource( 9 )
+nodes/fragment/15/position = Vector2( 460, 100 )
+nodes/fragment/connections = PoolIntArray( 3, 0, 0, 1, 5, 0, 13, 0, 8, 0, 13, 1, 12, 0, 13, 2, 13, 0, 14, 0, 14, 1, 3, 1, 15, 0, 0, 0 )

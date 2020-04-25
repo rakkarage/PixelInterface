@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://PixelInterface/Transition/Gate.tres" type="Shader" id=1]
-[ext_resource path="res://PixelInterface/Transition/Gate.vs" type="Script" id=2]
+[ext_resource path="res://PixelInterface/Dialog/Mask.tres" type="Shader" id=1]
+[ext_resource path="res://PixelInterface/Dialog/Mask.vs" type="Script" id=2]
+[ext_resource path="res://PixelInterface/Sprites/MaskGate.png" type="Texture" id=3]
+
+
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
-shader_param/Scale = 3.0
+shader_param/Color = Color( 0, 0, 0, 1 )
+shader_param/Scale = 2.0
+shader_param/mask = ExtResource( 3 )
 
 [node name="Gate" type="Control"]
 anchor_right = 1.0

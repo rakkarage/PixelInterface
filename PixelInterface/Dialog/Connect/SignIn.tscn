@@ -87,6 +87,7 @@ margin_right = 288.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
+secret = true
 
 [node name="Buttons" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 122.0

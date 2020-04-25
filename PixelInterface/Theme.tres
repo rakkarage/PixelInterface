@@ -1,22 +1,28 @@
 [gd_resource type="Theme" load_steps=18 format=2]
 
-[ext_resource path="res://PixelInterface/Sprites/Panel.tres" type="StyleBox" id=1]
-[ext_resource path="res://PixelInterface/Sprites/Tooltip.tres" type="StyleBox" id=2]
-[ext_resource path="res://PixelInterface/Sprites/Button2.tres" type="StyleBox" id=3]
-[ext_resource path="res://PixelInterface/Sprites/Button0.tres" type="StyleBox" id=4]
+[ext_resource path="res://PixelInterface/Texture/Panel.tres" type="StyleBox" id=1]
+[ext_resource path="res://PixelInterface/Texture/Tooltip.tres" type="StyleBox" id=2]
+[ext_resource path="res://PixelInterface/Texture/Button2.tres" type="StyleBox" id=3]
+[ext_resource path="res://PixelInterface/Texture/Button0.tres" type="StyleBox" id=4]
 [ext_resource path="res://PixelInterface/Font/Venice.fnt" type="BitmapFont" id=5]
-[ext_resource path="res://PixelInterface/Sprites/Button1.tres" type="StyleBox" id=6]
-[ext_resource path="res://PixelInterface/Sprites/ButtonDisabled.tres" type="StyleBox" id=7]
-[ext_resource path="res://PixelInterface/Sprites/ButtonFocus.tres" type="StyleBox" id=8]
-[ext_resource path="res://PixelInterface/Sprites/Input.tres" type="StyleBox" id=9]
-[ext_resource path="res://PixelInterface/Sprites/InputDisabled.tres" type="StyleBox" id=10]
-[ext_resource path="res://PixelInterface/Sprites/Tab.tres" type="StyleBox" id=11]
-[ext_resource path="res://PixelInterface/Sprites/North.png" type="Texture" id=12]
-[ext_resource path="res://PixelInterface/Sprites/ScrollTrack.tres" type="StyleBox" id=13]
-[ext_resource path="res://PixelInterface/Sprites/ScrollProgress.tres" type="StyleBox" id=14]
-[ext_resource path="res://PixelInterface/Sprites/South.png" type="Texture" id=15]
-[ext_resource path="res://PixelInterface/Sprites/ScrollThumb.png" type="Texture" id=16]
-[ext_resource path="res://PixelInterface/Sprites/Tooltip.png" type="Texture" id=17]
+[ext_resource path="res://PixelInterface/Texture/Button1.tres" type="StyleBox" id=6]
+[ext_resource path="res://PixelInterface/Texture/ButtonDisabled.tres" type="StyleBox" id=7]
+[ext_resource path="res://PixelInterface/Texture/ButtonFocus.tres" type="StyleBox" id=8]
+[ext_resource path="res://PixelInterface/Texture/Input.tres" type="StyleBox" id=9]
+[ext_resource path="res://PixelInterface/Texture/InputDisabled.tres" type="StyleBox" id=10]
+[ext_resource path="res://PixelInterface/Texture/Tab.tres" type="StyleBox" id=11]
+[ext_resource path="res://PixelInterface/Sprite/North.png" type="Texture" id=12]
+[ext_resource path="res://PixelInterface/Texture/ScrollTrack.tres" type="StyleBox" id=13]
+[ext_resource path="res://PixelInterface/Texture/ScrollProgress.tres" type="StyleBox" id=14]
+[ext_resource path="res://PixelInterface/Sprite/South.png" type="Texture" id=15]
+[ext_resource path="res://PixelInterface/Sprite/ScrollThumb.png" type="Texture" id=16]
+[ext_resource path="res://PixelInterface/Sprite/Tooltip.png" type="Texture" id=17]
+
+
+
+
+
+
 
 [resource]
 default_font = ExtResource( 5 )

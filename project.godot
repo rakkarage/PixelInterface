@@ -22,7 +22,7 @@ config/icon="res://icon.png"
 
 [display]
 
-mouse_cursor/custom_image="res://PixelInterface/Sprites/Cursor.png"
+mouse_cursor/custom_image="res://PixelInterface/Sprite/Cursor.png"
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 

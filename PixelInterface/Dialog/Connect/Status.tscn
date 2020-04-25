@@ -1,18 +1,24 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://PixelInterface/Sprites/CloudFocus.tres" type="StyleBox" id=1]
-[ext_resource path="res://PixelInterface/Sprites/CloudDisabled.tres" type="StyleBox" id=2]
-[ext_resource path="res://PixelInterface/Sprites/CloudNormal.tres" type="StyleBox" id=3]
-[ext_resource path="res://PixelInterface/Sprites/CloudPressed.tres" type="StyleBox" id=4]
+[ext_resource path="res://PixelInterface/Texture/CloudFocus.tres" type="StyleBox" id=1]
+[ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=2]
+[ext_resource path="res://PixelInterface/Texture/CloudNormal.tres" type="StyleBox" id=3]
+[ext_resource path="res://PixelInterface/Texture/CloudPressed.tres" type="StyleBox" id=4]
+[ext_resource path="res://PixelInterface/Sprite/Cloud.png" type="Texture" id=5]
+[ext_resource path="res://PixelInterface/Texture/CloudDisabled.tres" type="StyleBox" id=6]
 
 [node name="Status" type="Button"]
 margin_right = 12.0
 margin_bottom = 20.0
+rect_min_size = Vector2( 64, 64 )
+theme = ExtResource( 2 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = ExtResource( 1 )
-custom_styles/disabled = ExtResource( 2 )
+custom_styles/disabled = ExtResource( 6 )
 custom_styles/normal = ExtResource( 3 )
+text = "this is a test"
+icon = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

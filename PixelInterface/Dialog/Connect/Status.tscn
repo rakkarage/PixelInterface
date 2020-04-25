@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=1]
-[ext_resource path="res://PixelInterface/Dialog/Connect/CloudFocus.tres" type="StyleBox" id=2]
 [ext_resource path="res://PixelInterface/Dialog/Connect/CloudHover.tres" type="StyleBox" id=3]
 [ext_resource path="res://PixelInterface/Dialog/Connect/CloudDisabled.tres" type="StyleBox" id=4]
 [ext_resource path="res://PixelInterface/Dialog/Connect/CloudPressed.tres" type="StyleBox" id=5]
@@ -16,6 +15,10 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -64.0
+margin_right = 64.0
 rect_min_size = Vector2( 64, 64 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -33,7 +36,6 @@ margin_bottom = 15.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 5 )
-custom_styles/focus = ExtResource( 2 )
 custom_styles/disabled = ExtResource( 4 )
 custom_styles/normal = ExtResource( 6 )
 enabled_focus_mode = 0

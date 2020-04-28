@@ -1,20 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=1]
 [ext_resource path="res://PixelInterface/Texture/CloudHover.tres" type="StyleBox" id=3]
 [ext_resource path="res://PixelInterface/Texture/CloudDisabled.tres" type="StyleBox" id=4]
 [ext_resource path="res://PixelInterface/Texture/CloudPressed.tres" type="StyleBox" id=5]
 [ext_resource path="res://PixelInterface/Texture/CloudNormal.tres" type="StyleBox" id=6]
 
-[node name="Status" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel" type="Panel" parent="."]
+[node name="Status" type="Panel"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -64.0
@@ -24,7 +15,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="Button" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

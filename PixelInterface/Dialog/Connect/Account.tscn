@@ -6,15 +6,15 @@
 [ext_resource path="res://PixelInterface/Sprite/No.png" type="Texture" id=4]
 [ext_resource path="res://PixelInterface/Sprite/Circle.png" type="Texture" id=5]
 
-[node name="SignIn" type="Panel"]
+[node name="Account" type="Panel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -160.0
-margin_top = -117.5
+margin_top = -118.0
 margin_right = 160.0
-margin_bottom = 117.5
+margin_bottom = 117.0
 rect_min_size = Vector2( 320, 235 )
 theme = ExtResource( 2 )
 custom_styles/panel = ExtResource( 1 )
@@ -37,14 +37,14 @@ __meta__ = {
 
 [node name="Panel" type="Panel" parent="VBoxContainer"]
 margin_right = 304.0
-margin_bottom = 118.0
-rect_min_size = Vector2( 304, 118 )
+margin_bottom = 64.0
+rect_min_size = Vector2( 304, 64 )
 custom_styles/panel = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Input" type="VBoxContainer" parent="VBoxContainer/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
@@ -57,58 +57,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/Input"]
-margin_right = 288.0
-margin_bottom = 50.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="VBoxContainer/Panel/Input/HBoxContainer"]
-margin_top = 16.0
+[node name="Label" type="Label" parent="VBoxContainer/Panel/HBoxContainer"]
+margin_top = 15.0
 margin_right = 55.0
-margin_bottom = 34.0
+margin_bottom = 33.0
 text = "Email"
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Panel/Input/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Panel/HBoxContainer"]
 margin_left = 59.0
 margin_right = 288.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Panel/Input"]
-margin_top = 54.0
-margin_right = 288.0
-margin_bottom = 102.0
-
-[node name="Label" type="Label" parent="VBoxContainer/Panel/Input/HBoxContainer2"]
-margin_top = 15.0
-margin_right = 82.0
-margin_bottom = 33.0
-text = "Password"
-
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Panel/Input/HBoxContainer2"]
-margin_left = 86.0
-margin_right = 288.0
-margin_bottom = 48.0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-secret = true
-
 [node name="Buttons" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 122.0
+margin_top = 68.0
 margin_right = 304.0
-margin_bottom = 226.0
+margin_bottom = 172.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button3" type="Button" parent="VBoxContainer/Buttons"]
+[node name="SignOut" type="Button" parent="VBoxContainer/Buttons"]
 margin_right = 304.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Sign In"
+text = "Sign Out"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -118,23 +93,23 @@ margin_top = 54.0
 margin_right = 304.0
 margin_bottom = 104.0
 
-[node name="Button" type="Button" parent="VBoxContainer/Buttons/HBoxContainer"]
+[node name="Email" type="Button" parent="VBoxContainer/Buttons/HBoxContainer"]
 margin_right = 150.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Sign Up"
+text = "Email"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button2" type="Button" parent="VBoxContainer/Buttons/HBoxContainer"]
+[node name="Password" type="Button" parent="VBoxContainer/Buttons/HBoxContainer"]
 margin_left = 154.0
 margin_right = 304.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Reset"
+text = "Password"
 __meta__ = {
 "_edit_use_anchors_": false
 }

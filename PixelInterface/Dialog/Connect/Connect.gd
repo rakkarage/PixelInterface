@@ -18,42 +18,46 @@ const emailPosition = Vector2(-3000, -3000)
 const passwordPosition = Vector2(3000, -3000)
 
 func _ready():
-	status.connect("pressed", self, "_on_Status_pressed")
-	signInClose.connect("pressed", self, "_on_Close_pressed")
+	handleError(status.connect("pressed", self, "_on_Status_pressed"))
+	handleError(signInClose.connect("pressed", self, "_on_Close_pressed"))
 
-func Spring(p := Vector2.ZERO, c : Control = interface):
+func handleError(e : int):
+	if e != OK:
+		print("error: " + str(e))
+
+func spring(p := Vector2.ZERO, c : Control = interface):
 	var current = c.get_position()
 	if !current.is_equal_approx(p):
 		if tween.interpolate_property(interface, "rect_position", current, p, time, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
 			if !tween.start():
 				print("errror")
 
-func SpringSignIn():
-	Spring(signInPosition)
+func springSignIn():
+	spring(signInPosition)
 
-func SpringSignUp():
-	Spring(signUpPosition)
+func springSignUp():
+	spring(signUpPosition)
 
-func SpringReset():
-	Spring(resetPosition)
+func springReset():
+	spring(resetPosition)
 
-func SpringAccount():
-	Spring(accountPosition)
+func springAccount():
+	spring(accountPosition)
 
-func SpringEmail():
-	Spring(emailPosition)
+func springEmail():
+	spring(emailPosition)
 
-func SpringPassword():
-	Spring(passwordPosition)
+func springPassword():
+	spring(passwordPosition)
 
-func SpringError():
-	Spring(errorPosition, error)
+func springError():
+	spring(errorPosition, error)
 
-func SpringErrorBack():
-	Spring(Vector2.ZERO, error)
+func springErrorBack():
+	spring(Vector2.ZERO, error)
 
 func _on_Status_pressed():
-	SpringSignIn()
+	springSignIn()
 
 func _on_Close_pressed():
-	Spring()
+	spring()

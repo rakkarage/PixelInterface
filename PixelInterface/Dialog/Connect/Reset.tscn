@@ -1,12 +1,19 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://PixelInterface/Texture/Stone.tres" type="StyleBox" id=1]
-[ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=2]
-[ext_resource path="res://PixelInterface/Texture/Paper.tres" type="StyleBox" id=3]
+[ext_resource path="res://PixelInterface/Sprite/Circle.png" type="Texture" id=2]
+[ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=3]
 [ext_resource path="res://PixelInterface/Sprite/No.png" type="Texture" id=4]
-[ext_resource path="res://PixelInterface/Sprite/Circle.png" type="Texture" id=5]
+[ext_resource path="res://PixelInterface/Texture/Paper.tres" type="StyleBox" id=5]
 
-[node name="Reset" type="Panel"]
+[node name="Reset" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -16,25 +23,25 @@ margin_top = -67.0
 margin_right = 160.0
 margin_bottom = 67.0
 rect_min_size = Vector2( 320, 134 )
-theme = ExtResource( 2 )
+theme = ExtResource( 3 )
 custom_styles/panel = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="Panel"]
 anchor_right = 1.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = -8.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 304, 64 )
-custom_styles/panel = ExtResource( 3 )
+custom_styles/panel = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Panel"]
 anchor_right = 1.0
 margin_left = 8.0
 margin_top = 8.0
@@ -46,20 +53,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Panel/HBoxContainer"]
+[node name="Label" type="Label" parent="Panel/Panel/HBoxContainer"]
 margin_top = 15.0
 margin_right = 55.0
 margin_bottom = 33.0
 text = "Email"
 
-[node name="LineEdit" type="LineEdit" parent="Panel/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="Panel/Panel/HBoxContainer"]
 margin_left = 59.0
 margin_right = 288.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
-[node name="Reset" type="Button" parent="."]
+[node name="Reset" type="Button" parent="Panel"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -74,7 +81,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Close" type="TextureButton" parent="."]
+[node name="Close" type="TextureButton" parent="Panel"]
 modulate = Color( 0.74902, 0.494118, 0.494118, 1 )
 anchor_left = 1.0
 anchor_right = 1.0
@@ -82,12 +89,12 @@ margin_left = -18.0
 margin_top = -18.0
 margin_right = 18.0
 margin_bottom = 18.0
-texture_normal = ExtResource( 5 )
+texture_normal = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="Close"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel/Close"]
 margin_right = 22.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 36, 36 )
@@ -95,7 +102,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Close/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="Panel/Close/CenterContainer"]
 self_modulate = Color( 0.623529, 0.690196, 1, 1 )
 margin_left = 7.0
 margin_top = 7.0

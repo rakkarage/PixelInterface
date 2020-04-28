@@ -1,10 +1,13 @@
 extends Control
+class_name Connect
 
 export var time = 0.333
 
 onready var interface : Control = $ViewportContainer/Viewport/Interface
 onready var error : Control = $ViewportContainer/Viewport/Error
 onready var tween : Tween = $Tween
+onready var status  : Button = $ViewportContainer/Viewport/Interface/Status/Panel/Status
+onready var signInClose  : Button = $ViewportContainer/Viewport/Interface/SignIn/Panel/Close/Close
 
 const errorPosition = Vector2(-3000, 0)
 const signInPosition = Vector2(0, 3000)
@@ -13,6 +16,10 @@ const resetPosition = Vector2(3000, 3000)
 const accountPosition = Vector2(0, -3000)
 const emailPosition = Vector2(-3000, -3000)
 const passwordPosition = Vector2(3000, -3000)
+
+func _ready():
+	status.connect("pressed", self, "_on_Status_pressed")
+	signInClose.connect("pressed", self, "_on_Close_pressed")
 
 func Spring(p := Vector2.ZERO, c : Control = interface):
 	var current = c.get_position()
@@ -44,6 +51,9 @@ func SpringError():
 
 func SpringErrorBack():
 	Spring(Vector2.ZERO, error)
-	
-func _on_Button_pressed():
+
+func _on_Status_pressed():
 	SpringSignIn()
+
+func _on_Close_pressed():
+	Spring()

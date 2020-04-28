@@ -17,8 +17,9 @@ export var time = 1.0
 func Spring(p := Vector2.ZERO, c : Control = interface):
 	var current = c.get_position()
 	if !current.is_equal_approx(p):
-		if !tween.interpolate_property(interface, "rect_position:x", current, p, time):
-			print("error")
+		if !tween.interpolate_property(interface, "rect_position", current, p, time, Tween.TRANS_BACK, Tween.EASE_OUT):
+			if !tween.start():
+				print("errror")
 
 func SpringSignIn():
 	Spring(signInPosition)

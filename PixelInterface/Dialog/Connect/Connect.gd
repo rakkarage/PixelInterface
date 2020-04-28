@@ -1,6 +1,6 @@
 extends Control
 
-export var time = 1.0
+export var time = 0.333
 
 onready var interface : Control = $ViewportContainer/Viewport/Interface
 onready var error : Control = $ViewportContainer/Viewport/Error
@@ -17,7 +17,7 @@ const passwordPosition = Vector2(3000, -3000)
 func Spring(p := Vector2.ZERO, c : Control = interface):
 	var current = c.get_position()
 	if !current.is_equal_approx(p):
-		if tween.interpolate_property(interface, "rect_position", current, p, time, Tween.TRANS_BACK, Tween.EASE_OUT):
+		if tween.interpolate_property(interface, "rect_position", current, p, time, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
 			if !tween.start():
 				print("errror")
 
@@ -27,7 +27,7 @@ func SpringSignIn():
 func SpringSignUp():
 	Spring(signUpPosition)
 
-func Reset():
+func SpringReset():
 	Spring(resetPosition)
 
 func SpringAccount():
@@ -46,4 +46,4 @@ func SpringErrorBack():
 	Spring(Vector2.ZERO, error)
 	
 func _on_Button_pressed():
-	Spring(signInPosition)
+	SpringSignIn()

@@ -89,6 +89,7 @@ margin_right = 3000.0
 margin_bottom = 3000.0
 
 [node name="Tween" type="Tween" parent="."]
-[connection signal="pressed" from="ViewportContainer/Viewport/Interface/Status/Panel/Button" to="." method="_on_Button_pressed"]
 
 [editable path="ViewportContainer/Viewport/Interface/Status"]
+
+[editable path="ViewportContainer/Viewport/Interface/SignIn"]

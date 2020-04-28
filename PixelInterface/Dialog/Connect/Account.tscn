@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://PixelInterface/Texture/Stone.tres" type="StyleBox" id=1]
-[ext_resource path="res://PixelInterface/Sprite/Circle.png" type="Texture" id=2]
+[ext_resource path="res://PixelInterface/Dialog/Connect/Close.tscn" type="PackedScene" id=2]
 [ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=3]
-[ext_resource path="res://PixelInterface/Sprite/No.png" type="Texture" id=4]
 [ext_resource path="res://PixelInterface/Texture/Paper.tres" type="StyleBox" id=5]
 
 [node name="Account" type="Control"]
@@ -121,32 +120,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton" type="TextureButton" parent="Panel"]
-modulate = Color( 0.74902, 0.494118, 0.494118, 1 )
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -18.0
-margin_top = -18.0
-texture_normal = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer" type="CenterContainer" parent="Panel/TextureButton"]
-margin_right = 22.0
-margin_bottom = 22.0
-rect_min_size = Vector2( 36, 36 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="Panel/TextureButton/CenterContainer"]
-self_modulate = Color( 0.623529, 0.690196, 1, 1 )
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 29.0
-margin_bottom = 29.0
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Close" parent="Panel" instance=ExtResource( 2 )]

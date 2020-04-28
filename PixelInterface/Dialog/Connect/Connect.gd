@@ -1,5 +1,7 @@
 extends Control
 
+export var time = 1.0
+
 onready var interface : Control = $ViewportContainer/Viewport/Interface
 onready var error : Control = $ViewportContainer/Viewport/Error
 onready var tween : Tween = $Tween
@@ -12,12 +14,10 @@ const accountPosition = Vector2(0, -3000)
 const emailPosition = Vector2(-3000, -3000)
 const passwordPosition = Vector2(3000, -3000)
 
-export var time = 1.0
-
 func Spring(p := Vector2.ZERO, c : Control = interface):
 	var current = c.get_position()
 	if !current.is_equal_approx(p):
-		if !tween.interpolate_property(interface, "rect_position", current, p, time, Tween.TRANS_BACK, Tween.EASE_OUT):
+		if tween.interpolate_property(interface, "rect_position", current, p, time, Tween.TRANS_BACK, Tween.EASE_OUT):
 			if !tween.start():
 				print("errror")
 

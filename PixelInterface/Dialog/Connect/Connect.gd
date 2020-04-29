@@ -30,7 +30,7 @@ func spring(p := Vector2.ZERO, c : Control = interface):
 	if !current.is_equal_approx(p):
 		if tween.interpolate_property(interface, "rect_position", current, p, time, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
 			if !tween.start():
-				print("errror")
+				print("error")
 
 func springSignIn():
 	spring(signInPosition)

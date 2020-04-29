@@ -3,11 +3,11 @@ class_name Connect
 
 export var time = 0.333
 
-onready var interface : Control = $ViewportContainer/Viewport/Interface
-onready var error : Control = $ViewportContainer/Viewport/Error
-onready var tween : Tween = $Tween
-onready var status  : Button = $ViewportContainer/Viewport/Interface/Status/Panel/Status
-onready var signInClose  : Button = $ViewportContainer/Viewport/Interface/SignIn/Panel/Close/Close
+onready var interface = $ViewportContainer/Viewport/Interface
+onready var error = $ViewportContainer/Viewport/Error
+onready var tween = $Tween
+onready var status = $ViewportContainer/Viewport/Interface/Status/Panel/Status
+onready var signInClose = $ViewportContainer/Viewport/Interface/SignIn/Panel/Close/Close
 
 const errorPosition = Vector2(-3000, 0)
 const signInPosition = Vector2(0, 3000)
@@ -21,15 +21,15 @@ func _ready():
 	handleError(status.connect("pressed", self, "_on_Status_pressed"))
 	handleError(signInClose.connect("pressed", self, "_on_Close_pressed"))
 
-func handleError(e : int):
+func handleError(e):
 	if e != OK:
 		print("error: " + str(e))
 
-func spring(p := Vector2.ZERO, c : Control = interface):
+func spring(p = Vector2.ZERO, c = interface):
 	var current = c.get_position()
-	if !current.is_equal_approx(p):
+	if  not current.is_equal_approx(p):
 		if tween.interpolate_property(interface, "rect_position", current, p, time, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
-			if !tween.start():
+			if not tween.start():
 				print("error")
 
 func springSignIn():

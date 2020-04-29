@@ -25,6 +25,7 @@ __meta__ = {
 margin_right = 22.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 36, 36 )
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -13,14 +13,17 @@ onready var signInReset = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBo
 onready var signInClose = $ViewportContainer/Viewport/Interface/SignIn/Panel/Close/Close
 onready var signUpClose = $ViewportContainer/Viewport/Interface/SignUp/Panel/Close/Close
 onready var resetClose = $ViewportContainer/Viewport/Interface/Reset/Panel/Close/Close
+onready var accountClose = $ViewportContainer/Viewport/Interface/Account/Panel/Close/Close
+onready var emailClose = $ViewportContainer/Viewport/Interface/Email/Panel/Close/Close
+onready var passwordClose = $ViewportContainer/Viewport/Interface/Password/Panel/Close/Close
 
 const errorPosition = Vector2(-3000, 0)
 const signInPosition = Vector2(0, 3000)
-const signUpPosition = Vector2(-3000, 3000)
-const resetPosition = Vector2(3000, 3000)
+const signUpPosition = Vector2(3000, 3000)
+const resetPosition = Vector2(-3000, 3000)
 const accountPosition = Vector2(0, -3000)
-const emailPosition = Vector2(-3000, -3000)
-const passwordPosition = Vector2(3000, -3000)
+const emailPosition = Vector2(3000, -3000)
+const passwordPosition = Vector2(-3000, -3000)
 
 func _ready():
 	handleError(status.connect("pressed", self, "_on_Status_pressed"))
@@ -29,6 +32,9 @@ func _ready():
 	handleError(signInClose.connect("pressed", self, "spring"))
 	handleError(signUpClose.connect("pressed", self, "springSignIn"))
 	handleError(resetClose.connect("pressed", self, "springSignIn"))
+	handleError(accountClose.connect("pressed", self, "spring"))
+	handleError(emailClose.connect("pressed", self, "springAccount"))
+	handleError(passwordClose.connect("pressed", self, "springAccount"))
 
 func handleError(e):
 	if e != OK:

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MaskHighlight.png-21a60082ae6bf809d0572d7dbad3f05d.stex"
+path="res://.import/Highlight.png-6b1f206cb6d36e78600026455ee562e3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/MaskHighlight.png"
-dest_files=[ "res://.import/MaskHighlight.png-21a60082ae6bf809d0572d7dbad3f05d.stex" ]
+source_file="res://PixelInterface/Sprite/Highlight.png"
+dest_files=[ "res://.import/Highlight.png-6b1f206cb6d36e78600026455ee562e3.stex" ]
 
 [params]
 

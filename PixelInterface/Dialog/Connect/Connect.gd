@@ -7,7 +7,12 @@ onready var interface = $ViewportContainer/Viewport/Interface
 onready var error = $ViewportContainer/Viewport/Error
 onready var tween = $Tween
 onready var status = $ViewportContainer/Viewport/Interface/Status/Panel/Status
+onready var signInSignIn = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/SignIn
+onready var signInSignUp = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/HBoxContainer/SignUp
+onready var signInReset = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/HBoxContainer/Reset
 onready var signInClose = $ViewportContainer/Viewport/Interface/SignIn/Panel/Close/Close
+onready var signUpClose = $ViewportContainer/Viewport/Interface/SignUp/Panel/Close/Close
+onready var resetClose = $ViewportContainer/Viewport/Interface/Reset/Panel/Close/Close
 
 const errorPosition = Vector2(-3000, 0)
 const signInPosition = Vector2(0, 3000)
@@ -19,7 +24,11 @@ const passwordPosition = Vector2(3000, -3000)
 
 func _ready():
 	handleError(status.connect("pressed", self, "_on_Status_pressed"))
-	handleError(signInClose.connect("pressed", self, "_on_Close_pressed"))
+	handleError(signInSignUp.connect("pressed", self, "springSignUp"))
+	handleError(signInReset.connect("pressed", self, "springReset"))
+	handleError(signInClose.connect("pressed", self, "spring"))
+	handleError(signUpClose.connect("pressed", self, "springSignIn"))
+	handleError(resetClose.connect("pressed", self, "springSignIn"))
 
 func handleError(e):
 	if e != OK:
@@ -58,6 +67,3 @@ func springErrorBack():
 
 func _on_Status_pressed():
 	springSignIn()
-
-func _on_Close_pressed():
-	spring()

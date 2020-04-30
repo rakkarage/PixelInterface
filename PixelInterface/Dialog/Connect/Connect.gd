@@ -1,5 +1,4 @@
 extends Control
-class_name Connect
 
 export var time = 0.333
 
@@ -34,27 +33,23 @@ const emailPosition = Vector2(3000, -3000)
 const passwordPosition = Vector2(-3000, -3000)
 
 func _ready():
-	handleError(status.connect("pressed", self, "_on_Status_pressed"))
-	handleError(signInSignUp.connect("pressed", self, "springSignUp"))
-	handleError(signInReset.connect("pressed", self, "springReset"))
-	handleError(signInClose.connect("pressed", self, "spring"))
-	handleError(signUpClose.connect("pressed", self, "springSignIn"))
-	handleError(resetClose.connect("pressed", self, "springSignIn"))
-	handleError(accountClose.connect("pressed", self, "spring"))
-	handleError(emailClose.connect("pressed", self, "springAccount"))
-	handleError(passwordClose.connect("pressed", self, "springAccount"))
-	handleError(errorClose.connect("pressed", self, "springErrorBack"))
-	handleError(errorError.connect("gui_input", self, "_on_gui_input"))
+	Utility.ok(status.connect("pressed", self, "_on_Status_pressed"))
+	Utility.ok(signInSignUp.connect("pressed", self, "springSignUp"))
+	Utility.ok(signInReset.connect("pressed", self, "springReset"))
+	Utility.ok(signInClose.connect("pressed", self, "spring"))
+	Utility.ok(signUpClose.connect("pressed", self, "springSignIn"))
+	Utility.ok(resetClose.connect("pressed", self, "springSignIn"))
+	Utility.ok(accountClose.connect("pressed", self, "spring"))
+	Utility.ok(emailClose.connect("pressed", self, "springAccount"))
+	Utility.ok(passwordClose.connect("pressed", self, "springAccount"))
+	Utility.ok(errorClose.connect("pressed", self, "springErrorBack"))
+	Utility.ok(errorError.connect("gui_input", self, "_on_gui_input"))
 	showError("Welcome!?", "Please sign in to continue...")
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			print("gui")
-
-func handleError(e):
-	if e != OK:
-		print("error: " + str(e))
 
 func spring(p = Vector2.ZERO, c = interface):
 	var current = c.get_position()

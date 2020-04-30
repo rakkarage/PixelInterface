@@ -20,7 +20,7 @@ func api(http: HTTPRequest, url: String = signUpUrl, email: String = "", passwor
 		"email" : email,
 		"password" : password
 	}
-	http.request(url % apiKey, [], false, HTTPClient.METHOD_POST, to_json(body))
+	Utility.ok(http.request(url % apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed") as Array
 	if response[1] == 200:
 		token = _getToken(response)

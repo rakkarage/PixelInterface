@@ -8,14 +8,9 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Control",
-"class": "Connect",
-"language": "GDScript",
-"path": "res://PixelInterface/Dialog/Connect/Connect.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"Connect": ""
+
 }
 
 [application]
@@ -27,6 +22,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Utility="*res://PixelInterface/Dialog/Connect/Utility.gd"
 Firebase="*res://PixelInterface/Dialog/Connect/Firebase.gd"
 
 [display]

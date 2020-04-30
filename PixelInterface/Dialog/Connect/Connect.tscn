@@ -39,14 +39,6 @@ limit_top = 0
 limit_right = 1024
 limit_bottom = 600
 
-[node name="Error" type="Control" parent="ViewportContainer/Viewport"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="Error" parent="ViewportContainer/Viewport/Error" instance=ExtResource( 8 )]
-margin_left = -3000.0
-margin_right = -3000.0
-
 [node name="Interface" type="Control" parent="ViewportContainer/Viewport"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -87,5 +79,17 @@ margin_left = 3000.0
 margin_top = 3000.0
 margin_right = 3000.0
 margin_bottom = 3000.0
+
+[node name="Error" type="Control" parent="ViewportContainer/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Error" parent="ViewportContainer/Viewport/Error" instance=ExtResource( 8 )]
+margin_left = -3000.0
+margin_right = -3000.0
 
 [node name="Tween" type="Tween" parent="."]

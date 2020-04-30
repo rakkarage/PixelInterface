@@ -6,6 +6,11 @@ export var time = 0.333
 onready var interface = $ViewportContainer/Viewport/Interface
 onready var error = $ViewportContainer/Viewport/Error
 onready var tween = $Tween
+
+onready var errorTitle = $ViewportContainer/Viewport/Error/Error/Panel/Label
+onready var errorText = $ViewportContainer/Viewport/Error/Error/Panel/Panel/Label
+onready var errorClose = $ViewportContainer/Viewport/Error/Error/Panel/Close/Close
+
 onready var status = $ViewportContainer/Viewport/Interface/Status/Panel/Status
 onready var signInSignIn = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/SignIn
 onready var signInSignUp = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/HBoxContainer/SignUp
@@ -17,10 +22,12 @@ onready var accountClose = $ViewportContainer/Viewport/Interface/Account/Panel/C
 onready var emailClose = $ViewportContainer/Viewport/Interface/Email/Panel/Close/Close
 onready var passwordClose = $ViewportContainer/Viewport/Interface/Password/Panel/Close/Close
 
-const errorPosition = Vector2(-3000, 0)
+const errorPosition = Vector2(3000, 0)
+
 const signInPosition = Vector2(0, 3000)
 const signUpPosition = Vector2(3000, 3000)
 const resetPosition = Vector2(-3000, 3000)
+
 const accountPosition = Vector2(0, -3000)
 const emailPosition = Vector2(3000, -3000)
 const passwordPosition = Vector2(-3000, -3000)
@@ -35,7 +42,9 @@ func _ready():
 	handleError(accountClose.connect("pressed", self, "spring"))
 	handleError(emailClose.connect("pressed", self, "springAccount"))
 	handleError(passwordClose.connect("pressed", self, "springAccount"))
-
+	handleError(errorClose.connect("pressed", self, "springErrorBack"))
+	showError("Test!?", "test")
+	
 func handleError(e):
 	if e != OK:
 		print("error: " + str(e))
@@ -43,7 +52,7 @@ func handleError(e):
 func spring(p = Vector2.ZERO, c = interface):
 	var current = c.get_position()
 	if  not current.is_equal_approx(p):
-		if tween.interpolate_property(interface, "rect_position", current, p, time, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
+		if tween.interpolate_property(c, "rect_position", current, p, time, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
 			if not tween.start():
 				print("error")
 
@@ -73,3 +82,8 @@ func springErrorBack():
 
 func _on_Status_pressed():
 	springSignIn()
+
+func showError(title, text):
+	errorTitle.text = title
+	errorText.text = text
+	springError()

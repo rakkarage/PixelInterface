@@ -25,6 +25,10 @@ config/description="Pixel-perfect fonts and user interface elements."
 run/main_scene="res://Demo.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Firebase="*res://PixelInterface/Dialog/Connect/Firebase.gd"
+
 [display]
 
 mouse_cursor/custom_image="res://PixelInterface/Sprite/Cursor.png"

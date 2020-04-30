@@ -5,6 +5,7 @@ export var time = 0.333
 
 onready var interface = $ViewportContainer/Viewport/Interface
 onready var error = $ViewportContainer/Viewport/Error
+onready var errorError = $ViewportContainer/Viewport/Error/Error
 onready var tween = $Tween
 
 onready var errorTitle = $ViewportContainer/Viewport/Error/Error/Panel/Label
@@ -43,8 +44,14 @@ func _ready():
 	handleError(emailClose.connect("pressed", self, "springAccount"))
 	handleError(passwordClose.connect("pressed", self, "springAccount"))
 	handleError(errorClose.connect("pressed", self, "springErrorBack"))
-	showError("Test!?", "test")
-	
+	handleError(errorError.connect("gui_input", self, "_on_gui_input"))
+	showError("Welcome!?", "Please sign in to continue...")
+
+func _on_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			print("gui")
+
 func handleError(e):
 	if e != OK:
 		print("error: " + str(e))

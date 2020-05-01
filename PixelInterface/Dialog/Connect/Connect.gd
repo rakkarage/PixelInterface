@@ -14,16 +14,18 @@ onready var errorClose = $ViewportContainer/Viewport/Error/Error/Panel/Close/Clo
 
 onready var status = $ViewportContainer/Viewport/Interface/Status/Panel/Status
 
-onready var signInEmail = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Panel/Input/HBoxContainer/Email/LineEdit
-onready var signInPassword = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Panel/Input/HBoxContainer/Password/LineEdit
+onready var signInEmail = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Panel/Input/Email/LineEdit
+onready var signInPassword = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Panel/Input/Password/LineEdit
+
 onready var signInSignIn = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/SignIn
 onready var signInSignUp = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/HBoxContainer/SignUp
 onready var signInReset = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/HBoxContainer/Reset
 onready var signInClose = $ViewportContainer/Viewport/Interface/SignIn/Panel/Close/Close
 
-onready var signUpEmail = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/HBoxContainer/Email/LineEdit
-onready var signUpPassword = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/HBoxContainer/Password/LineEdit
-onready var signUpConfirm = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/HBoxContainer/Confirm/LineEdit
+onready var signUpEmail = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/Email/LineEdit
+onready var signUpPassword = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/Password/LineEdit
+onready var signUpConfirm = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/Confirm/LineEdit
+
 onready var signUpSignUp = $ViewportContainer/Viewport/Interface/SignUp/Panel/SignUp
 onready var signUpClose = $ViewportContainer/Viewport/Interface/SignUp/Panel/Close/Close
 
@@ -92,7 +94,6 @@ func showError(title, text):
 	springError()
 
 func _on_Status_pressed():
-	Firebase.api(http)
 	if not Firebase.authenticated():
 		springSignIn()
 

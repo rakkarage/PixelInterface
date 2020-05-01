@@ -2,7 +2,7 @@ tool
 extends TextureRect
 
 func _ready():
-	get_node("..").connect("resized", self, "_on_Control_resized")
+	Utility.ok(get_node("..").connect("resized", self, "_on_Control_resized"))
 
 func _on_Control_resized():
 	var tex = rect_size;

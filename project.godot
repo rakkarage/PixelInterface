@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Object",
 "class": "Utility",
 "language": "GDScript",
-"path": "res://PixelInterface/Dialog/Connect/Utility.gd"
+"path": "res://PixelInterface/Utility.gd"
 } ]
 _global_script_class_icons={
 "Utility": ""

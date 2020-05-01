@@ -114,4 +114,4 @@ func _on_SignUp_pressed():
 	if password != confirm:
 		showError("Error", "Passwords must match.")
 		return
-	Firebase.signUp(http, email, password, confirm)
+	Firebase.signUp(http, email, password)

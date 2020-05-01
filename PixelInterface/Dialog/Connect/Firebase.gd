@@ -1,4 +1,4 @@
-extends Object
+extends Node
 
 const signInUrl := "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=%s"
 const signUpUrl := "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=%s"

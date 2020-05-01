@@ -13,11 +13,20 @@ onready var errorText = $ViewportContainer/Viewport/Error/Error/Panel/Panel/Labe
 onready var errorClose = $ViewportContainer/Viewport/Error/Error/Panel/Close/Close
 
 onready var status = $ViewportContainer/Viewport/Interface/Status/Panel/Status
+
+onready var signInEmail = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Panel/Input/HBoxContainer/Email/LineEdit
+onready var signInPassword = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Panel/Input/HBoxContainer/Password/LineEdit
 onready var signInSignIn = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/SignIn
 onready var signInSignUp = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/HBoxContainer/SignUp
 onready var signInReset = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/HBoxContainer/Reset
 onready var signInClose = $ViewportContainer/Viewport/Interface/SignIn/Panel/Close/Close
+
+onready var signUpEmail = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/HBoxContainer/Email/LineEdit
+onready var signUpPassword = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/HBoxContainer/Password/LineEdit
+onready var signUpConfirm = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/HBoxContainer/Confirm/LineEdit
+onready var signUpSignUp = $ViewportContainer/Viewport/Interface/SignUp/Panel/SignUp
 onready var signUpClose = $ViewportContainer/Viewport/Interface/SignUp/Panel/Close/Close
+
 onready var resetClose = $ViewportContainer/Viewport/Interface/Reset/Panel/Close/Close
 onready var accountClose = $ViewportContainer/Viewport/Interface/Account/Panel/Close/Close
 onready var emailClose = $ViewportContainer/Viewport/Interface/Email/Panel/Close/Close
@@ -35,6 +44,7 @@ const passwordPosition = Vector2(-3000, -3000)
 
 func _ready():
 	Utility.ok(status.connect("pressed", self, "_on_Status_pressed"))
+	Utility.ok(signInSignIn.connect("pressed", self, "_on_SignIn_pressed"))
 	Utility.ok(signInSignUp.connect("pressed", self, "springSignUp"))
 	Utility.ok(signInReset.connect("pressed", self, "springReset"))
 	Utility.ok(signInClose.connect("pressed", self, "spring"))
@@ -76,14 +86,32 @@ func springError():
 func springErrorBack():
 	spring(Vector2.ZERO, error)
 
-func _on_Status_pressed():
-	Firebase.api(http)
-	if Firebase.authenticated():
-		springSignIn()
-	else:
-		showError("Connect", "Welcome back")
-
 func showError(title, text):
 	errorTitle.text = title
 	errorText.text = text
 	springError()
+
+func _on_Status_pressed():
+	Firebase.api(http)
+	if not Firebase.authenticated():
+		springSignIn()
+
+func _on_SignIn_pressed():
+	var email = signInEmail.text;
+	var password = signInPassword.text;
+	if email.empty() or password.empty():
+		showError("Error", "Please enter an email and password.")
+		return
+	Firebase.signIn(http, email, password)
+
+func _on_SignUp_pressed():
+	var email = signUpEmail.text;
+	var password = signUpPassword.text;
+	var confirm = signUpConfirm.text;
+	if email.empty() or password.empty():
+		showError("Error", "Please enter an email and password.")
+		return
+	if password != confirm:
+		showError("Error", "Passwords must match.")
+		return
+	Firebase.signUp(http, email, password, confirm)

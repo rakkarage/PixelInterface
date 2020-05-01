@@ -63,39 +63,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/Input"]
+[node name="Email" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/Input"]
 margin_right = 288.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/Input/HBoxContainer"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/Input/Email"]
 margin_top = 15.0
 margin_right = 55.0
 margin_bottom = 33.0
 text = "Email"
 
-[node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer/Panel/Input/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer/Panel/Input/Email"]
 margin_left = 59.0
 margin_right = 288.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/Input"]
+[node name="Password" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/Input"]
 margin_top = 52.0
 margin_right = 288.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/Input/HBoxContainer3"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/Input/Password"]
 margin_top = 15.0
 margin_right = 82.0
 margin_bottom = 33.0
 text = "Password"
 
-[node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer/Panel/Input/HBoxContainer3"]
+[node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer/Panel/Input/Password"]
 margin_left = 86.0
 margin_right = 288.0
 margin_bottom = 48.0
@@ -103,18 +103,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 2
 secret = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/Input"]
+[node name="Confirm" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/Input"]
 margin_top = 104.0
 margin_right = 288.0
 margin_bottom = 152.0
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/Input/HBoxContainer2"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/Input/Confirm"]
 margin_top = 15.0
 margin_right = 71.0
 margin_bottom = 33.0
 text = "Confirm"
 
-[node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer/Panel/Input/HBoxContainer2"]
+[node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer/Panel/Input/Confirm"]
 margin_left = 75.0
 margin_right = 288.0
 margin_bottom = 48.0

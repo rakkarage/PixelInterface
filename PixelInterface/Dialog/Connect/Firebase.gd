@@ -15,7 +15,7 @@ func _getToken(response: Array) -> String:
 	var json = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 	return json.idToken
 
-func api(http: HTTPRequest, url: String = signUpUrl, email: String = "", password: String = "") -> void:
+func _api(http: HTTPRequest, url: String, email: String, password: String) -> void:
 	var body := {
 		"email" : email,
 		"password" : password
@@ -25,6 +25,12 @@ func api(http: HTTPRequest, url: String = signUpUrl, email: String = "", passwor
 	print(response)
 	if response[1] == 200:
 		token = _getToken(response)
+
+func signIn(http: HTTPRequest, email : String, password : String):
+	_api(http, signInUrl, email, password)
+
+func signUp(http: HTTPRequest, email : String, password : String):
+	_api(http, signUpUrl, email, password)
 
 func authenticated() -> bool:
 	return token != ""

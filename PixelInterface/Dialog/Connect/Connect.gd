@@ -2,6 +2,9 @@ extends Control
 
 export var time = 0.333
 
+var connectedColor = Color(0.25, 0.75, 0.25)
+var disconnectedColor = Color(0.75, 0.25, 0.25)
+
 onready var interface = $ViewportContainer/Viewport/Interface
 onready var error = $ViewportContainer/Viewport/Error
 onready var errorError = $ViewportContainer/Viewport/Error/Error
@@ -50,12 +53,17 @@ func _ready():
 	Utility.ok(signInSignUp.connect("pressed", self, "springSignUp"))
 	Utility.ok(signInReset.connect("pressed", self, "springReset"))
 	Utility.ok(signInClose.connect("pressed", self, "spring"))
+	
+	Utility.ok(signUpSignUp.connect("pressed", self, "_on_SignUp_pressed"))
 	Utility.ok(signUpClose.connect("pressed", self, "springSignIn"))
+	
 	Utility.ok(resetClose.connect("pressed", self, "springSignIn"))
 	Utility.ok(accountClose.connect("pressed", self, "spring"))
 	Utility.ok(emailClose.connect("pressed", self, "springAccount"))
 	Utility.ok(passwordClose.connect("pressed", self, "springAccount"))
 	Utility.ok(errorClose.connect("pressed", self, "springErrorBack"))
+	Utility.ok(http.connect("request_completed", self, "_on_HTTPRequest_request_completed"))
+	updateStatus()
 
 func spring(p = Vector2.ZERO, c = interface):
 	var current = c.get_position()
@@ -116,3 +124,17 @@ func _on_SignUp_pressed():
 		showError("Error", "Passwords must match.")
 		return
 	Firebase.signUp(http, email, password)
+
+func _on_HTTPRequest_request_completed(_result, code, _header, body):
+	var response := JSON.parse(body.get_string_from_ascii())
+	if code != 200:
+		showError("Error", response.result.error.message.capitalize())
+	else:
+		updateStatus()
+		spring()
+
+func updateStatus():
+	if Firebase.authenticated():
+		status.modulate = connectedColor
+	else:
+		status.modulate = disconnectedColor

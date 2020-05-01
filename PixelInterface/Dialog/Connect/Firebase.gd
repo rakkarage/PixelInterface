@@ -5,7 +5,7 @@ const signUpUrl := "https://identitytoolkit.googleapis.com/v1/accounts:signUp?ke
 var apiKey := ""
 var token := ""
 
-func _ready():
+func _ready() -> void:
 	var file = File.new()
 	file.open("res://PixelInterface/Dialog/Connect/apikey.txt", file.READ)
 	apiKey = file.get_as_text()
@@ -22,8 +22,8 @@ func api(http: HTTPRequest, url: String = signUpUrl, email: String = "", passwor
 	}
 	Utility.ok(http.request(url % apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed") as Array
+	print(response)
 	if response[1] == 200:
-		print(response)
 		token = _getToken(response)
 
 func authenticated() -> bool:

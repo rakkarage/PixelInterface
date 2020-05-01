@@ -83,7 +83,6 @@ margin_bottom = 3000.0
 [node name="Error" type="Control" parent="ViewportContainer/Viewport"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -91,5 +90,7 @@ __meta__ = {
 [node name="Error" parent="ViewportContainer/Viewport/Error" instance=ExtResource( 8 )]
 margin_left = -3000.0
 margin_right = -3000.0
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="Tween" type="Tween" parent="."]

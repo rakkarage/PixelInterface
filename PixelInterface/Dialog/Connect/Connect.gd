@@ -5,6 +5,7 @@ export var time = 0.333
 onready var interface = $ViewportContainer/Viewport/Interface
 onready var error = $ViewportContainer/Viewport/Error
 onready var errorError = $ViewportContainer/Viewport/Error/Error
+onready var http = $HTTPRequest
 onready var tween = $Tween
 
 onready var errorTitle = $ViewportContainer/Viewport/Error/Error/Panel/Label
@@ -43,13 +44,6 @@ func _ready():
 	Utility.ok(emailClose.connect("pressed", self, "springAccount"))
 	Utility.ok(passwordClose.connect("pressed", self, "springAccount"))
 	Utility.ok(errorClose.connect("pressed", self, "springErrorBack"))
-	Utility.ok(errorError.connect("gui_input", self, "_on_gui_input"))
-	showError("Welcome!?", "Please sign in to continue...")
-
-func _on_gui_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			print("gui")
 
 func spring(p = Vector2.ZERO, c = interface):
 	var current = c.get_position()
@@ -83,7 +77,11 @@ func springErrorBack():
 	spring(Vector2.ZERO, error)
 
 func _on_Status_pressed():
-	springSignIn()
+	Firebase.api(http)
+	if Firebase.authenticated():
+		springSignIn()
+	else:
+		showError("Connect", "Welcome back")
 
 func showError(title, text):
 	errorTitle.text = title

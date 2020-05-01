@@ -1,4 +1,4 @@
-extends Node
+extends Object
 
 const signInUrl := "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=%s"
 const signUpUrl := "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=%s"
@@ -10,7 +10,7 @@ func _ready():
 	file.open("res://PixelInterface/Dialog/Connect/apikey.txt", file.READ)
 	apiKey = file.get_as_text()
 	file.close()
-	
+
 func _getToken(response: Array) -> String:
 	var json = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 	return json.idToken
@@ -23,4 +23,8 @@ func api(http: HTTPRequest, url: String = signUpUrl, email: String = "", passwor
 	Utility.ok(http.request(url % apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed") as Array
 	if response[1] == 200:
+		print(response)
 		token = _getToken(response)
+
+func authenticated() -> bool:
+	return token != ""

@@ -12,7 +12,7 @@ signal signedOut()
 
 func _ready() -> void:
 	var f = File.new()
-	f.open("res://PixelInterface/Dialog/Connect/apikey.txt", File.READ)
+	f.open("res://PixelInterface/Connect/apikey.txt", File.READ)
 	apiKey = f.get_as_text()
 	f.close()
 

@@ -19,7 +19,6 @@ onready var status = $ViewportContainer/Viewport/Interface/Status/Panel/Status
 
 onready var signInEmail = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Panel/Input/Email/LineEdit
 onready var signInPassword = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Panel/Input/Password/LineEdit
-
 onready var signInSignIn = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/SignIn
 onready var signInSignUp = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/HBoxContainer/SignUp
 onready var signInReset = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/HBoxContainer/Reset
@@ -28,12 +27,17 @@ onready var signInClose = $ViewportContainer/Viewport/Interface/SignIn/Panel/Clo
 onready var signUpEmail = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/Email/LineEdit
 onready var signUpPassword = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/Password/LineEdit
 onready var signUpConfirm = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/Confirm/LineEdit
-
 onready var signUpSignUp = $ViewportContainer/Viewport/Interface/SignUp/Panel/SignUp
 onready var signUpClose = $ViewportContainer/Viewport/Interface/SignUp/Panel/Close/Close
 
+onready var resetReset = $ViewportContainer/Viewport/Interface/Reset/Panel/Reset
 onready var resetClose = $ViewportContainer/Viewport/Interface/Reset/Panel/Close/Close
+
+onready var accountSignOut = $ViewportContainer/Viewport/Interface/Account/Panel/VBoxContainer/Buttons/SignOut
+onready var accountEmail = $ViewportContainer/Viewport/Interface/Account/Panel/VBoxContainer/Buttons/HBoxContainer/Email
+onready var accountPassword = $ViewportContainer/Viewport/Interface/Account/Panel/VBoxContainer/Buttons/HBoxContainer/Password
 onready var accountClose = $ViewportContainer/Viewport/Interface/Account/Panel/Close/Close
+
 onready var emailClose = $ViewportContainer/Viewport/Interface/Email/Panel/Close/Close
 onready var passwordClose = $ViewportContainer/Viewport/Interface/Password/Panel/Close/Close
 
@@ -52,6 +56,7 @@ const emailPath = "user://email.txt";
 
 func _ready():
 	Utility.ok(status.connect("pressed", self, "_on_Status_pressed"))
+	
 	Utility.ok(signInSignIn.connect("pressed", self, "_on_SignIn_pressed"))
 	Utility.ok(signInSignUp.connect("pressed", self, "springSignUp"))
 	Utility.ok(signInReset.connect("pressed", self, "springReset"))
@@ -61,13 +66,17 @@ func _ready():
 	Utility.ok(signUpClose.connect("pressed", self, "springSignIn"))
 	
 	Utility.ok(resetClose.connect("pressed", self, "springSignIn"))
+	
 	Utility.ok(accountClose.connect("pressed", self, "spring"))
+	Utility.ok(accountSignOut.connect("pressed", self, "_on_SignOut_pressed"))
+	
 	Utility.ok(emailClose.connect("pressed", self, "springAccount"))
 	Utility.ok(passwordClose.connect("pressed", self, "springAccount"))
 	Utility.ok(errorClose.connect("pressed", self, "springErrorBack"))
 
 	Utility.ok(Firebase.connect("signedIn", self, "OnSignedIn"))
 	Utility.ok(Firebase.connect("signedUp", self, "OnSignedUp"))
+	Utility.ok(Firebase.connect("signedOut", self, "OnSignedOut"))
 	loadEmail()
 	updateStatus()
 
@@ -155,6 +164,13 @@ func OnSignedUp(response):
 	else:
 		var test = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 		showError("Error", test.error.message.capitalize())
+
+func _on_SignOut_pressed():
+	Firebase.signOut()
+
+func OnSignedOut():
+	updateStatus()
+	spring()
 
 func saveEmail():
 	if (not signInEmail.text.empty()):

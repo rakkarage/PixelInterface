@@ -59,20 +59,20 @@ margin_right = -3000.0
 margin_bottom = -3000.0
 
 [node name="Reset" parent="ViewportContainer/Viewport/Interface" instance=ExtResource( 5 )]
-margin_left = -3000.0
-margin_top = 3000.0
-margin_right = -3000.0
-margin_bottom = 3000.0
+margin_left = 3000.0
+margin_top = -3000.0
+margin_right = 3000.0
+margin_bottom = -3000.0
 
 [node name="Account" parent="ViewportContainer/Viewport/Interface" instance=ExtResource( 4 )]
 margin_top = 3000.0
 margin_bottom = 3000.0
 
 [node name="Email" parent="ViewportContainer/Viewport/Interface" instance=ExtResource( 7 )]
-margin_left = 3000.0
-margin_top = -3000.0
-margin_right = 3000.0
-margin_bottom = -3000.0
+margin_left = -3000.0
+margin_top = 3000.0
+margin_right = -3000.0
+margin_bottom = 3000.0
 
 [node name="Password" parent="ViewportContainer/Viewport/Interface" instance=ExtResource( 6 )]
 margin_left = 3000.0

@@ -22,12 +22,12 @@ _global_script_class_icons={
 
 config/name="PixelInterface"
 config/description="Pixel-perfect fonts and user interface elements."
-run/main_scene="res://PixelInterface/Dialog/Connect/Connect.tscn"
+run/main_scene="res://PixelInterface/Connect/Connect.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Firebase="*res://PixelInterface/Dialog/Connect/Firebase.gd"
+Firebase="*res://PixelInterface/Connect/Firebase.gd"
 
 [display]
 

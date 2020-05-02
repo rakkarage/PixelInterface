@@ -130,6 +130,9 @@ func updateStatus():
 func _on_SignIn_pressed():
 	var email = signInEmail.text;
 	var password = signInPassword.text;
+
+	
+
 	if email.empty() or password.empty():
 		showError("Error", "Please enter an email and password.")
 		return

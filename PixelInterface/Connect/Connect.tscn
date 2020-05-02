@@ -1,14 +1,16 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://PixelInterface/Dialog/Connect/Status.tscn" type="PackedScene" id=1]
-[ext_resource path="res://PixelInterface/Dialog/Connect/SignIn.tscn" type="PackedScene" id=2]
-[ext_resource path="res://PixelInterface/Dialog/Connect/SignUp.tscn" type="PackedScene" id=3]
-[ext_resource path="res://PixelInterface/Dialog/Connect/Account.tscn" type="PackedScene" id=4]
-[ext_resource path="res://PixelInterface/Dialog/Connect/Reset.tscn" type="PackedScene" id=5]
-[ext_resource path="res://PixelInterface/Dialog/Connect/Password.tscn" type="PackedScene" id=6]
-[ext_resource path="res://PixelInterface/Dialog/Connect/Email.tscn" type="PackedScene" id=7]
-[ext_resource path="res://PixelInterface/Dialog/Connect/Error.tscn" type="PackedScene" id=8]
-[ext_resource path="res://PixelInterface/Dialog/Connect/Connect.gd" type="Script" id=9]
+[ext_resource path="res://PixelInterface/Connect/Status.tscn" type="PackedScene" id=1]
+[ext_resource path="res://PixelInterface/Connect/SignIn.tscn" type="PackedScene" id=2]
+[ext_resource path="res://PixelInterface/Connect/SignUp.tscn" type="PackedScene" id=3]
+[ext_resource path="res://PixelInterface/Connect/Account.tscn" type="PackedScene" id=4]
+[ext_resource path="res://PixelInterface/Connect/Reset.tscn" type="PackedScene" id=5]
+[ext_resource path="res://PixelInterface/Connect/Password.tscn" type="PackedScene" id=6]
+[ext_resource path="res://PixelInterface/Connect/Email.tscn" type="PackedScene" id=7]
+[ext_resource path="res://PixelInterface/Connect/Error.tscn" type="PackedScene" id=8]
+[ext_resource path="res://PixelInterface/Connect/Connect.gd" type="Script" id=9]
+[ext_resource path="res://PixelInterface/Audio/Error.wav" type="AudioStream" id=10]
+[ext_resource path="res://PixelInterface/Audio/Click.wav" type="AudioStream" id=11]
 
 [node name="Connect" type="Control"]
 anchor_right = 1.0
@@ -95,3 +97,9 @@ margin_right = -3000.0
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="Error" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )

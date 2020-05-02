@@ -7,7 +7,6 @@ var disconnectedColor = Color(0.75, 0.25, 0.25)
 
 onready var interface = $ViewportContainer/Viewport/Interface
 onready var error = $ViewportContainer/Viewport/Error
-onready var errorError = $ViewportContainer/Viewport/Error/Error
 onready var http = $HTTPRequest
 onready var tween = $Tween
 

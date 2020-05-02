@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Object",
 "class": "Utility",
 "language": "GDScript",
-"path": "res://PixelInterface/Utility.gd"
+"path": "res://Intro/Utility.gd"
 } ]
 _global_script_class_icons={
 "Utility": ""
@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="PixelInterface"
 config/description="Pixel-perfect fonts and user interface elements."
-run/main_scene="res://Demo.tscn"
+run/main_scene="res://PixelInterface/Dialog/Connect/Connect.tscn"
 config/icon="res://icon.png"
 
 [autoload]

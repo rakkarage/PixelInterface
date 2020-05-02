@@ -62,7 +62,7 @@ func _ready():
 	Utility.ok(emailClose.connect("pressed", self, "springAccount"))
 	Utility.ok(passwordClose.connect("pressed", self, "springAccount"))
 	Utility.ok(errorClose.connect("pressed", self, "springErrorBack"))
-	Utility.ok(http.connect("request_completed", self, "_on_HTTPRequest_request_completed"))
+#	Utility.ok(http.connect("request_completed", self, "_on_HTTPRequest_request_completed"))
 	updateStatus()
 
 func spring(p = Vector2.ZERO, c = interface):
@@ -104,6 +104,8 @@ func showError(title, text):
 func _on_Status_pressed():
 	if not Firebase.authenticated():
 		springSignIn()
+	else:
+		springAccount()
 
 func _on_SignIn_pressed():
 	var email = signInEmail.text;
@@ -112,6 +114,7 @@ func _on_SignIn_pressed():
 		showError("Error", "Please enter an email and password.")
 		return
 	Firebase.signIn(http, email, password)
+	Utility.ok(Firebase.connect("signedIn", self, "OnSignedIn"))
 
 func _on_SignUp_pressed():
 	var email = signUpEmail.text;
@@ -124,17 +127,37 @@ func _on_SignUp_pressed():
 		showError("Error", "Passwords must match.")
 		return
 	Firebase.signUp(http, email, password)
+	Utility.ok(connect("signedUp", Firebase, "OnSignedUp"))
 
-func _on_HTTPRequest_request_completed(_result, code, _header, body):
-	var response := JSON.parse(body.get_string_from_ascii())
-	if code != 200:
-		showError("Error", response.result.error.message.capitalize())
-	else:
+func OnSignedIn(response):
+	if response[1] == 200:
 		updateStatus()
 		spring()
+	else:
+		var test = JSON.parse(response[3].get_string_from_ascii())
+		showError("Error", test.result.error.message.capitalize())
+
+func OnSignedUp(response):
+	if response[1] == 200:
+		updateStatus()
+		spring()
+	else:
+		var test = JSON.parse(response[3].get_string_from_ascii())
+		showError("Error", test.result.error.message.capitalize())
+
+# func _on_HTTPRequest_request_completed(_result, code, _header, body):
+# 	print("+++REQUEST_COMPLETE+++")
+# 	var response := JSON.parse(body.get_string_from_ascii())
+# 	if code != 200:
+# 		showError("Error", response.result.error.message.capitalize())
+# 	else:
+# 		updateStatus()
+# 		spring()
 
 func updateStatus():
 	if Firebase.authenticated():
 		status.modulate = connectedColor
 	else:
 		status.modulate = disconnectedColor
+
+# if response[1] == 200:

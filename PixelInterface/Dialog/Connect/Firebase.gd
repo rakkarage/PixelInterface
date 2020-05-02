@@ -10,41 +10,52 @@ signal signedIn(r)
 signal signedUp(r)
 
 func _ready() -> void:
-	var file = File.new()
-	file.open("res://PixelInterface/Dialog/Connect/apikey.txt", file.READ)
-	apiKey = file.get_as_text()
-	file.close()
+	var f = File.new()
+	f.open("res://PixelInterface/Dialog/Connect/apikey.txt", File.READ)
+	apiKey = f.get_as_text()
+	f.close()
 
 func _getToken(response: Array) -> String:
 	var json = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 	return json.idToken
 
-func _api(http: HTTPRequest, url: String, body: Dictionary) -> bool:
-	print("api: " + JSON.print(body))
-	Utility.ok(http.request(url % apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
-	var response = yield(http, "request_completed") as Array
-	print(response)
-	if response[1] == 200:
-		token = _getToken(response)
-		print(token)
-		return true
-	else:
-		return false
+# func _api(http: HTTPRequest, url: String, body: Dictionary) -> bool:
+# 	print("api: " + JSON.print(body))
+# 	Utility.ok(http.request(url % apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
+# 	var response = yield(http, "request_completed") as Array
+# 	print(response)
+# 	if response[1] == 200:
+# 		token = _getToken(response)
+# 		print(token)
+# 		return true
+# 	else:
+# 		return false
 
 func signIn(http: HTTPRequest, email : String, password : String) -> void:
 	var body := { "email" : email, "password" : password }
 	Utility.ok(http.request(signInUrl % apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
-	var response = yield(http, "request_completed") as Array
+	var response = yield(http, "request_completed")
 	if response[1] == 200:
 		token = _getToken(response)
 	emit_signal("signedIn", response)
+	
+	# print(result)
+	# Utility.ok(result.error)
+	# print(result.result)
+	# var response = JSON.parse(result.result)
+	# print(response)
+
+	# if response.code == 200:
+	# 	token = response.result.idToken
 
 func signUp(http: HTTPRequest, email : String, password : String) -> void:
 	var body := { "email" : email, "password" : password }
 	Utility.ok(http.request(signUpUrl % apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
-	var response = yield(http, "request_completed") as Array
-	if response[1] == 200:
-		token = _getToken(response)
+	var result = JSON.parse((yield(http, "request_completed") as Array)[3].get_string_from_ascii())
+	Utility.ok(result.error)
+	var response = result.result
+	if response.code == 200:
+		token = response.result.idToken
 	emit_signal("signedUp", response)
 
 func authenticated() -> bool:

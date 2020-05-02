@@ -47,6 +47,9 @@ const accountPosition = Vector2(0, -3000)
 const emailPosition = Vector2(3000, -3000)
 const passwordPosition = Vector2(-3000, -3000)
 
+var f = File.new()
+const emailPath = "user://email.txt";
+
 func _ready():
 	Utility.ok(status.connect("pressed", self, "_on_Status_pressed"))
 	Utility.ok(signInSignIn.connect("pressed", self, "_on_SignIn_pressed"))
@@ -62,7 +65,10 @@ func _ready():
 	Utility.ok(emailClose.connect("pressed", self, "springAccount"))
 	Utility.ok(passwordClose.connect("pressed", self, "springAccount"))
 	Utility.ok(errorClose.connect("pressed", self, "springErrorBack"))
-#	Utility.ok(http.connect("request_completed", self, "_on_HTTPRequest_request_completed"))
+
+	Utility.ok(Firebase.connect("signedIn", self, "OnSignedIn"))
+	Utility.ok(Firebase.connect("signedUp", self, "OnSignedUp"))
+	loadEmail()
 	updateStatus()
 
 func spring(p = Vector2.ZERO, c = interface):
@@ -107,6 +113,12 @@ func _on_Status_pressed():
 	else:
 		springAccount()
 
+func updateStatus():
+	if Firebase.authenticated():
+		status.modulate = connectedColor
+	else:
+		status.modulate = disconnectedColor
+
 func _on_SignIn_pressed():
 	var email = signInEmail.text;
 	var password = signInPassword.text;
@@ -114,7 +126,15 @@ func _on_SignIn_pressed():
 		showError("Error", "Please enter an email and password.")
 		return
 	Firebase.signIn(http, email, password)
-	Utility.ok(Firebase.connect("signedIn", self, "OnSignedIn"))
+	saveEmail()
+
+func OnSignedIn(response):
+	if response[1] == 200:
+		updateStatus()
+		spring()
+	else:
+		var test = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
+		showError("Error", test.error.message.capitalize())
 
 func _on_SignUp_pressed():
 	var email = signUpEmail.text;
@@ -127,37 +147,23 @@ func _on_SignUp_pressed():
 		showError("Error", "Passwords must match.")
 		return
 	Firebase.signUp(http, email, password)
-	Utility.ok(connect("signedUp", Firebase, "OnSignedUp"))
-
-func OnSignedIn(response):
-	if response[1] == 200:
-		updateStatus()
-		spring()
-	else:
-		var test = JSON.parse(response[3].get_string_from_ascii())
-		showError("Error", test.result.error.message.capitalize())
 
 func OnSignedUp(response):
 	if response[1] == 200:
 		updateStatus()
 		spring()
 	else:
-		var test = JSON.parse(response[3].get_string_from_ascii())
-		showError("Error", test.result.error.message.capitalize())
+		var test = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
+		showError("Error", test.error.message.capitalize())
 
-# func _on_HTTPRequest_request_completed(_result, code, _header, body):
-# 	print("+++REQUEST_COMPLETE+++")
-# 	var response := JSON.parse(body.get_string_from_ascii())
-# 	if code != 200:
-# 		showError("Error", response.result.error.message.capitalize())
-# 	else:
-# 		updateStatus()
-# 		spring()
+func saveEmail():
+	if (not signInEmail.text.empty()):
+		f.open(emailPath, File.WRITE)
+		f.store_string(signInEmail.text)
+		f.close()
 
-func updateStatus():
-	if Firebase.authenticated():
-		status.modulate = connectedColor
-	else:
-		status.modulate = disconnectedColor
-
-# if response[1] == 200:
+func loadEmail():
+	if f.file_exists(emailPath):
+		f.open(emailPath, File.READ)
+		signInEmail.text = f.get_as_text()
+		f.close()

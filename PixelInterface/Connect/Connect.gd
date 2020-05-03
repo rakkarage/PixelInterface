@@ -62,25 +62,27 @@ func _ready():
 	Utility.ok(status.connect("pressed", self, "_on_Status_pressed"))
 	
 	Utility.ok(signInSignIn.connect("pressed", self, "_on_SignIn_pressed"))
-	Utility.ok(signInSignUp.connect("pressed", self, "springSignUp"))
-	Utility.ok(signInReset.connect("pressed", self, "springReset"))
-	Utility.ok(signInClose.connect("pressed", self, "spring"))
+	Utility.ok(signInSignUp.connect("pressed", self, "_on_SignInSignUo_pressed"))
+	Utility.ok(signInReset.connect("pressed", self, "_on_SignInReset_pressed"))
+	Utility.ok(signInClose.connect("pressed", self, "_on_Close_pressed"))
 	
 	Utility.ok(signUpSignUp.connect("pressed", self, "_on_SignUp_pressed"))
-	Utility.ok(signUpClose.connect("pressed", self, "springSignIn"))
+	Utility.ok(signUpClose.connect("pressed", self, "_on_CloseSignIn_pressed"))
 	
-	Utility.ok(resetClose.connect("pressed", self, "springSignIn"))
+	Utility.ok(resetClose.connect("pressed", self, "_on_CloseSignIn_pressed"))
 	
-	Utility.ok(accountClose.connect("pressed", self, "spring"))
+	# rename error to message!!!!!!!!!!!!!!!!!!!!!!
+
+	Utility.ok(accountClose.connect("pressed", self, "_on_Close_pressed"))
 	Utility.ok(accountSignOut.connect("pressed", self, "_on_SignOut_pressed"))
 	
-	Utility.ok(emailClose.connect("pressed", self, "springAccount"))
-	Utility.ok(passwordClose.connect("pressed", self, "springAccount"))
-	Utility.ok(errorClose.connect("pressed", self, "springErrorBack"))
+	Utility.ok(emailClose.connect("pressed", self, "_on_CloseAccount_pressed"))
+	Utility.ok(passwordClose.connect("pressed", self, "_on_CloseAccount_pressed"))
+	Utility.ok(errorClose.connect("pressed", self, "_springErrorBack"))
 
-	Utility.ok(Firebase.connect("signedIn", self, "OnSignedIn"))
-	Utility.ok(Firebase.connect("signedUp", self, "OnSignedUp"))
-	Utility.ok(Firebase.connect("signedOut", self, "OnSignedOut"))
+	Utility.ok(Firebase.connect("signedIn", self, "_onSignedIn"))
+	Utility.ok(Firebase.connect("signedUp", self, "_onSignedUp"))
+	Utility.ok(Firebase.connect("signedOut", self, "_onSignedOut"))
 	_loadEmail()
 	_updateStatus()
 	regex.compile(pattern)
@@ -114,6 +116,7 @@ func _springError():
 	_spring(errorPosition, error)
 
 func _springErrorBack():
+	clickAudio.play()
 	_spring(Vector2.ZERO, error)
 
 func _showError(title, text):
@@ -153,6 +156,26 @@ func _on_SignIn_pressed():
 	Firebase.signIn(http, email, password)
 	_saveEmail()
 
+func _on_SignInSignUo_pressed():
+	clickAudio.play()
+	_springSignUp()
+
+func _on_SignInReset_pressed():
+	clickAudio.play()
+	_springReset()
+
+func _on_Close_pressed():
+	clickAudio.play()
+	_spring()
+
+func _on_CloseSignIn_pressed():
+	clickAudio.play()
+	_springSignIn()
+
+func _on_CloseAccount_pressed():
+	clickAudio.play()
+	_springAccount()
+
 func _onSignedIn(response):
 	if response[1] == 200:
 		signInPassword.text = ""
@@ -185,6 +208,7 @@ func _onSignedUp(response):
 		_showError("Error", test.error.message.capitalize())
 
 func _on_SignOut_pressed():
+	clickAudio.play()
 	Firebase.signOut()
 
 func _onSignedOut():

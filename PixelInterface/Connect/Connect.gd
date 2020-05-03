@@ -243,8 +243,19 @@ func _errorSet(control: LineEdit):
 	errorAudio.play()
 	control.modulate = disconnectedColor
 
+func _thinking(control: Control, enable: bool):
+	if enable:
+		tween.interpolate_property(control, "rect_scale.x", 1, 1.5, 1, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
+		tween.interpolate_property(control, "rect_scale.y", 1.5, 1, 1, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
+		tween.start()
+	else:
+		tween.stop(control, "rect_scale.x");
+		tween.stop(control, "rect_scale.y");
+
 func _disableInput(control: Button):
+	_thinking(control, true)
 	control.disabled = true
 
 func _enableInput(control: Button):
+	_thinking(control, false)
 	control.disabled = false;

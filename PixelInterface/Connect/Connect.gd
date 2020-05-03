@@ -5,10 +5,14 @@ export var time = 0.333
 var connectedColor = Color(0.25, 0.75, 0.25)
 var disconnectedColor = Color(0.75, 0.25, 0.25)
 
+var buttonBlueColor = Color8(159, 176, 255, 255)
+
 onready var interface = $ViewportContainer/Viewport/Interface
 onready var error = $ViewportContainer/Viewport/Error
 onready var http = $HTTPRequest
 onready var tween = $Tween
+onready var clickAudio = $Click
+onready var errorAudio = $Error
 
 onready var errorTitle = $ViewportContainer/Viewport/Error/Error/Panel/Label
 onready var errorText = $ViewportContainer/Viewport/Error/Error/Panel/Panel/Label
@@ -52,6 +56,8 @@ const passwordPosition = Vector2(-3000, -3000)
 
 var f = File.new()
 const emailPath = "user://email.txt";
+var regex = RegEx.new()
+const pattern = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)"
 
 func _ready():
 	Utility.ok(status.connect("pressed", self, "_on_Status_pressed"))
@@ -78,6 +84,7 @@ func _ready():
 	Utility.ok(Firebase.connect("signedOut", self, "OnSignedOut"))
 	loadEmail()
 	updateStatus()
+	regex.compile(pattern)
 
 func spring(p = Vector2.ZERO, c = interface):
 	var current = c.get_position()
@@ -116,6 +123,7 @@ func showError(title, text):
 	springError()
 
 func _on_Status_pressed():
+	clickAudio.play()
 	if not Firebase.authenticated():
 		springSignIn()
 	else:
@@ -128,29 +136,38 @@ func updateStatus():
 		status.modulate = disconnectedColor
 
 func _on_SignIn_pressed():
-	var email = signInEmail.text;
-	var password = signInPassword.text;
-
-	
-
+	clickAudio.play()
+	var email = signInEmail.text
+	var password = signInPassword.text
+	errorClear([signInEmail, signInPassword])
+	if not validEmail(email):
+		errorSet(signInEmail)
+		return
+	if not validPassword(password):
+		errorSet(signInPassword)
+		return
 	if email.empty() or password.empty():
 		showError("Error", "Please enter an email and password.")
 		return
+	disableInput(signInSignIn)
 	Firebase.signIn(http, email, password)
 	saveEmail()
 
 func OnSignedIn(response):
+	signInPassword.text = ""
 	if response[1] == 200:
 		updateStatus()
 		spring()
 	else:
 		var test = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 		showError("Error", test.error.message.capitalize())
+	enableInput(signInSignIn)
 
 func _on_SignUp_pressed():
-	var email = signUpEmail.text;
-	var password = signUpPassword.text;
-	var confirm = signUpConfirm.text;
+	clickAudio.play()
+	var email = signUpEmail.text
+	var password = signUpPassword.text
+	var confirm = signUpConfirm.text
 	if email.empty() or password.empty():
 		showError("Error", "Please enter an email and password.")
 		return
@@ -185,3 +202,22 @@ func loadEmail():
 		f.open(emailPath, File.READ)
 		signInEmail.text = f.get_as_text()
 		f.close()
+
+func validEmail(text: String) -> bool:
+	return regex.search(text)
+
+func validPassword(text: String) -> bool:
+	return text.length() > 2
+
+func errorClear(controls: Array):
+	for i in range(controls.size()):
+		controls[i].modulate = buttonBlueColor
+
+func errorSet(control: LineEdit):
+	control.modulate = disconnectedColor
+
+func disableInput(control: Button):
+	control.disabled = true
+
+func enableInput(control: Button):
+	control.disabled = false;

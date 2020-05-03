@@ -2,10 +2,8 @@ extends Control
 
 export var time = 0.333
 
-var connectedColor = Color(0.25, 0.75, 0.25)
-var disconnectedColor = Color(0.75, 0.25, 0.25)
-
-var buttonBlueColor = Color8(159, 176, 255, 255)
+var connectedColor = Color(0.5, 0.75, 0.5)
+var disconnectedColor = Color(0.75, 0.5, 0.5)
 
 onready var interface = $ViewportContainer/Viewport/Interface
 onready var error = $ViewportContainer/Viewport/Error
@@ -33,6 +31,7 @@ onready var signUpConfirm = $ViewportContainer/Viewport/Interface/SignUp/Panel/V
 onready var signUpSignUp = $ViewportContainer/Viewport/Interface/SignUp/Panel/SignUp
 onready var signUpClose = $ViewportContainer/Viewport/Interface/SignUp/Panel/Close/Close
 
+onready var resetEmail = $ViewportContainer/Viewport/Interface/Reset/Panel/Panel/HBoxContainer/LineEdit
 onready var resetReset = $ViewportContainer/Viewport/Interface/Reset/Panel/Reset
 onready var resetClose = $ViewportContainer/Viewport/Interface/Reset/Panel/Close/Close
 
@@ -154,8 +153,8 @@ func _on_SignIn_pressed():
 	saveEmail()
 
 func OnSignedIn(response):
-	signInPassword.text = ""
 	if response[1] == 200:
+		signInPassword.text = ""
 		updateStatus()
 		spring()
 	else:
@@ -193,6 +192,8 @@ func OnSignedOut():
 
 func saveEmail():
 	if (not signInEmail.text.empty()):
+		signUpEmail.text = signInEmail.text
+		resetEmail.text = signInEmail.text
 		f.open(emailPath, File.WRITE)
 		f.store_string(signInEmail.text)
 		f.close()
@@ -211,7 +212,7 @@ func validPassword(text: String) -> bool:
 
 func errorClear(controls: Array):
 	for i in range(controls.size()):
-		controls[i].modulate = buttonBlueColor
+		controls[i].modulate = Color.white
 
 func errorSet(control: LineEdit):
 	control.modulate = disconnectedColor

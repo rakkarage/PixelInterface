@@ -8,6 +8,89 @@
 [node name="SignIn" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_right = 320.0
+margin_bottom = 250.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 305.0
+margin_bottom = 253.0
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+margin_right = 290.0
+margin_bottom = 130.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 275.0
+margin_bottom = 115.0
+
+[node name="Email" type="LineEdit" parent="PanelContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+margin_right = 260.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+placeholder_text = "Email"
+placeholder_alpha = 0.5
+
+[node name="Password" type="LineEdit" parent="PanelContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 52.0
+margin_right = 260.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+secret = true
+placeholder_text = "Password"
+placeholder_alpha = 0.5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+margin_top = 134.0
+margin_right = 290.0
+margin_bottom = 238.0
+
+[node name="SignIn" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+margin_right = 290.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Sign In"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 290.0
+margin_bottom = 104.0
+
+[node name="SignUp" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 143.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Sign Up"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reset" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 147.0
+margin_right = 290.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Reset"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -20,8 +103,9 @@ anchor_bottom = 0.5
 margin_left = -160.0
 margin_top = -118.0
 margin_right = 160.0
-margin_bottom = 117.0
-rect_min_size = Vector2( 320, 250 )
+margin_bottom = 132.0
+size_flags_horizontal = 15
+size_flags_vertical = 15
 theme = ExtResource( 3 )
 custom_styles/panel = ExtResource( 1 )
 __meta__ = {
@@ -65,66 +149,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Email" type="LineEdit" parent="Panel/VBoxContainer/Panel/Input"]
-margin_right = 288.0
-margin_bottom = 48.0
-size_flags_horizontal = 3
-size_flags_vertical = 2
-placeholder_text = "Email"
-placeholder_alpha = 0.5
-
-[node name="Password" type="LineEdit" parent="Panel/VBoxContainer/Panel/Input"]
-margin_top = 53.0
-margin_right = 288.0
-margin_bottom = 101.0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-secret = true
-placeholder_text = "Password"
-placeholder_alpha = 0.5
-
 [node name="Buttons" type="VBoxContainer" parent="Panel/VBoxContainer"]
 margin_top = 122.0
 margin_right = 304.0
-margin_bottom = 226.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SignIn" type="Button" parent="Panel/VBoxContainer/Buttons"]
-margin_right = 304.0
-margin_bottom = 50.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Sign In"
+margin_bottom = 122.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/Buttons"]
-margin_top = 54.0
 margin_right = 304.0
-margin_bottom = 104.0
-
-[node name="SignUp" type="Button" parent="Panel/VBoxContainer/Buttons/HBoxContainer"]
-margin_right = 150.0
-margin_bottom = 50.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Sign Up"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Reset" type="Button" parent="Panel/VBoxContainer/Buttons/HBoxContainer"]
-margin_left = 154.0
-margin_right = 304.0
-margin_bottom = 50.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Reset"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Close" parent="Panel" instance=ExtResource( 2 )]

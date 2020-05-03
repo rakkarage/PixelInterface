@@ -6,23 +6,23 @@ var connectedColor = Color(0.5, 0.75, 0.5)
 var disconnectedColor = Color(0.75, 0.5, 0.5)
 
 onready var interface = $ViewportContainer/Viewport/Interface
-onready var error = $ViewportContainer/Viewport/Error
+onready var message = $ViewportContainer/Viewport/Message
 onready var http = $HTTPRequest
 onready var tween = $Tween
 onready var clickAudio = $Click
 onready var errorAudio = $Error
 
-onready var errorTitle = $ViewportContainer/Viewport/Error/Error/Panel/Label
-onready var errorText = $ViewportContainer/Viewport/Error/Error/Panel/Panel/Label
-onready var errorClose = $ViewportContainer/Viewport/Error/Error/Panel/Close/Close
+onready var messageTitle = $ViewportContainer/Viewport/Message/Message/Panel/VBox/Title
+onready var messageText = $ViewportContainer/Viewport/Message/Message/Panel/VBox/Panel/Text
+onready var messageClose = $ViewportContainer/Viewport/Message/Message/Panel/Close/Close
 
 onready var status = $ViewportContainer/Viewport/Interface/Status/Panel/Status
 
-onready var signInEmail = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Panel/Input/Email/LineEdit
-onready var signInPassword = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Panel/Input/Password/LineEdit
-onready var signInSignIn = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/SignIn
-onready var signInSignUp = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/HBoxContainer/SignUp
-onready var signInReset = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBoxContainer/Buttons/HBoxContainer/Reset
+onready var signInEmail = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBox/Panel/Input/Email/LineEdit
+onready var signInPassword = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBox/Panel/Input/Password/LineEdit
+onready var signInSignIn = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBox/Buttons/SignIn
+onready var signInSignUp = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBox/Buttons/HBox/SignUp
+onready var signInReset = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBox/Buttons/HBox/Reset
 onready var signInClose = $ViewportContainer/Viewport/Interface/SignIn/Panel/Close/Close
 
 onready var signUpEmail = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/Email/LineEdit
@@ -43,7 +43,7 @@ onready var accountClose = $ViewportContainer/Viewport/Interface/Account/Panel/C
 onready var emailClose = $ViewportContainer/Viewport/Interface/Email/Panel/Close/Close
 onready var passwordClose = $ViewportContainer/Viewport/Interface/Password/Panel/Close/Close
 
-const errorPosition = Vector2(3000, 0)
+const messagePosition = Vector2(3000, 0)
 
 const signInPosition = Vector2(0, 3000)
 const signUpPosition = Vector2(3000, 3000)
@@ -71,6 +71,9 @@ func _ready():
 	
 	Utility.ok(resetClose.connect("pressed", self, "_on_CloseSignIn_pressed"))
 	
+	# fix names
+	# fix dialogs and shrink
+	# fucking margins!?
 	# rename error to message!!!!!!!!!!!!!!!!!!!!!!
 
 	Utility.ok(accountClose.connect("pressed", self, "_on_Close_pressed"))
@@ -78,7 +81,7 @@ func _ready():
 	
 	Utility.ok(emailClose.connect("pressed", self, "_on_CloseAccount_pressed"))
 	Utility.ok(passwordClose.connect("pressed", self, "_on_CloseAccount_pressed"))
-	Utility.ok(errorClose.connect("pressed", self, "_springErrorBack"))
+	Utility.ok(messageClose.connect("pressed", self, "_springErrorBack"))
 
 	Utility.ok(Firebase.connect("signedIn", self, "_onSignedIn"))
 	Utility.ok(Firebase.connect("signedUp", self, "_onSignedUp"))
@@ -112,18 +115,18 @@ func _springEmail():
 func _springPassword():
 	_spring(passwordPosition)
 
-func _springError():
-	_spring(errorPosition, error)
+func _springMessage():
+	_spring(messagePosition, message)
 
-func _springErrorBack():
+func _springMessageBack():
 	clickAudio.play()
-	_spring(Vector2.ZERO, error)
+	_spring(Vector2.ZERO, message)
 
 func _showError(title, text):
 	errorAudio.play()
-	errorTitle.text = title
-	errorText.text = text
-	_springError()
+	messageTitle.text = title
+	messageText.text = text
+	_springMessage()
 
 func _on_Status_pressed():
 	clickAudio.play()
@@ -245,12 +248,14 @@ func _errorSet(control: LineEdit):
 
 func _thinking(control: Control, enable: bool):
 	if enable:
+		tween.repeat = true;
 		tween.interpolate_property(control, "rect_scale.x", 1, 1.5, 1, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
 		tween.interpolate_property(control, "rect_scale.y", 1.5, 1, 1, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
 		tween.start()
 	else:
 		tween.stop(control, "rect_scale.x");
 		tween.stop(control, "rect_scale.y");
+		tween.repeat = false;
 
 func _disableInput(control: Button):
 	_thinking(control, true)

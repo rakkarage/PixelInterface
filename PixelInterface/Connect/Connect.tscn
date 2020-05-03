@@ -7,7 +7,7 @@
 [ext_resource path="res://PixelInterface/Connect/Reset.tscn" type="PackedScene" id=5]
 [ext_resource path="res://PixelInterface/Connect/Password.tscn" type="PackedScene" id=6]
 [ext_resource path="res://PixelInterface/Connect/Email.tscn" type="PackedScene" id=7]
-[ext_resource path="res://PixelInterface/Connect/Error.tscn" type="PackedScene" id=8]
+[ext_resource path="res://PixelInterface/Connect/Message.tscn" type="PackedScene" id=8]
 [ext_resource path="res://PixelInterface/Connect/Connect.gd" type="Script" id=9]
 [ext_resource path="res://PixelInterface/Audio/Error.wav" type="AudioStream" id=10]
 [ext_resource path="res://PixelInterface/Audio/Click.wav" type="AudioStream" id=11]
@@ -82,7 +82,7 @@ margin_top = 3000.0
 margin_right = 3000.0
 margin_bottom = 3000.0
 
-[node name="Error" type="Control" parent="ViewportContainer/Viewport"]
+[node name="Message" type="Control" parent="ViewportContainer/Viewport"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -90,7 +90,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Error" parent="ViewportContainer/Viewport/Error" instance=ExtResource( 8 )]
+[node name="Message" parent="ViewportContainer/Viewport/Message" instance=ExtResource( 8 )]
 margin_left = -3000.0
 margin_right = -3000.0
 

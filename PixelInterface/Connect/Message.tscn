@@ -6,71 +6,60 @@
 [ext_resource path="res://PixelInterface/Style/Paper.tres" type="StyleBox" id=5]
 [ext_resource path="res://PixelInterface/Font/Superwhite.fnt" type="BitmapFont" id=6]
 
-
-
-
-
-[node name="Error" type="Control"]
+[node name="Message" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -160.0
-margin_top = -67.0
+margin_top = -99.5
 margin_right = 160.0
-margin_bottom = 67.0
-rect_min_size = Vector2( 320, 134 )
-theme = ExtResource( 3 )
+margin_bottom = 99.5
+rect_min_size = Vector2( 320, 120 )
 custom_styles/panel = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Panel"]
-anchor_right = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
-size_flags_vertical = 1
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+margin_left = 31.0
+margin_top = 31.0
+margin_right = 289.0
+margin_bottom = 168.0
+
+[node name="Title" type="Label" parent="Panel/VBox"]
+margin_right = 258.0
+margin_bottom = 18.0
 text = "Title"
 align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Panel" type="Panel" parent="Panel"]
-anchor_top = 0.16
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = -8.0
+[node name="Panel" type="PanelContainer" parent="Panel/VBox"]
+margin_top = 22.0
+margin_right = 258.0
+margin_bottom = 137.0
 custom_styles/panel = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Label" type="Label" parent="Panel/Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = -8.0
+[node name="Text" type="Label" parent="Panel/VBox/Panel"]
+margin_left = 31.0
+margin_top = 31.0
+margin_right = 227.0
+margin_bottom = 84.0
 custom_fonts/font = ExtResource( 6 )
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Close" parent="Panel" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 31.0
+margin_top = 31.0
+margin_right = 289.0
+margin_bottom = 168.0

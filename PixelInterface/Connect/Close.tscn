@@ -32,7 +32,6 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Close/CenterContainer"]
-self_modulate = Color( 0.623529, 0.690196, 1, 1 )
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 29.0

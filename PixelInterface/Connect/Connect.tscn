@@ -100,6 +100,9 @@ margin_right = -3000.0
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+volume_db = -15.0
 
 [node name="Error" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+volume_db = -15.0
+pitch_scale = 2.0

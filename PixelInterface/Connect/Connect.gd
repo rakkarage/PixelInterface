@@ -117,6 +117,7 @@ func springErrorBack():
 	spring(Vector2.ZERO, error)
 
 func showError(title, text):
+	errorAudio.play()
 	errorTitle.text = title
 	errorText.text = text
 	springError()
@@ -215,6 +216,7 @@ func errorClear(controls: Array):
 		controls[i].modulate = Color.white
 
 func errorSet(control: LineEdit):
+	errorAudio.play()
 	control.modulate = disconnectedColor
 
 func disableInput(control: Button):

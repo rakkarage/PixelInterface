@@ -81,55 +81,55 @@ func _ready():
 	Utility.ok(Firebase.connect("signedIn", self, "OnSignedIn"))
 	Utility.ok(Firebase.connect("signedUp", self, "OnSignedUp"))
 	Utility.ok(Firebase.connect("signedOut", self, "OnSignedOut"))
-	loadEmail()
-	updateStatus()
+	_loadEmail()
+	_updateStatus()
 	regex.compile(pattern)
 
-func spring(p = Vector2.ZERO, c = interface):
+func _spring(p = Vector2.ZERO, c = interface):
 	var current = c.get_position()
 	if  not current.is_equal_approx(p):
 		if tween.interpolate_property(c, "rect_position", current, p, time, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
 			if not tween.start():
 				print("error")
 
-func springSignIn():
-	spring(signInPosition)
+func _springSignIn():
+	_spring(signInPosition)
 
-func springSignUp():
-	spring(signUpPosition)
+func _springSignUp():
+	_spring(signUpPosition)
 
-func springReset():
-	spring(resetPosition)
+func _springReset():
+	_spring(resetPosition)
 
-func springAccount():
-	spring(accountPosition)
+func _springAccount():
+	_spring(accountPosition)
 
-func springEmail():
-	spring(emailPosition)
+func _springEmail():
+	_spring(emailPosition)
 
-func springPassword():
-	spring(passwordPosition)
+func _springPassword():
+	_spring(passwordPosition)
 
-func springError():
-	spring(errorPosition, error)
+func _springError():
+	_spring(errorPosition, error)
 
-func springErrorBack():
-	spring(Vector2.ZERO, error)
+func _springErrorBack():
+	_spring(Vector2.ZERO, error)
 
-func showError(title, text):
+func _showError(title, text):
 	errorAudio.play()
 	errorTitle.text = title
 	errorText.text = text
-	springError()
+	_springError()
 
 func _on_Status_pressed():
 	clickAudio.play()
 	if not Firebase.authenticated():
-		springSignIn()
+		_springSignIn()
 	else:
-		springAccount()
+		_springAccount()
 
-func updateStatus():
+func _updateStatus():
 	if Firebase.authenticated():
 		status.modulate = connectedColor
 	else:
@@ -139,29 +139,29 @@ func _on_SignIn_pressed():
 	clickAudio.play()
 	var email = signInEmail.text
 	var password = signInPassword.text
-	errorClear([signInEmail, signInPassword])
-	if not validEmail(email):
-		errorSet(signInEmail)
+	_errorClear([signInEmail, signInPassword])
+	if not _validEmail(email):
+		_errorSet(signInEmail)
 		return
-	if not validPassword(password):
-		errorSet(signInPassword)
+	if not _validPassword(password):
+		_errorSet(signInPassword)
 		return
 	if email.empty() or password.empty():
-		showError("Error", "Please enter an email and password.")
+		_showError("Error", "Please enter an email and password.")
 		return
-	disableInput(signInSignIn)
+	_disableInput(signInSignIn)
 	Firebase.signIn(http, email, password)
-	saveEmail()
+	_saveEmail()
 
-func OnSignedIn(response):
+func _onSignedIn(response):
 	if response[1] == 200:
 		signInPassword.text = ""
-		updateStatus()
-		spring()
+		_updateStatus()
+		_spring()
 	else:
 		var test = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
-		showError("Error", test.error.message.capitalize())
-	enableInput(signInSignIn)
+		_showError("Error", test.error.message.capitalize())
+	_enableInput(signInSignIn)
 
 func _on_SignUp_pressed():
 	clickAudio.play()
@@ -169,29 +169,29 @@ func _on_SignUp_pressed():
 	var password = signUpPassword.text
 	var confirm = signUpConfirm.text
 	if email.empty() or password.empty():
-		showError("Error", "Please enter an email and password.")
+		_showError("Error", "Please enter an email and password.")
 		return
 	if password != confirm:
-		showError("Error", "Passwords must match.")
+		_showError("Error", "Passwords must match.")
 		return
 	Firebase.signUp(http, email, password)
 
-func OnSignedUp(response):
+func _onSignedUp(response):
 	if response[1] == 200:
-		updateStatus()
-		spring()
+		_updateStatus()
+		_spring()
 	else:
 		var test = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
-		showError("Error", test.error.message.capitalize())
+		_showError("Error", test.error.message.capitalize())
 
 func _on_SignOut_pressed():
 	Firebase.signOut()
 
-func OnSignedOut():
-	updateStatus()
-	spring()
+func _onSignedOut():
+	_updateStatus()
+	_spring()
 
-func saveEmail():
+func _saveEmail():
 	if (not signInEmail.text.empty()):
 		signUpEmail.text = signInEmail.text
 		resetEmail.text = signInEmail.text
@@ -199,28 +199,28 @@ func saveEmail():
 		f.store_string(signInEmail.text)
 		f.close()
 
-func loadEmail():
+func _loadEmail():
 	if f.file_exists(emailPath):
 		f.open(emailPath, File.READ)
 		signInEmail.text = f.get_as_text()
 		f.close()
 
-func validEmail(text: String) -> bool:
+func _validEmail(text: String) -> bool:
 	return regex.search(text)
 
-func validPassword(text: String) -> bool:
+func _validPassword(text: String) -> bool:
 	return text.length() > 2
 
-func errorClear(controls: Array):
+func _errorClear(controls: Array):
 	for i in range(controls.size()):
 		controls[i].modulate = Color.white
 
-func errorSet(control: LineEdit):
+func _errorSet(control: LineEdit):
 	errorAudio.play()
 	control.modulate = disconnectedColor
 
-func disableInput(control: Button):
+func _disableInput(control: Button):
 	control.disabled = true
 
-func enableInput(control: Button):
+func _enableInput(control: Button):
 	control.disabled = false;

@@ -19,9 +19,9 @@ anchor_bottom = 1.0
 
 [node name="Panel" type="PanelContainer" parent="Center"]
 margin_left = 397.0
-margin_top = 215.0
+margin_top = 222.0
 margin_right = 627.0
-margin_bottom = 384.0
+margin_bottom = 377.0
 rect_min_size = Vector2( 230, 64 )
 custom_styles/panel = ExtResource( 1 )
 
@@ -29,35 +29,35 @@ custom_styles/panel = ExtResource( 1 )
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 160.0
+margin_bottom = 146.0
 
 [node name="Panel" type="PanelContainer" parent="Center/Panel/VBox"]
 margin_right = 214.0
-margin_bottom = 64.0
+margin_bottom = 50.0
 custom_styles/panel = ExtResource( 5 )
 
 [node name="Email" type="LineEdit" parent="Center/Panel/VBox/Panel"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 206.0
-margin_bottom = 56.0
+margin_bottom = 42.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 placeholder_text = "Email"
 placeholder_alpha = 0.5
 
 [node name="SignOut" type="Button" parent="Center/Panel/VBox"]
-margin_top = 68.0
+margin_top = 54.0
 margin_right = 214.0
-margin_bottom = 108.0
+margin_bottom = 94.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Sign Out"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Center/Panel/VBox"]
-margin_top = 112.0
+margin_top = 98.0
 margin_right = 214.0
-margin_bottom = 152.0
+margin_bottom = 138.0
 
 [node name="Email" type="Button" parent="Center/Panel/VBox/HBoxContainer"]
 margin_right = 105.0
@@ -80,4 +80,4 @@ anchor_bottom = 0.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 160.0
+margin_bottom = 146.0

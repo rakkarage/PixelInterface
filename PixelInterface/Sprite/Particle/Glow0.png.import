@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/Glow0.png-68bf766c834f25135809840f25d42357.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Glow.png"
+source_file="res://PixelInterface/Sprite/Particle/Glow0.png"
+dest_files=[ "res://.import/Glow0.png-68bf766c834f25135809840f25d42357.stex" ]
+
 [params]
 
 compress/mode=0

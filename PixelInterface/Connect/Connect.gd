@@ -71,11 +71,6 @@ func _ready():
 	
 	Utility.ok(resetClose.connect("pressed", self, "_on_CloseSignIn_pressed"))
 	
-	# fix names
-	# fix dialogs and shrink
-	# fucking margins!?
-	# rename error to message!!!!!!!!!!!!!!!!!!!!!!
-
 	Utility.ok(accountClose.connect("pressed", self, "_on_Close_pressed"))
 	Utility.ok(accountSignOut.connect("pressed", self, "_on_SignOut_pressed"))
 	

@@ -5,43 +5,43 @@ export var time = 0.333
 var connectedColor = Color(0.5, 0.75, 0.5)
 var disconnectedColor = Color(0.75, 0.5, 0.5)
 
-onready var interface = $ViewportContainer/Viewport/Interface
-onready var message = $ViewportContainer/Viewport/Message
+onready var interface = $Container/Viewport/Interface
+onready var dialog = $Container/Viewport/Dialog
 onready var http = $HTTPRequest
 onready var tween = $Tween
 onready var clickAudio = $Click
 onready var errorAudio = $Error
 
-onready var messageTitle = $ViewportContainer/Viewport/Message/Message/Panel/VBox/Title
-onready var messageText = $ViewportContainer/Viewport/Message/Message/Panel/VBox/Panel/Text
-onready var messageClose = $ViewportContainer/Viewport/Message/Message/Panel/Close/Close
+onready var messageTitle = $Container/Viewport/Dialog/Message/Panel/VBox/Title
+onready var messageText = $Container/Viewport/Dialog/Message/Panel/VBox/Panel/Text
+onready var messageClose = $Container/Viewport/Dialog/Message/Panel/Close/Close
 
-onready var status = $ViewportContainer/Viewport/Interface/Status/Panel/Status
+onready var status = $Container/Viewport/Interface/Status/Panel/Status
 
-onready var signInEmail = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBox/Panel/Input/Email/LineEdit
-onready var signInPassword = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBox/Panel/Input/Password/LineEdit
-onready var signInSignIn = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBox/Buttons/SignIn
-onready var signInSignUp = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBox/Buttons/HBox/SignUp
-onready var signInReset = $ViewportContainer/Viewport/Interface/SignIn/Panel/VBox/Buttons/HBox/Reset
-onready var signInClose = $ViewportContainer/Viewport/Interface/SignIn/Panel/Close/Close
+onready var signInEmail = $Container/Viewport/Interface/SignIn/Panel/VBox/Panel/VBox/Email
+onready var signInPassword = $Container/Viewport/Interface/SignIn/Panel/VBox/Panel/VBox/Password
+onready var signInSignIn = $Container/Viewport/Interface/SignIn/Panel/VBox/SignIn
+onready var signInSignUp = $Container/Viewport/Interface/SignIn/Panel/VBox/HBox/SignUp
+onready var signInReset = $Container/Viewport/Interface/SignIn/Panel/VBox/HBox/Reset
+onready var signInClose = $Container/Viewport/Interface/SignIn/Panel/Close/Close
 
-onready var signUpEmail = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/Email/LineEdit
-onready var signUpPassword = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/Password/LineEdit
-onready var signUpConfirm = $ViewportContainer/Viewport/Interface/SignUp/Panel/VBoxContainer/Panel/Input/Confirm/LineEdit
-onready var signUpSignUp = $ViewportContainer/Viewport/Interface/SignUp/Panel/SignUp
-onready var signUpClose = $ViewportContainer/Viewport/Interface/SignUp/Panel/Close/Close
+onready var signUpEmail = $Container/Viewport/Interface/SignUp/Panel/VBox/Panel/Input/Email/LineEdit
+onready var signUpPassword = $Container/Viewport/Interface/SignUp/Panel/VBox/Panel/Input/Password/LineEdit
+onready var signUpConfirm = $Container/Viewport/Interface/SignUp/Panel/VBox/Panel/Input/Confirm/LineEdit
+onready var signUpSignUp = $Container/Viewport/Interface/SignUp/Panel/SignUp
+onready var signUpClose = $Container/Viewport/Interface/SignUp/Panel/Close/Close
 
-onready var resetEmail = $ViewportContainer/Viewport/Interface/Reset/Panel/Panel/HBoxContainer/LineEdit
-onready var resetReset = $ViewportContainer/Viewport/Interface/Reset/Panel/Reset
-onready var resetClose = $ViewportContainer/Viewport/Interface/Reset/Panel/Close/Close
+onready var resetEmail = $Container/Viewport/Interface/Reset/Panel/Panel/HBox/LineEdit
+onready var resetReset = $Container/Viewport/Interface/Reset/Panel/Reset
+onready var resetClose = $Container/Viewport/Interface/Reset/Panel/Close/Close
 
-onready var accountSignOut = $ViewportContainer/Viewport/Interface/Account/Panel/VBoxContainer/Buttons/SignOut
-onready var accountEmail = $ViewportContainer/Viewport/Interface/Account/Panel/VBoxContainer/Buttons/HBoxContainer/Email
-onready var accountPassword = $ViewportContainer/Viewport/Interface/Account/Panel/VBoxContainer/Buttons/HBoxContainer/Password
-onready var accountClose = $ViewportContainer/Viewport/Interface/Account/Panel/Close/Close
+onready var accountSignOut = $Container/Viewport/Interface/Account/Panel/VBox/Buttons/SignOut
+onready var accountEmail = $Container/Viewport/Interface/Account/Panel/VBox/Buttons/HBox/Email
+onready var accountPassword = $Container/Viewport/Interface/Account/Panel/VBox/Buttons/HBox/Password
+onready var accountClose = $Container/Viewport/Interface/Account/Panel/Close/Close
 
-onready var emailClose = $ViewportContainer/Viewport/Interface/Email/Panel/Close/Close
-onready var passwordClose = $ViewportContainer/Viewport/Interface/Password/Panel/Close/Close
+onready var emailClose = $Container/Viewport/Interface/Email/Panel/Close/Close
+onready var passwordClose = $Container/Viewport/Interface/Password/Panel/Close/Close
 
 const messagePosition = Vector2(3000, 0)
 
@@ -111,11 +111,11 @@ func _springPassword():
 	_spring(passwordPosition)
 
 func _springMessage():
-	_spring(messagePosition, message)
+	_spring(messagePosition, dialog)
 
 func _springMessageBack():
 	clickAudio.play()
-	_spring(Vector2.ZERO, message)
+	_spring(Vector2.ZERO, dialog)
 
 func _showError(title, text):
 	errorAudio.play()

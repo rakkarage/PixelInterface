@@ -9,9 +9,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Center" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -54,19 +51,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Sign Out"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Center/Panel/VBox"]
+[node name="HBox" type="HBoxContainer" parent="Center/Panel/VBox"]
 margin_top = 98.0
 margin_right = 214.0
 margin_bottom = 138.0
 
-[node name="Email" type="Button" parent="Center/Panel/VBox/HBoxContainer"]
+[node name="Email" type="Button" parent="Center/Panel/VBox/HBox"]
 margin_right = 105.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Email"
 
-[node name="Password" type="Button" parent="Center/Panel/VBox/HBoxContainer"]
+[node name="Password" type="Button" parent="Center/Panel/VBox/HBox"]
 margin_left = 109.0
 margin_right = 214.0
 margin_bottom = 40.0

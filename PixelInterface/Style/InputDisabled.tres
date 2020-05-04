@@ -5,8 +5,8 @@
 [resource]
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 32, 32 )
-margin_left = 15.0
-margin_right = 15.0
-margin_top = 15.0
-margin_bottom = 15.0
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 10.0
+margin_bottom = 10.0
 modulate_color = Color( 1, 1, 1, 0.247059 )

@@ -24,24 +24,24 @@ func _getToken(response: Array) -> String:
 
 func signIn(http: HTTPRequest, email: String, password: String) -> void:
 	var body := { "email": email, "password": password }
-	Utility.ok(_http.request(_signInUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
-	var response = yield(_http, "request_completed")
+	Utility.ok(http.request(_signInUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
+	var response = yield(http, "request_completed")
 	if response[1] == 200:
 		_token = _getToken(response)
 	emit_signal("signedIn", response)
 
 func signUp(http: HTTPRequest, email : String, password : String) -> void:
 	var body := { "email": email, "password": password }
-	Utility.ok(_http.request(signUpUrl % apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
-	var response = yield(_http, "request_completed")
+	Utility.ok(http.request(_signUpUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
+	var response = yield(http, "request_completed")
 	if response[1] == 200:
 		_token = _getToken(response)
 	emit_signal("signedUp", response)
 
 func reset(http: HTTPRequest, email: String) ->void:
 	var body := { "requestType": "PASSWORD_RESET", "email": email }
-	Utility.ok(_http.request(resetUrl % apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
-	yield(_http, "request_completed")
+	Utility.ok(http.request(_resetUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
+	yield(http, "request_completed")
 	emit_signal("reset")
 
 func signOut():

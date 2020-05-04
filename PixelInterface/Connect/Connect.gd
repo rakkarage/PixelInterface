@@ -1,141 +1,142 @@
 extends Control
 
-onready var interface = $Container/Viewport/Interface
-onready var dialog = $Container/Viewport/Dialog
-onready var http = $HTTPRequest
-onready var tween = $Tween
-onready var clickAudio = $Click
-onready var errorAudio = $Error
+onready var _interface = $Container/Viewport/Interface
+onready var _dialog = $Container/Viewport/Dialog
+onready var _http = $HTTPRequest
+onready var _tween = $Tween
+onready var _clickAudio = $Click
+onready var _errorAudio = $Error
 
-onready var status = $Container/Viewport/Interface/Status/Panel/Status
+onready var _status = $Container/Viewport/Interface/Status/Panel/Status
 
-onready var signInEmail    = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Email
-onready var signInPassword = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Password
-onready var signInSignIn   = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/SignIn
-onready var signInSignUp   = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/HBox/SignUp
-onready var signInReset    = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/HBox/Reset
-onready var signInClose    = $Container/Viewport/Interface/SignIn/Center/Panel/Close/Close
+onready var _signInEmail    = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Email
+onready var _signInPassword = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Password
+onready var _signInSignIn   = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/SignIn
+onready var _signInSignUp   = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/HBox/SignUp
+onready var _signInReset    = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/HBox/Reset
+onready var _signInClose    = $Container/Viewport/Interface/SignIn/Center/Panel/Close/Close
 
-onready var signUpEmail    = $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Email
-onready var signUpPassword = $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Password
-onready var signUpConfirm  = $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Confirm
-onready var signUpSignUp   = $Container/Viewport/Interface/SignUp/Center/Panel/VBox/SignUp
-onready var signUpClose    = $Container/Viewport/Interface/SignUp/Center/Panel/Close/Close
+onready var _signUpEmail    = $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Email
+onready var _signUpPassword = $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Password
+onready var _signUpConfirm  = $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Confirm
+onready var _signUpSignUp   = $Container/Viewport/Interface/SignUp/Center/Panel/VBox/SignUp
+onready var _signUpClose    = $Container/Viewport/Interface/SignUp/Center/Panel/Close/Close
 
-onready var resetEmail = $Container/Viewport/Interface/Reset/Center/Panel/VBox/Panel/Email
-onready var resetReset = $Container/Viewport/Interface/Reset/Center/Panel/VBox/Reset
-onready var resetClose = $Container/Viewport/Interface/Reset/Center/Panel/Close/Close
+onready var _resetEmail = $Container/Viewport/Interface/Reset/Center/Panel/VBox/Panel/Email
+onready var _resetReset = $Container/Viewport/Interface/Reset/Center/Panel/VBox/Reset
+onready var _resetClose = $Container/Viewport/Interface/Reset/Center/Panel/Close/Close
 
-onready var accountEmail          = $Container/Viewport/Interface/Account/Center/Panel/VBox/Panel/Email
-onready var accountSignOut        = $Container/Viewport/Interface/Account/Center/Panel/VBox/SignOut
-onready var accountChangeEmail    = $Container/Viewport/Interface/Account/Center/Panel/VBox/HBox/Email
-onready var accountChangePassword = $Container/Viewport/Interface/Account/Center/Panel/VBox/HBox/Password
-onready var accountClose          = $Container/Viewport/Interface/Account/Center/Panel/Close/Close
+onready var _accountEmail          = $Container/Viewport/Interface/Account/Center/Panel/VBox/Panel/Email
+onready var _accountSignOut        = $Container/Viewport/Interface/Account/Center/Panel/VBox/SignOut
+onready var _accountChangeEmail    = $Container/Viewport/Interface/Account/Center/Panel/VBox/HBox/Email
+onready var _accountChangePassword = $Container/Viewport/Interface/Account/Center/Panel/VBox/HBox/Password
+onready var _accountClose          = $Container/Viewport/Interface/Account/Center/Panel/Close/Close
 
-onready var emailPassword = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Password
-onready var emailEmail    = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Email
-onready var emailConfirm  = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Confirm
-onready var emailChange   = $Container/Viewport/Interface/Email/Center/Panel/VBox/Change
-onready var emailClose    = $Container/Viewport/Interface/Email/Center/Panel/Close/Close
+onready var _emailPassword = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Password
+onready var _emailEmail    = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Email
+onready var _emailConfirm  = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Confirm
+onready var _emailChange   = $Container/Viewport/Interface/Email/Center/Panel/VBox/Change
+onready var _emailClose    = $Container/Viewport/Interface/Email/Center/Panel/Close/Close
 
-onready var passwordOld     = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Old
-onready var passwordNew     = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/New
-onready var passwordConfirm = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Confirm
-onready var passwordChange  = $Container/Viewport/Interface/Password/Center/Panel/VBox/Change
-onready var passwordClose   = $Container/Viewport/Interface/Password/Center/Panel/Close/Close
+onready var _passwordOld     = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Old
+onready var _passwordNew     = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/New
+onready var _passwordConfirm = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Confirm
+onready var _passwordChange  = $Container/Viewport/Interface/Password/Center/Panel/VBox/Change
+onready var _passwordClose   = $Container/Viewport/Interface/Password/Center/Panel/Close/Close
 
-onready var messageTitle = $Container/Viewport/Dialog/Message/Center/Panel/VBox/Title
-onready var messageText  = $Container/Viewport/Dialog/Message/Center/Panel/VBox/Panel/Text
-onready var messageClose = $Container/Viewport/Dialog/Message/Center/Panel/Close/Close
+onready var _messageTitle = $Container/Viewport/Dialog/Message/Center/Panel/VBox/Title
+onready var _messageText  = $Container/Viewport/Dialog/Message/Center/Panel/VBox/Panel/Text
+onready var _messageClose = $Container/Viewport/Dialog/Message/Center/Panel/Close/Close
 
-const messagePosition = Vector2(3000, 0)
+const _messagePosition = Vector2(3000, 0)
 
-const signInPosition = Vector2(0, 3000)
-const signUpPosition = Vector2(3000, 3000)
-const resetPosition = Vector2(-3000, 3000)
+const _signInPosition = Vector2(0, 3000)
+const _signUpPosition = Vector2(3000, 3000)
+const _resetPosition = Vector2(-3000, 3000)
 
-const accountPosition = Vector2(0, -3000)
-const emailPosition = Vector2(3000, -3000)
-const passwordPosition = Vector2(-3000, -3000)
+const _accountPosition = Vector2(0, -3000)
+const _emailPosition = Vector2(3000, -3000)
+const _passwordPosition = Vector2(-3000, -3000)
 
-const connectedColor = Color(0.5, 0.75, 0.5)
-const disconnectedColor = Color(0.75, 0.5, 0.5)
+const _connectedColor = Color(0.5, 0.75, 0.5)
+const _disconnectedColor = Color(0.75, 0.5, 0.5)
 
-const springTime = 0.333
+const _springTime = 0.333
 
-var f = File.new()
-const emailPath = "user://email.txt";
-var regex = RegEx.new()
-const pattern = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)"
+var _f = File.new()
+const _emailPath = "user://email.txt";
+var _state = ""
+var _regex = RegEx.new()
+const _pattern = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)"
 
 func _ready():
-	Utility.ok(status.connect("pressed", self, "_on_Status_pressed"))
+	Utility.ok(_status.connect("pressed", self, "_on_Status_pressed"))
 	
-	Utility.ok(signInSignIn.connect("pressed", self, "_on_SignIn_pressed"))
-	Utility.ok(signInSignUp.connect("pressed", self, "_on_SignInSignUo_pressed"))
-	Utility.ok(signInReset.connect("pressed", self, "_on_SignInReset_pressed"))
-	Utility.ok(signInClose.connect("pressed", self, "_on_Close_pressed"))
+	Utility.ok(_signInSignIn.connect("pressed", self, "_on_SignIn_pressed"))
+	Utility.ok(_signInSignUp.connect("pressed", self, "_on_SignInSignUo_pressed"))
+	Utility.ok(_signInReset.connect("pressed", self, "_on_SignInReset_pressed"))
+	Utility.ok(_signInClose.connect("pressed", self, "_on_Close_pressed"))
 	
-	Utility.ok(signUpSignUp.connect("pressed", self, "_on_SignUp_pressed"))
-	Utility.ok(signUpClose.connect("pressed", self, "_on_CloseSignIn_pressed"))
+	Utility.ok(_signUpSignUp.connect("pressed", self, "_on_SignUp_pressed"))
+	Utility.ok(_signUpClose.connect("pressed", self, "_on_CloseSignIn_pressed"))
 	
-	Utility.ok(resetClose.connect("pressed", self, "_on_CloseSignIn_pressed"))
+	Utility.ok(_resetClose.connect("pressed", self, "_on_CloseSignIn_pressed"))
 	
-	Utility.ok(accountClose.connect("pressed", self, "_on_Close_pressed"))
-	Utility.ok(accountSignOut.connect("pressed", self, "_on_SignOut_pressed"))
+	Utility.ok(_accountClose.connect("pressed", self, "_on_Close_pressed"))
+	Utility.ok(_accountSignOut.connect("pressed", self, "_on_SignOut_pressed"))
 	
-	Utility.ok(emailClose.connect("pressed", self, "_on_CloseAccount_pressed"))
-	Utility.ok(passwordClose.connect("pressed", self, "_on_CloseAccount_pressed"))
-	Utility.ok(messageClose.connect("pressed", self, "_springMessageBack"))
+	Utility.ok(_emailClose.connect("pressed", self, "_on_CloseAccount_pressed"))
+	Utility.ok(_passwordClose.connect("pressed", self, "_on_CloseAccount_pressed"))
+	Utility.ok(_messageClose.connect("pressed", self, "_springMessageBack"))
 
 	Utility.ok(Firebase.connect("signedIn", self, "_onSignedIn"))
 	Utility.ok(Firebase.connect("signedUp", self, "_onSignedUp"))
 	Utility.ok(Firebase.connect("reset", self, "_onReset"))
 	Utility.ok(Firebase.connect("signedOut", self, "_onSignedOut"))
-	_loadEmail()
+	# _loadEmail()
 	_updateStatus()
-	regex.compile(pattern)
+	_regex.compile(_pattern)
 
-func _spring(p = Vector2.ZERO, c = interface):
+func _spring(p = Vector2.ZERO, c = _interface):
 	var current = c.get_position()
 	if  not current.is_equal_approx(p):
-		if tween.interpolate_property(c, "rect_position", current, p, springTime, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
-			if not tween.start():
+		if _tween.interpolate_property(c, "rect_position", current, p, _springTime, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
+			if not _tween.start():
 				print("error")
 
 func _springSignIn():
-	_spring(signInPosition)
+	_spring(_signInPosition)
 
 func _springSignUp():
-	_spring(signUpPosition)
+	_spring(_signUpPosition)
 
 func _springReset():
-	_spring(resetPosition)
+	_spring(_resetPosition)
 
 func _springAccount():
-	_spring(accountPosition)
+	_spring(_accountPosition)
 
 func _springEmail():
-	_spring(emailPosition)
+	_spring(_emailPosition)
 
 func _springPassword():
-	_spring(passwordPosition)
+	_spring(_passwordPosition)
 
 func _springMessage():
-	_spring(messagePosition, dialog)
+	_spring(_messagePosition, _dialog)
 
 func _springMessageBack():
-	clickAudio.play()
-	_spring(Vector2.ZERO, dialog)
+	_clickAudio.play()
+	_spring(Vector2.ZERO, _dialog)
 
 func _showError(title, text):
-	errorAudio.play()
-	messageTitle.text = title
-	messageText.text = text
+	_errorAudio.play()
+	_messageTitle.text = title
+	_messageText.text = text
 	_springMessage()
 
 func _on_Status_pressed():
-	clickAudio.play()
+	_clickAudio.play()
 	if not Firebase.authenticated():
 		_springSignIn()
 	else:
@@ -143,73 +144,73 @@ func _on_Status_pressed():
 
 func _updateStatus():
 	if Firebase.authenticated():
-		status.modulate = connectedColor
+		_status.modulate = _connectedColor
 	else:
-		status.modulate = disconnectedColor
+		_status.modulate = _disconnectedColor
 
 func _on_SignIn_pressed():
-	clickAudio.play()
-	var email = signInEmail.text
-	var password = signInPassword.text
-	_errorClear([signInEmail, signInPassword])
+	_clickAudio.play()
+	var email = _signInEmail.text
+	var password = _signInPassword.text
+	_errorClear([_signInEmail, _signInPassword])
 	if email.empty() or not _validEmail(email):
-		_errorSet(signInEmail)
+		_errorSet(_signInEmail)
 		return
 	if password.empty() or not _validPassword(password):
-		_errorSet(signInPassword)
+		_errorSet(_signInPassword)
 		return
-	_disableInput(signInSignIn)
-	Firebase.signIn(http, email, password)
-	_saveEmail()
+	_disableInput(_signInSignIn)
+	Firebase.signIn(_http, email, password)
+	# _saveEmail()
 
 func _on_SignInSignUo_pressed():
-	clickAudio.play()
+	_clickAudio.play()
 	_springSignUp()
 
 func _on_SignInReset_pressed():
-	clickAudio.play()
+	_clickAudio.play()
 	_springReset()
 
 func _on_Close_pressed():
-	clickAudio.play()
+	_clickAudio.play()
 	_spring()
 
 func _on_CloseSignIn_pressed():
-	clickAudio.play()
+	_clickAudio.play()
 	_springSignIn()
 
 func _on_CloseAccount_pressed():
-	clickAudio.play()
+	_clickAudio.play()
 	_springAccount()
 
 func _onSignedIn(response):
 	if response[1] == 200:
-		signInPassword.text = ""
+		_signInPassword.text = ""
 		_updateStatus()
 		_spring()
 	else:
 		var o = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 		_showError("Error", o.error.message.capitalize())
-	_enableInput(signInSignIn)
+	_enableInput(_signInSignIn)
 
 func _on_SignUp_pressed():
-	clickAudio.play()
-	var email = signUpEmail.text
-	var password = signUpPassword.text
-	var confirm = signUpConfirm.text
-	_errorClear([signUpEmail, signUpPassword, signUpConfirm])
+	_clickAudio.play()
+	var email = _signUpEmail.text
+	var password = _signUpPassword.text
+	var confirm = _signUpConfirm.text
+	_errorClear([_signUpEmail, _signUpPassword, _signUpConfirm])
 	if email.empty() or not _validEmail(email):
-		_errorSet(signUpEmail)
+		_errorSet(_signUpEmail)
 		return
 	if password.empty() or not _validPassword(password):
-		_errorSet(signUpPassword)
+		_errorSet(_signUpPassword)
 		return
 	if (confirm != password):
-		_errorSet(signUpConfirm)
+		_errorSet(_signUpConfirm)
 		return
-	_disableInput(signUpSignUp)
-	Firebase.signUp(http, email, password)
-	_saveEmail()
+	_disableInput(_signUpSignUp)
+	Firebase.signUp(_http, email, password)
+	# _saveEmail()
 
 func _onSignedUp(response):
 	if response[1] == 200:
@@ -218,39 +219,39 @@ func _onSignedUp(response):
 	else:
 		var o = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 		_showError("Error", o.error.message.capitalize())
-	_enableInput(signUpSignUp)
+	_enableInput(_signUpSignUp)
 
 func _on_Reset_pressed():
-	if not resetEmail.text.empty():
-		Firebase.reset(http, resetEmail.text)
+	if not _resetEmail.text.empty():
+		Firebase.reset(_http, _resetEmail.text)
 
 func _onReset():
 	_springSignIn()
 
 func _on_SignOut_pressed():
-	clickAudio.play()
+	_clickAudio.play()
 	Firebase.signOut()
 
 func _onSignedOut():
 	_updateStatus()
 	_spring()
 
-func _saveEmail():
-	if (not signInEmail.text.empty()):
-		signUpEmail.text = signInEmail.text
-		resetEmail.text = signInEmail.text
-		f.open(emailPath, File.WRITE)
-		f.store_string(signInEmail.text)
-		f.close()
+# func _saveEmail(email: String):
+# 	if not email.empty():
+# 		f.open(emailPath, File.WRITE)
+# 		f.store_string(email)
+# 		f.close()
 
-func _loadEmail():
-	if f.file_exists(emailPath):
-		f.open(emailPath, File.READ)
-		signInEmail.text = f.get_as_text()
-		f.close()
+# func _loadEmail() -> String:
+# 	var email = ""
+# 	if f.file_exists(emailPath):
+# 		f.open(emailPath, File.READ)
+# 		email = f.get_as_text()
+# 		f.close()
+# 	return email
 
 func _validEmail(text: String) -> bool:
-	return regex.search(text)
+	return _regex.search(text)
 
 func _validPassword(text: String) -> bool:
 	return text.length() > 2
@@ -260,8 +261,8 @@ func _errorClear(controls: Array):
 		controls[i].modulate = Color.white
 
 func _errorSet(control: LineEdit):
-	errorAudio.play()
-	control.modulate = disconnectedColor
+	_errorAudio.play()
+	control.modulate = _disconnectedColor
 
 func _disableInput(control: Button):
 	control.disabled = true

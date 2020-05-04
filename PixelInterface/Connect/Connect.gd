@@ -1,10 +1,5 @@
 extends Control
 
-export var time = 0.333
-
-var connectedColor = Color(0.5, 0.75, 0.5)
-var disconnectedColor = Color(0.75, 0.5, 0.5)
-
 onready var interface = $Container/Viewport/Interface
 onready var dialog = $Container/Viewport/Dialog
 onready var http = $HTTPRequest
@@ -63,6 +58,11 @@ const accountPosition = Vector2(0, -3000)
 const emailPosition = Vector2(3000, -3000)
 const passwordPosition = Vector2(-3000, -3000)
 
+const connectedColor = Color(0.5, 0.75, 0.5)
+const disconnectedColor = Color(0.75, 0.5, 0.5)
+
+const springTime = 0.333
+
 var f = File.new()
 const emailPath = "user://email.txt";
 var regex = RegEx.new()
@@ -98,7 +98,7 @@ func _ready():
 func _spring(p = Vector2.ZERO, c = interface):
 	var current = c.get_position()
 	if  not current.is_equal_approx(p):
-		if tween.interpolate_property(c, "rect_position", current, p, time, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
+		if tween.interpolate_property(c, "rect_position", current, p, springTime, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
 			if not tween.start():
 				print("error")
 

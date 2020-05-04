@@ -7,9 +7,6 @@
 [node name="Back" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_left = 0.5
@@ -26,6 +23,3 @@ rect_pivot_offset = Vector2( 384, 512 )
 texture = ExtResource( 1 )
 stretch_mode = 4
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}

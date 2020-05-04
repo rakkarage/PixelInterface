@@ -7,9 +7,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Close" type="TextureButton" parent="."]
 self_modulate = Color( 0.623529, 0.690196, 1, 1 )
@@ -18,18 +15,12 @@ anchor_right = 1.0
 margin_left = -18.0
 margin_top = -18.0
 texture_normal = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Center" type="CenterContainer" parent="Close"]
 margin_right = 22.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 36, 36 )
 mouse_filter = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Texture" type="TextureRect" parent="Close/Center"]
 modulate = Color( 0.74902, 0.498039, 0.498039, 1 )
@@ -38,6 +29,3 @@ margin_top = 7.0
 margin_right = 29.0
 margin_bottom = 29.0
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}

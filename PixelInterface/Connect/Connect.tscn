@@ -16,18 +16,12 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 stretch = true
 stretch_shrink = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
 size = Vector2( 512, 300 )
@@ -44,9 +38,6 @@ limit_bottom = 600
 [node name="Interface" type="Control" parent="ViewportContainer/Viewport"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Status" parent="ViewportContainer/Viewport/Interface" instance=ExtResource( 1 )]
 
@@ -86,9 +77,6 @@ margin_bottom = 3000.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Message" parent="ViewportContainer/Viewport/Message" instance=ExtResource( 8 )]
 margin_left = -3000.0

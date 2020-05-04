@@ -9,16 +9,10 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Center" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="PanelContainer" parent="Center"]
 margin_left = 397.0
@@ -56,9 +50,6 @@ margin_bottom = 94.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Reset"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Close" parent="Center/Panel" instance=ExtResource( 2 )]
 anchor_right = 0.0

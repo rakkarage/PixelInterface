@@ -1,14 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://PixelInterface/Style/Stone.tres" type="StyleBox" id=1]
 [ext_resource path="res://PixelInterface/Connect/Close.tscn" type="PackedScene" id=2]
 [ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=3]
+[ext_resource path="res://PixelInterface/Font/Venice.fnt" type="BitmapFont" id=4]
 [ext_resource path="res://PixelInterface/Style/Paper.tres" type="StyleBox" id=5]
 
 [node name="Reset" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Center" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -16,9 +20,9 @@ anchor_bottom = 1.0
 
 [node name="Panel" type="PanelContainer" parent="Center"]
 margin_left = 397.0
-margin_top = 244.0
+margin_top = 248.0
 margin_right = 627.0
-margin_bottom = 355.0
+margin_bottom = 352.0
 rect_min_size = Vector2( 230, 64 )
 custom_styles/panel = ExtResource( 1 )
 
@@ -26,29 +30,30 @@ custom_styles/panel = ExtResource( 1 )
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 102.0
+margin_bottom = 95.0
 
 [node name="Panel" type="PanelContainer" parent="Center/Panel/VBox"]
 margin_right = 214.0
-margin_bottom = 50.0
+margin_bottom = 43.0
 custom_styles/panel = ExtResource( 5 )
 
 [node name="Email" type="LineEdit" parent="Center/Panel/VBox/Panel"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 206.0
-margin_bottom = 42.0
+margin_bottom = 35.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 placeholder_text = "Email"
 placeholder_alpha = 0.5
 
 [node name="Reset" type="Button" parent="Center/Panel/VBox"]
-margin_top = 54.0
+margin_top = 47.0
 margin_right = 214.0
-margin_bottom = 94.0
+margin_bottom = 87.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
 text = "Reset"
 
 [node name="Close" parent="Center/Panel" instance=ExtResource( 2 )]
@@ -57,4 +62,4 @@ anchor_bottom = 0.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 102.0
+margin_bottom = 95.0

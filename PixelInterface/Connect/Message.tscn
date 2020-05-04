@@ -3,13 +3,16 @@
 [ext_resource path="res://PixelInterface/Style/Stone.tres" type="StyleBox" id=1]
 [ext_resource path="res://PixelInterface/Connect/Close.tscn" type="PackedScene" id=2]
 [ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=3]
+[ext_resource path="res://PixelInterface/Font/Venice.fnt" type="BitmapFont" id=4]
 [ext_resource path="res://PixelInterface/Style/Paper.tres" type="StyleBox" id=5]
-[ext_resource path="res://PixelInterface/Font/Superwhite.fnt" type="BitmapFont" id=6]
 
 [node name="Message" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Center" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -32,6 +35,7 @@ margin_bottom = 85.0
 [node name="Title" type="Label" parent="Center/Panel/VBox"]
 margin_right = 304.0
 margin_bottom = 18.0
+custom_fonts/font = ExtResource( 4 )
 text = "Title"
 align = 1
 
@@ -46,7 +50,6 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 296.0
 margin_bottom = 47.0
-custom_fonts/font = ExtResource( 6 )
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 autowrap = true
 

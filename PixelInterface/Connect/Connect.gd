@@ -86,10 +86,11 @@ func _ready():
 	
 	Utility.ok(emailClose.connect("pressed", self, "_on_CloseAccount_pressed"))
 	Utility.ok(passwordClose.connect("pressed", self, "_on_CloseAccount_pressed"))
-	Utility.ok(messageClose.connect("pressed", self, "_springErrorBack"))
+	Utility.ok(messageClose.connect("pressed", self, "_springMessageBack"))
 
 	Utility.ok(Firebase.connect("signedIn", self, "_onSignedIn"))
 	Utility.ok(Firebase.connect("signedUp", self, "_onSignedUp"))
+	Utility.ok(Firebase.connect("reset", self, "_onReset"))
 	Utility.ok(Firebase.connect("signedOut", self, "_onSignedOut"))
 	_loadEmail()
 	_updateStatus()
@@ -151,14 +152,11 @@ func _on_SignIn_pressed():
 	var email = signInEmail.text
 	var password = signInPassword.text
 	_errorClear([signInEmail, signInPassword])
-	if not _validEmail(email):
+	if email.empty() or not _validEmail(email):
 		_errorSet(signInEmail)
 		return
-	if not _validPassword(password):
+	if password.empty() or not _validPassword(password):
 		_errorSet(signInPassword)
-		return
-	if email.empty() or password.empty():
-		_showError("Error", "Please enter an email and password.")
 		return
 	_disableInput(signInSignIn)
 	Firebase.signIn(http, email, password)
@@ -190,8 +188,8 @@ func _onSignedIn(response):
 		_updateStatus()
 		_spring()
 	else:
-		var test = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
-		_showError("Error", test.error.message.capitalize())
+		var o = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
+		_showError("Error", o.error.message.capitalize())
 	_enableInput(signInSignIn)
 
 func _on_SignUp_pressed():
@@ -199,21 +197,35 @@ func _on_SignUp_pressed():
 	var email = signUpEmail.text
 	var password = signUpPassword.text
 	var confirm = signUpConfirm.text
-	if email.empty() or password.empty():
-		_showError("Error", "Please enter an email and password.")
+	_errorClear([signUpEmail, signUpPassword, signUpConfirm])
+	if email.empty() or not _validEmail(email):
+		_errorSet(signUpEmail)
 		return
-	if password != confirm:
-		_showError("Error", "Passwords must match.")
+	if password.empty() or not _validPassword(password):
+		_errorSet(signUpPassword)
 		return
+	if (confirm != password):
+		_errorSet(signUpConfirm)
+		return
+	_disableInput(signUpSignUp)
 	Firebase.signUp(http, email, password)
+	_saveEmail()
 
 func _onSignedUp(response):
 	if response[1] == 200:
 		_updateStatus()
 		_spring()
 	else:
-		var test = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
-		_showError("Error", test.error.message.capitalize())
+		var o = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
+		_showError("Error", o.error.message.capitalize())
+	_enableInput(signUpSignUp)
+
+func _on_Reset_pressed():
+	if not resetEmail.text.empty():
+		Firebase.reset(http, resetEmail.text)
+
+func _onReset():
+	_springSignIn()
 
 func _on_SignOut_pressed():
 	clickAudio.play()

@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://PixelInterface/Font/SuperBlack.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://PixelInterface/Font/Superwhite.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://PixelInterface/Font/Venice.fnt" type="BitmapFont" id=4]
+
+[node name="Fonts" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 1016.0
+margin_bottom = 592.0
+
+[node name="SuperBlack" type="Label" parent="Panel/VBox"]
+margin_top = 90.0
+margin_right = 1008.0
+margin_bottom = 101.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 2 )
+text = "!\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+align = 1
+
+[node name="SuperWhite" type="Label" parent="Panel/VBox"]
+margin_top = 286.0
+margin_right = 1008.0
+margin_bottom = 297.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 3 )
+text = "!\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+align = 1
+
+[node name="Venice" type="Label" parent="Panel/VBox"]
+margin_top = 479.0
+margin_right = 1008.0
+margin_bottom = 497.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 4 )
+text = "!\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+align = 1

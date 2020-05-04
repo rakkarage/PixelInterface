@@ -12,36 +12,46 @@ onready var tween = $Tween
 onready var clickAudio = $Click
 onready var errorAudio = $Error
 
-onready var messageTitle = $Container/Viewport/Dialog/Message/Panel/VBox/Title
-onready var messageText = $Container/Viewport/Dialog/Message/Panel/VBox/Panel/Text
-onready var messageClose = $Container/Viewport/Dialog/Message/Panel/Close/Close
-
 onready var status = $Container/Viewport/Interface/Status/Panel/Status
 
-onready var signInEmail = $Container/Viewport/Interface/SignIn/Panel/VBox/Panel/VBox/Email
-onready var signInPassword = $Container/Viewport/Interface/SignIn/Panel/VBox/Panel/VBox/Password
-onready var signInSignIn = $Container/Viewport/Interface/SignIn/Panel/VBox/SignIn
-onready var signInSignUp = $Container/Viewport/Interface/SignIn/Panel/VBox/HBox/SignUp
-onready var signInReset = $Container/Viewport/Interface/SignIn/Panel/VBox/HBox/Reset
-onready var signInClose = $Container/Viewport/Interface/SignIn/Panel/Close/Close
+onready var signInEmail    = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Email
+onready var signInPassword = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Password
+onready var signInSignIn   = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/SignIn
+onready var signInSignUp   = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/HBox/SignUp
+onready var signInReset    = $Container/Viewport/Interface/SignIn/Center/Panel/VBox/HBox/Reset
+onready var signInClose    = $Container/Viewport/Interface/SignIn/Center/Panel/Close/Close
 
-onready var signUpEmail = $Container/Viewport/Interface/SignUp/Panel/VBox/Panel/Input/Email/LineEdit
-onready var signUpPassword = $Container/Viewport/Interface/SignUp/Panel/VBox/Panel/Input/Password/LineEdit
-onready var signUpConfirm = $Container/Viewport/Interface/SignUp/Panel/VBox/Panel/Input/Confirm/LineEdit
-onready var signUpSignUp = $Container/Viewport/Interface/SignUp/Panel/SignUp
-onready var signUpClose = $Container/Viewport/Interface/SignUp/Panel/Close/Close
+onready var signUpEmail    = $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Email
+onready var signUpPassword = $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Password
+onready var signUpConfirm  = $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Confirm
+onready var signUpSignUp   = $Container/Viewport/Interface/SignUp/Center/Panel/VBox/SignUp
+onready var signUpClose    = $Container/Viewport/Interface/SignUp/Center/Panel/Close/Close
 
-onready var resetEmail = $Container/Viewport/Interface/Reset/Panel/Panel/HBox/LineEdit
-onready var resetReset = $Container/Viewport/Interface/Reset/Panel/Reset
-onready var resetClose = $Container/Viewport/Interface/Reset/Panel/Close/Close
+onready var resetEmail = $Container/Viewport/Interface/Reset/Center/Panel/VBox/Panel/Email
+onready var resetReset = $Container/Viewport/Interface/Reset/Center/Panel/VBox/Reset
+onready var resetClose = $Container/Viewport/Interface/Reset/Center/Panel/Close/Close
 
-onready var accountSignOut = $Container/Viewport/Interface/Account/Panel/VBox/Buttons/SignOut
-onready var accountEmail = $Container/Viewport/Interface/Account/Panel/VBox/Buttons/HBox/Email
-onready var accountPassword = $Container/Viewport/Interface/Account/Panel/VBox/Buttons/HBox/Password
-onready var accountClose = $Container/Viewport/Interface/Account/Panel/Close/Close
+onready var accountEmail          = $Container/Viewport/Interface/Account/Center/Panel/VBox/Panel/Email
+onready var accountSignOut        = $Container/Viewport/Interface/Account/Center/Panel/VBox/SignOut
+onready var accountChangeEmail    = $Container/Viewport/Interface/Account/Center/Panel/VBox/HBox/Email
+onready var accountChangePassword = $Container/Viewport/Interface/Account/Center/Panel/VBox/HBox/Password
+onready var accountClose          = $Container/Viewport/Interface/Account/Center/Panel/Close/Close
 
-onready var emailClose = $Container/Viewport/Interface/Email/Panel/Close/Close
-onready var passwordClose = $Container/Viewport/Interface/Password/Panel/Close/Close
+onready var emailPassword = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Password
+onready var emailEmail    = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Email
+onready var emailConfirm  = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Confirm
+onready var emailChange   = $Container/Viewport/Interface/Email/Center/Panel/VBox/Change
+onready var emailClose    = $Container/Viewport/Interface/Email/Center/Panel/Close/Close
+
+onready var passwordOld     = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Old
+onready var passwordNew     = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/New
+onready var passwordConfirm = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Confirm
+onready var passwordChange  = $Container/Viewport/Interface/Password/Center/Panel/VBox/Change
+onready var passwordClose   = $Container/Viewport/Interface/Password/Center/Panel/Close/Close
+
+onready var messageTitle = $Container/Viewport/Dialog/Message/Center/Panel/VBox/Title
+onready var messageText  = $Container/Viewport/Dialog/Message/Center/Panel/VBox/Panel/Text
+onready var messageClose = $Container/Viewport/Dialog/Message/Center/Panel/Close/Close
 
 const messagePosition = Vector2(3000, 0)
 

@@ -17,9 +17,9 @@ anchor_bottom = 1.0
 
 [node name="Panel" type="PanelContainer" parent="Center"]
 margin_left = 397.0
-margin_top = 221.0
+margin_top = 223.0
 margin_right = 627.0
-margin_bottom = 379.0
+margin_bottom = 377.0
 rect_min_size = Vector2( 230, 64 )
 custom_styles/panel = ExtResource( 1 )
 
@@ -27,7 +27,8 @@ custom_styles/panel = ExtResource( 1 )
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 149.0
+margin_bottom = 145.0
+custom_constants/separation = 0
 
 [node name="Panel" type="PanelContainer" parent="Center/Panel/VBox"]
 margin_right = 214.0
@@ -69,9 +70,9 @@ placeholder_text = "Confirm"
 placeholder_alpha = 0.5
 
 [node name="Change" type="Button" parent="Center/Panel/VBox"]
-margin_top = 101.0
+margin_top = 97.0
 margin_right = 214.0
-margin_bottom = 141.0
+margin_bottom = 137.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 4 )
@@ -83,4 +84,4 @@ anchor_bottom = 0.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 149.0
+margin_bottom = 145.0

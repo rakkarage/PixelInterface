@@ -17,12 +17,15 @@ __meta__ = {
 [node name="Center" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel" type="PanelContainer" parent="Center"]
 margin_left = 397.0
-margin_top = 229.0
+margin_top = 233.0
 margin_right = 627.0
-margin_bottom = 370.0
+margin_bottom = 366.0
 rect_min_size = Vector2( 230, 64 )
 custom_styles/panel = ExtResource( 1 )
 
@@ -30,7 +33,8 @@ custom_styles/panel = ExtResource( 1 )
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 132.0
+margin_bottom = 124.0
+custom_constants/separation = 0
 
 [node name="Panel" type="PanelContainer" parent="Center/Panel/VBox"]
 margin_right = 214.0
@@ -48,28 +52,29 @@ placeholder_text = "Email"
 placeholder_alpha = 0.5
 
 [node name="SignOut" type="Button" parent="Center/Panel/VBox"]
-margin_top = 47.0
+margin_top = 43.0
 margin_right = 214.0
-margin_bottom = 87.0
+margin_bottom = 83.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 4 )
 text = "Sign Out"
 
 [node name="HBox" type="HBoxContainer" parent="Center/Panel/VBox"]
-margin_top = 91.0
+margin_top = 83.0
 margin_right = 214.0
-margin_bottom = 124.0
+margin_bottom = 116.0
+custom_constants/separation = 0
 
 [node name="Email" type="Button" parent="Center/Panel/VBox/HBox"]
-margin_right = 105.0
+margin_right = 107.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Email"
 
 [node name="Password" type="Button" parent="Center/Panel/VBox/HBox"]
-margin_left = 109.0
+margin_left = 107.0
 margin_right = 214.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
@@ -82,4 +87,4 @@ anchor_bottom = 0.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 132.0
+margin_bottom = 124.0

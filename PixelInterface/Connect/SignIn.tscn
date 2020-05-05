@@ -20,9 +20,9 @@ anchor_bottom = 1.0
 
 [node name="Panel" type="PanelContainer" parent="Center"]
 margin_left = 397.0
-margin_top = 216.0
+margin_top = 220.0
 margin_right = 627.0
-margin_bottom = 384.0
+margin_bottom = 380.0
 rect_min_size = Vector2( 230, 64 )
 custom_styles/panel = ExtResource( 1 )
 
@@ -30,7 +30,8 @@ custom_styles/panel = ExtResource( 1 )
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 159.0
+margin_bottom = 151.0
+custom_constants/separation = 0
 
 [node name="Panel" type="PanelContainer" parent="Center/Panel/VBox"]
 margin_right = 214.0
@@ -63,28 +64,29 @@ placeholder_text = "Password"
 placeholder_alpha = 0.5
 
 [node name="SignIn" type="Button" parent="Center/Panel/VBox"]
-margin_top = 74.0
+margin_top = 70.0
 margin_right = 214.0
-margin_bottom = 114.0
+margin_bottom = 110.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 4 )
 text = "Sign In"
 
 [node name="HBox" type="HBoxContainer" parent="Center/Panel/VBox"]
-margin_top = 118.0
+margin_top = 110.0
 margin_right = 214.0
-margin_bottom = 151.0
+margin_bottom = 143.0
+custom_constants/separation = 0
 
 [node name="SignUp" type="Button" parent="Center/Panel/VBox/HBox"]
-margin_right = 105.0
+margin_right = 107.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Sign Up"
 
 [node name="Reset" type="Button" parent="Center/Panel/VBox/HBox"]
-margin_left = 109.0
+margin_left = 107.0
 margin_right = 214.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
@@ -97,4 +99,4 @@ anchor_bottom = 0.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 159.0
+margin_bottom = 151.0

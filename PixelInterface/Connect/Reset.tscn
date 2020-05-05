@@ -20,9 +20,9 @@ anchor_bottom = 1.0
 
 [node name="Panel" type="PanelContainer" parent="Center"]
 margin_left = 397.0
-margin_top = 248.0
+margin_top = 250.0
 margin_right = 627.0
-margin_bottom = 352.0
+margin_bottom = 350.0
 rect_min_size = Vector2( 230, 64 )
 custom_styles/panel = ExtResource( 1 )
 
@@ -30,7 +30,8 @@ custom_styles/panel = ExtResource( 1 )
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 95.0
+margin_bottom = 91.0
+custom_constants/separation = 0
 
 [node name="Panel" type="PanelContainer" parent="Center/Panel/VBox"]
 margin_right = 214.0
@@ -48,9 +49,9 @@ placeholder_text = "Email"
 placeholder_alpha = 0.5
 
 [node name="Reset" type="Button" parent="Center/Panel/VBox"]
-margin_top = 47.0
+margin_top = 43.0
 margin_right = 214.0
-margin_bottom = 87.0
+margin_bottom = 83.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 4 )
@@ -62,4 +63,4 @@ anchor_bottom = 0.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 95.0
+margin_bottom = 91.0

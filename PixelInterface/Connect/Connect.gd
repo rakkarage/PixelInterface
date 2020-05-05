@@ -105,6 +105,7 @@ func _ready():
 	# _loadEmail()
 	_updateStatus()
 	_regex.compile(_pattern)
+	_status.grab_focus()
 
 ### status
 

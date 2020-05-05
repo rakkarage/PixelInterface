@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://PixelInterface/Style/CloudDisabled.tres" type="StyleBox" id=1]
 [ext_resource path="res://PixelInterface/Style/CloudNormal.tres" type="StyleBox" id=2]
 [ext_resource path="res://PixelInterface/Style/CloudPressed.tres" type="StyleBox" id=3]
 [ext_resource path="res://PixelInterface/Style/CloudHover.tres" type="StyleBox" id=4]
@@ -33,6 +32,5 @@ margin_bottom = 15.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 3 )
-custom_styles/disabled = ExtResource( 1 )
 custom_styles/normal = ExtResource( 2 )
 enabled_focus_mode = 0

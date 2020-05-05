@@ -1,26 +1,42 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://PixelInterface/Sprite/Circle.png" type="Texture" id=1]
 [ext_resource path="res://PixelInterface/Sprite/No.png" type="Texture" id=2]
+[ext_resource path="res://PixelInterface/Style/CloseHover.tres" type="StyleBox" id=3]
+[ext_resource path="res://PixelInterface/Style/CloseNormal.tres" type="StyleBox" id=4]
+[ext_resource path="res://PixelInterface/Style/ClosePressed.tres" type="StyleBox" id=5]
 
 [node name="Close" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Close" type="TextureButton" parent="."]
-self_modulate = Color( 0.623529, 0.690196, 1, 1 )
+[node name="Close" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -18.0
 margin_top = -18.0
-texture_normal = ExtResource( 1 )
+margin_bottom = 18.0
+rect_min_size = Vector2( 36, 36 )
+focus_mode = 0
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+enabled_focus_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Center" type="CenterContainer" parent="Close"]
-margin_right = 22.0
-margin_bottom = 22.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 36, 36 )
 mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Texture" type="TextureRect" parent="Close/Center"]
 modulate = Color( 0.74902, 0.498039, 0.498039, 1 )

@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="PixelInterface"
 config/description="Pixel-perfect fonts and user interface elements."
-run/main_scene="res://PixelInterface/Connect/Connect.tscn"
+run/main_scene="res://Demo.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -32,8 +32,6 @@ Firebase="*res://PixelInterface/Connect/Firebase.gd"
 [display]
 
 mouse_cursor/custom_image="res://PixelInterface/Sprite/Cursor.png"
-window/stretch/mode="2d"
-window/stretch/aspect="expand"
 
 [importer_defaults]
 

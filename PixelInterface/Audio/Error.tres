@@ -4,4 +4,4 @@
 
 [resource]
 audio_stream = ExtResource( 1 )
-random_pitch = 1.5
+random_pitch = 1.22

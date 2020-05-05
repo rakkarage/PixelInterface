@@ -106,44 +106,7 @@ func _ready():
 	_updateStatus()
 	_regex.compile(_pattern)
 
-func _spring(p = Vector2.ZERO, c = _interface):
-	var current = c.get_position()
-	if  not current.is_equal_approx(p):
-		if _tween.interpolate_property(c, "rect_position", current, p, _springTime, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
-			if not _tween.start():
-				print("error")
-
-func _springSignIn():
-	_spring(_signInPosition)
-
-func _springSignUp():
-	_spring(_signUpPosition)
-
-func _springReset():
-	_spring(_resetPosition)
-
-func _springAccount():
-	_spring(_accountPosition)
-
-func _springEmail():
-	_spring(_emailPosition)
-
-func _springPassword():
-	_spring(_passwordPosition)
-
-func _springMessage():
-	_spring(_messagePosition, _dialog)
-
-func _springMessageBack():
-	_clickAudio.play()
-	_spring(Vector2.ZERO, _dialog)
-
-func _showError(response):
-	_errorAudio.play()
-	_messageTitle.text = "Error"
-	var o = JSON.parse(response[3].get_string_from_ascii()).result
-	_messageText.text = o.error.message.capitalize()
-	_springMessage()
+### status
 
 func _on_Status_pressed():
 	_clickAudio.play()
@@ -157,6 +120,14 @@ func _updateStatus():
 		_status.modulate = _connectedColor
 	else:
 		_status.modulate = _disconnectedColor
+
+func _on_Close_pressed():
+	_clickAudio.play()
+	_spring()
+
+### signIn
+
+func _springSignIn(): _spring(_signInPosition)
 
 func _on_SignIn_pressed():
 	_clickAudio.play()
@@ -182,6 +153,22 @@ func _onSignedIn(response):
 		_showError(response)
 	_enableInput(_signInSignIn)
 
+func _on_SignInSignUo_pressed():
+	_clickAudio.play()
+	_springSignUp()
+
+func _on_SignInReset_pressed():
+	_clickAudio.play()
+	_springReset()
+
+func _on_CloseSignIn_pressed():
+	_clickAudio.play()
+	_springSignIn()
+
+### signUp
+
+func _springSignUp(): _spring(_signUpPosition)
+
 func _on_SignUp_pressed():
 	_clickAudio.play()
 	var email = _signUpEmail.text
@@ -203,11 +190,18 @@ func _on_SignUp_pressed():
 
 func _onSignedUp(response):
 	if response[1] == 200:
+		_signInEmail.text = ""
+		_signInEmail.password = ""
+		_signInEmail.confirm = ""
 		_updateStatus()
 		_spring()
 	else:
 		_showError(response)
 	_enableInput(_signUpSignUp)
+
+### reset
+
+func _springReset(): _spring(_resetPosition)
 
 func _on_Reset_pressed():
 	_errorClear([_resetEmail])
@@ -218,46 +212,81 @@ func _on_Reset_pressed():
 	Firebase.reset(_http, _resetEmail.text)
 
 func _onReset():
+	_resetEmail.text = ""
 	_enableInput(_resetReset)
 	_springSignIn()
 
+### account
+
+func _springAccount(): _spring(_accountPosition)
+
 func _on_SignOut_pressed():
 	_clickAudio.play()
+	_disableInput(_accountSignOut)
 	Firebase.signOut()
 
 func _onSignedOut():
 	_updateStatus()
 	_spring()
+	_enableInput(_accountSignOut)
 
-func _on_SignInSignUo_pressed():
+func _on_AccountChangeEmail_pressed():
 	_clickAudio.play()
-	_springSignUp()
+	_springEmail()
 
-func _on_SignInReset_pressed():
+func _on_AccountChangePassword_pressed():
 	_clickAudio.play()
-	_springReset()
-
-func _on_Close_pressed():
-	_clickAudio.play()
-	_spring()
-
-func _on_CloseSignIn_pressed():
-	_clickAudio.play()
-	_springSignIn()
+	_springPassword()
 
 func _on_CloseAccount_pressed():
 	_clickAudio.play()
 	_springAccount()
 
-func _on_AccountChangeEmail_pressed():
-	_clickAudio.play()
-	_springEmail()
-	pass
+### email
 
-func _on_AccountChangePassword_pressed():
+func _springEmail(): _spring(_emailPosition)
+
+### password
+
+func _springPassword(): _spring(_passwordPosition)
+
+### dialog
+
+func _springMessage(): _spring(_messagePosition, _dialog)
+
+func _springMessageBack():
 	_clickAudio.play()
-	_springPassword()
-	pass
+	_spring(Vector2.ZERO, _dialog)
+
+func _showError(response):
+	_errorAudio.play()
+	_messageTitle.text = "Error"
+	var o = JSON.parse(response[3].get_string_from_ascii()).result
+	_messageText.text = o.error.message.capitalize()
+	_springMessage()
+
+func _spring(p = Vector2.ZERO, c = _interface):
+	var current = c.get_position()
+	if  not current.is_equal_approx(p):
+		if _tween.interpolate_property(c, "rect_position", current, p, _springTime, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
+			if not _tween.start():
+				print("error")
+
+func _validEmail(text: String) -> bool: return _regex.search(text)
+
+func _validPassword(text: String) -> bool: return text.length() > 2
+
+func _errorClear(controls: Array):
+	for i in range(controls.size()):
+		controls[i].modulate = Color.white
+
+func _errorSet(control: LineEdit):
+	_errorAudio.play()
+	control.modulate = _disconnectedColor
+
+func _disableInput(control: Button): control.disabled = true
+
+func _enableInput(control: Button): control.disabled = false;
 
 # func _saveEmail(email: String):
 # 	if not email.empty():
@@ -272,23 +301,3 @@ func _on_AccountChangePassword_pressed():
 # 		email = f.get_as_text()
 # 		f.close()
 # 	return email
-
-func _validEmail(text: String) -> bool:
-	return _regex.search(text)
-
-func _validPassword(text: String) -> bool:
-	return text.length() > 2
-
-func _errorClear(controls: Array):
-	for i in range(controls.size()):
-		controls[i].modulate = Color.white
-
-func _errorSet(control: LineEdit):
-	_errorAudio.play()
-	control.modulate = _disconnectedColor
-
-func _disableInput(control: Button):
-	control.disabled = true
-
-func _enableInput(control: Button):
-	control.disabled = false;

@@ -1,11 +1,6 @@
 extends Control
 
 onready var _interface = $Container/Viewport/Interface
-onready var _dialog = $Container/Viewport/Dialog
-onready var _http = $HTTPRequest
-onready var _tween = $Tween
-onready var _clickAudio = $Click
-onready var _errorAudio = $Error
 
 onready var _status = $Container/Viewport/Interface/Status/Panel/Status
 
@@ -44,11 +39,16 @@ onready var _passwordConfirm = $Container/Viewport/Interface/Password/Center/Pan
 onready var _passwordChange  = $Container/Viewport/Interface/Password/Center/Panel/VBox/Change
 onready var _passwordClose   = $Container/Viewport/Interface/Password/Center/Panel/Close/Close
 
+onready var _dialog = $Container/Viewport/Dialog
+
 onready var _messageTitle = $Container/Viewport/Dialog/Message/Center/Panel/VBox/Title
 onready var _messageText  = $Container/Viewport/Dialog/Message/Center/Panel/VBox/Panel/Text
 onready var _messageClose = $Container/Viewport/Dialog/Message/Center/Panel/Close/Close
 
-const _messagePosition = Vector2(3000, 0)
+onready var _http = $HTTPRequest
+onready var _tween = $Tween
+onready var _clickAudio = $Click
+onready var _errorAudio = $Error
 
 const _signInPosition = Vector2(0, 3000)
 const _signUpPosition = Vector2(3000, 3000)
@@ -58,14 +58,16 @@ const _accountPosition = Vector2(0, -3000)
 const _emailPosition = Vector2(3000, -3000)
 const _passwordPosition = Vector2(-3000, -3000)
 
+const _messagePosition = Vector2(3000, 0)
+
 const _connectedColor = Color(0.5, 0.75, 0.5)
 const _disconnectedColor = Color(0.75, 0.5, 0.5)
 
 const _springTime = 0.333
 
 var _f = File.new()
-const _emailPath = "user://email.txt";
-var _state = ""
+var _state = { "email": "", "token": "" }
+const _statePath = "user://state.txt";
 var _regex = RegEx.new()
 const _pattern = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)"
 
@@ -80,13 +82,20 @@ func _ready():
 	Utility.ok(_signUpSignUp.connect("pressed", self, "_on_SignUp_pressed"))
 	Utility.ok(_signUpClose.connect("pressed", self, "_on_CloseSignIn_pressed"))
 	
+	Utility.ok(_resetReset.connect("pressed", self, "_on_Reset_pressed"))
 	Utility.ok(_resetClose.connect("pressed", self, "_on_CloseSignIn_pressed"))
 	
-	Utility.ok(_accountClose.connect("pressed", self, "_on_Close_pressed"))
 	Utility.ok(_accountSignOut.connect("pressed", self, "_on_SignOut_pressed"))
+	Utility.ok(_accountChangeEmail.connect("pressed", self, "_on_AccountChangeEmail_pressed"))
+	Utility.ok(_accountChangePassword.connect("pressed", self, "_on_AccountChangePassword_pressed"))
+	Utility.ok(_accountClose.connect("pressed", self, "_on_Close_pressed"))
 	
+	Utility.ok(_emailChange.connect("pressed", self, "_on_ChangeEmail_pressed"))
 	Utility.ok(_emailClose.connect("pressed", self, "_on_CloseAccount_pressed"))
+
+	Utility.ok(_passwordChange.connect("pressed", self, "_on_ChangePassword_pressed"))
 	Utility.ok(_passwordClose.connect("pressed", self, "_on_CloseAccount_pressed"))
+	
 	Utility.ok(_messageClose.connect("pressed", self, "_springMessageBack"))
 
 	Utility.ok(Firebase.connect("signedIn", self, "_onSignedIn"))
@@ -205,7 +214,7 @@ func _on_SignUp_pressed():
 	if password.empty() or not _validPassword(password):
 		_errorSet(_signUpPassword)
 		return
-	if (confirm != password):
+	if confirm != password:
 		_errorSet(_signUpConfirm)
 		return
 	_disableInput(_signUpSignUp)
@@ -235,6 +244,16 @@ func _on_SignOut_pressed():
 func _onSignedOut():
 	_updateStatus()
 	_spring()
+
+func _on_AccountChangeEmail_pressed():
+	_clickAudio.play()
+	_springEmail()
+	pass
+
+func _on_AccountChangePassword_pressed():
+	_clickAudio.play()
+	_springPassword()
+	pass
 
 # func _saveEmail(email: String):
 # 	if not email.empty():

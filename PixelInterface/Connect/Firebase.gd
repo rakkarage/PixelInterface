@@ -1,14 +1,15 @@
 extends Node
 
-const _lookup := "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=%s"
 const _signInUrl := "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=%s"
 const _signUpUrl := "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=%s"
 const _resetUrl := "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=%s"
+const _getUserUrl := "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=%s"
+const _setUserUrl := "https://identitytoolkit.googleapis.com/v1/accounts:update?key=%s"
 var _apiKey := ""
 var _token := ""
 
-signal signedIn(r)
-signal signedUp(r)
+signal signedIn(response)
+signal signedUp(response)
 signal signedOut()
 signal reset()
 
@@ -44,7 +45,7 @@ func reset(http: HTTPRequest, email: String) ->void:
 	yield(http, "request_completed")
 	emit_signal("reset")
 
-func signOut():
+func signOut() -> void:
 	_token = ""
 	emit_signal("signedOut")
 

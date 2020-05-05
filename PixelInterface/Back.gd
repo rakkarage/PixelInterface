@@ -7,7 +7,7 @@ func _ready():
 func _on_Control_resized():
 	var tex = rect_size;
 	var win = get_viewport_rect().size
-	if (win.x > win.y):
+	if win.x > win.y:
 		rect_rotation = 90
 		rect_scale = Vector2(win.y / tex.x, win.x / tex.y)
 	else:

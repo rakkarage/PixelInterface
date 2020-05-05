@@ -9,3 +9,4 @@ margin_left = 16.0
 margin_right = 16.0
 margin_top = 16.0
 margin_bottom = 16.0
+modulate_color = Color( 0.623529, 0.690196, 1, 1 )

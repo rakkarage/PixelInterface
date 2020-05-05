@@ -138,10 +138,11 @@ func _springMessageBack():
 	_clickAudio.play()
 	_spring(Vector2.ZERO, _dialog)
 
-func _showError(title, text):
+func _showError(response):
 	_errorAudio.play()
-	_messageTitle.text = title
-	_messageText.text = text
+	_messageTitle.text = "Error"
+	var o = JSON.parse(response[3].get_string_from_ascii()).result
+	_messageText.text = o.error.message.capitalize()
 	_springMessage()
 
 func _on_Status_pressed():
@@ -172,34 +173,13 @@ func _on_SignIn_pressed():
 	Firebase.signIn(_http, email, password)
 	# _saveEmail()
 
-func _on_SignInSignUo_pressed():
-	_clickAudio.play()
-	_springSignUp()
-
-func _on_SignInReset_pressed():
-	_clickAudio.play()
-	_springReset()
-
-func _on_Close_pressed():
-	_clickAudio.play()
-	_spring()
-
-func _on_CloseSignIn_pressed():
-	_clickAudio.play()
-	_springSignIn()
-
-func _on_CloseAccount_pressed():
-	_clickAudio.play()
-	_springAccount()
-
 func _onSignedIn(response):
 	if response[1] == 200:
 		_signInPassword.text = ""
 		_updateStatus()
 		_spring()
 	else:
-		var o = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
-		_showError("Error", o.error.message.capitalize())
+		_showError(response)
 	_enableInput(_signInSignIn)
 
 func _on_SignUp_pressed():
@@ -226,15 +206,19 @@ func _onSignedUp(response):
 		_updateStatus()
 		_spring()
 	else:
-		var o = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
-		_showError("Error", o.error.message.capitalize())
+		_showError(response)
 	_enableInput(_signUpSignUp)
 
 func _on_Reset_pressed():
-	if not _resetEmail.text.empty():
-		Firebase.reset(_http, _resetEmail.text)
+	_errorClear([_resetEmail])
+	if _resetEmail.text.empty():
+		_errorSet(_resetEmail)
+		return
+	_disableInput(_resetReset)
+	Firebase.reset(_http, _resetEmail.text)
 
 func _onReset():
+	_enableInput(_resetReset)
 	_springSignIn()
 
 func _on_SignOut_pressed():
@@ -244,6 +228,26 @@ func _on_SignOut_pressed():
 func _onSignedOut():
 	_updateStatus()
 	_spring()
+
+func _on_SignInSignUo_pressed():
+	_clickAudio.play()
+	_springSignUp()
+
+func _on_SignInReset_pressed():
+	_clickAudio.play()
+	_springReset()
+
+func _on_Close_pressed():
+	_clickAudio.play()
+	_spring()
+
+func _on_CloseSignIn_pressed():
+	_clickAudio.play()
+	_springSignIn()
+
+func _on_CloseAccount_pressed():
+	_clickAudio.play()
+	_springAccount()
 
 func _on_AccountChangeEmail_pressed():
 	_clickAudio.play()

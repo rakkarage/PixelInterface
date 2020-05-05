@@ -61,3 +61,13 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 312.0
 margin_bottom = 81.0
+
+[node name="Close" parent="Center/Panel/Close" index="0"]
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
+
+[editable path="Center/Panel/Close"]

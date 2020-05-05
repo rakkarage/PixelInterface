@@ -124,8 +124,8 @@ func _updateStatus():
 ### signIn
 
 func _springSignIn():
-	_signInSignIn.grab_focus()
 	_spring(_signInPosition)
+	_signInEmail.grab_focus()
 
 func _on_SignIn_pressed():
 	_clickAudio.play()
@@ -154,8 +154,8 @@ func _onSignedIn(response):
 ### signUp
 
 func _springSignUp():
-	_signUpSignUp.grab_focus()
 	_spring(_signUpPosition)
+	_signUpEmail.grab_focus()
 
 func _on_SignUp_pressed():
 	_clickAudio.play()
@@ -190,8 +190,8 @@ func _onSignedUp(response):
 ### reset
 
 func _springReset():
-	_resetReset.grab_focus()
 	_spring(_resetPosition)
+	_resetEmail.grab_focus()
 
 func _on_Reset_pressed():
 	_errorClear([_resetEmail])
@@ -209,8 +209,8 @@ func _onReset():
 ### account
 
 func _springAccount():
-	_accountSignOut.grab_focus()
 	_spring(_accountPosition)
+	_accountSignOut.grab_focus()
 
 func _on_SignOut_pressed():
 	_clickAudio.play()
@@ -225,14 +225,14 @@ func _onSignedOut():
 ### email
 
 func _springEmail():
+	_spring(_emailPassword)
 	_emailConfirm.grab_focus()
-	_spring(_emailPosition)
 
 ### password
 
 func _springPassword():
+	_spring(_passwordOld)
 	_passwordConfirm.grab_focus()
-	_spring(_passwordPosition)
 
 ### dialog
 
@@ -242,12 +242,14 @@ func _showError(response):
 	var o = JSON.parse(response[3].get_string_from_ascii()).result
 	_messageText.text = o.error.message.capitalize()
 	_spring(_messagePosition, _dialog, false)
+	_messageClose.grab_focus()
 
 func _springMessageBack():
 	_spring(Vector2.ZERO, _dialog)
 
 func _spring(p = Vector2.ZERO, c = _interface, click = true):
 	if (click): _clickAudio.play()
+	_status.grab_focus()
 	var current = c.get_position()
 	if  not current.is_equal_approx(p):
 		if _tween.interpolate_property(c, "rect_position", current, p, _springTime, Tween.TRANS_ELASTIC, Tween.EASE_OUT):

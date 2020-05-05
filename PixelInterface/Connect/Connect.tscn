@@ -9,8 +9,8 @@
 [ext_resource path="res://PixelInterface/Connect/Email.tscn" type="PackedScene" id=7]
 [ext_resource path="res://PixelInterface/Connect/Message.tscn" type="PackedScene" id=8]
 [ext_resource path="res://PixelInterface/Connect/Connect.gd" type="Script" id=9]
-[ext_resource path="res://PixelInterface/Audio/Error.wav" type="AudioStream" id=10]
-[ext_resource path="res://PixelInterface/Audio/Click.wav" type="AudioStream" id=11]
+[ext_resource path="res://PixelInterface/Audio/Error.tres" type="AudioStream" id=10]
+[ext_resource path="res://PixelInterface/Audio/Click.tres" type="AudioStream" id=11]
 
 [node name="Connect" type="Control"]
 anchor_right = 1.0

@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://PixelInterface/Style/Tooltip.tres" type="StyleBox" id=1]
 [ext_resource path="res://PixelInterface/Style/CloudNormal.tres" type="StyleBox" id=2]
 [ext_resource path="res://PixelInterface/Style/CloudPressed.tres" type="StyleBox" id=3]
 [ext_resource path="res://PixelInterface/Style/CloudHover.tres" type="StyleBox" id=4]
@@ -34,3 +35,29 @@ custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 3 )
 custom_styles/normal = ExtResource( 2 )
 enabled_focus_mode = 0
+
+[node name="Panel" type="PanelContainer" parent="Panel"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -16.0
+margin_right = 113.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 32, 32 )
+rect_rotation = 180.0
+rect_pivot_offset = Vector2( -32, 16 )
+custom_styles/panel = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Email" type="Label" parent="Panel/Panel"]
+margin_left = 8.0
+margin_top = 10.0
+margin_right = 105.0
+margin_bottom = 21.0
+text = "email@server.com"
+align = 1
+valign = 1

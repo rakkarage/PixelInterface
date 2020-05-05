@@ -75,26 +75,26 @@ func _ready():
 	Utility.ok(_status.connect("pressed", self, "_on_Status_pressed"))
 	
 	Utility.ok(_signInSignIn.connect("pressed", self, "_on_SignIn_pressed"))
-	Utility.ok(_signInSignUp.connect("pressed", self, "_on_SignInSignUo_pressed"))
-	Utility.ok(_signInReset.connect("pressed", self, "_on_SignInReset_pressed"))
-	Utility.ok(_signInClose.connect("pressed", self, "_on_Close_pressed"))
+	Utility.ok(_signInSignUp.connect("pressed", self, "_springSignUp"))
+	Utility.ok(_signInReset.connect("pressed", self, "_springReset"))
+	Utility.ok(_signInClose.connect("pressed", self, "_spring"))
 	
 	Utility.ok(_signUpSignUp.connect("pressed", self, "_on_SignUp_pressed"))
-	Utility.ok(_signUpClose.connect("pressed", self, "_on_CloseSignIn_pressed"))
+	Utility.ok(_signUpClose.connect("pressed", self, "_springSignIn"))
 	
 	Utility.ok(_resetReset.connect("pressed", self, "_on_Reset_pressed"))
-	Utility.ok(_resetClose.connect("pressed", self, "_on_CloseSignIn_pressed"))
+	Utility.ok(_resetClose.connect("pressed", self, "_springSignIn"))
 	
 	Utility.ok(_accountSignOut.connect("pressed", self, "_on_SignOut_pressed"))
-	Utility.ok(_accountChangeEmail.connect("pressed", self, "_on_AccountChangeEmail_pressed"))
-	Utility.ok(_accountChangePassword.connect("pressed", self, "_on_AccountChangePassword_pressed"))
-	Utility.ok(_accountClose.connect("pressed", self, "_on_Close_pressed"))
+	Utility.ok(_accountChangeEmail.connect("pressed", self, "_springEmail"))
+	Utility.ok(_accountChangePassword.connect("pressed", self, "_springPassword"))
+	Utility.ok(_accountClose.connect("pressed", self, "_spring"))
 	
 	Utility.ok(_emailChange.connect("pressed", self, "_on_ChangeEmail_pressed"))
-	Utility.ok(_emailClose.connect("pressed", self, "_on_CloseAccount_pressed"))
+	Utility.ok(_emailClose.connect("pressed", self, "_springAccount"))
 
 	Utility.ok(_passwordChange.connect("pressed", self, "_on_ChangePassword_pressed"))
-	Utility.ok(_passwordClose.connect("pressed", self, "_on_CloseAccount_pressed"))
+	Utility.ok(_passwordClose.connect("pressed", self, "_springAccount"))
 	
 	Utility.ok(_messageClose.connect("pressed", self, "_springMessageBack"))
 
@@ -109,7 +109,6 @@ func _ready():
 ### status
 
 func _on_Status_pressed():
-	_clickAudio.play()
 	if not Firebase.authenticated():
 		_springSignIn()
 	else:
@@ -121,13 +120,11 @@ func _updateStatus():
 	else:
 		_status.modulate = _disconnectedColor
 
-func _on_Close_pressed():
-	_clickAudio.play()
-	_spring()
-
 ### signIn
 
-func _springSignIn(): _spring(_signInPosition)
+func _springSignIn():
+	_signInSignIn.grab_focus()
+	_spring(_signInPosition)
 
 func _on_SignIn_pressed():
 	_clickAudio.play()
@@ -153,21 +150,11 @@ func _onSignedIn(response):
 		_showError(response)
 	_enableInput(_signInSignIn)
 
-func _on_SignInSignUo_pressed():
-	_clickAudio.play()
-	_springSignUp()
-
-func _on_SignInReset_pressed():
-	_clickAudio.play()
-	_springReset()
-
-func _on_CloseSignIn_pressed():
-	_clickAudio.play()
-	_springSignIn()
-
 ### signUp
 
-func _springSignUp(): _spring(_signUpPosition)
+func _springSignUp():
+	_signUpSignUp.grab_focus()
+	_spring(_signUpPosition)
 
 func _on_SignUp_pressed():
 	_clickAudio.play()
@@ -201,7 +188,9 @@ func _onSignedUp(response):
 
 ### reset
 
-func _springReset(): _spring(_resetPosition)
+func _springReset():
+	_resetReset.grab_focus()
+	_spring(_resetPosition)
 
 func _on_Reset_pressed():
 	_errorClear([_resetEmail])
@@ -218,7 +207,9 @@ func _onReset():
 
 ### account
 
-func _springAccount(): _spring(_accountPosition)
+func _springAccount():
+	_accountSignOut.grab_focus()
+	_spring(_accountPosition)
 
 func _on_SignOut_pressed():
 	_clickAudio.play()
@@ -226,46 +217,36 @@ func _on_SignOut_pressed():
 	Firebase.signOut()
 
 func _onSignedOut():
+	_enableInput(_accountSignOut)
 	_updateStatus()
 	_spring()
-	_enableInput(_accountSignOut)
-
-func _on_AccountChangeEmail_pressed():
-	_clickAudio.play()
-	_springEmail()
-
-func _on_AccountChangePassword_pressed():
-	_clickAudio.play()
-	_springPassword()
-
-func _on_CloseAccount_pressed():
-	_clickAudio.play()
-	_springAccount()
 
 ### email
 
-func _springEmail(): _spring(_emailPosition)
+func _springEmail():
+	_emailConfirm.grab_focus()
+	_spring(_emailPosition)
 
 ### password
 
-func _springPassword(): _spring(_passwordPosition)
+func _springPassword():
+	_passwordConfirm.grab_focus()
+	_spring(_passwordPosition)
 
 ### dialog
-
-func _springMessage(): _spring(_messagePosition, _dialog)
-
-func _springMessageBack():
-	_clickAudio.play()
-	_spring(Vector2.ZERO, _dialog)
 
 func _showError(response):
 	_errorAudio.play()
 	_messageTitle.text = "Error"
 	var o = JSON.parse(response[3].get_string_from_ascii()).result
 	_messageText.text = o.error.message.capitalize()
-	_springMessage()
+	_spring(_messagePosition, _dialog, false)
 
-func _spring(p = Vector2.ZERO, c = _interface):
+func _springMessageBack():
+	_spring(Vector2.ZERO, _dialog)
+
+func _spring(p = Vector2.ZERO, c = _interface, click = true):
+	if (click): _clickAudio.play()
 	var current = c.get_position()
 	if  not current.is_equal_approx(p):
 		if _tween.interpolate_property(c, "rect_position", current, p, _springTime, Tween.TRANS_ELASTIC, Tween.EASE_OUT):

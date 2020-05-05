@@ -27,31 +27,36 @@ margin_right = 1016.0
 margin_bottom = 592.0
 
 [node name="SuperBlack" type="Label" parent="Panel/VBox"]
-margin_top = 90.0
 margin_right = 1008.0
-margin_bottom = 101.0
+margin_bottom = 192.0
+rect_scale = Vector2( 2, 2 )
 size_flags_horizontal = 3
-size_flags_vertical = 6
+size_flags_vertical = 7
 custom_fonts/font = ExtResource( 2 )
 text = "!\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
 align = 1
+valign = 1
 
 [node name="SuperWhite" type="Label" parent="Panel/VBox"]
-margin_top = 286.0
+margin_top = 196.0
 margin_right = 1008.0
-margin_bottom = 297.0
+margin_bottom = 388.0
+rect_scale = Vector2( 2, 2 )
 size_flags_horizontal = 3
-size_flags_vertical = 6
+size_flags_vertical = 7
 custom_fonts/font = ExtResource( 3 )
 text = "!\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
 align = 1
+valign = 1
 
 [node name="Venice" type="Label" parent="Panel/VBox"]
-margin_top = 479.0
+margin_top = 392.0
 margin_right = 1008.0
-margin_bottom = 497.0
+margin_bottom = 584.0
+rect_scale = Vector2( 2, 2 )
 size_flags_horizontal = 3
-size_flags_vertical = 6
+size_flags_vertical = 7
 custom_fonts/font = ExtResource( 4 )
 text = "!\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
 align = 1
+valign = 1

@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://PixelInterface/Style/Tooltip.tres" type="StyleBox" id=1]
 [ext_resource path="res://PixelInterface/Style/CloudNormal.tres" type="StyleBox" id=2]
-[ext_resource path="res://PixelInterface/Style/CloudPressed.tres" type="StyleBox" id=3]
+[ext_resource path="res://PixelInterface/Style/CloudPress.tres" type="StyleBox" id=3]
 [ext_resource path="res://PixelInterface/Style/CloudHover.tres" type="StyleBox" id=4]
 [ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=5]
 [ext_resource path="res://PixelInterface/Connect/Status.gd" type="Script" id=6]
+[ext_resource path="res://PixelInterface/Style/CloudDisable.tres" type="StyleBox" id=7]
+[ext_resource path="res://PixelInterface/Style/CloudFocus.tres" type="StyleBox" id=8]
 
 [node name="Status" type="Control"]
 anchor_right = 1.0
@@ -32,12 +34,12 @@ margin_left = -20.0
 margin_top = -15.0
 margin_right = 20.0
 margin_bottom = 15.0
-focus_mode = 0
 mouse_filter = 1
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = ExtResource( 8 )
+custom_styles/disabled = ExtResource( 7 )
 custom_styles/normal = ExtResource( 2 )
-enabled_focus_mode = 0
 
 [node name="Panel" type="PanelContainer" parent="Panel"]
 modulate = Color( 1, 1, 1, 0 )

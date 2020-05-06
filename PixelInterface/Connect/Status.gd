@@ -14,15 +14,15 @@ func setEmail(email: String): $Panel/Email.text = email
 
 func mouseEntered():
 	if Firebase.authenticated():
-		$Tween.stop($Panel, "rect_rotation");
+		$Tween.stop($Panel, "rect_rotation")
 		$Tween.interpolate_property($Panel, "rect_rotation", null, 0, _time, _trans, _ease)
-		$Tween.stop($Panel, "modulate");
+		$Tween.stop($Panel, "modulate")
 		$Tween.interpolate_property($Panel, "modulate", null, Color.white, _time, _trans, _ease)
 		$Tween.start()
 
 func mouseExited():
-	$Tween.stop($Panel, "rect_rotation");
+	$Tween.stop($Panel, "rect_rotation")
 	$Tween.interpolate_property($Panel, "rect_rotation", null, -90, _time, _trans, _ease)
-	$Tween.stop($Panel, "modulate");
+	$Tween.stop($Panel, "modulate")
 	$Tween.interpolate_property($Panel, "modulate", null, Color(0, 0, 0, 0), _time, _trans, _ease)
 	$Tween.start()

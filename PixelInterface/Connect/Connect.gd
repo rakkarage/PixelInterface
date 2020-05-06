@@ -28,15 +28,14 @@ onready var _accountChangePassword = $Container/Viewport/Interface/Account/Cente
 onready var _accountClose          = $Container/Viewport/Interface/Account/Center/Panel/Close/Close
 
 onready var _emailEmail    = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Email
-onready var _emailNew      = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/New
 onready var _emailConfirm  = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Confirm
 onready var _emailChange   = $Container/Viewport/Interface/Email/Center/Panel/VBox/Change
 onready var _emailClose    = $Container/Viewport/Interface/Email/Center/Panel/Close/Close
 
-onready var _passwordNew     = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/New
-onready var _passwordConfirm = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Confirm
-onready var _passwordChange  = $Container/Viewport/Interface/Password/Center/Panel/VBox/Change
-onready var _passwordClose   = $Container/Viewport/Interface/Password/Center/Panel/Close/Close
+onready var _passwordPassword = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Password
+onready var _passwordConfirm  = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Confirm
+onready var _passwordChange   = $Container/Viewport/Interface/Password/Center/Panel/VBox/Change
+onready var _passwordClose    = $Container/Viewport/Interface/Password/Center/Panel/Close/Close
 
 onready var _dialog = $Container/Viewport/Dialog
 
@@ -51,54 +50,56 @@ onready var _errorAudio = $Error
 
 const _offset = 3000
 
-const _signInPosition = Vector2(0, _offset)
-const _signUpPosition = Vector2(_offset, _offset)
-const _resetPosition = Vector2(-_offset, _offset)
+const _anchor = Rect2(0, 0, 1, 1)
 
-const _accountPosition = Vector2(0, -_offset)
-const _emailPosition = Vector2(_offset, -_offset)
-const _passwordPosition = Vector2(-_offset, -_offset)
+const _signInAnchor = Rect2(0, 1, 1, 2)
+const _signUpAnchor = Rect2(1, 1, 2, 2)
+const _resetAnchor = Rect2(-1, 1, 0, 2)
 
-const _messagePosition = Vector2(_offset, 0)
+const _accountAnchor = Rect2(0, -1, 1, 0)
+const _emailAnchor = Rect2(1, -1, 2, 0)
+const _passwordAnchor = Rect2(-1, -1, 0, 0)
+
+const _messageAnchor = Rect2(1, 0, 2, 1)
 
 const _connectedColor = Color(0.5, 0.75, 0.5)
 const _disconnectedColor = Color(0.75, 0.5, 0.5)
 
 const _time = 0.333
-const _trans = Tween.TRANS_ELASTIC
+const _trans = Tween.TRANS_BOUNCE
 const _ease = Tween.EASE_OUT
 
 var _f = File.new()
 var _state = { "email": "", "token": "" }
-const _statePath = "user://state.txt";
+const _statePath = "user://state.txt"
 var _regex = RegEx.new()
 const _pattern = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)"
 
 func _ready():
 	Utility.ok(_status.connect("pressed", self, "_on_Status_pressed"))
-	
+
 	Utility.ok(_signInSignIn.connect("pressed", self, "_on_SignIn_pressed"))
 	Utility.ok(_signInSignUp.connect("pressed", self, "_springSignUp"))
 	Utility.ok(_signInReset.connect("pressed", self, "_springReset"))
 	Utility.ok(_signInClose.connect("pressed", self, "_spring"))
-	
+
 	Utility.ok(_signUpSignUp.connect("pressed", self, "_on_SignUp_pressed"))
 	Utility.ok(_signUpClose.connect("pressed", self, "_springSignIn"))
-	
+
 	Utility.ok(_resetReset.connect("pressed", self, "_on_Reset_pressed"))
 	Utility.ok(_resetClose.connect("pressed", self, "_springSignIn"))
-	
+
 	Utility.ok(_accountSignOut.connect("pressed", self, "_on_SignOut_pressed"))
 	Utility.ok(_accountChangeEmail.connect("pressed", self, "_springEmail"))
 	Utility.ok(_accountChangePassword.connect("pressed", self, "_springPassword"))
 	Utility.ok(_accountClose.connect("pressed", self, "_spring"))
-	
+
 	Utility.ok(_emailChange.connect("pressed", self, "_on_ChangeEmail_pressed"))
 	Utility.ok(_emailClose.connect("pressed", self, "_springAccount"))
 
 	Utility.ok(_passwordChange.connect("pressed", self, "_on_ChangePassword_pressed"))
 	Utility.ok(_passwordClose.connect("pressed", self, "_springAccount"))
-	
+
 	Utility.ok(_messageClose.connect("pressed", self, "_springMessageBack"))
 
 	Utility.ok(Firebase.connect("signedIn", self, "_onSignedIn"))
@@ -129,7 +130,7 @@ func _updateStatus():
 ### signIn
 
 func _springSignIn(click = true):
-	_spring(_signInPosition, _interface, click)
+	_spring(_signInAnchor, _interface, click)
 	_signInEmail.grab_focus()
 
 func _on_SignIn_pressed():
@@ -151,7 +152,7 @@ func _onSignedIn(response):
 	if response[1] == 200:
 		_signInPassword.text = ""
 		_updateStatus()
-		_spring(Vector2.ZERO, _interface, false)
+		_spring(_anchor, _interface, false)
 	else:
 		_showError(response)
 	_enableInput(_signInSignIn)
@@ -159,7 +160,7 @@ func _onSignedIn(response):
 ### signUp
 
 func _springSignUp():
-	_spring(_signUpPosition)
+	_spring(_signUpAnchor)
 	_signUpEmail.grab_focus()
 
 func _on_SignUp_pressed():
@@ -195,7 +196,7 @@ func _onSignedUp(response):
 ### reset password
 
 func _springReset():
-	_spring(_resetPosition)
+	_spring(_resetAnchor)
 	_resetEmail.grab_focus()
 
 func _on_Reset_pressed():
@@ -219,7 +220,7 @@ func _onReset(response):
 ### account
 
 func _springAccount(click = true):
-	_spring(_accountPosition, _interface, click)
+	_spring(_accountAnchor, _interface, click)
 	_accountSignOut.grab_focus()
 
 func _on_SignOut_pressed():
@@ -235,26 +236,26 @@ func _onSignedOut():
 ### change email
 
 func _springEmail():
-	_spring(_emailPosition)
-	_emailNew.grab_focus()
+	_spring(_emailAnchor)
+	_emailEmail.grab_focus()
 
 func _on_ChangeEmail_pressed():
 	_clickAudio.play()
-	var new = _emailNew.text
+	var email = _emailEmail.text
 	var confirm = _emailConfirm.text
-	_errorClear([_emailNew, _emailConfirm])
-	if new.empty() or not _validEmail(new):
-		_errorSet(_emailNew)
+	_errorClear([_emailEmail, _emailConfirm])
+	if email.empty() or not _validEmail(email):
+		_errorSet(_emailEmail)
 		return
-	if confirm != new:
+	if confirm != email:
 		_errorSet(_emailConfirm)
 		return
 	_disableInput(_emailChange)
-	Firebase.changeEmail(_http, new)
+	Firebase.changeEmail(_http, email)
 
 func onChangedEmail(response):
 	if response[1] == 200:
-		_emailNew.text = ""
+		_emailEmail.text = ""
 		_emailConfirm.text = ""
 		_updateStatus()
 		_springAccount(false)
@@ -265,26 +266,26 @@ func onChangedEmail(response):
 ### change password
 
 func _springPassword():
-	_spring(_passwordPosition)
-	_passwordNew.grab_focus()
+	_spring(_passwordAnchor)
+	_passwordPassword.grab_focus()
 
 func _on_ChangePassword_pressed():
 	_clickAudio.play()
-	var new = _passwordNew.text
+	var password = _passwordPassword.text
 	var confirm = _passwordConfirm.text
-	_errorClear([_passwordNew, _passwordConfirm])
-	if new.empty() or not _validPassword(new):
-		_errorSet(_passwordNew)
+	_errorClear([_passwordPassword, _passwordConfirm])
+	if password.empty() or not _validPassword(password):
+		_errorSet(_passwordPassword)
 		return
-	if confirm != new:
+	if confirm != password:
 		_errorSet(_passwordConfirm)
 		return
 	_disableInput(_passwordChange)
-	Firebase.changePassword(_http, new)
+	Firebase.changePassword(_http, password)
 
 func onChangedPassword(response):
 	if response[1] == 200:
-		_passwordNew.text = ""
+		_passwordPassword.text = ""
 		_passwordConfirm.text = ""
 		_updateStatus()
 		_springAccount(false)
@@ -299,20 +300,29 @@ func _showError(response):
 	_messageTitle.text = "Error"
 	var o = JSON.parse(response[3].get_string_from_ascii()).result
 	_messageText.text = o.error.message.capitalize()
-	_spring(_messagePosition, _dialog, false)
+	_spring(_messageAnchor, _dialog, false)
 	_messageClose.grab_focus()
 
 func _springMessageBack():
-	_spring(Vector2.ZERO, _dialog)
+	_spring(_anchor, _dialog)
 
-func _spring(p = Vector2.ZERO, c = _interface, click = true):
+func _spring(a = _anchor, c = _interface, click = true):
 	if (click): _clickAudio.play()
 	_status.grab_focus()
-	var current = c.get_position()
-	if  not current.is_equal_approx(p):
-		if _tween.interpolate_property(c, "rect_position", current, p, _time, _trans, _ease):
-			if not _tween.start():
-				print("error")
+	if not is_equal_approx(c.anchor_left, a.position.x):
+		if not _tween.interpolate_property(c, "anchor_left", c.anchor_left, a.position.x, _time, _trans, _ease):
+			print("error")
+	if not is_equal_approx(c.anchor_top, a.position.y):
+		if not _tween.interpolate_property(c, "anchor_top", c.anchor_top, a.position.y, _time, _trans, _ease):
+			print("error")
+	if not is_equal_approx(c.anchor_right, a.size.x):
+		if not _tween.interpolate_property(c, "anchor_right", c.anchor_right, a.size.x, _time, _trans, _ease):
+			print("error")
+	if not is_equal_approx(c.anchor_bottom, a.size.y):
+		if not _tween.interpolate_property(c, "anchor_bottom", c.anchor_bottom, a.size.y, _time, _trans, _ease):
+			print("error")
+	if not _tween.start():
+		print("error")
 
 func _validEmail(text: String) -> bool: return _regex.search(text)
 
@@ -328,7 +338,7 @@ func _errorSet(control: LineEdit):
 
 func _disableInput(control: Button): control.disabled = true
 
-func _enableInput(control: Button): control.disabled = false;
+func _enableInput(control: Button): control.disabled = false
 
 # func _saveEmail(email: String):
 # 	if not email.empty():

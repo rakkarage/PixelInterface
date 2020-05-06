@@ -48,36 +48,36 @@ anchor_bottom = 1.0
 [node name="Status" parent="Container/Viewport/Interface" instance=ExtResource( 1 )]
 
 [node name="SignIn" parent="Container/Viewport/Interface" instance=ExtResource( 2 )]
-margin_top = -3000.0
-margin_bottom = -3000.0
+anchor_top = -1.0
+anchor_bottom = 0.0
 
 [node name="SignUp" parent="Container/Viewport/Interface" instance=ExtResource( 3 )]
-margin_left = -3000.0
-margin_top = -3000.0
-margin_right = -3000.0
-margin_bottom = -3000.0
+anchor_left = -1.0
+anchor_top = -1.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="Reset" parent="Container/Viewport/Interface" instance=ExtResource( 5 )]
-margin_left = 3000.0
-margin_top = -3000.0
-margin_right = 3000.0
-margin_bottom = -3000.0
+anchor_left = 1.0
+anchor_top = -1.0
+anchor_right = 2.0
+anchor_bottom = 0.0
 
 [node name="Account" parent="Container/Viewport/Interface" instance=ExtResource( 4 )]
-margin_top = 3000.0
-margin_bottom = 3000.0
+anchor_top = 1.0
+anchor_bottom = 2.0
 
 [node name="Email" parent="Container/Viewport/Interface" instance=ExtResource( 7 )]
-margin_left = -3000.0
-margin_top = 3000.0
-margin_right = -3000.0
-margin_bottom = 3000.0
+anchor_left = -1.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 2.0
 
 [node name="Password" parent="Container/Viewport/Interface" instance=ExtResource( 6 )]
-margin_left = 3000.0
-margin_top = 3000.0
-margin_right = 3000.0
-margin_bottom = 3000.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 2.0
+anchor_bottom = 2.0
 
 [node name="Dialog" type="Control" parent="Container/Viewport"]
 anchor_right = 1.0
@@ -85,8 +85,8 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="Message" parent="Container/Viewport/Dialog" instance=ExtResource( 8 )]
-margin_left = -3000.0
-margin_right = -3000.0
+anchor_left = -1.0
+anchor_right = 0.0
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 

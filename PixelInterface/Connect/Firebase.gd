@@ -12,8 +12,8 @@ signal signedIn(response)
 signal signedUp(response)
 signal signedOut()
 signal reset(response)
-signal emailChanged(response)
-signal passwordChanged(response)
+signal changedEmail(response)
+signal changedPassword(response)
 
 func _ready() -> void:
 	var f = File.new()
@@ -57,7 +57,7 @@ func changeEmail(http: HTTPRequest, email: String) -> void:
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
 		_token = _getToken(response)
-	emit_signal("emailChanged", response)
+	emit_signal("changedEmail", response)
 
 func changePassword(http: HTTPRequest, password: String) -> void:
 	var body := { "idToken": _token, "password": password, "returnSecureToken": true }
@@ -65,7 +65,7 @@ func changePassword(http: HTTPRequest, password: String) -> void:
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
 		_token = _getToken(response)
-	emit_signal("passwordChanged", response)
+	emit_signal("changedPassword", response)
 
 func authenticated() -> bool:
 	return not _token.empty()

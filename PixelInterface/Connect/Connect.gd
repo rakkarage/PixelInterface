@@ -50,20 +50,24 @@ onready var _tween = $Tween
 onready var _clickAudio = $Click
 onready var _errorAudio = $Error
 
-const _signInPosition = Vector2(0, 3000)
-const _signUpPosition = Vector2(3000, 3000)
-const _resetPosition = Vector2(-3000, 3000)
+const _offset = 3000
 
-const _accountPosition = Vector2(0, -3000)
-const _emailPosition = Vector2(3000, -3000)
-const _passwordPosition = Vector2(-3000, -3000)
+const _signInPosition = Vector2(0, _offset)
+const _signUpPosition = Vector2(_offset, _offset)
+const _resetPosition = Vector2(-_offset, _offset)
 
-const _messagePosition = Vector2(3000, 0)
+const _accountPosition = Vector2(0, -_offset)
+const _emailPosition = Vector2(_offset, -_offset)
+const _passwordPosition = Vector2(-_offset, -_offset)
+
+const _messagePosition = Vector2(_offset, 0)
 
 const _connectedColor = Color(0.5, 0.75, 0.5)
 const _disconnectedColor = Color(0.75, 0.5, 0.5)
 
-const _springTime = 0.333
+const _time = 0.333
+const _trans = Tween.TRANS_ELASTIC
+const _ease = Tween.EASE_OUT
 
 var _f = File.new()
 var _state = { "email": "", "token": "" }
@@ -252,7 +256,7 @@ func _spring(p = Vector2.ZERO, c = _interface, click = true):
 	_status.grab_focus()
 	var current = c.get_position()
 	if  not current.is_equal_approx(p):
-		if _tween.interpolate_property(c, "rect_position", current, p, _springTime, Tween.TRANS_ELASTIC, Tween.EASE_OUT):
+		if _tween.interpolate_property(c, "rect_position", current, p, _time, _trans, _ease):
 			if not _tween.start():
 				print("error")
 

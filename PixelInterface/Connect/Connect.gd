@@ -80,7 +80,7 @@ func _ready() -> void:
 	Utility.ok(_signInSignIn.connect("pressed", self, "_on_SignIn_pressed"))
 	Utility.ok(_signInSignUp.connect("pressed", self, "_springSignUp"))
 	Utility.ok(_signInReset.connect("pressed", self, "_springReset"))
-	Utility.ok(_signInClose.connect("pressed", self, "_spring"))
+	Utility.ok(_signInClose.connect("pressed", self, "_springStatus"))
 
 	Utility.ok(_signUpSignUp.connect("pressed", self, "_on_SignUp_pressed"))
 	Utility.ok(_signUpClose.connect("pressed", self, "_springSignIn"))
@@ -91,7 +91,7 @@ func _ready() -> void:
 	Utility.ok(_accountSignOut.connect("pressed", self, "_on_SignOut_pressed"))
 	Utility.ok(_accountChangeEmail.connect("pressed", self, "_springEmail"))
 	Utility.ok(_accountChangePassword.connect("pressed", self, "_springPassword"))
-	Utility.ok(_accountClose.connect("pressed", self, "_spring"))
+	Utility.ok(_accountClose.connect("pressed", self, "_springStatus"))
 
 	Utility.ok(_emailChange.connect("pressed", self, "_on_ChangeEmail_pressed"))
 	Utility.ok(_emailClose.connect("pressed", self, "_springAccount"))
@@ -99,7 +99,7 @@ func _ready() -> void:
 	Utility.ok(_passwordChange.connect("pressed", self, "_on_ChangePassword_pressed"))
 	Utility.ok(_passwordClose.connect("pressed", self, "_springAccount"))
 
-	Utility.ok(_messageClose.connect("pressed", self, "_springMessageBack"))
+	Utility.ok(_messageClose.connect("pressed", self, "_hideError"))
 
 	Utility.ok(Firebase.connect("signedIn", self, "_onSignedIn"))
 	Utility.ok(Firebase.connect("signedUp", self, "_onSignedUp"))
@@ -114,6 +114,11 @@ func _ready() -> void:
 	_status.grab_focus()
 
 ### status
+
+func _springStatus(click := true) -> void:
+	if click: _clickAudio.play()
+	_status.grab_focus()
+	_spring();
 
 func _on_Status_pressed() -> void:
 	if not Firebase.authenticated():
@@ -137,8 +142,9 @@ func _onUpdatedStatus(email: String) -> void:
 ### signIn
 
 func _springSignIn(click := true) -> void:
-	_spring(_signInAnchor, _interface, click)
+	if click: _clickAudio.play()
 	_signInEmail.grab_focus()
+	_spring(_signInAnchor)
 
 func _on_SignIn_pressed() -> void:
 	_clickAudio.play()
@@ -155,11 +161,11 @@ func _on_SignIn_pressed() -> void:
 	Firebase.signIn(_http, email, password)
 	# _saveEmail()
 
-func _onSignedIn(response: Dictionary) -> void:
+func _onSignedIn(response: Array) -> void:
 	if response[1] == 200:
 		_signInPassword.text = ""
 		_updateStatus()
-		_spring(_anchor, _interface, false)
+		_springStatus(false)
 	else:
 		_showError(response)
 	_enableInput(_signInSignIn)
@@ -167,8 +173,9 @@ func _onSignedIn(response: Dictionary) -> void:
 ### signUp
 
 func _springSignUp() -> void:
-	_spring(_signUpAnchor)
+	_clickAudio.play()
 	_signUpEmail.grab_focus()
+	_spring(_signUpAnchor)
 
 func _on_SignUp_pressed() -> void:
 	_clickAudio.play()
@@ -189,12 +196,11 @@ func _on_SignUp_pressed() -> void:
 	Firebase.signUp(_http, email, password)
 	# _saveEmail()
 
-func _onSignedUp(response: Dictionary) -> void:
+func _onSignedUp(response: Array) -> void:
 	if response[1] == 200:
 		_signInEmail.text = ""
 		_signInPassword.text = ""
 		_signInEmail.text = ""
-		_updateStatus()
 		_springSignIn(false)
 	else:
 		_showError(response)
@@ -203,8 +209,9 @@ func _onSignedUp(response: Dictionary) -> void:
 ### reset password
 
 func _springReset() -> void:
-	_spring(_resetAnchor)
+	_clickAudio.play()
 	_resetEmail.grab_focus()
+	_spring(_resetAnchor)
 
 func _on_Reset_pressed() -> void:
 	_clickAudio.play()
@@ -216,7 +223,7 @@ func _on_Reset_pressed() -> void:
 	_disableInput(_resetReset)
 	Firebase.reset(_http, _resetEmail.text)
 
-func _onReset(response: Dictionary) -> void:
+func _onReset(response: Array) -> void:
 	if response[1] == 200:
 		_resetEmail.text = ""
 		_springSignIn(false)
@@ -227,8 +234,9 @@ func _onReset(response: Dictionary) -> void:
 ### account
 
 func _springAccount(click := true) -> void:
-	_spring(_accountAnchor, _interface, click)
+	if click: _clickAudio.play()
 	_accountSignOut.grab_focus()
+	_spring(_accountAnchor)
 
 func _on_SignOut_pressed() -> void:
 	_clickAudio.play()
@@ -243,8 +251,9 @@ func _onSignedOut() -> void:
 ### change email
 
 func _springEmail() -> void:
-	_spring(_emailAnchor)
+	_clickAudio.play()
 	_emailEmail.grab_focus()
+	_spring(_emailAnchor)
 
 func _on_ChangeEmail_pressed() -> void:
 	_clickAudio.play()
@@ -260,7 +269,7 @@ func _on_ChangeEmail_pressed() -> void:
 	_disableInput(_emailChange)
 	Firebase.changeEmail(_http, email)
 
-func onChangedEmail(response: Dictionary) -> void:
+func onChangedEmail(response: Array) -> void:
 	if response[1] == 200:
 		_emailEmail.text = ""
 		_emailConfirm.text = ""
@@ -273,8 +282,9 @@ func onChangedEmail(response: Dictionary) -> void:
 ### change password
 
 func _springPassword() -> void:
-	_spring(_passwordAnchor)
+	_clickAudio.play()
 	_passwordPassword.grab_focus()
+	_spring(_passwordAnchor)
 
 func _on_ChangePassword_pressed() -> void:
 	_clickAudio.play()
@@ -290,7 +300,7 @@ func _on_ChangePassword_pressed() -> void:
 	_disableInput(_passwordChange)
 	Firebase.changePassword(_http, password)
 
-func onChangedPassword(response: Dictionary) -> void:
+func onChangedPassword(response: Array) -> void:
 	if response[1] == 200:
 		_passwordPassword.text = ""
 		_passwordConfirm.text = ""
@@ -302,20 +312,18 @@ func onChangedPassword(response: Dictionary) -> void:
 
 ### dialog
 
-func _showError(response: Dictionary) -> void:
+func _showError(response: Array) -> void:
 	_errorAudio.play()
 	_messageTitle.text = "Error"
 	var o = JSON.parse(response[3].get_string_from_ascii()).result
 	_messageText.text = o.error.message.capitalize()
-	_spring(_messageAnchor, _dialog, false)
+	_spring(_messageAnchor, _dialog)
 	_messageClose.grab_focus()
 
-func _springMessageBack() -> void:
+func _hideError() -> void:
 	_spring(_anchor, _dialog)
 
-func _spring(a := _anchor, c := _interface, click := true) -> void:
-	if (click): _clickAudio.play()
-	_status.grab_focus()
+func _spring(a := _anchor, c := _interface) -> void:
 	if not is_equal_approx(c.anchor_left, a.position.x):
 		if not _tween.interpolate_property(c, "anchor_left", c.anchor_left, a.position.x, _time, _trans, _ease):
 			print("error")

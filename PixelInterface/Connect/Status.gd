@@ -15,7 +15,7 @@ func mouseEntered():
 		$Tween.stop($Panel, "rect_rotation")
 		$Tween.interpolate_property($Panel, "rect_rotation", null, 0, _time, _trans, _ease)
 		$Tween.stop($Panel, "modulate")
-		$Tween.interpolate_property($Panel, "modulate", null, Color.white, _time, _trans, _ease)
+		$Tween.interpolate_property($Panel, "modulate", null, Color(1, 1, 1, 0.75), _time, _trans, _ease)
 		$Tween.start()
 
 func mouseExited():

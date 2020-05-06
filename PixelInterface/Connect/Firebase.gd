@@ -11,7 +11,7 @@ var _token := ""
 signal signedIn(response)
 signal signedUp(response)
 signal signedOut()
-signal reset()
+signal reset(response)
 signal emailChanged(response)
 signal passwordChanged(response)
 
@@ -44,8 +44,8 @@ func signUp(http: HTTPRequest, email : String, password : String) -> void:
 func reset(http: HTTPRequest, email: String) -> void:
 	var body := { "requestType": "PASSWORD_RESET", "email": email }
 	Utility.ok(http.request(_resetUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
-	yield(http, "request_completed")
-	emit_signal("reset")
+	var response = yield(http, "request_completed")
+	emit_signal("reset", response)
 
 func signOut() -> void:
 	_token = ""

@@ -200,16 +200,20 @@ func _springReset():
 
 func _on_Reset_pressed():
 	_clickAudio.play()
+	var email = _resetEmail.text
 	_errorClear([_resetEmail])
-	if _resetEmail.text.empty():
+	if email.empty() or not _validEmail(email):
 		_errorSet(_resetEmail)
 		return
 	_disableInput(_resetReset)
 	Firebase.reset(_http, _resetEmail.text)
 
-func _onReset():
-	_resetEmail.text = ""
-	_springSignIn(false)
+func _onReset(response):
+	if response[1] == 200:
+		_resetEmail.text = ""
+		_springSignIn(false)
+	else:
+		_showError(response)
 	_enableInput(_resetReset)
 
 ### account

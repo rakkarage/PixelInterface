@@ -45,7 +45,7 @@ margin_right = 206.0
 margin_bottom = 89.0
 custom_constants/separation = 0
 
-[node name="Password" type="LineEdit" parent="Center/Panel/VBox/Panel/VBox"]
+[node name="Email" type="LineEdit" parent="Center/Panel/VBox/Panel/VBox"]
 margin_right = 198.0
 margin_bottom = 27.0
 focus_neighbour_left = NodePath("../../../../Close/Close")
@@ -56,11 +56,12 @@ focus_next = NodePath("../Email")
 focus_previous = NodePath("../../../../Close/Close")
 size_flags_horizontal = 3
 size_flags_vertical = 2
+editable = false
 secret = true
-placeholder_text = "Password"
+placeholder_text = "Email"
 placeholder_alpha = 0.5
 
-[node name="Email" type="LineEdit" parent="Center/Panel/VBox/Panel/VBox"]
+[node name="New" type="LineEdit" parent="Center/Panel/VBox/Panel/VBox"]
 margin_top = 27.0
 margin_right = 198.0
 margin_bottom = 54.0
@@ -72,7 +73,7 @@ focus_next = NodePath("../Confirm")
 focus_previous = NodePath("../Password")
 size_flags_horizontal = 3
 size_flags_vertical = 2
-placeholder_text = "Email"
+placeholder_text = "New"
 placeholder_alpha = 0.5
 
 [node name="Confirm" type="LineEdit" parent="Center/Panel/VBox/Panel/VBox"]

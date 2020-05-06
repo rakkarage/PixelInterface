@@ -27,13 +27,12 @@ onready var _accountChangeEmail    = $Container/Viewport/Interface/Account/Cente
 onready var _accountChangePassword = $Container/Viewport/Interface/Account/Center/Panel/VBox/HBox/Password
 onready var _accountClose          = $Container/Viewport/Interface/Account/Center/Panel/Close/Close
 
-onready var _emailPassword = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Password
 onready var _emailEmail    = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Email
+onready var _emailNew      = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/New
 onready var _emailConfirm  = $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Confirm
 onready var _emailChange   = $Container/Viewport/Interface/Email/Center/Panel/VBox/Change
 onready var _emailClose    = $Container/Viewport/Interface/Email/Center/Panel/Close/Close
 
-onready var _passwordOld     = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Old
 onready var _passwordNew     = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/New
 onready var _passwordConfirm = $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Confirm
 onready var _passwordChange  = $Container/Viewport/Interface/Password/Center/Panel/VBox/Change
@@ -106,6 +105,8 @@ func _ready():
 	Utility.ok(Firebase.connect("signedUp", self, "_onSignedUp"))
 	Utility.ok(Firebase.connect("reset", self, "_onReset"))
 	Utility.ok(Firebase.connect("signedOut", self, "_onSignedOut"))
+	Utility.ok(Firebase.connect("changedEmail", self, "_onChangedEmail"))
+	Utility.ok(Firebase.connect("changedPassword", self, "_onChangedPassword"))
 	# _loadEmail()
 	_updateStatus()
 	_regex.compile(_pattern)
@@ -127,8 +128,8 @@ func _updateStatus():
 
 ### signIn
 
-func _springSignIn():
-	_spring(_signInPosition)
+func _springSignIn(click = true):
+	_spring(_signInPosition, _interface, click)
 	_signInEmail.grab_focus()
 
 func _on_SignIn_pressed():
@@ -150,7 +151,7 @@ func _onSignedIn(response):
 	if response[1] == 200:
 		_signInPassword.text = ""
 		_updateStatus()
-		_spring()
+		_spring(Vector2.ZERO, _interface, false)
 	else:
 		_showError(response)
 	_enableInput(_signInSignIn)
@@ -183,21 +184,22 @@ func _on_SignUp_pressed():
 func _onSignedUp(response):
 	if response[1] == 200:
 		_signInEmail.text = ""
-		_signInEmail.password = ""
-		_signInEmail.confirm = ""
+		_signInPassword.text = ""
+		_signInEmail.text = ""
 		_updateStatus()
-		_spring()
+		_springSignIn(false)
 	else:
 		_showError(response)
 	_enableInput(_signUpSignUp)
 
-### reset
+### reset password
 
 func _springReset():
 	_spring(_resetPosition)
 	_resetEmail.grab_focus()
 
 func _on_Reset_pressed():
+	_clickAudio.play()
 	_errorClear([_resetEmail])
 	if _resetEmail.text.empty():
 		_errorSet(_resetEmail)
@@ -207,13 +209,13 @@ func _on_Reset_pressed():
 
 func _onReset():
 	_resetEmail.text = ""
+	_springSignIn(false)
 	_enableInput(_resetReset)
-	_springSignIn()
 
 ### account
 
-func _springAccount():
-	_spring(_accountPosition)
+func _springAccount(click = true):
+	_spring(_accountPosition, _interface, click)
 	_accountSignOut.grab_focus()
 
 func _on_SignOut_pressed():
@@ -222,21 +224,69 @@ func _on_SignOut_pressed():
 	Firebase.signOut()
 
 func _onSignedOut():
-	_enableInput(_accountSignOut)
 	_updateStatus()
 	_spring()
+	_enableInput(_accountSignOut)
 
-### email
+### change email
 
 func _springEmail():
 	_spring(_emailPosition)
-	_emailPassword.grab_focus()
+	_emailNew.grab_focus()
 
-### password
+func _on_ChangeEmail_pressed():
+	_clickAudio.play()
+	var new = _emailNew.text
+	var confirm = _emailConfirm.text
+	_errorClear([_emailNew, _emailConfirm])
+	if new.empty() or not _validEmail(new):
+		_errorSet(_emailNew)
+		return
+	if confirm != new:
+		_errorSet(_emailConfirm)
+		return
+	_disableInput(_emailChange)
+	Firebase.changeEmail(_http, new)
+
+func onChangedEmail(response):
+	if response[1] == 200:
+		_emailNew.text = ""
+		_emailConfirm.text = ""
+		_updateStatus()
+		_springAccount(false)
+	else:
+		_showError(response)
+	_enableInput(_emailChange)
+
+### change password
 
 func _springPassword():
 	_spring(_passwordPosition)
-	_passwordOld.grab_focus()
+	_passwordNew.grab_focus()
+
+func _on_ChangePassword_pressed():
+	_clickAudio.play()
+	var new = _passwordNew.text
+	var confirm = _passwordConfirm.text
+	_errorClear([_passwordNew, _passwordConfirm])
+	if new.empty() or not _validPassword(new):
+		_errorSet(_passwordNew)
+		return
+	if confirm != new:
+		_errorSet(_passwordConfirm)
+		return
+	_disableInput(_passwordChange)
+	Firebase.changePassword(_http, new)
+
+func onChangedPassword(response):
+	if response[1] == 200:
+		_passwordNew.text = ""
+		_passwordConfirm.text = ""
+		_updateStatus()
+		_springAccount(false)
+	else:
+		_showError(response)
+	_enableInput(_passwordChange)
 
 ### dialog
 

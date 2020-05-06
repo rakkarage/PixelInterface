@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/142608__autistic-lucario__error.wav-4ab207b2ad3a209b3ca968c305bfa560.sample"
+
+[deps]
+
+source_file="res://PixelInterface/Audio/142608__autistic-lucario__error.wav"
+dest_files=[ "res://.import/142608__autistic-lucario__error.wav-4ab207b2ad3a209b3ca968c305bfa560.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://PixelInterface/Connect/Status.tscn" type="PackedScene" id=1]
 [ext_resource path="res://PixelInterface/Connect/SignIn.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://PixelInterface/Audio/Error.tres" type="AudioStream" id=10]
 [ext_resource path="res://PixelInterface/Audio/Click.tres" type="AudioStream" id=11]
 [ext_resource path="res://PixelInterface/Back.tscn" type="PackedScene" id=12]
+[ext_resource path="res://PixelInterface/Audio/Success.tres" type="AudioStream" id=13]
 
 [node name="Connect" type="Control"]
 anchor_right = 1.0
@@ -98,5 +99,10 @@ volume_db = -15.0
 
 [node name="Error" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+volume_db = -15.0
+pitch_scale = 2.0
+
+[node name="Success" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
 volume_db = -15.0
 pitch_scale = 2.0

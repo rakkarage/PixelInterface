@@ -48,6 +48,7 @@ onready var _http := $HTTPRequest
 onready var _tween := $Tween
 onready var _clickAudio := $Click
 onready var _errorAudio := $Error
+onready var _successAudio := $Success
 
 const _anchor := Rect2(0, 0, 1, 1)
 
@@ -163,6 +164,7 @@ func _on_SignIn_pressed() -> void:
 
 func _onSignedIn(response: Array) -> void:
 	if response[1] == 200:
+		_successAudio.play();
 		_signInPassword.text = ""
 		_updateStatus()
 		_springStatus(false)
@@ -198,6 +200,7 @@ func _on_SignUp_pressed() -> void:
 
 func _onSignedUp(response: Array) -> void:
 	if response[1] == 200:
+		_successAudio.play();
 		_signInEmail.text = ""
 		_signInPassword.text = ""
 		_signInEmail.text = ""
@@ -225,6 +228,7 @@ func _on_Reset_pressed() -> void:
 
 func _onReset(response: Array) -> void:
 	if response[1] == 200:
+		_successAudio.play();
 		_resetEmail.text = ""
 		_springSignIn(false)
 	else:
@@ -244,6 +248,7 @@ func _on_SignOut_pressed() -> void:
 	Firebase.signOut()
 
 func _onSignedOut() -> void:
+	_successAudio.play();
 	_updateStatus()
 	_spring()
 	_enableInput(_accountSignOut)
@@ -271,6 +276,7 @@ func _on_ChangeEmail_pressed() -> void:
 
 func onChangedEmail(response: Array) -> void:
 	if response[1] == 200:
+		_successAudio.play();
 		_emailEmail.text = ""
 		_emailConfirm.text = ""
 		_updateStatus()
@@ -302,6 +308,7 @@ func _on_ChangePassword_pressed() -> void:
 
 func onChangedPassword(response: Array) -> void:
 	if response[1] == 200:
+		_successAudio.play();
 		_passwordPassword.text = ""
 		_passwordConfirm.text = ""
 		_updateStatus()
@@ -314,6 +321,7 @@ func onChangedPassword(response: Array) -> void:
 
 func _showError(response: Array) -> void:
 	_errorAudio.play()
+	_messageClose.grab_focus()
 	_messageTitle.text = "Error"
 	var o = JSON.parse(response[3].get_string_from_ascii()).result
 	_messageText.text = o.error.message.capitalize()
@@ -321,6 +329,7 @@ func _showError(response: Array) -> void:
 	_messageClose.grab_focus()
 
 func _hideError() -> void:
+	_clickAudio.play()
 	_spring(_anchor, _dialog)
 
 func _spring(a := _anchor, c := _interface) -> void:

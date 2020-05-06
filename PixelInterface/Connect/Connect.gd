@@ -75,6 +75,11 @@ const _statePath := "user://state.txt"
 var _regex := RegEx.new()
 const _pattern := "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)"
 
+export var _accept : ShortCut
+var _currentAccept : Control
+export var _cancel : ShortCut
+var _currentCancel : Control
+
 func _ready() -> void:
 	Utility.ok(_status.connect("pressed", self, "_on_Status_pressed"))
 
@@ -109,16 +114,31 @@ func _ready() -> void:
 	Utility.ok(Firebase.connect("changedEmail", self, "_onChangedEmail"))
 	Utility.ok(Firebase.connect("changedPassword", self, "_onChangedPassword"))
 	Utility.ok(Firebase.connect("lookedUp", self, "_onUpdatedStatus"))
-	# _loadEmail()
-	_updateStatus()
+
 	Utility.ok(_regex.compile(_pattern))
+
 	_status.grab_focus()
+
+	# _loadEmail()
+
+func _focus(focus: Control, accept: Control, cancel: Control):
+	focus.grab_focus()
+	if _currentAccept != null:
+		_currentAccept.shortcut = null
+	if accept != null:
+		_currentAccept = accept
+		_currentAccept.shortcut = _accept
+	if _currentCancel != null:
+		_currentCancel.shortcut = null
+	if cancel != null:
+		_currentCancel = cancel
+		_currentCancel.shortcut = _cancel
 
 ### status
 
 func _springStatus(click := true) -> void:
 	if click: _clickAudio.play()
-	_status.grab_focus()
+	_focus(_status, _status, null)
 	_spring();
 
 func _on_Status_pressed() -> void:
@@ -142,9 +162,11 @@ func _onUpdatedStatus(email: String) -> void:
 
 ### signIn
 
+# store in 3 variables, when set undo old one first!!!!!!!!!!?
+
 func _springSignIn(click := true) -> void:
 	if click: _clickAudio.play()
-	_signInEmail.grab_focus()
+	_focus(_signInEmail, _signInSignIn, _signInClose)
 	_spring(_signInAnchor)
 
 func _on_SignIn_pressed() -> void:
@@ -160,6 +182,7 @@ func _on_SignIn_pressed() -> void:
 		return
 	_disableInput(_signInSignIn)
 	Firebase.signIn(_http, email, password)
+
 	# _saveEmail()
 
 func _onSignedIn(response: Array) -> void:
@@ -176,7 +199,7 @@ func _onSignedIn(response: Array) -> void:
 
 func _springSignUp() -> void:
 	_clickAudio.play()
-	_signUpEmail.grab_focus()
+	_focus(_signUpEmail, _signUpSignUp, _signUpClose)
 	_spring(_signUpAnchor)
 
 func _on_SignUp_pressed() -> void:
@@ -196,6 +219,7 @@ func _on_SignUp_pressed() -> void:
 		return
 	_disableInput(_signUpSignUp)
 	Firebase.signUp(_http, email, password)
+
 	# _saveEmail()
 
 func _onSignedUp(response: Array) -> void:
@@ -213,7 +237,7 @@ func _onSignedUp(response: Array) -> void:
 
 func _springReset() -> void:
 	_clickAudio.play()
-	_resetEmail.grab_focus()
+	_focus(_resetEmail, _resetReset, _resetClose)
 	_spring(_resetAnchor)
 
 func _on_Reset_pressed() -> void:
@@ -239,7 +263,7 @@ func _onReset(response: Array) -> void:
 
 func _springAccount(click := true) -> void:
 	if click: _clickAudio.play()
-	_accountSignOut.grab_focus()
+	_focus(_accountSignOut, _accountSignOut, _accountClose)
 	_spring(_accountAnchor)
 
 func _on_SignOut_pressed() -> void:
@@ -257,7 +281,7 @@ func _onSignedOut() -> void:
 
 func _springEmail() -> void:
 	_clickAudio.play()
-	_emailEmail.grab_focus()
+	_focus(_emailEmail, _emailChange, _emailClose)
 	_spring(_emailAnchor)
 
 func _on_ChangeEmail_pressed() -> void:
@@ -289,7 +313,7 @@ func onChangedEmail(response: Array) -> void:
 
 func _springPassword() -> void:
 	_clickAudio.play()
-	_passwordPassword.grab_focus()
+	_focus(_passwordPassword, _passwordChange, _passwordClose)
 	_spring(_passwordAnchor)
 
 func _on_ChangePassword_pressed() -> void:
@@ -326,7 +350,6 @@ func _showError(response: Array) -> void:
 	var o = JSON.parse(response[3].get_string_from_ascii()).result
 	_messageText.text = o.error.message.capitalize()
 	_spring(_messageAnchor, _dialog)
-	_messageClose.grab_focus()
 
 func _hideError() -> void:
 	_clickAudio.play()

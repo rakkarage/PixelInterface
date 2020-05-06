@@ -229,14 +229,14 @@ func _onSignedOut():
 ### email
 
 func _springEmail():
-	_spring(_emailPassword)
-	_emailConfirm.grab_focus()
+	_spring(_emailPosition)
+	_emailPassword.grab_focus()
 
 ### password
 
 func _springPassword():
-	_spring(_passwordOld)
-	_passwordConfirm.grab_focus()
+	_spring(_passwordPosition)
+	_passwordOld.grab_focus()
 
 ### dialog
 

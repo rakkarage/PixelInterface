@@ -10,8 +10,6 @@ func _ready():
 	Utility.ok($Panel.connect("mouse_entered", self, "mouseEntered"))
 	Utility.ok($Panel.connect("mouse_exited", self, "mouseExited"))
 
-func setEmail(email: String): $Panel/Email.text = email
-
 func mouseEntered():
 	if Firebase.authenticated():
 		$Tween.stop($Panel, "rect_rotation")

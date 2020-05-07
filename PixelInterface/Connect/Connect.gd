@@ -69,9 +69,6 @@ const _time := 0.333
 const _trans := Tween.TRANS_EXPO
 const _ease := Tween.EASE_OUT
 
-var _f := File.new()
-var _state := { "email": "", "token": "" }
-const _statePath := "user://state.txt"
 var _regex := RegEx.new()
 const _pattern := "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)"
 
@@ -119,8 +116,6 @@ func _ready() -> void:
 
 	_updateStatus();
 	_status.grab_focus()
-
-	# _loadEmail()
 
 func _focus(focus: Control, accept: Control, cancel: Control):
 	focus.grab_focus()
@@ -182,8 +177,6 @@ func _on_SignIn_pressed() -> void:
 	_disableInput(_signInSignIn)
 	Firebase.signIn(_http, email, password)
 
-	# _saveEmail()
-
 func _onSignedIn(response: Array) -> void:
 	if response[1] == 200:
 		_successAudio.play();
@@ -219,8 +212,6 @@ func _on_SignUp_pressed() -> void:
 		return
 	_disableInput(_signUpSignUp)
 	Firebase.signUp(_http, email, password)
-
-	# _saveEmail()
 
 func _onSignedUp(response: Array) -> void:
 	if response[1] == 200:
@@ -379,17 +370,3 @@ func _errorSet(control: Control) -> void:
 func _disableInput(control: Button) -> void: control.disabled = true
 
 func _enableInput(control: Button) -> void: control.disabled = false
-
-# func _saveEmail(email: String) -> void:
-# 	if not email.empty():
-# 		f.open(emailPath, File.WRITE)
-# 		f.store_string(email)
-# 		f.close()
-
-# func _loadEmail() -> String:
-# 	var email = ""
-# 	if f.file_exists(emailPath):
-# 		f.open(emailPath, File.READ)
-# 		email = f.get_as_text()
-# 		f.close()
-# 	return email

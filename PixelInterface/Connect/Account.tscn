@@ -43,6 +43,7 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 206.0
 margin_bottom = 35.0
+hint_tooltip = "Your email address."
 focus_neighbour_left = NodePath("../../../Close/Close")
 focus_neighbour_top = NodePath("../../../Close/Close")
 focus_neighbour_right = NodePath("../../SignOut")
@@ -59,6 +60,7 @@ placeholder_alpha = 0.5
 margin_top = 43.0
 margin_right = 214.0
 margin_bottom = 83.0
+hint_tooltip = "Sign out of your account."
 focus_neighbour_left = NodePath("../Panel/Email")
 focus_neighbour_top = NodePath("../Panel/Email")
 focus_neighbour_right = NodePath("../HBox/Email")
@@ -68,6 +70,7 @@ focus_previous = NodePath("../Panel/Email")
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 4 )
+shortcut_in_tooltip = false
 text = "Sign Out"
 
 [node name="HBox" type="HBoxContainer" parent="Center/Panel/VBox"]
@@ -79,6 +82,7 @@ custom_constants/separation = 0
 [node name="Email" type="Button" parent="Center/Panel/VBox/HBox"]
 margin_right = 107.0
 margin_bottom = 33.0
+hint_tooltip = "Change your email."
 focus_neighbour_left = NodePath("../../SignOut")
 focus_neighbour_top = NodePath("../../SignOut")
 focus_neighbour_right = NodePath("../Password")
@@ -87,12 +91,14 @@ focus_next = NodePath("../Password")
 focus_previous = NodePath("../../SignOut")
 size_flags_horizontal = 3
 size_flags_vertical = 3
+shortcut_in_tooltip = false
 text = "Email"
 
 [node name="Password" type="Button" parent="Center/Panel/VBox/HBox"]
 margin_left = 107.0
 margin_right = 214.0
 margin_bottom = 33.0
+hint_tooltip = "Change your password."
 focus_neighbour_left = NodePath("../Email")
 focus_neighbour_top = NodePath("../Email")
 focus_neighbour_right = NodePath("../../../Close/Close")
@@ -101,6 +107,7 @@ focus_next = NodePath("../../../Close/Close")
 focus_previous = NodePath("../Email")
 size_flags_horizontal = 3
 size_flags_vertical = 3
+shortcut_in_tooltip = false
 text = "Password"
 
 [node name="Close" parent="Center/Panel" instance=ExtResource( 2 )]

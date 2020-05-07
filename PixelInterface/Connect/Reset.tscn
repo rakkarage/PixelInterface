@@ -43,6 +43,7 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 206.0
 margin_bottom = 35.0
+hint_tooltip = "Enter your email address."
 focus_neighbour_left = NodePath("../../../Close/Close")
 focus_neighbour_top = NodePath("../../../Close/Close")
 focus_neighbour_right = NodePath("../../Reset")
@@ -58,6 +59,7 @@ placeholder_alpha = 0.5
 margin_top = 43.0
 margin_right = 214.0
 margin_bottom = 83.0
+hint_tooltip = "Reset your password."
 focus_neighbour_left = NodePath("../Panel/Email")
 focus_neighbour_top = NodePath("../Panel/Email")
 focus_neighbour_right = NodePath("../../Close/Close")
@@ -67,6 +69,7 @@ focus_previous = NodePath("../Panel/Email")
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 4 )
+shortcut_in_tooltip = false
 text = "Reset"
 
 [node name="Close" parent="Center/Panel" instance=ExtResource( 2 )]

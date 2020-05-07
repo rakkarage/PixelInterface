@@ -48,6 +48,10 @@ custom_styles/pressed = ExtResource( 3 )
 custom_styles/focus = ExtResource( 8 )
 custom_styles/disabled = ExtResource( 7 )
 custom_styles/normal = ExtResource( 2 )
+shortcut_in_tooltip = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel" type="PanelContainer" parent="Panel"]
 modulate = Color( 1, 1, 1, 0 )
@@ -62,15 +66,15 @@ rect_min_size = Vector2( 32, 32 )
 rect_rotation = -90.0
 rect_pivot_offset = Vector2( -32, 16 )
 custom_styles/panel = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Email" type="Label" parent="Panel/Panel"]
-margin_left = 8.0
+margin_left = 16.0
 margin_top = 10.0
 margin_right = 105.0
 margin_bottom = 21.0
 mouse_filter = 1
-text = "email@server.com"
-align = 1
-valign = 1
 
 [node name="Tween" type="Tween" parent="Panel"]

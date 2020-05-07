@@ -48,6 +48,7 @@ custom_constants/separation = 0
 [node name="Email" type="LineEdit" parent="Center/Panel/VBox/Panel/VBox"]
 margin_right = 198.0
 margin_bottom = 27.0
+hint_tooltip = "Enter your email address."
 focus_neighbour_left = NodePath("../../../../Close/Close")
 focus_neighbour_top = NodePath("../../../../Close/Close")
 focus_neighbour_right = NodePath("../Password")
@@ -63,6 +64,7 @@ placeholder_alpha = 0.5
 margin_top = 27.0
 margin_right = 198.0
 margin_bottom = 54.0
+hint_tooltip = "Enter your password."
 focus_neighbour_left = NodePath("../Email")
 focus_neighbour_top = NodePath("../Email")
 focus_neighbour_right = NodePath("../../../SignIn")
@@ -79,6 +81,7 @@ placeholder_alpha = 0.5
 margin_top = 70.0
 margin_right = 214.0
 margin_bottom = 110.0
+hint_tooltip = "Sign in to an existing account."
 focus_neighbour_left = NodePath("../Panel/VBox/Password")
 focus_neighbour_top = NodePath("../Panel/VBox/Password")
 focus_neighbour_right = NodePath("../HBox/SignUp")
@@ -88,6 +91,7 @@ focus_previous = NodePath("../Panel/VBox/Password")
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 4 )
+shortcut_in_tooltip = false
 text = "Sign In"
 
 [node name="HBox" type="HBoxContainer" parent="Center/Panel/VBox"]
@@ -99,6 +103,7 @@ custom_constants/separation = 0
 [node name="SignUp" type="Button" parent="Center/Panel/VBox/HBox"]
 margin_right = 107.0
 margin_bottom = 33.0
+hint_tooltip = "Sign up for a new account."
 focus_neighbour_left = NodePath("../../SignIn")
 focus_neighbour_top = NodePath("../../SignIn")
 focus_neighbour_right = NodePath("../Reset")
@@ -107,12 +112,14 @@ focus_next = NodePath("../Reset")
 focus_previous = NodePath("../../SignIn")
 size_flags_horizontal = 3
 size_flags_vertical = 3
+shortcut_in_tooltip = false
 text = "Sign Up"
 
 [node name="Reset" type="Button" parent="Center/Panel/VBox/HBox"]
 margin_left = 107.0
 margin_right = 214.0
 margin_bottom = 33.0
+hint_tooltip = "Reset your password."
 focus_neighbour_left = NodePath("../SignUp")
 focus_neighbour_top = NodePath("../SignUp")
 focus_neighbour_right = NodePath("../../../Close/Close")
@@ -121,6 +128,7 @@ focus_next = NodePath("../../../Close/Close")
 focus_previous = NodePath("../SignUp")
 size_flags_horizontal = 3
 size_flags_vertical = 3
+shortcut_in_tooltip = false
 text = "Reset"
 
 [node name="Close" parent="Center/Panel" instance=ExtResource( 2 )]

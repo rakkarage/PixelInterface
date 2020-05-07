@@ -48,6 +48,7 @@ custom_constants/separation = 0
 [node name="Email" type="LineEdit" parent="Center/Panel/VBox/Panel/VBox"]
 margin_right = 198.0
 margin_bottom = 27.0
+hint_tooltip = "Enter your new email address."
 focus_neighbour_left = NodePath("../Password")
 focus_neighbour_top = NodePath("../Password")
 focus_neighbour_right = NodePath("../Confirm")
@@ -63,6 +64,7 @@ placeholder_alpha = 0.5
 margin_top = 27.0
 margin_right = 198.0
 margin_bottom = 54.0
+hint_tooltip = "Confirm your new email address."
 focus_neighbour_left = NodePath("../Email")
 focus_neighbour_top = NodePath("../Email")
 focus_neighbour_right = NodePath("../../../Change")
@@ -78,6 +80,7 @@ placeholder_alpha = 0.5
 margin_top = 70.0
 margin_right = 214.0
 margin_bottom = 110.0
+hint_tooltip = "Change your email address."
 focus_neighbour_left = NodePath("../Panel/VBox/Confirm")
 focus_neighbour_top = NodePath("../Panel/VBox/Confirm")
 focus_neighbour_right = NodePath("../../Close/Close")
@@ -87,6 +90,7 @@ focus_previous = NodePath("../Panel/VBox/Confirm")
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 4 )
+shortcut_in_tooltip = false
 text = "Change Email"
 
 [node name="Close" parent="Center/Panel" instance=ExtResource( 2 )]

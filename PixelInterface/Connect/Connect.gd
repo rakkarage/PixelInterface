@@ -117,6 +117,7 @@ func _ready() -> void:
 
 	Utility.ok(_regex.compile(_pattern))
 
+	_updateStatus();
 	_status.grab_focus()
 
 	# _loadEmail()
@@ -153,7 +154,7 @@ func _updateStatus() -> void:
 func _onUpdatedStatus(email: String) -> void:
 	if email.empty():
 		_status.modulate = _disconnectedColor
-		_statusEmail.text = ""
+		_statusEmail.text = "Please sign in."
 		_accountEmail.text = ""
 	else:
 		_status.modulate = _connectedColor

@@ -3,7 +3,7 @@ extends Control
 onready var _interface := $Container/Viewport/Interface
 
 onready var _status      := $Container/Viewport/Interface/Status/Panel/Status
-onready var _statusEmail := $Container/Viewport/Interface/Status/Panel/Panel/Email
+onready var _statusEmail := $Container/Viewport/Interface/Status/Panel/Margin/Panel/Email
 
 onready var _signInEmail    := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Email
 onready var _signInPassword := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Password
@@ -154,7 +154,7 @@ func _updateStatus() -> void:
 func _onUpdatedStatus(email: String) -> void:
 	if email.empty():
 		_status.modulate = _disconnectedColor
-		_statusEmail.text = "Please sign in."
+		_statusEmail.text = "Welcome."
 		_accountEmail.text = ""
 	else:
 		_status.modulate = _connectedColor
@@ -162,8 +162,6 @@ func _onUpdatedStatus(email: String) -> void:
 		_accountEmail.text = email
 
 ### signIn
-
-# store in 3 variables, when set undo old one first!!!!!!!!!!?
 
 func _springSignIn(click := true) -> void:
 	if click: _clickAudio.play()

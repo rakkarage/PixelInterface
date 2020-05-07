@@ -27,6 +27,42 @@ rect_min_size = Vector2( 64, 64 )
 custom_styles/panel = ExtResource( 9 )
 script = ExtResource( 6 )
 
+[node name="Margin" type="MarginContainer" parent="Panel"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = -16.0
+margin_right = 169.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 32, 32 )
+rect_rotation = -90.0
+rect_pivot_offset = Vector2( -8, 16 )
+mouse_filter = 2
+size_flags_horizontal = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="PanelContainer" parent="Panel/Margin"]
+margin_right = 121.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
+size_flags_horizontal = 0
+custom_styles/panel = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Email" type="Label" parent="Panel/Margin/Panel"]
+margin_left = 16.0
+margin_top = 10.0
+margin_right = 113.0
+margin_bottom = 21.0
+size_flags_horizontal = 0
+text = "email@server.com"
+
 [node name="Status" type="Button" parent="Panel"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -52,29 +88,5 @@ shortcut_in_tooltip = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Panel" type="PanelContainer" parent="Panel"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = -16.0
-margin_right = 32.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 32, 32 )
-rect_rotation = -90.0
-rect_pivot_offset = Vector2( -32, 16 )
-custom_styles/panel = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Email" type="Label" parent="Panel/Panel"]
-margin_left = 16.0
-margin_top = 10.0
-margin_right = 24.0
-margin_bottom = 21.0
-mouse_filter = 1
 
 [node name="Tween" type="Tween" parent="Panel"]

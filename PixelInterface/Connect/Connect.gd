@@ -275,7 +275,7 @@ func _on_SignOut_pressed() -> void:
 func _onSignedOut() -> void:
 	_successAudio.play();
 	_updateStatus()
-	_spring()
+	_springStatus()
 	_enableInput(_accountSignOut)
 
 ### change email

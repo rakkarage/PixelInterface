@@ -20,23 +20,23 @@ __meta__ = {
 }
 
 [node name="Panel" type="PanelContainer" parent="Center"]
-margin_left = 448.0
-margin_top = 236.0
-margin_right = 576.0
-margin_bottom = 364.0
-rect_min_size = Vector2( 128, 128 )
+margin_left = 397.0
+margin_top = 185.0
+margin_right = 627.0
+margin_bottom = 415.0
+rect_min_size = Vector2( 230, 230 )
 custom_styles/panel = ExtResource( 2 )
 
 [node name="Panel" type="PanelContainer" parent="Center/Panel"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 120.0
-margin_bottom = 119.0
+margin_right = 222.0
+margin_bottom = 221.0
 custom_styles/panel = ExtResource( 3 )
 
 [node name="Data" type="TextEdit" parent="Center/Panel/Panel"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 104.0
-margin_bottom = 103.0
+margin_right = 206.0
+margin_bottom = 205.0
 wrap_enabled = true

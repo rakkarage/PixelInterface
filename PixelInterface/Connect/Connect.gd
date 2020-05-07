@@ -357,18 +357,10 @@ func _hideError() -> void:
 	_spring(_anchor, _dialog)
 
 func _spring(a := _anchor, c := _interface) -> void:
-	if not is_equal_approx(c.anchor_left, a.position.x):
-		if not _tween.interpolate_property(c, "anchor_left", c.anchor_left, a.position.x, _time, _trans, _ease):
-			print("error")
-	if not is_equal_approx(c.anchor_top, a.position.y):
-		if not _tween.interpolate_property(c, "anchor_top", c.anchor_top, a.position.y, _time, _trans, _ease):
-			print("error")
-	if not is_equal_approx(c.anchor_right, a.size.x):
-		if not _tween.interpolate_property(c, "anchor_right", c.anchor_right, a.size.x, _time, _trans, _ease):
-			print("error")
-	if not is_equal_approx(c.anchor_bottom, a.size.y):
-		if not _tween.interpolate_property(c, "anchor_bottom", c.anchor_bottom, a.size.y, _time, _trans, _ease):
-			print("error")
+	_tween.interpolate_property(c, "anchor_left", null, a.position.x, _time, _trans, _ease)
+	_tween.interpolate_property(c, "anchor_top", null, a.position.y, _time, _trans, _ease)
+	_tween.interpolate_property(c, "anchor_right", null, a.size.x, _time, _trans, _ease)
+	_tween.interpolate_property(c, "anchor_bottom", null, a.size.y, _time, _trans, _ease)
 	if not _tween.start():
 		print("error")
 

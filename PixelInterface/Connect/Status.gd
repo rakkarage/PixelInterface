@@ -2,7 +2,7 @@ extends Panel
 
 const _time = 0.333
 const _trans = Tween.TRANS_EXPO
-const _ease = Tween.EASE_IN
+const _ease = Tween.EASE_IN_OUT
 
 func _ready():
 	Utility.ok(connect("mouse_entered", self, "mouseEntered"))

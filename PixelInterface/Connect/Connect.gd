@@ -192,6 +192,7 @@ func _onSignedIn(response: Array) -> void:
 		_springStatus(false)
 	else:
 		_showError(response)
+		_resetEmail.text = _signInEmail.text
 	_enableInput(_signInSignIn)
 
 ### signUp
@@ -224,9 +225,10 @@ func _on_SignUp_pressed() -> void:
 func _onSignedUp(response: Array) -> void:
 	if response[1] == 200:
 		_successAudio.play();
-		_signInEmail.text = ""
-		_signInPassword.text = ""
-		_signInEmail.text = ""
+		_signInEmail.text = _signUpEmail.text
+		_signUpEmail.text = ""
+		_signUpPassword.text = ""
+		_signUpConfirm.text = ""
 		_springSignIn(false)
 	else:
 		_showError(response)

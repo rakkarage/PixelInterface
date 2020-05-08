@@ -6,5 +6,6 @@
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
-animation = "Delay"
+animation = "SuzeV"
+frame = 3
 playing = true

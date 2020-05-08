@@ -5,7 +5,7 @@ func _ready():
 	Utility.ok(get_node("..").connect("resized", self, "_on_Control_resized"))
 
 func _on_Control_resized():
-	var tex = rect_size;
+	var tex = rect_size
 	var win = get_viewport_rect().size
 	if win.x > win.y:
 		rect_rotation = 90

@@ -44,6 +44,8 @@ onready var _messageTitle := $Container/Viewport/Dialog/Message/Center/Panel/VBo
 onready var _messageText  := $Container/Viewport/Dialog/Message/Center/Panel/VBox/Panel/Text
 onready var _messageClose := $Container/Viewport/Dialog/Message/Center/Panel/Close/Close
 
+onready var _data = $Container/Viewport/Interface/Data/Center/Panel/Panel/VBox
+
 onready var _http := $HTTPRequest
 onready var _tween := $Tween
 onready var _clickAudio := $Click
@@ -110,11 +112,11 @@ func _ready() -> void:
 	Utility.ok(Firebase.connect("signedOut", self, "_onSignedOut"))
 	Utility.ok(Firebase.connect("changedEmail", self, "_onChangedEmail"))
 	Utility.ok(Firebase.connect("changedPassword", self, "_onChangedPassword"))
-	Utility.ok(Firebase.connect("lookedUp", self, "_onUpdatedStatus"))
+	Utility.ok(Firebase.connect("lookup", self, "_onUpdatedStatus"))
 
 	Utility.ok(_regex.compile(_pattern))
 
-	_updateStatus();
+	_updateStatus()
 	_status.grab_focus()
 
 func _focus(focus: Control, accept: Control, cancel: Control):
@@ -135,7 +137,7 @@ func _focus(focus: Control, accept: Control, cancel: Control):
 func _springStatus(click := true) -> void:
 	if click: _clickAudio.play()
 	_focus(_status, _status, null)
-	_spring();
+	_spring()
 
 func _on_Status_pressed() -> void:
 	if not Firebase.authenticated():
@@ -145,6 +147,7 @@ func _on_Status_pressed() -> void:
 
 func _updateStatus() -> void:
 	Firebase.lookup(_http)
+	pass
 
 func _onUpdatedStatus(email: String) -> void:
 	if email.empty():
@@ -155,6 +158,7 @@ func _onUpdatedStatus(email: String) -> void:
 		_status.modulate = _connectedColor
 		_statusEmail.text = email
 		_accountEmail.text = email
+	_data.loadDoc(_http)
 
 ### signIn
 
@@ -179,7 +183,7 @@ func _on_SignIn_pressed() -> void:
 
 func _onSignedIn(response: Array) -> void:
 	if response[1] == 200:
-		_successAudio.play();
+		_successAudio.play()
 		_signInPassword.text = ""
 		_updateStatus()
 		_springStatus(false)
@@ -215,7 +219,7 @@ func _on_SignUp_pressed() -> void:
 
 func _onSignedUp(response: Array) -> void:
 	if response[1] == 200:
-		_successAudio.play();
+		_successAudio.play()
 		_signInEmail.text = _signUpEmail.text
 		_signUpEmail.text = ""
 		_signUpPassword.text = ""
@@ -244,7 +248,7 @@ func _on_Reset_pressed() -> void:
 
 func _onReset(response: Array) -> void:
 	if response[1] == 200:
-		_successAudio.play();
+		_successAudio.play()
 		_resetEmail.text = ""
 		_springSignIn(false)
 	else:
@@ -264,7 +268,7 @@ func _on_SignOut_pressed() -> void:
 	Firebase.signOut()
 
 func _onSignedOut() -> void:
-	_successAudio.play();
+	_successAudio.play()
 	_updateStatus()
 	_springStatus()
 	_enableInput(_accountSignOut)
@@ -292,7 +296,7 @@ func _on_ChangeEmail_pressed() -> void:
 
 func onChangedEmail(response: Array) -> void:
 	if response[1] == 200:
-		_successAudio.play();
+		_successAudio.play()
 		_emailEmail.text = ""
 		_emailConfirm.text = ""
 		_updateStatus()
@@ -324,7 +328,7 @@ func _on_ChangePassword_pressed() -> void:
 
 func onChangedPassword(response: Array) -> void:
 	if response[1] == 200:
-		_successAudio.play();
+		_successAudio.play()
 		_passwordPassword.text = ""
 		_passwordConfirm.text = ""
 		_updateStatus()

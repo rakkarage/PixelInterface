@@ -6,6 +6,6 @@
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
-animation = "New Anim"
-frame = 2
+animation = "Wait"
+frame = 1
 playing = true

@@ -31,7 +31,7 @@ Firebase="*res://PixelInterface/Connect/Firebase.gd"
 
 [display]
 
-mouse_cursor/custom_image="res://PixelInterface/Sprite/Cursor/Arrow.png"
+mouse_cursor/custom_image="res://PixelInterface/Sprite/Cursor/Default.png"
 
 [importer_defaults]
 

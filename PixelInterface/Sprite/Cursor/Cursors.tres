@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=45 format=2]
+[gd_resource type="SpriteFrames" load_steps=49 format=2]
 
 [ext_resource path="res://PixelInterface/Sprite/Cursor/Caret.png" type="Texture" id=1]
 [ext_resource path="res://PixelInterface/Sprite/Cursor/SizeH.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://PixelInterface/Sprite/Cursor/SizeDiagFore.png" type="Texture" id=8]
 [ext_resource path="res://PixelInterface/Sprite/Cursor/SplitH.png" type="Texture" id=9]
 [ext_resource path="res://PixelInterface/Sprite/Cursor/SplitV.png" type="Texture" id=10]
+[ext_resource path="res://PixelInterface/Sprite/Cursor/Arrow.png" type="Texture" id=11]
+
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -107,6 +109,18 @@ region = Rect2( 32, 0, 16, 16 )
 atlas = ExtResource( 6 )
 region = Rect2( 48, 0, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 11 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 11 )
+region = Rect2( 32, 0, 16, 16 )
+
 [sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 16, 16 )
@@ -182,6 +196,11 @@ animations = [ {
 "frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
 "loop": true,
 "name": "Delay",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ) ],
+"loop": true,
+"name": "New Anim",
 "speed": 8.0
 }, {
 "frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],

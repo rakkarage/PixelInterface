@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/FDiagResize.png-7a8f977121ce906beee945da6e34f170.stex"
+path="res://.import/SizeH.png-3b8fcc0ee967e0e6b46b3ed2fc867fcc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Cursor/FDiagResize.png"
-dest_files=[ "res://.import/FDiagResize.png-7a8f977121ce906beee945da6e34f170.stex" ]
+source_file="res://PixelInterface/Sprite/Cursor/SizeH.png"
+dest_files=[ "res://.import/SizeH.png-3b8fcc0ee967e0e6b46b3ed2fc867fcc.stex" ]
 
 [params]
 

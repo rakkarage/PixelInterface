@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BDiagResize.png-608aade551a3d413ac42fde9f7bf09d3.stex"
+path="res://.import/Caret.png-dd57400e28bca30991368de275539659.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Cursor/BDiagResize.png"
-dest_files=[ "res://.import/BDiagResize.png-608aade551a3d413ac42fde9f7bf09d3.stex" ]
+source_file="res://PixelInterface/Sprite/Cursor/Caret.png"
+dest_files=[ "res://.import/Caret.png-dd57400e28bca30991368de275539659.stex" ]
 
 [params]
 

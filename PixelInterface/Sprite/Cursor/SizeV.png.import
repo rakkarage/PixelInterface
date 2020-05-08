@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PointingHand.png-49bdb860bb0d56ca14187aa3a12cb8af.stex"
+path="res://.import/SizeV.png-a15e8b040e43e3d140bce312c99350f2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Cursor/PointingHand.png"
-dest_files=[ "res://.import/PointingHand.png-49bdb860bb0d56ca14187aa3a12cb8af.stex" ]
+source_file="res://PixelInterface/Sprite/Cursor/SizeV.png"
+dest_files=[ "res://.import/SizeV.png-a15e8b040e43e3d140bce312c99350f2.stex" ]
 
 [params]
 

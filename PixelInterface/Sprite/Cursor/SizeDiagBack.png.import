@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/IBeam.png-bf05888853791ea01660b29c5721584f.stex"
+path="res://.import/SizeDiagBack.png-8684e188e4018acf8f1b0279a524a3da.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Cursor/IBeam.png"
-dest_files=[ "res://.import/IBeam.png-bf05888853791ea01660b29c5721584f.stex" ]
+source_file="res://PixelInterface/Sprite/Cursor/SizeDiagBack.png"
+dest_files=[ "res://.import/SizeDiagBack.png-8684e188e4018acf8f1b0279a524a3da.stex" ]
 
 [params]
 

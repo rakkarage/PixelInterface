@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://PixelInterface/Sprite/Cursor/Cursors.tres" type="SpriteFrames" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 1 )
+animation = "SplitV"
+frame = 1
+playing = true

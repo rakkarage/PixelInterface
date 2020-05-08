@@ -6,6 +6,5 @@
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
-animation = "SplitV"
-frame = 1
+animation = "Delay"
 playing = true

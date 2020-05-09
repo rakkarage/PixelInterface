@@ -204,29 +204,29 @@ region = Rect2( 16, 0, 16, 16 )
 [resource]
 animations = [ {
 "frames": [ ExtResource( 15 ) ],
-"loop": true,
+"loop": false,
 "name": "Help",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
-"loop": true,
+"loop": false,
 "name": "ArrowClick",
 "speed": 8.0
 }, {
 "frames": [ ExtResource( 14 ) ],
-"loop": true,
+"loop": false,
 "name": "Cross",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [ SubResource( 4 ) ],
-"loop": true,
+"loop": false,
 "name": "Point",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [ ExtResource( 13 ) ],
-"loop": true,
+"loop": false,
 "name": "Drop",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
@@ -279,17 +279,17 @@ animations = [ {
 "speed": 8.0
 }, {
 "frames": [ SubResource( 44 ) ],
-"loop": true,
+"loop": false,
 "name": "Arrow",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [ ExtResource( 12 ) ],
-"loop": true,
+"loop": false,
 "name": "Drag",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [ SubResource( 45 ), SubResource( 46 ) ],
-"loop": true,
+"loop": false,
 "name": "PointClick",
-"speed": 5.0
+"speed": 8.0
 } ]

@@ -9,14 +9,14 @@ func _process(_delta) -> void:
 	global_position = get_global_mouse_position()
 	match Input.get_current_cursor_shape():
 		Input.CURSOR_ARROW:
-			if Input.is_action_just_pressed("mb_left"):
+			if Input.is_action_pressed("mb_left"):
 				_sprite.play("ArrowClick")
 			else:
 				_sprite.play("Arrow")
 		Input.CURSOR_IBEAM:
 			_sprite.play("Caret")
 		Input.CURSOR_POINTING_HAND:
-			if Input.is_action_just_pressed("mb_left"):
+			if Input.is_action_pressed("mb_left"):
 				_sprite.play("PointClick")
 			else:
 				_sprite.play("Point")

@@ -4,7 +4,6 @@ onready var _sprite := $Sprite
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	Input.set_default_cursor_shape(Input.CURSOR_IBEAM)
 
 func _process(_delta) -> void:
 	global_position = get_global_mouse_position()

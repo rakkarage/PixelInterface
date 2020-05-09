@@ -147,7 +147,6 @@ func _on_Status_pressed() -> void:
 
 func _updateStatus() -> void:
 	Firebase.lookup(_http)
-	pass
 
 func _onUpdatedStatus(email: String) -> void:
 	if email.empty():

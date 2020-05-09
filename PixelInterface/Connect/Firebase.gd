@@ -8,11 +8,12 @@ const _setUserUrl := "https://identitytoolkit.googleapis.com/v1/accounts:update?
 const _projectId := "godotconnect"
 const _docsUrl := "https://firestore.googleapis.com/v1/projects/%s/databases/(default)/documents/" % _projectId
 var _apiKey := ""
-var _state := {
+const _stateDefault := {
 	"token": "",
 	"id": "",
 	"email": ""
 }
+var _state := _stateDefault
 const _statePath := "user://state.txt"
 var _f := File.new()
 
@@ -44,9 +45,7 @@ func _loadToken() -> void:
 		_f.close()
 
 func _getState(response: Array, id: String = "") -> Dictionary:
-	print(response)
 	var o = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
-	print(o)
 	return {
 		"token": o.idToken if id.empty() else id,
 		"id": o.localId if "localId" in o else "",
@@ -83,7 +82,7 @@ func reset(http: HTTPRequest, email: String) -> void:
 	emit_signal("reset", response)
 
 func signOut() -> void:
-	_state = {}
+	_state = _stateDefault
 	emit_signal("signedOut")
 
 func changeEmail(http: HTTPRequest, email: String) -> void:
@@ -109,7 +108,6 @@ func lookup(http: HTTPRequest) -> void:
 	Utility.ok(http.request(_getUserUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
-		print(response)
 		_state = _getState(response, _state.token)
 	emit_signal("lookup", _state.email)
 

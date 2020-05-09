@@ -5,7 +5,7 @@ onready var _sprite := $Sprite
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
-func _process(_delta) -> void:
+func _physics_process(_delta) -> void:
 	global_position = get_global_mouse_position()
 	_sprite.centered = false;
 	match Input.get_current_cursor_shape():

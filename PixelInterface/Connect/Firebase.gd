@@ -118,22 +118,22 @@ func authenticated() -> bool:
 
 func saveDoc(path: String, fields: Dictionary, http: HTTPRequest) -> void:
 	var body := { "fields": fields }
-	Utility.ok(http.request(_docsUrl % _state.id + path, _getHeaders(), false, HTTPClient.METHOD_POST, to_json(body)))
+	Utility.ok(http.request(_docsUrl + path % _state.id, _getHeaders(), false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
 func loadDoc(path: String, http: HTTPRequest) -> void:
-	Utility.ok(http.request(_docsUrl % _state.id + path, _getHeaders(), false, HTTPClient.METHOD_GET))
+	Utility.ok(http.request(_docsUrl + path % _state.id, _getHeaders(), false, HTTPClient.METHOD_GET))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
 func updateDoc(path: String, fields: Dictionary, http: HTTPRequest) -> void:
 	var body := { "fields": fields }
-	Utility.ok(http.request(_docsUrl % _state.id + path, _getHeaders(), false, HTTPClient.METHOD_PATCH, to_json(body)))
+	Utility.ok(http.request(_docsUrl + path % _state.id, _getHeaders(), false, HTTPClient.METHOD_PATCH, to_json(body)))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
 func deleteDoc(path: String, http: HTTPRequest) -> void:
-	Utility.ok(http.request(_docsUrl % state.id + path, _getHeaders(), false, HTTPClient.METHOD_DELETE))
+	Utility.ok(http.request(_docsUrl + path % _state.id, _getHeaders(), false, HTTPClient.METHOD_DELETE))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)

@@ -38,7 +38,7 @@ func saveDoc(http: HTTPRequest) -> void:
 	_disableInput()
 
 func deleteDoc(http: HTTPRequest) -> void:
-	Firebase.deleteDoc("users/%s" + Firebase.state.id, http)
+	Firebase.deleteDoc("users/%s", http)
 	_disableInput()
 
 func _onDocChanged(response: Array) -> void:

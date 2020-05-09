@@ -10,5 +10,5 @@ script = ExtResource( 1 )
 scale = Vector2( 2, 2 )
 z_index = 4096
 frames = ExtResource( 2 )
-animation = "Wait"
+animation = "Arrow"
 centered = false

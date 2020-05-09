@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=64 format=2]
+[gd_resource type="SpriteFrames" load_steps=66 format=2]
 
 [ext_resource path="res://PixelInterface/Sprite/Cursor/Caret.png" type="Texture" id=1]
 [ext_resource path="res://PixelInterface/Sprite/Cursor/SizeH.png" type="Texture" id=2]
@@ -205,8 +205,21 @@ region = Rect2( 0, 0, 16, 16 )
 atlas = ExtResource( 16 )
 region = Rect2( 16, 0, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 16 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 16 )
+region = Rect2( 48, 0, 16, 16 )
+
 [resource]
 animations = [ {
+"frames": [ ExtResource( 15 ) ],
+"loop": false,
+"name": "Help",
+"speed": 1.0
+}, {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "Busy",
@@ -216,11 +229,6 @@ animations = [ {
 "loop": true,
 "name": "Wait",
 "speed": 4.0
-}, {
-"frames": [ ExtResource( 15 ) ],
-"loop": false,
-"name": "Help",
-"speed": 1.0
 }, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": false,
@@ -292,7 +300,7 @@ animations = [ {
 "name": "Drag",
 "speed": 1.0
 }, {
-"frames": [ SubResource( 46 ), SubResource( 47 ) ],
+"frames": [ SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ) ],
 "loop": false,
 "name": "PointClick",
 "speed": 64.0

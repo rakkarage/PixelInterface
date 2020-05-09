@@ -28,31 +28,38 @@ margin_bottom = 415.0
 rect_min_size = Vector2( 230, 230 )
 custom_styles/panel = ExtResource( 2 )
 
-[node name="Panel" type="PanelContainer" parent="Center/Panel"]
+[node name="VBox" type="VBoxContainer" parent="Center/Panel"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
 margin_bottom = 221.0
+custom_constants/separation = 0
+script = ExtResource( 4 )
+
+[node name="Panel" type="PanelContainer" parent="Center/Panel/VBox"]
+margin_right = 214.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_styles/panel = ExtResource( 3 )
 
-[node name="VBox" type="VBoxContainer" parent="Center/Panel/Panel"]
+[node name="VBox" type="VBoxContainer" parent="Center/Panel/VBox/Panel"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 206.0
-margin_bottom = 205.0
+margin_bottom = 172.0
 custom_constants/separation = 0
-script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="LineEdit" parent="Center/Panel/Panel/VBox"]
+[node name="Title" type="LineEdit" parent="Center/Panel/VBox/Panel/VBox"]
 margin_right = 198.0
 margin_bottom = 27.0
 placeholder_text = "Data"
 placeholder_alpha = 0.5
 
-[node name="Text" type="TextEdit" parent="Center/Panel/Panel/VBox"]
+[node name="Text" type="TextEdit" parent="Center/Panel/VBox/Panel/VBox"]
 margin_top = 27.0
 margin_right = 198.0
 margin_bottom = 164.0
@@ -60,21 +67,21 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 wrap_enabled = true
 
-[node name="HBox" type="HBoxContainer" parent="Center/Panel/Panel/VBox"]
-margin_top = 164.0
-margin_right = 198.0
-margin_bottom = 197.0
+[node name="HBox" type="HBoxContainer" parent="Center/Panel/VBox"]
+margin_top = 180.0
+margin_right = 214.0
+margin_bottom = 213.0
 custom_constants/separation = 0
 
-[node name="Save" type="Button" parent="Center/Panel/Panel/VBox/HBox"]
-margin_right = 99.0
+[node name="Save" type="Button" parent="Center/Panel/VBox/HBox"]
+margin_right = 107.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 text = "Save"
 
-[node name="Delete" type="Button" parent="Center/Panel/Panel/VBox/HBox"]
-margin_left = 99.0
-margin_right = 198.0
+[node name="Delete" type="Button" parent="Center/Panel/VBox/HBox"]
+margin_left = 107.0
+margin_right = 214.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 text = "Delete"

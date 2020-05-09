@@ -1,6 +1,6 @@
 extends Panel
 
-const _time = .333
+const _time = 0.333
 const _trans = Tween.TRANS_EXPO
 const _ease = Tween.EASE_OUT
 

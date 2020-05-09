@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Delay.png-7b437c65ea711003fde42eb7c5f05023.stex"
+path="res://.import/Busy.png-dc7252a3b1d97fadc5b4c134a19b0384.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Cursor/Delay.png"
-dest_files=[ "res://.import/Delay.png-7b437c65ea711003fde42eb7c5f05023.stex" ]
+source_file="res://PixelInterface/Sprite/Cursor/Busy.png"
+dest_files=[ "res://.import/Busy.png-dc7252a3b1d97fadc5b4c134a19b0384.stex" ]
 
 [params]
 

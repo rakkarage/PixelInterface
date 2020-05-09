@@ -7,6 +7,7 @@ func _ready() -> void:
 
 func _process(_delta) -> void:
 	global_position = get_global_mouse_position()
+	_sprite.centered = false;
 	match Input.get_current_cursor_shape():
 		Input.CURSOR_ARROW:
 			if Input.is_action_pressed("mb_left"):
@@ -14,6 +15,7 @@ func _process(_delta) -> void:
 			else:
 				_sprite.play("Arrow")
 		Input.CURSOR_IBEAM:
+			_sprite.centered = true;
 			_sprite.play("Caret")
 		Input.CURSOR_POINTING_HAND:
 			if Input.is_action_pressed("mb_left"):
@@ -21,30 +23,41 @@ func _process(_delta) -> void:
 			else:
 				_sprite.play("Point")
 		Input.CURSOR_CROSS:
+			_sprite.centered = true;
 			_sprite.play("Cross")
 		Input.CURSOR_WAIT:
 			_sprite.play("Wait")
 		Input.CURSOR_BUSY:
+			_sprite.centered = true;
 			_sprite.play("Busy")
 		Input.CURSOR_DRAG:
 			_sprite.play("Drag")
 		Input.CURSOR_CAN_DROP:
 			_sprite.play("Arrow")
 		Input.CURSOR_FORBIDDEN:
+			_sprite.centered = true;
 			_sprite.play("Drop")
 		Input.CURSOR_VSIZE:
+			_sprite.centered = true;
 			_sprite.play("SizeV")
 		Input.CURSOR_HSIZE:
+			_sprite.centered = true;
 			_sprite.play("SizeH")
 		Input.CURSOR_BDIAGSIZE:
+			_sprite.centered = true;
 			_sprite.play("SizeDiagBack")
 		Input.CURSOR_FDIAGSIZE:
+			_sprite.centered = true;
 			_sprite.play("SizeDiagFore")
 		Input.CURSOR_MOVE:
+			_sprite.centered = true;
 			_sprite.play("Move")
 		Input.CURSOR_VSPLIT:
+			_sprite.centered = true;
 			_sprite.play("SplitV")
 		Input.CURSOR_HSPLIT:
+			_sprite.centered = true;
 			_sprite.play("SplitH")
 		Input.CURSOR_HELP:
+			_sprite.centered = true;
 			_sprite.play("Help")

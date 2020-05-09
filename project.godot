@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Cursor="*res://PixelInterface/Cursor.gd"
 Firebase="*res://PixelInterface/Connect/Firebase.gd"
 
 [display]

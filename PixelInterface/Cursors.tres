@@ -206,27 +206,27 @@ animations = [ {
 "frames": [ ExtResource( 15 ) ],
 "loop": false,
 "name": "Help",
-"speed": 8.0
+"speed": 1.0
 }, {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
 "loop": false,
 "name": "ArrowClick",
-"speed": 8.0
+"speed": 4.0
 }, {
 "frames": [ ExtResource( 14 ) ],
 "loop": false,
 "name": "Cross",
-"speed": 8.0
+"speed": 1.0
 }, {
 "frames": [ SubResource( 4 ) ],
 "loop": false,
 "name": "Point",
-"speed": 8.0
+"speed": 1.0
 }, {
 "frames": [ ExtResource( 13 ) ],
 "loop": false,
 "name": "Drop",
-"speed": 8.0
+"speed": 1.0
 }, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
@@ -281,15 +281,15 @@ animations = [ {
 "frames": [ SubResource( 44 ) ],
 "loop": false,
 "name": "Arrow",
-"speed": 8.0
+"speed": 1.0
 }, {
 "frames": [ ExtResource( 12 ) ],
 "loop": false,
 "name": "Drag",
-"speed": 8.0
+"speed": 1.0
 }, {
 "frames": [ SubResource( 45 ), SubResource( 46 ) ],
 "loop": false,
 "name": "PointClick",
-"speed": 8.0
+"speed": 4.0
 } ]

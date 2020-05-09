@@ -2,8 +2,8 @@ extends Control
 
 onready var _title := $Panel/VBox/Title
 onready var _text := $Panel/VBox/Text
-onready var _save := $Panel/VBox/HBox/Save
-onready var _delete := $Panel/VBox/HBox/Delete
+onready var _save := $HBox/Save
+onready var _delete := $HBox/Delete
 
 var new = false
 var _state := {

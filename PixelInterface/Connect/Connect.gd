@@ -44,7 +44,7 @@ onready var _messageTitle := $Container/Viewport/Dialog/Message/Center/Panel/VBo
 onready var _messageText  := $Container/Viewport/Dialog/Message/Center/Panel/VBox/Panel/Text
 onready var _messageClose := $Container/Viewport/Dialog/Message/Center/Panel/Close/Close
 
-onready var _data = $Container/Viewport/Interface/Data/Center/Panel/Panel/VBox
+onready var _data = $Container/Viewport/Interface/Data/Center/Panel/VBox
 
 onready var _http := $HTTPRequest
 onready var _tween := $Tween

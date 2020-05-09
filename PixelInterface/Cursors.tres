@@ -211,7 +211,7 @@ animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
 "loop": false,
 "name": "ArrowClick",
-"speed": 4.0
+"speed": 64.0
 }, {
 "frames": [ ExtResource( 14 ) ],
 "loop": false,
@@ -291,5 +291,5 @@ animations = [ {
 "frames": [ SubResource( 45 ), SubResource( 46 ) ],
 "loop": false,
 "name": "PointClick",
-"speed": 4.0
+"speed": 64.0
 } ]

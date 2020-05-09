@@ -13,7 +13,11 @@ const _stateDefault := {
 	"id": "",
 	"email": ""
 }
-var _state := _stateDefault
+var _state := {}
+func _setState(value: Dictionary):
+	_state.token = value.token
+	_state.id = value.id
+	_state.email = value.email
 const _statePath := "user://state.txt"
 var _f := File.new()
 
@@ -30,6 +34,7 @@ func _ready() -> void:
 	Utility.ok(_f.open("res://PixelInterface/Connect/apikey.txt", File.READ))
 	_apiKey = _f.get_as_text()
 	_f.close()
+	_setState(_stateDefault)
 	_loadToken()
 
 func _saveToken() -> void:
@@ -44,7 +49,7 @@ func _loadToken() -> void:
 		_state.token = _f.get_as_text()
 		_f.close()
 
-func _getState(response: Array, id: String = "") -> Dictionary:
+func _formState(response: Array, id: String = "") -> Dictionary:
 	var o = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 	return {
 		"token": o.idToken if id.empty() else id,
@@ -52,7 +57,7 @@ func _getState(response: Array, id: String = "") -> Dictionary:
 		"email": o.users[0].email
 	}
 
-func _getHeaders() -> PoolStringArray:
+func _formHeaders() -> PoolStringArray:
 	return PoolStringArray([
 		"Content-Type: application/json",
 		"Authorization: Bearer %s" % _state.token
@@ -63,7 +68,7 @@ func signIn(http: HTTPRequest, email: String, password: String) -> void:
 	Utility.ok(http.request(_signInUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
-		_state = _getState(response)
+		_setState(_formState(response))
 		_saveToken()
 	emit_signal("signedIn", response)
 
@@ -72,7 +77,7 @@ func signUp(http: HTTPRequest, email : String, password : String) -> void:
 	Utility.ok(http.request(_signUpUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed")
 	# if response[1] == 200:
-	# 	_state = _getState(response)
+	# 	setState(_formState(response))
 	emit_signal("signedUp", response)
 
 func reset(http: HTTPRequest, email: String) -> void:
@@ -82,7 +87,7 @@ func reset(http: HTTPRequest, email: String) -> void:
 	emit_signal("reset", response)
 
 func signOut() -> void:
-	_state = _stateDefault
+	_setState(_stateDefault)
 	emit_signal("signedOut")
 
 func changeEmail(http: HTTPRequest, email: String) -> void:
@@ -90,7 +95,7 @@ func changeEmail(http: HTTPRequest, email: String) -> void:
 	Utility.ok(http.request(_setUserUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
-		_state = _getState(response)
+		_setState(_formState(response))
 		_saveToken()
 	emit_signal("changedEmail", response)
 
@@ -99,7 +104,7 @@ func changePassword(http: HTTPRequest, password: String) -> void:
 	Utility.ok(http.request(_setUserUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
-		_state = _getState(response)
+		_setState(_formState(response))
 		_saveToken()
 	emit_signal("changedPassword", response)
 
@@ -108,7 +113,7 @@ func lookup(http: HTTPRequest) -> void:
 	Utility.ok(http.request(_getUserUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
-		_state = _getState(response, _state.token)
+		_setState(_formState(response, _state.token))
 	emit_signal("lookup", _state.email)
 
 func authenticated() -> bool:
@@ -116,22 +121,22 @@ func authenticated() -> bool:
 
 func saveDoc(path: String, fields: Dictionary, http: HTTPRequest) -> void:
 	var body := { "fields": fields }
-	Utility.ok(http.request(_docsUrl + path % _state.id, _getHeaders(), false, HTTPClient.METHOD_POST, to_json(body)))
+	Utility.ok(http.request(_docsUrl + path % _state.id, _formHeaders(), false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
 func loadDoc(path: String, http: HTTPRequest) -> void:
-	Utility.ok(http.request(_docsUrl + path % _state.id, _getHeaders(), false, HTTPClient.METHOD_GET))
+	Utility.ok(http.request(_docsUrl + path % _state.id, _formHeaders(), false, HTTPClient.METHOD_GET))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
 func updateDoc(path: String, fields: Dictionary, http: HTTPRequest) -> void:
 	var body := { "fields": fields }
-	Utility.ok(http.request(_docsUrl + path % _state.id, _getHeaders(), false, HTTPClient.METHOD_PATCH, to_json(body)))
+	Utility.ok(http.request(_docsUrl + path % _state.id, _formHeaders(), false, HTTPClient.METHOD_PATCH, to_json(body)))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
 func deleteDoc(path: String, http: HTTPRequest) -> void:
-	Utility.ok(http.request(_docsUrl + path % _state.id, _getHeaders(), false, HTTPClient.METHOD_DELETE))
+	Utility.ok(http.request(_docsUrl + path % _state.id, _formHeaders(), false, HTTPClient.METHOD_DELETE))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)

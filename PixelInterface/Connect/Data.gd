@@ -6,18 +6,15 @@ onready var _save := $HBox/Save
 onready var _delete := $HBox/Delete
 
 var new = false
-var state := {
-	"title": {},
-	"text": {}
-} setget setState, getState
+var _state := {
+	"title": { "stringValue": "" },
+	"text": { "stringValue": "" }
+}
 
-func setState(value: Dictionary):
-	state = value
-	_title = state.title.stringValue
-	_text = state.text.stringValue
-
-func getState() -> Dictionary:
-	return state
+func _setState(value: Dictionary):
+	_state = value.duplicate()
+	_title = _state.title.stringValue
+	_text = _state.text.stringValue
 
 func _ready() -> void:
 	Utility.ok(_save.connect("pressed", self, "saveDoc"))
@@ -29,12 +26,12 @@ func loadDoc(http: HTTPRequest) -> void:
 	_disableInput()
 
 func saveDoc(http: HTTPRequest) -> void:
-	state.title = { "stringValue": _title.text}
-	state.text = { "stringValue": _text.text}
+	_state.title.stringValue = _title.text
+	_state.text.stringValue = _text.text
 	if new:
-		Firebase.saveDoc("users?docuementId=%s", state, http)
+		Firebase.saveDoc("users?docuementId=%s", _state, http)
 	else:
-		Firebase.updateDoc("users/%s", state, http)
+		Firebase.updateDoc("users/%s", _state, http)
 	_disableInput()
 
 func deleteDoc(http: HTTPRequest) -> void:
@@ -44,7 +41,7 @@ func deleteDoc(http: HTTPRequest) -> void:
 func _onDocChanged(response: Array) -> void:
 	if response[1] == 200:
 		var o := JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
-		state = o.fields;
+		_setState(o.fields);
 	_enableInput()
 
 func _disableInput() -> void:

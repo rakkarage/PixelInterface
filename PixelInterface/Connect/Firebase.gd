@@ -76,8 +76,6 @@ func signUp(http: HTTPRequest, email : String, password : String) -> void:
 	var body := { "email": email, "password": password }
 	Utility.ok(http.request(_signUpUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed")
-	# if response[1] == 200:
-	# 	setState(_formState(response))
 	emit_signal("signedUp", response)
 
 func reset(http: HTTPRequest, email: String) -> void:

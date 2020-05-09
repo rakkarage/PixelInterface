@@ -370,6 +370,10 @@ func _errorSet(control: Control) -> void:
 	_errorAudio.play()
 	control.modulate = _disconnectedColor
 
-func _disableInput(control: Button) -> void: control.disabled = true
+func _disableInput(control: Button) -> void:
+	Input.set_default_cursor_shape(Input.CURSOR_WAIT)
+	control.disabled = true
 
-func _enableInput(control: Button) -> void: control.disabled = false
+func _enableInput(control: Button) -> void:
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	control.disabled = false

@@ -10,7 +10,7 @@ func _process(_delta) -> void:
 	_sprite.centered = false;
 	match Input.get_current_cursor_shape():
 		Input.CURSOR_ARROW:
-			if Input.is_action_pressed("mb_left"):
+			if Input.is_mouse_button_pressed(BUTTON_LEFT) or Input.is_mouse_button_pressed(BUTTON_RIGHT):
 				_sprite.play("ArrowClick")
 			else:
 				_sprite.play("Arrow")
@@ -18,7 +18,7 @@ func _process(_delta) -> void:
 			_sprite.centered = true;
 			_sprite.play("Caret")
 		Input.CURSOR_POINTING_HAND:
-			if Input.is_action_pressed("mb_left"):
+			if Input.is_mouse_button_pressed(BUTTON_LEFT) or Input.is_mouse_button_pressed(BUTTON_RIGHT):
 				_sprite.play("PointClick")
 			else:
 				_sprite.play("Point")

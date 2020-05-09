@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Button3.png-3429072ff2ba3d81190778f47f6efde8.stex"
+path="res://.import/ButtonPress.png-8d78e3dffad7a65881805b6ea2d31a8d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Button3.png"
-dest_files=[ "res://.import/Button3.png-3429072ff2ba3d81190778f47f6efde8.stex" ]
+source_file="res://PixelInterface/Sprite/ButtonPress.png"
+dest_files=[ "res://.import/ButtonPress.png-8d78e3dffad7a65881805b6ea2d31a8d.stex" ]
 
 [params]
 

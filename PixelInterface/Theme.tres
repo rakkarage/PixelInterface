@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=18 format=2]
+[gd_resource type="Theme" load_steps=26 format=2]
 
 [ext_resource path="res://PixelInterface/Style/Tooltip.tres" type="StyleBox" id=1]
 [ext_resource path="res://PixelInterface/Style/Panel.tres" type="StyleBox" id=2]
@@ -17,6 +17,14 @@
 [ext_resource path="res://PixelInterface/Sprite/South.png" type="Texture" id=15]
 [ext_resource path="res://PixelInterface/Sprite/ScrollThumb.png" type="Texture" id=16]
 [ext_resource path="res://PixelInterface/Sprite/Tooltip.png" type="Texture" id=17]
+[ext_resource path="res://PixelInterface/Style/Check.tres" type="StyleBox" id=18]
+[ext_resource path="res://PixelInterface/Style/CheckDisable.tres" type="StyleBox" id=19]
+[ext_resource path="res://PixelInterface/Style/CheckPress.tres" type="StyleBox" id=20]
+[ext_resource path="res://PixelInterface/Style/CheckHover.tres" type="StyleBox" id=21]
+[ext_resource path="res://PixelInterface/Sprite/Yes.png" type="Texture" id=22]
+[ext_resource path="res://PixelInterface/Sprite/No.png" type="Texture" id=23]
+[ext_resource path="res://PixelInterface/Sprite/Off.png" type="Texture" id=24]
+[ext_resource path="res://PixelInterface/Sprite/On.png" type="Texture" id=25]
 
 [resource]
 default_font = ExtResource( 5 )
@@ -39,16 +47,16 @@ CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckBox/constants/check_vadjust = 0
 CheckBox/constants/hseparation = 4
 CheckBox/fonts/font = null
-CheckBox/icons/checked = null
+CheckBox/icons/checked = ExtResource( 22 )
 CheckBox/icons/radio_checked = null
 CheckBox/icons/radio_unchecked = null
-CheckBox/icons/unchecked = null
-CheckBox/styles/disabled = null
-CheckBox/styles/focus = null
-CheckBox/styles/hover = null
-CheckBox/styles/hover_pressed = null
-CheckBox/styles/normal = null
-CheckBox/styles/pressed = null
+CheckBox/icons/unchecked = ExtResource( 23 )
+CheckBox/styles/disabled = ExtResource( 19 )
+CheckBox/styles/focus = ExtResource( 10 )
+CheckBox/styles/hover = ExtResource( 21 )
+CheckBox/styles/hover_pressed = ExtResource( 20 )
+CheckBox/styles/normal = ExtResource( 18 )
+CheckBox/styles/pressed = ExtResource( 20 )
 CheckButton/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
 CheckButton/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 CheckButton/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
@@ -57,16 +65,16 @@ CheckButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckButton/constants/check_vadjust = 0
 CheckButton/constants/hseparation = 4
 CheckButton/fonts/font = null
-CheckButton/icons/off = null
+CheckButton/icons/off = ExtResource( 24 )
 CheckButton/icons/off_disabled = null
-CheckButton/icons/on = null
+CheckButton/icons/on = ExtResource( 25 )
 CheckButton/icons/on_disabled = null
-CheckButton/styles/disabled = null
-CheckButton/styles/focus = null
-CheckButton/styles/hover = null
-CheckButton/styles/hover_pressed = null
-CheckButton/styles/normal = null
-CheckButton/styles/pressed = null
+CheckButton/styles/disabled = ExtResource( 19 )
+CheckButton/styles/focus = ExtResource( 10 )
+CheckButton/styles/hover = ExtResource( 21 )
+CheckButton/styles/hover_pressed = ExtResource( 20 )
+CheckButton/styles/normal = ExtResource( 18 )
+CheckButton/styles/pressed = ExtResource( 20 )
 HScrollBar/icons/decrement = ExtResource( 15 )
 HScrollBar/icons/decrement_highlight = ExtResource( 15 )
 HScrollBar/icons/increment = ExtResource( 12 )

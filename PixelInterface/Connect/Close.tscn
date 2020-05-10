@@ -3,9 +3,10 @@
 [ext_resource path="res://PixelInterface/Style/CloseDisable.tres" type="StyleBox" id=1]
 [ext_resource path="res://PixelInterface/Sprite/No.png" type="Texture" id=2]
 [ext_resource path="res://PixelInterface/Style/CloseHover.tres" type="StyleBox" id=3]
-[ext_resource path="res://PixelInterface/Style/CloseNormal.tres" type="StyleBox" id=4]
+[ext_resource path="res://PixelInterface/Style/Close.tres" type="StyleBox" id=4]
 [ext_resource path="res://PixelInterface/Style/ClosePress.tres" type="StyleBox" id=5]
 [ext_resource path="res://PixelInterface/Style/CloseFocus.tres" type="StyleBox" id=6]
+
 
 [node name="Close" type="Control"]
 anchor_right = 1.0

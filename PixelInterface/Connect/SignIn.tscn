@@ -17,12 +17,15 @@ __meta__ = {
 [node name="Center" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel" type="PanelContainer" parent="Center"]
 margin_left = 397.0
-margin_top = 220.0
+margin_top = 174.0
 margin_right = 627.0
-margin_bottom = 380.0
+margin_bottom = 426.0
 rect_min_size = Vector2( 230, 64 )
 custom_styles/panel = ExtResource( 1 )
 
@@ -30,7 +33,7 @@ custom_styles/panel = ExtResource( 1 )
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 151.0
+margin_bottom = 243.0
 custom_constants/separation = 0
 
 [node name="Panel" type="PanelContainer" parent="Center/Panel/VBox"]
@@ -94,10 +97,21 @@ custom_fonts/font = ExtResource( 4 )
 shortcut_in_tooltip = false
 text = "Sign In"
 
-[node name="HBox" type="HBoxContainer" parent="Center/Panel/VBox"]
+[node name="CheckBox" type="CheckBox" parent="Center/Panel/VBox"]
 margin_top = 110.0
 margin_right = 214.0
-margin_bottom = 143.0
+margin_bottom = 148.0
+text = "Remember Me"
+
+[node name="CheckButton" type="CheckButton" parent="Center/Panel/VBox"]
+margin_top = 148.0
+margin_right = 214.0
+margin_bottom = 202.0
+
+[node name="HBox" type="HBoxContainer" parent="Center/Panel/VBox"]
+margin_top = 202.0
+margin_right = 214.0
+margin_bottom = 235.0
 custom_constants/separation = 0
 
 [node name="SignUp" type="Button" parent="Center/Panel/VBox/HBox"]
@@ -137,7 +151,7 @@ anchor_bottom = 0.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 151.0
+margin_bottom = 243.0
 
 [node name="Close" parent="Center/Panel/Close" index="0"]
 focus_neighbour_left = NodePath("../../VBox/HBox/Reset")

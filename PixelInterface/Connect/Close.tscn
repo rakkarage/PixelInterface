@@ -18,10 +18,11 @@ __meta__ = {
 [node name="Close" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -18.0
-margin_top = -18.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 36, 36 )
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 40, 40 )
 hint_tooltip = "Close."
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 5 )
@@ -44,8 +45,8 @@ __meta__ = {
 
 [node name="Texture" type="TextureRect" parent="Close/Center"]
 modulate = Color( 0.74902, 0.498039, 0.498039, 1 )
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 29.0
-margin_bottom = 29.0
+margin_left = 9.0
+margin_top = 9.0
+margin_right = 31.0
+margin_bottom = 31.0
 texture = ExtResource( 2 )

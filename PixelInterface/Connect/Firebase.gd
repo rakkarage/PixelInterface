@@ -36,7 +36,6 @@ func _ready() -> void:
 	_apiKey = _f.get_as_text()
 	_f.close()
 	_setState(_stateDefault)
-	# _loadToken()
 
 func tokenSave() -> void:
 	if not _state.token.empty():
@@ -74,7 +73,6 @@ func signIn(http: HTTPRequest, email: String, password: String) -> void:
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
 		_setState(_formState(response))
-		# _saveToken()
 	emit_signal("signedIn", response)
 
 func signUp(http: HTTPRequest, email : String, password : String) -> void:
@@ -90,6 +88,7 @@ func reset(http: HTTPRequest, email: String) -> void:
 	emit_signal("reset", response)
 
 func signOut() -> void:
+	tokenClear()
 	_setState(_stateDefault)
 	emit_signal("signedOut")
 
@@ -99,7 +98,6 @@ func changeEmail(http: HTTPRequest, email: String) -> void:
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
 		_setState(_formState(response))
-		# _saveToken()
 	emit_signal("changedEmail", response)
 
 func changePassword(http: HTTPRequest, password: String) -> void:
@@ -108,7 +106,6 @@ func changePassword(http: HTTPRequest, password: String) -> void:
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
 		_setState(_formState(response))
-		# _saveToken()
 	emit_signal("changedPassword", response)
 
 func lookup(http: HTTPRequest) -> void:

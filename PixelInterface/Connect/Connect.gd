@@ -320,6 +320,7 @@ func _onChangedEmail(response: Array) -> void:
 		_successAudio.play()
 		_emailEmail.text = ""
 		_emailConfirm.text = ""
+		Firebase.tokenSave()
 		_updateStatus()
 		_springAccount(false)
 	else:
@@ -352,6 +353,7 @@ func _onChangedPassword(response: Array) -> void:
 		_successAudio.play()
 		_passwordPassword.text = ""
 		_passwordConfirm.text = ""
+		Firebase.tokenSave()
 		_updateStatus()
 		_springAccount(false)
 	else:

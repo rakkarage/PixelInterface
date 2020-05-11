@@ -315,7 +315,7 @@ func _on_ChangeEmail_pressed() -> void:
 	_disableInput(_emailChange)
 	Firebase.changeEmail(_http, email)
 
-func onChangedEmail(response: Array) -> void:
+func _onChangedEmail(response: Array) -> void:
 	if response[1] == 200:
 		_successAudio.play()
 		_emailEmail.text = ""
@@ -347,7 +347,7 @@ func _on_ChangePassword_pressed() -> void:
 	_disableInput(_passwordChange)
 	Firebase.changePassword(_http, password)
 
-func onChangedPassword(response: Array) -> void:
+func _onChangedPassword(response: Array) -> void:
 	if response[1] == 200:
 		_successAudio.play()
 		_passwordPassword.text = ""

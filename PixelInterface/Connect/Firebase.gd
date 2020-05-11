@@ -56,13 +56,13 @@ func tokenClear() -> void:
 func _formState(response: Array, id: String = "") -> Dictionary:
 	var o = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 	return {
-		"token": o.idToken if id.empty() else id,
-		"id": o.localId if "localId" in o else "",
-		"email": o.users[0].email if "users" in o else ""
+		"token": o.idToken if id.empty() else _state.token,
+		"id": o.localId if "localId" in o else o.users[0].localId if "users" in o else _state.id,
+		"email": o.users[0].email if "users" in o else _state.email
 	}
 
 func signIn(http: HTTPRequest, email: String, password: String) -> void:
-	var body := { "email": email, "password": password }
+	var body := { "email": email, "password": password, "returnSecureToken": true }
 	Utility.ok(http.request(_signInUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed")
 	if response[1] == 200:

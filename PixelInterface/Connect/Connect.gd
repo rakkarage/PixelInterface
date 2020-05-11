@@ -404,6 +404,7 @@ func _onDocChanged(response: Array) -> void:
 	if response[1] == 404:
 		_docExists = false;
 	if response[1] == 200:
+		_successAudio.play()
 		var o := JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 		if "fields" in o:
 			_setState(o.fields);

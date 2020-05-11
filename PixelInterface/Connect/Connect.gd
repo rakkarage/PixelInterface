@@ -386,15 +386,17 @@ func _loadDoc() -> void:
 	Firebase.loadDoc(_http, "users/%s")
 	
 func _saveDoc() -> void:
+	_clickAudio.play()
 	_doc.title.stringValue = _dataTitle.text
 	_doc.text.stringValue = _dataText.text
 	_disableInput([_dataSave, _dataDelete])
 	if _docExists:
 		Firebase.updateDoc(_http, "users/%s", _doc)
 	else:
-		Firebase.saveDoc(_http, "users?docuementId=%s", _doc)
+		Firebase.saveDoc(_http, "users?documentId=%s", _doc)
 
 func _deleteDoc() -> void:
+	_clickAudio.play()
 	_disableInput([_dataSave, _dataDelete])
 	Firebase.deleteDoc(_http, "users/%s")
 

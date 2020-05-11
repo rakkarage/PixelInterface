@@ -376,7 +376,7 @@ var _doc := {
 	"text": { "stringValue": "" }
 }
 
-func _setState(value: Dictionary):
+func _setDoc(value: Dictionary):
 	_doc = value.duplicate()
 	_dataTitle.text = _doc.title.stringValue
 	_dataText.text = _doc.text.stringValue
@@ -407,7 +407,11 @@ func _onDocChanged(response: Array) -> void:
 		_successAudio.play()
 		var o := JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 		if "fields" in o:
-			_setState(o.fields);
+			_setDoc(o.fields);
+		else:
+			_doc = {}
+			_dataTitle.text = ""
+			_dataText.text = ""
 	_enableInput([_dataSave, _dataDelete])
 
 ### dialog

@@ -59,7 +59,7 @@ func _formState(response: Array, id: String = "") -> Dictionary:
 	return {
 		"token": o.idToken if id.empty() else id,
 		"id": o.localId if "localId" in o else "",
-		"email": o.users[0].email
+		"email": o.users[0].email if "users" in o else ""
 	}
 
 func _formHeaders() -> PoolStringArray:

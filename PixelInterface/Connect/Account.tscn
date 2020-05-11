@@ -53,6 +53,7 @@ focus_previous = NodePath("../../../Close/Close")
 size_flags_horizontal = 3
 size_flags_vertical = 2
 editable = false
+clear_button_enabled = true
 placeholder_text = "Email"
 placeholder_alpha = 0.5
 

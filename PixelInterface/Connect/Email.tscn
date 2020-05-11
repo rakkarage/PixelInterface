@@ -57,6 +57,7 @@ focus_next = NodePath("../Confirm")
 focus_previous = NodePath("../Password")
 size_flags_horizontal = 3
 size_flags_vertical = 2
+clear_button_enabled = true
 placeholder_text = "Email"
 placeholder_alpha = 0.5
 
@@ -73,6 +74,7 @@ focus_next = NodePath("../../../Change")
 focus_previous = NodePath("../Email")
 size_flags_horizontal = 3
 size_flags_vertical = 6
+clear_button_enabled = true
 placeholder_text = "Confirm"
 placeholder_alpha = 0.5
 

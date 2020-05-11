@@ -46,6 +46,7 @@ onready var _messageText  := $Container/Viewport/Dialog/Message/Center/Panel/VBo
 onready var _messageClose := $Container/Viewport/Dialog/Message/Center/Panel/Close/Close
 
 onready var _dataTitle :=  $Container/Viewport/Interface/Data/Center/Panel/VBox/Panel/VBox/Title
+onready var _dataNumber := $Container/Viewport/Interface/Data/Center/Panel/VBox/Panel/VBox/Number
 onready var _dataText :=   $Container/Viewport/Interface/Data/Center/Panel/VBox/Panel/VBox/Text
 onready var _dataSave :=   $Container/Viewport/Interface/Data/Center/Panel/VBox/HBox/Save
 onready var _dataDelete := $Container/Viewport/Interface/Data/Center/Panel/VBox/HBox/Delete
@@ -373,12 +374,14 @@ var _docExists := true
 
 var _doc := {
 	"title": { "stringValue": "" },
+	"number": { "intValue": "" },
 	"text": { "stringValue": "" }
 }
 
 func _setDoc(value: Dictionary):
 	_doc = value.duplicate()
 	_dataTitle.text = _doc.title.stringValue
+	_dataNumber.value = _doc.number.intValue
 	_dataText.text = _doc.text.stringValue
 
 func _loadDoc() -> void:
@@ -388,6 +391,7 @@ func _loadDoc() -> void:
 func _saveDoc() -> void:
 	_clickAudio.play()
 	_doc.title.stringValue = _dataTitle.text
+	_doc.number.intValue = _dataNumber.value
 	_doc.text.stringValue = _dataText.text
 	_disableInput([_dataSave, _dataDelete])
 	if _docExists:
@@ -411,6 +415,7 @@ func _onDocChanged(response: Array) -> void:
 		else:
 			_doc = {}
 			_dataTitle.text = ""
+			_dataTitle.value = 0
 			_dataText.text = ""
 	_enableInput([_dataSave, _dataDelete])
 

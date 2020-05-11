@@ -120,8 +120,8 @@ func _formHeaders() -> PoolStringArray:
 	])
 
 func saveDoc(http: HTTPRequest, path: String, fields: Dictionary) -> void:
-	var body := { "fields": fields }
-	Utility.ok(http.request(_docsUrl + path % _state.id, _formHeaders(), false, HTTPClient.METHOD_POST, to_json(body)))
+	var body := to_json({ "fields": fields })
+	Utility.ok(http.request(_docsUrl + path % _state.id, _formHeaders(), false, HTTPClient.METHOD_POST, body))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
@@ -131,8 +131,8 @@ func loadDoc(http: HTTPRequest, path: String) -> void:
 	emit_signal("docChanged", response)
 
 func updateDoc(http: HTTPRequest, path: String, fields: Dictionary) -> void:
-	var body := { "fields": fields }
-	Utility.ok(http.request(_docsUrl + path % _state.id, _formHeaders(), false, HTTPClient.METHOD_PATCH, to_json(body)))
+	var body := to_json({ "fields": fields })
+	Utility.ok(http.request(_docsUrl + path % _state.id, _formHeaders(), false, HTTPClient.METHOD_PATCH, body))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 

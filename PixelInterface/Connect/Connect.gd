@@ -374,24 +374,24 @@ var _docExists := true
 
 var _doc := {
 	"title": { "stringValue": "" },
-	"number": { "intValue": "" },
+	"number": { "integerValue": "" },
 	"text": { "stringValue": "" }
 }
 
 func _setDoc(value: Dictionary):
 	_doc = value.duplicate()
 	_dataTitle.text = _doc.title.stringValue
-	_dataNumber.value = _doc.number.intValue
+	_dataNumber.value = int(_doc.number.integerValue)
 	_dataText.text = _doc.text.stringValue
 
 func _loadDoc() -> void:
 	_disableInput([_dataSave, _dataDelete])
 	Firebase.loadDoc(_http, "users/%s")
-	
+
 func _saveDoc() -> void:
 	_clickAudio.play()
 	_doc.title.stringValue = _dataTitle.text
-	_doc.number.intValue = _dataNumber.value
+	_doc.number.integerValue = str(_dataNumber.value)
 	_doc.text.stringValue = _dataText.text
 	_disableInput([_dataSave, _dataDelete])
 	if _docExists:
@@ -415,7 +415,7 @@ func _onDocChanged(response: Array) -> void:
 		else:
 			_doc = {}
 			_dataTitle.text = ""
-			_dataTitle.value = 0
+			_dataNumber.value = 0
 			_dataText.text = ""
 	_enableInput([_dataSave, _dataDelete])
 

@@ -65,7 +65,7 @@ func _formState(response: Array, id: String = "") -> Dictionary:
 func _formHeaders() -> PoolStringArray:
 	return PoolStringArray([
 		"Content-Type: application/json",
-		"Authorization: Bearer %s" % _state.token
+		"Authorization: Bearer " + _state.token
 	])
 
 func signIn(http: HTTPRequest, email: String, password: String) -> void:

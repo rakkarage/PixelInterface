@@ -18,8 +18,9 @@ func _setState(value: Dictionary):
 	_state.token = value.token
 	_state.id = value.id
 	_state.email = value.email
-const _statePath := "user://state.txt"
+const _tokenPath := "user://token.txt"
 var _f := File.new()
+var _d := Directory.new()
 
 signal signedIn(response)
 signal signedUp(response)
@@ -35,19 +36,23 @@ func _ready() -> void:
 	_apiKey = _f.get_as_text()
 	_f.close()
 	_setState(_stateDefault)
-	_loadToken()
+	# _loadToken()
 
-func _saveToken() -> void:
+func tokenSave() -> void:
 	if not _state.token.empty():
-		Utility.ok(_f.open(_statePath, File.WRITE))
+		Utility.ok(_f.open(_tokenPath, File.WRITE))
 		_f.store_string(_state.token)
 		_f.close()
 
-func _loadToken() -> void:
-	if _f.file_exists(_statePath):
-		Utility.ok(_f.open(_statePath, File.READ))
+func tokenLoad() -> void:
+	if _f.file_exists(_tokenPath):
+		Utility.ok(_f.open(_tokenPath, File.READ))
 		_state.token = _f.get_as_text()
 		_f.close()
+
+func tokenClear() -> void:
+	if _f.file_exists(_tokenPath):
+		Utility.ok(_d.remove(_tokenPath))
 
 func _formState(response: Array, id: String = "") -> Dictionary:
 	var o = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
@@ -69,7 +74,7 @@ func signIn(http: HTTPRequest, email: String, password: String) -> void:
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
 		_setState(_formState(response))
-		_saveToken()
+		# _saveToken()
 	emit_signal("signedIn", response)
 
 func signUp(http: HTTPRequest, email : String, password : String) -> void:
@@ -94,7 +99,7 @@ func changeEmail(http: HTTPRequest, email: String) -> void:
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
 		_setState(_formState(response))
-		_saveToken()
+		# _saveToken()
 	emit_signal("changedEmail", response)
 
 func changePassword(http: HTTPRequest, password: String) -> void:
@@ -103,7 +108,7 @@ func changePassword(http: HTTPRequest, password: String) -> void:
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
 		_setState(_formState(response))
-		_saveToken()
+		# _saveToken()
 	emit_signal("changedPassword", response)
 
 func lookup(http: HTTPRequest) -> void:

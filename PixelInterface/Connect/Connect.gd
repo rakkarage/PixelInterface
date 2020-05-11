@@ -7,6 +7,7 @@ onready var _statusEmail := $Container/Viewport/Interface/Status/Panel/Margin/Pa
 
 onready var _signInEmail    := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Email
 onready var _signInPassword := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Password
+onready var _signInRemember := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Remember
 onready var _signInSignIn   := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/SignIn
 onready var _signInSignUp   := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/HBox/SignUp
 onready var _signInReset    := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/HBox/Reset
@@ -79,9 +80,18 @@ var _currentAccept : Control
 export var _cancel : ShortCut
 var _currentCancel : Control
 
+const _rememberPath := "user://remember.txt"
+var _f := File.new()
+
+func _on_Remember_pressed() -> void:
+	Utility.ok(_f.open(_rememberPath, File.WRITE))
+	_f.store_8(_signInRemember.pressed)
+	_f.close()
+
 func _ready() -> void:
 	Utility.ok(_status.connect("pressed", self, "_on_Status_pressed"))
 
+	Utility.ok(_signInRemember.connect("pressed", self, "_on_Remember_pressed"))
 	Utility.ok(_signInSignIn.connect("pressed", self, "_on_SignIn_pressed"))
 	Utility.ok(_signInSignUp.connect("pressed", self, "_springSignUp"))
 	Utility.ok(_signInReset.connect("pressed", self, "_springReset"))
@@ -115,6 +125,14 @@ func _ready() -> void:
 	Utility.ok(Firebase.connect("lookup", self, "_onUpdatedStatus"))
 
 	Utility.ok(_regex.compile(_pattern))
+
+	if _f.file_exists(_rememberPath):
+		Utility.ok(_f.open(_rememberPath, File.READ))
+		_signInRemember.pressed = bool(_f.get_8())
+		_f.close()
+
+	if _signInRemember.pressed:
+		Firebase.tokenLoad()
 
 	_updateStatus()
 	_status.grab_focus()
@@ -186,6 +204,10 @@ func _onSignedIn(response: Array) -> void:
 		_signInPassword.text = ""
 		_updateStatus()
 		_springStatus(false)
+		if _signInRemember.pressed:
+			Firebase.tokenSave()
+		else:
+			Firebase.tokenClear()
 	else:
 		_showError(response)
 		_resetEmail.text = _signInEmail.text

@@ -45,7 +45,10 @@ onready var _messageTitle := $Container/Viewport/Dialog/Message/Center/Panel/VBo
 onready var _messageText  := $Container/Viewport/Dialog/Message/Center/Panel/VBox/Panel/Text
 onready var _messageClose := $Container/Viewport/Dialog/Message/Center/Panel/Close/Close
 
-onready var _data = $Container/Viewport/Interface/Data/Center/Panel/VBox
+onready var _dataTitle :=  $Container/Viewport/Interface/Data/Center/Panel/VBox/Panel/VBox/Title
+onready var _dataText :=   $Container/Viewport/Interface/Data/Center/Panel/VBox/Panel/VBox/Text
+onready var _dataSave :=   $Container/Viewport/Interface/Data/Center/Panel/VBox/HBox/Save
+onready var _dataDelete := $Container/Viewport/Interface/Data/Center/Panel/VBox/HBox/Delete
 
 onready var _http := $HTTPRequest
 onready var _tween := $Tween
@@ -116,6 +119,9 @@ func _ready() -> void:
 
 	Utility.ok(_messageClose.connect("pressed", self, "_hideError"))
 
+	Utility.ok(_dataSave.connect("pressed", self, "_saveDoc"))
+	Utility.ok(_dataDelete.connect("pressed", self, "_deleteDoc"))
+
 	Utility.ok(Firebase.connect("signedIn", self, "_onSignedIn"))
 	Utility.ok(Firebase.connect("signedUp", self, "_onSignedUp"))
 	Utility.ok(Firebase.connect("reset", self, "_onReset"))
@@ -123,6 +129,7 @@ func _ready() -> void:
 	Utility.ok(Firebase.connect("changedEmail", self, "_onChangedEmail"))
 	Utility.ok(Firebase.connect("changedPassword", self, "_onChangedPassword"))
 	Utility.ok(Firebase.connect("lookup", self, "_onUpdatedStatus"))
+	Utility.ok(Firebase.connect("docChanged", self, "_onDocChanged"))
 
 	Utility.ok(_regex.compile(_pattern))
 
@@ -175,7 +182,7 @@ func _onUpdatedStatus(email: String) -> void:
 		_status.modulate = _connectedColor
 		_statusEmail.text = email
 		_accountEmail.text = email
-	_data.loadDoc(_http)
+	_loadDoc()
 
 ### signIn
 
@@ -195,7 +202,7 @@ func _on_SignIn_pressed() -> void:
 	if password.empty() or not _validPassword(password):
 		_errorSet(_signInPassword)
 		return
-	_disableInput(_signInSignIn)
+	_disableInput([_signInSignIn])
 	Firebase.signIn(_http, email, password)
 
 func _onSignedIn(response: Array) -> void:
@@ -211,7 +218,7 @@ func _onSignedIn(response: Array) -> void:
 	else:
 		_showError(response)
 		_resetEmail.text = _signInEmail.text
-	_enableInput(_signInSignIn)
+	_enableInput([_signInSignIn])
 
 ### signUp
 
@@ -235,7 +242,7 @@ func _on_SignUp_pressed() -> void:
 	if confirm != password:
 		_errorSet(_signUpConfirm)
 		return
-	_disableInput(_signUpSignUp)
+	_disableInput([_signUpSignUp])
 	Firebase.signUp(_http, email, password)
 
 func _onSignedUp(response: Array) -> void:
@@ -248,7 +255,7 @@ func _onSignedUp(response: Array) -> void:
 		_springSignIn(false)
 	else:
 		_showError(response)
-	_enableInput(_signUpSignUp)
+	_enableInput([_signUpSignUp])
 
 ### reset password
 
@@ -264,7 +271,7 @@ func _on_Reset_pressed() -> void:
 	if email.empty() or not _validEmail(email):
 		_errorSet(_resetEmail)
 		return
-	_disableInput(_resetReset)
+	_disableInput([_resetReset])
 	Firebase.reset(_http, _resetEmail.text)
 
 func _onReset(response: Array) -> void:
@@ -274,7 +281,7 @@ func _onReset(response: Array) -> void:
 		_springSignIn(false)
 	else:
 		_showError(response)
-	_enableInput(_resetReset)
+	_enableInput([_resetReset])
 
 ### account
 
@@ -285,14 +292,14 @@ func _springAccount(click := true) -> void:
 
 func _on_SignOut_pressed() -> void:
 	_clickAudio.play()
-	_disableInput(_accountSignOut)
+	_disableInput([_accountSignOut])
 	Firebase.signOut()
 
 func _onSignedOut() -> void:
 	_successAudio.play()
 	_updateStatus()
 	_springStatus()
-	_enableInput(_accountSignOut)
+	_enableInput([_accountSignOut])
 
 ### change email
 
@@ -312,7 +319,7 @@ func _on_ChangeEmail_pressed() -> void:
 	if confirm != email:
 		_errorSet(_emailConfirm)
 		return
-	_disableInput(_emailChange)
+	_disableInput([_emailChange])
 	Firebase.changeEmail(_http, email)
 
 func _onChangedEmail(response: Array) -> void:
@@ -325,7 +332,7 @@ func _onChangedEmail(response: Array) -> void:
 		_springAccount(false)
 	else:
 		_showError(response)
-	_enableInput(_emailChange)
+	_enableInput([_emailChange])
 
 ### change password
 
@@ -345,7 +352,7 @@ func _on_ChangePassword_pressed() -> void:
 	if confirm != password:
 		_errorSet(_passwordConfirm)
 		return
-	_disableInput(_passwordChange)
+	_disableInput([_passwordChange])
 	Firebase.changePassword(_http, password)
 
 func _onChangedPassword(response: Array) -> void:
@@ -358,7 +365,47 @@ func _onChangedPassword(response: Array) -> void:
 		_springAccount(false)
 	else:
 		_showError(response)
-	_enableInput(_passwordChange)
+	_enableInput([_passwordChange])
+
+### data
+
+var _docExists := true
+
+var _doc := {
+	"title": { "stringValue": "" },
+	"text": { "stringValue": "" }
+}
+
+func _setState(value: Dictionary):
+	_doc = value.duplicate()
+	_dataTitle.text = _doc.title.stringValue
+	_dataText.text = _doc.text.stringValue
+
+func _loadDoc() -> void:
+	_disableInput([_dataSave, _dataDelete])
+	Firebase.loadDoc(_http, "users/%s")
+	
+func _saveDoc() -> void:
+	_doc.title.stringValue = _dataTitle.text
+	_doc.text.stringValue = _dataText.text
+	_disableInput([_dataSave, _dataDelete])
+	if _docExists:
+		Firebase.updateDoc(_http, "users/%s", _doc)
+	else:
+		Firebase.saveDoc(_http, "users?docuementId=%s", _doc)
+
+func _deleteDoc() -> void:
+	_disableInput([_dataSave, _dataDelete])
+	Firebase.deleteDoc(_http, "users/%s")
+
+func _onDocChanged(response: Array) -> void:
+	if response[1] == 404:
+		_docExists = false;
+	if response[1] == 200:
+		var o := JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
+		if "fields" in o:
+			_setState(o.fields);
+	_enableInput([_dataSave, _dataDelete])
 
 ### dialog
 
@@ -394,10 +441,12 @@ func _errorSet(control: Control) -> void:
 	_errorAudio.play()
 	control.modulate = _disconnectedColor
 
-func _disableInput(control: Button) -> void:
+func _disableInput(controls: Array) -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_WAIT)
-	control.disabled = true
+	for control in controls:
+		control.disabled = true
 
-func _enableInput(control: Button) -> void:
+func _enableInput(controls: Array) -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-	control.disabled = false
+	for control in controls:
+		control.disabled = false

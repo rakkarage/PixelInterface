@@ -29,7 +29,7 @@ signal reset(response)
 signal changedEmail(response)
 signal changedPassword(response)
 signal lookup()
-signal docChanged()
+signal docChanged(response)
 
 func _ready() -> void:
 	Utility.ok(_f.open("res://PixelInterface/Connect/apikey.txt", File.READ))
@@ -60,12 +60,6 @@ func _formState(response: Array, id: String = "") -> Dictionary:
 		"id": o.localId if "localId" in o else "",
 		"email": o.users[0].email if "users" in o else ""
 	}
-
-func _formHeaders() -> PoolStringArray:
-	return PoolStringArray([
-		"Content-Type: application/json",
-		"Authorization: Bearer " + _state.token
-	])
 
 func signIn(http: HTTPRequest, email: String, password: String) -> void:
 	var body := { "email": email, "password": password }
@@ -119,24 +113,30 @@ func lookup(http: HTTPRequest) -> void:
 func authenticated() -> bool:
 	return not _state.token.empty()
 
-func saveDoc(path: String, fields: Dictionary, http: HTTPRequest) -> void:
+func _formHeaders() -> PoolStringArray:
+	return PoolStringArray([
+		"Content-Type: application/json",
+		"Authorization: Bearer " + _state.token
+	])
+
+func saveDoc(http: HTTPRequest, path: String, fields: Dictionary) -> void:
 	var body := { "fields": fields }
 	Utility.ok(http.request(_docsUrl + path % _state.id, _formHeaders(), false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
-func loadDoc(path: String, http: HTTPRequest) -> void:
+func loadDoc(http: HTTPRequest, path: String) -> void:
 	Utility.ok(http.request(_docsUrl + path % _state.id, _formHeaders(), false, HTTPClient.METHOD_GET))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
-func updateDoc(path: String, fields: Dictionary, http: HTTPRequest) -> void:
+func updateDoc(http: HTTPRequest, path: String, fields: Dictionary) -> void:
 	var body := { "fields": fields }
 	Utility.ok(http.request(_docsUrl + path % _state.id, _formHeaders(), false, HTTPClient.METHOD_PATCH, to_json(body)))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
-func deleteDoc(path: String, http: HTTPRequest) -> void:
+func deleteDoc(http: HTTPRequest, path: String) -> void:
 	Utility.ok(http.request(_docsUrl + path % _state.id, _formHeaders(), false, HTTPClient.METHOD_DELETE))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)

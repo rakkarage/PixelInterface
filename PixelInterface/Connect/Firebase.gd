@@ -53,10 +53,10 @@ func tokenClear() -> void:
 	if _f.file_exists(_tokenPath):
 		Utility.ok(_d.remove(_tokenPath))
 
-func _formState(response: Array, id: String = "") -> Dictionary:
+func _formState(response: Array) -> Dictionary:
 	var o = JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 	return {
-		"token": o.idToken if id.empty() else _state.token,
+		"token": o.idToken if "idToken" in o else _state.token,
 		"id": o.localId if "localId" in o else o.users[0].localId if "users" in o else _state.id,
 		"email": o.users[0].email if "users" in o else _state.email
 	}
@@ -107,7 +107,7 @@ func lookup(http: HTTPRequest) -> void:
 	Utility.ok(http.request(_getUserUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed")
 	if response[1] == 200:
-		_setState(_formState(response, _state.token))
+		_setState(_formState(response))
 	emit_signal("lookup", _state.email)
 
 func authenticated() -> bool:

@@ -179,10 +179,14 @@ func _onUpdatedStatus(email: String) -> void:
 		_status.modulate = _disconnectedColor
 		_statusEmail.text = "Welcome."
 		_accountEmail.text = ""
+		_dataSave.disabled = true
+		_dataDelete.disabled = true
 	else:
 		_status.modulate = _connectedColor
 		_statusEmail.text = email
 		_accountEmail.text = email
+		_dataSave.disabled = false
+		_dataDelete.disabled = false
 	_loadDoc()
 
 ### signIn
@@ -372,11 +376,13 @@ func _onChangedPassword(response: Array) -> void:
 
 var _docExists := true
 
-var _doc := {
+const _docDefault := {
 	"title": { "stringValue": "" },
 	"number": { "integerValue": "" },
 	"text": { "stringValue": "" }
 }
+
+var _doc = _docDefault.duplicate()
 
 func _setDoc(value: Dictionary):
 	_doc = value.duplicate()
@@ -405,19 +411,16 @@ func _deleteDoc() -> void:
 	Firebase.deleteDoc(_http, "users/%s")
 
 func _onDocChanged(response: Array) -> void:
+	_setDoc(_docDefault)
 	if response[1] == 404:
-		_docExists = false;
+		_docExists = false
 	if response[1] == 200:
 		_successAudio.play()
 		var o := JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 		if "fields" in o:
-			_setDoc(o.fields);
-		else:
-			_doc = {}
-			_dataTitle.text = ""
-			_dataNumber.value = 0
-			_dataText.text = ""
-	_enableInput([_dataSave, _dataDelete])
+			_setDoc(o.fields)
+			_enableInput([_dataSave, _dataDelete])
+	_disableWait()
 
 ### dialog
 
@@ -438,8 +441,7 @@ func _spring(a := _anchor, c := _interface) -> void:
 	_tween.interpolate_property(c, "anchor_top", null, a.position.y, _time, _trans, _ease)
 	_tween.interpolate_property(c, "anchor_right", null, a.size.x, _time, _trans, _ease)
 	_tween.interpolate_property(c, "anchor_bottom", null, a.size.y, _time, _trans, _ease)
-	if not _tween.start():
-		print("error")
+	_tween.start():
 
 func _validEmail(text: String) -> bool: return _regex.search(text) != null
 
@@ -454,11 +456,15 @@ func _errorSet(control: Control) -> void:
 	control.modulate = _disconnectedColor
 
 func _disableInput(controls: Array) -> void:
-	Cursor.wait = true
+	_enableWait()
 	for control in controls:
 		control.disabled = true
 
 func _enableInput(controls: Array) -> void:
-	Cursor.wait = false
+	_disableWait()
 	for control in controls:
 		control.disabled = false
+
+func _enableWait() -> void: Cursor.wait = true
+
+func _disableWait() -> void: Cursor.wait = false

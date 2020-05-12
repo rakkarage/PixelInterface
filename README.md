@@ -9,3 +9,6 @@ Pixel-perfect fonts and user interface elements.
 
 - Add api key in file @ res://PixelInterface/Connect/apikey.txt that is ignored by git.
 - Replace 'godotconnect' Firestore project id in Firebase.gd.
+- set Firestore project database rules to something like
+
+    allow read, write: if request.auth.uid != null;

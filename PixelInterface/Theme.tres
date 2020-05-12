@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=26 format=2]
+[gd_resource type="Theme" load_steps=29 format=2]
 
 [ext_resource path="res://PixelInterface/Style/Tooltip.tres" type="StyleBox" id=1]
 [ext_resource path="res://PixelInterface/Style/Panel.tres" type="StyleBox" id=2]
@@ -16,7 +16,7 @@
 [ext_resource path="res://PixelInterface/Style/ScrollProgress.tres" type="StyleBox" id=14]
 [ext_resource path="res://PixelInterface/Sprite/South.png" type="Texture" id=15]
 [ext_resource path="res://PixelInterface/Sprite/ScrollThumb.png" type="Texture" id=16]
-[ext_resource path="res://PixelInterface/Sprite/Tooltip.png" type="Texture" id=17]
+[ext_resource path="res://PixelInterface/Sprite/TickNorth.png" type="Texture" id=17]
 [ext_resource path="res://PixelInterface/Style/Check.tres" type="StyleBox" id=18]
 [ext_resource path="res://PixelInterface/Style/CheckDisable.tres" type="StyleBox" id=19]
 [ext_resource path="res://PixelInterface/Style/CheckPress.tres" type="StyleBox" id=20]
@@ -25,6 +25,9 @@
 [ext_resource path="res://PixelInterface/Sprite/No.png" type="Texture" id=23]
 [ext_resource path="res://PixelInterface/Sprite/Off.png" type="Texture" id=24]
 [ext_resource path="res://PixelInterface/Sprite/On.png" type="Texture" id=25]
+[ext_resource path="res://PixelInterface/Sprite/West.png" type="Texture" id=26]
+[ext_resource path="res://PixelInterface/Sprite/East.png" type="Texture" id=27]
+[ext_resource path="res://PixelInterface/Sprite/TickWest.png" type="Texture" id=28]
 
 [resource]
 default_font = ExtResource( 5 )
@@ -75,15 +78,15 @@ CheckButton/styles/hover = ExtResource( 21 )
 CheckButton/styles/hover_pressed = ExtResource( 20 )
 CheckButton/styles/normal = ExtResource( 18 )
 CheckButton/styles/pressed = ExtResource( 20 )
-HScrollBar/icons/decrement = ExtResource( 15 )
-HScrollBar/icons/decrement_highlight = ExtResource( 15 )
-HScrollBar/icons/increment = ExtResource( 12 )
-HScrollBar/icons/increment_highlight = ExtResource( 12 )
+HScrollBar/icons/decrement = ExtResource( 26 )
+HScrollBar/icons/decrement_highlight = ExtResource( 26 )
+HScrollBar/icons/increment = ExtResource( 27 )
+HScrollBar/icons/increment_highlight = ExtResource( 27 )
 HScrollBar/styles/grabber = ExtResource( 14 )
 HScrollBar/styles/grabber_highlight = ExtResource( 14 )
 HScrollBar/styles/grabber_pressed = ExtResource( 14 )
 HScrollBar/styles/scroll = ExtResource( 13 )
-HScrollBar/styles/scroll_focus = ExtResource( 10 )
+HScrollBar/styles/scroll_focus = null
 HSlider/icons/grabber = ExtResource( 16 )
 HSlider/icons/grabber_disabled = ExtResource( 16 )
 HSlider/icons/grabber_highlight = ExtResource( 16 )
@@ -224,18 +227,18 @@ Tree/styles/selected_focus = null
 Tree/styles/title_button_hover = null
 Tree/styles/title_button_normal = null
 Tree/styles/title_button_pressed = null
-VScrollBar/icons/decrement = ExtResource( 15 )
-VScrollBar/icons/decrement_highlight = ExtResource( 15 )
-VScrollBar/icons/increment = ExtResource( 12 )
-VScrollBar/icons/increment_highlight = ExtResource( 12 )
+VScrollBar/icons/decrement = ExtResource( 12 )
+VScrollBar/icons/decrement_highlight = ExtResource( 12 )
+VScrollBar/icons/increment = ExtResource( 15 )
+VScrollBar/icons/increment_highlight = ExtResource( 15 )
 VScrollBar/styles/grabber = ExtResource( 14 )
 VScrollBar/styles/grabber_highlight = ExtResource( 14 )
 VScrollBar/styles/grabber_pressed = ExtResource( 14 )
 VScrollBar/styles/scroll = ExtResource( 13 )
-VScrollBar/styles/scroll_focus = ExtResource( 10 )
+VScrollBar/styles/scroll_focus = null
 VSlider/icons/grabber = ExtResource( 16 )
 VSlider/icons/grabber_disabled = ExtResource( 16 )
 VSlider/icons/grabber_highlight = ExtResource( 16 )
-VSlider/icons/tick = ExtResource( 17 )
+VSlider/icons/tick = ExtResource( 28 )
 VSlider/styles/grabber_area = ExtResource( 14 )
 VSlider/styles/slider = ExtResource( 13 )

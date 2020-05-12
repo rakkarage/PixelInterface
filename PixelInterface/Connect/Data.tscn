@@ -74,6 +74,9 @@ focus_neighbour_right = NodePath("../Text")
 focus_neighbour_bottom = NodePath("../Text")
 focus_next = NodePath("../Text")
 focus_previous = NodePath("../Title")
+max_value = 4.0
+tick_count = 5
+ticks_on_borders = true
 
 [node name="Text" type="TextEdit" parent="Center/Panel/VBox/Panel/VBox"]
 margin_top = 47.0

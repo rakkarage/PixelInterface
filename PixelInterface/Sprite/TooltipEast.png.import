@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Tooltip.png-c5a5b68891a0f82c7003dcb42c69e8e4.stex"
+path="res://.import/TooltipEast.png-d2adb56d63bb0b2c1f8781d581accd01.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Tooltip.png"
-dest_files=[ "res://.import/Tooltip.png-c5a5b68891a0f82c7003dcb42c69e8e4.stex" ]
+source_file="res://PixelInterface/Sprite/TooltipEast.png"
+dest_files=[ "res://.import/TooltipEast.png-d2adb56d63bb0b2c1f8781d581accd01.stex" ]
 
 [params]
 

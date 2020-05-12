@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "Connect",
+"language": "GDScript",
+"path": "res://PixelInterface/Connect/Connect.gd"
+}, {
 "base": "Reference",
 "class": "NakamaAPI",
 "language": "GDScript",
@@ -85,6 +90,7 @@ _global_script_classes=[ {
 "path": "res://Intro/Utility.gd"
 } ]
 _global_script_class_icons={
+"Connect": "",
 "NakamaAPI": "",
 "NakamaAsyncResult": "",
 "NakamaClient": "",

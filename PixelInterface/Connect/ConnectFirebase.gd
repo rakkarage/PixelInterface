@@ -18,7 +18,7 @@ func _ready() -> void:
 
 ### status
 
-func _on_Status_pressed() -> void:
+func _onStatusPressed() -> void:
 	if not Firebase.authenticated():
 		_springSignIn()
 	else:
@@ -44,7 +44,7 @@ func _onUpdatedStatus(email: String) -> void:
 
 ### signIn
 
-func _on_SignIn_pressed() -> void:
+func _onSignInPressed() -> void:
 	_clickAudio.play()
 	var email = _signInEmail.text
 	var password = _signInPassword.text
@@ -69,13 +69,13 @@ func _onSignedIn(response: Array) -> void:
 		else:
 			Firebase.tokenClear()
 	else:
-		_showError(response)
+		_handleError(response)
 		_resetEmail.text = _signInEmail.text
 	_enableInput([_signInSignIn])
 
 ### signUp
 
-func _on_SignUp_pressed() -> void:
+func _onSignUpPressed() -> void:
 	_clickAudio.play()
 	var email = _signUpEmail.text
 	var password = _signUpPassword.text
@@ -102,12 +102,12 @@ func _onSignedUp(response: Array) -> void:
 		_signUpConfirm.text = ""
 		_springSignIn(false)
 	else:
-		_showError(response)
+		_handleError(response)
 	_enableInput([_signUpSignUp])
 
 ### reset password
 
-func _on_Reset_pressed() -> void:
+func _onResetPressed() -> void:
 	_clickAudio.play()
 	var email = _resetEmail.text
 	_errorClear([_resetEmail])
@@ -123,12 +123,12 @@ func _onReset(response: Array) -> void:
 		_resetEmail.text = ""
 		_springSignIn(false)
 	else:
-		_showError(response)
+		_handleError(response)
 	_enableInput([_resetReset])
 
 ### account
 
-func _on_SignOut_pressed() -> void:
+func _onSignOutPressed() -> void:
 	_clickAudio.play()
 	_disableInput([_accountSignOut])
 	Firebase.signOut()
@@ -141,7 +141,7 @@ func _onSignedOut() -> void:
 
 ### change email
 
-func _on_ChangeEmail_pressed() -> void:
+func _onChangeEmailPressed() -> void:
 	_clickAudio.play()
 	var email = _emailEmail.text
 	var confirm = _emailConfirm.text
@@ -164,12 +164,12 @@ func _onChangedEmail(response: Array) -> void:
 		_updateStatus()
 		_springAccount(false)
 	else:
-		_showError(response)
+		_handleError(response)
 	_enableInput([_emailChange])
 
 ### change password
 
-func _on_ChangePassword_pressed() -> void:
+func _onChangePasswordPressed() -> void:
 	_clickAudio.play()
 	var password = _passwordPassword.text
 	var confirm = _passwordConfirm.text
@@ -192,7 +192,7 @@ func _onChangedPassword(response: Array) -> void:
 		_updateStatus()
 		_springAccount(false)
 	else:
-		_showError(response)
+		_handleError(response)
 	_enableInput([_passwordChange])
 
 ### data
@@ -217,7 +217,7 @@ func _loadDoc() -> void:
 	_disableInput([_dataSave, _dataDelete])
 	Firebase.loadDoc(_http, "users/%s")
 
-func _saveDoc() -> void:
+func _onSaveDocPressed() -> void:
 	_clickAudio.play()
 	_doc.title.stringValue = _dataTitle.text
 	_doc.number.integerValue = str(_dataNumber.value)
@@ -228,7 +228,7 @@ func _saveDoc() -> void:
 	else:
 		Firebase.saveDoc(_http, "users?documentId=%s", _doc)
 
-func _deleteDoc() -> void:
+func _onDeleteDocPressed() -> void:
 	_clickAudio.play()
 	_disableInput([_dataSave, _dataDelete])
 	Firebase.deleteDoc(_http, "users/%s")
@@ -244,3 +244,7 @@ func _onDocChanged(response: Array) -> void:
 			_setDoc(o.fields)
 			_enableInput([_dataSave, _dataDelete])
 	_disableWait()
+
+func _handleError(response: Array) -> void:
+	var o = JSON.parse(response[3].get_string_from_ascii()).result
+	_showError(o.error.message.capitalize())

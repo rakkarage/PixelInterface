@@ -89,35 +89,35 @@ const _rememberPath := "user://remember.txt"
 var _f := File.new()
 
 func _ready():
-	Utility.ok(_status.connect("pressed", self, "_on_Status_pressed"))
+	Utility.ok(_status.connect("pressed", self, "_onStatusPressed"))
 
-	Utility.ok(_signInRemember.connect("pressed", self, "_on_Remember_pressed"))
-	Utility.ok(_signInSignIn.connect("pressed", self, "_on_SignIn_pressed"))
+	Utility.ok(_signInRemember.connect("pressed", self, "_onRememberPressed"))
+	Utility.ok(_signInSignIn.connect("pressed", self, "_onSignInPressed"))
 	Utility.ok(_signInSignUp.connect("pressed", self, "_springSignUp"))
 	Utility.ok(_signInReset.connect("pressed", self, "_springReset"))
 	Utility.ok(_signInClose.connect("pressed", self, "_springStatus"))
 
-	Utility.ok(_signUpSignUp.connect("pressed", self, "_on_SignUp_pressed"))
+	Utility.ok(_signUpSignUp.connect("pressed", self, "_onSignUpPressed"))
 	Utility.ok(_signUpClose.connect("pressed", self, "_springSignIn"))
 
-	Utility.ok(_resetReset.connect("pressed", self, "_on_Reset_pressed"))
+	Utility.ok(_resetReset.connect("pressed", self, "_onResetPressed"))
 	Utility.ok(_resetClose.connect("pressed", self, "_springSignIn"))
 
-	Utility.ok(_accountSignOut.connect("pressed", self, "_on_SignOut_pressed"))
+	Utility.ok(_accountSignOut.connect("pressed", self, "_onSignOutPressed"))
 	Utility.ok(_accountChangeEmail.connect("pressed", self, "_springEmail"))
 	Utility.ok(_accountChangePassword.connect("pressed", self, "_springPassword"))
 	Utility.ok(_accountClose.connect("pressed", self, "_springStatus"))
 
-	Utility.ok(_emailChange.connect("pressed", self, "_on_ChangeEmail_pressed"))
+	Utility.ok(_emailChange.connect("pressed", self, "_onChangeEmailPressed"))
 	Utility.ok(_emailClose.connect("pressed", self, "_springAccount"))
 
-	Utility.ok(_passwordChange.connect("pressed", self, "_on_ChangePassword_pressed"))
+	Utility.ok(_passwordChange.connect("pressed", self, "_onChangePasswordPressed"))
 	Utility.ok(_passwordClose.connect("pressed", self, "_springAccount"))
 
-	Utility.ok(_messageClose.connect("pressed", self, "_hideError"))
+	Utility.ok(_messageClose.connect("pressed", self, "_onCloseErrorPressed"))
 
-	Utility.ok(_dataSave.connect("pressed", self, "_saveDoc"))
-	Utility.ok(_dataDelete.connect("pressed", self, "_deleteDoc"))
+	Utility.ok(_dataSave.connect("pressed", self, "_onSaveDocPressed"))
+	Utility.ok(_dataDelete.connect("pressed", self, "_onDeleteDocPressed"))
 
 	Utility.ok(_regex.compile(_pattern))
 
@@ -126,7 +126,7 @@ func _ready():
 		_signInRemember.pressed = bool(_f.get_8())
 		_f.close()
 
-func _on_Remember_pressed() -> void:
+func _onRememberPressed() -> void:
 	Utility.ok(_f.open(_rememberPath, File.WRITE))
 	_f.store_8(_signInRemember.pressed)
 	_f.close()
@@ -144,15 +144,14 @@ func _focus(focus: Control, accept: Control, cancel: Control):
 		_currentCancel = cancel
 		_currentCancel.shortcut = _cancel
 
-func _showError(response: Array) -> void:
+func _showError(error: String) -> void:
 	_errorAudio.play()
 	_messageClose.grab_focus()
 	_messageTitle.text = "Error"
-	var o = JSON.parse(response[3].get_string_from_ascii()).result
-	_messageText.text = o.error.message.capitalize()
+	_messageText.text = error
 	_spring(_messageAnchor, _dialog, false)
 
-func _hideError() -> void:
+func _onCloseErrorPressed() -> void:
 	_clickAudio.play()
 	_spring(_anchor, _dialog)
 

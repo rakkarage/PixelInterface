@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/West.png-15ea6ae933c9a889e2654e6905743c67.stex"
+path="res://.import/ArrowNorth.png-defaedbbab3e647690fd59961c27cf9a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/West.png"
-dest_files=[ "res://.import/West.png-15ea6ae933c9a889e2654e6905743c67.stex" ]
+source_file="res://PixelInterface/Sprite/ArrowNorth.png"
+dest_files=[ "res://.import/ArrowNorth.png-defaedbbab3e647690fd59961c27cf9a.stex" ]
 
 [params]
 

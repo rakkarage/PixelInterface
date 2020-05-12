@@ -29,10 +29,6 @@
 [ext_resource path="res://PixelInterface/Sprite/ArrowEast.png" type="Texture" id=27]
 [ext_resource path="res://PixelInterface/Sprite/TickWest.png" type="Texture" id=28]
 
-
-
-
-
 [resource]
 default_font = ExtResource( 5 )
 Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )

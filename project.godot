@@ -113,6 +113,7 @@ config/icon="res://icon.png"
 
 Cursor="*res://PixelInterface/Cursor.tscn"
 Firebase="*res://PixelInterface/Connect/Firebase.gd"
+Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 
 [display]
 

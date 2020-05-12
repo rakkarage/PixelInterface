@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://PixelInterface/Connect/Status.tscn" type="PackedScene" id=1]
 [ext_resource path="res://PixelInterface/Connect/SignIn.tscn" type="PackedScene" id=2]
@@ -8,24 +8,18 @@
 [ext_resource path="res://PixelInterface/Connect/Password.tscn" type="PackedScene" id=6]
 [ext_resource path="res://PixelInterface/Connect/Email.tscn" type="PackedScene" id=7]
 [ext_resource path="res://PixelInterface/Connect/Message.tscn" type="PackedScene" id=8]
-[ext_resource path="res://PixelInterface/Connect/Connect.gd" type="Script" id=9]
 [ext_resource path="res://PixelInterface/Audio/Error.tres" type="AudioStream" id=10]
 [ext_resource path="res://PixelInterface/Audio/Click.tres" type="AudioStream" id=11]
 [ext_resource path="res://PixelInterface/Back.tscn" type="PackedScene" id=12]
 [ext_resource path="res://PixelInterface/Audio/Success.tres" type="AudioStream" id=13]
-[ext_resource path="res://PixelInterface/Connect/Accept.tres" type="ShortCut" id=14]
-[ext_resource path="res://PixelInterface/Connect/Cancel.tres" type="ShortCut" id=15]
 [ext_resource path="res://PixelInterface/Connect/Data.tscn" type="PackedScene" id=16]
 
 [node name="Connect" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-_accept = ExtResource( 14 )
-_cancel = ExtResource( 15 )
 
 [node name="Container" type="ViewportContainer" parent="."]
 anchor_right = 1.0

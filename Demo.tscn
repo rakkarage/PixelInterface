@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://PixelInterface/Connect/Connect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://PixelInterface/Connect/ConnectFirebase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Intro/Intro.tscn" type="PackedScene" id=2]
 
 [node name="Demo" type="Node"]

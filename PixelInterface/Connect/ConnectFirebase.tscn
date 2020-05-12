@@ -1,0 +1,11 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://PixelInterface/Connect/Connect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://PixelInterface/Connect/Connect.gd" type="Script" id=2]
+[ext_resource path="res://PixelInterface/Connect/Cancel.tres" type="ShortCut" id=3]
+[ext_resource path="res://PixelInterface/Connect/Accept.tres" type="ShortCut" id=4]
+
+[node name="Connect" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+_accept = ExtResource( 4 )
+_cancel = ExtResource( 3 )

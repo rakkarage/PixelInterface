@@ -7,7 +7,6 @@
 [ext_resource path="res://PixelInterface/Style/ClosePress.tres" type="StyleBox" id=5]
 [ext_resource path="res://PixelInterface/Style/CloseFocus.tres" type="StyleBox" id=6]
 
-
 [node name="Close" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -441,7 +441,7 @@ func _spring(a := _anchor, c := _interface) -> void:
 	_tween.interpolate_property(c, "anchor_top", null, a.position.y, _time, _trans, _ease)
 	_tween.interpolate_property(c, "anchor_right", null, a.size.x, _time, _trans, _ease)
 	_tween.interpolate_property(c, "anchor_bottom", null, a.size.y, _time, _trans, _ease)
-	_tween.start():
+	_tween.start()
 
 func _validEmail(text: String) -> bool: return _regex.search(text) != null
 

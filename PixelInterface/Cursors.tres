@@ -19,35 +19,35 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 16, 16 )
+region = Rect2( 0, 0, 10, 10 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 6 )
-region = Rect2( 16, 0, 16, 16 )
+region = Rect2( 10, 0, 10, 10 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 6 )
-region = Rect2( 32, 0, 16, 16 )
+region = Rect2( 20, 0, 10, 10 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 6 )
-region = Rect2( 48, 0, 16, 16 )
+region = Rect2( 30, 0, 10, 10 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 16, 16 )
+region = Rect2( 0, 0, 26, 26 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 4 )
-region = Rect2( 16, 0, 16, 16 )
+region = Rect2( 26, 0, 26, 26 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 4 )
-region = Rect2( 32, 0, 16, 16 )
+region = Rect2( 52, 0, 26, 26 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 4 )
-region = Rect2( 48, 0, 16, 16 )
+region = Rect2( 78, 0, 26, 26 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 11 )

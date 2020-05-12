@@ -454,11 +454,11 @@ func _errorSet(control: Control) -> void:
 	control.modulate = _disconnectedColor
 
 func _disableInput(controls: Array) -> void:
-	Input.set_default_cursor_shape(Input.CURSOR_WAIT)
+	Cursor.wait = true
 	for control in controls:
 		control.disabled = true
 
 func _enableInput(controls: Array) -> void:
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	Cursor.wait = false
 	for control in controls:
 		control.disabled = false

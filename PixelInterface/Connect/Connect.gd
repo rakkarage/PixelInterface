@@ -126,6 +126,11 @@ func _ready():
 		_signInRemember.pressed = bool(_f.get_8())
 		_f.close()
 
+func _on_Remember_pressed() -> void:
+	Utility.ok(_f.open(_rememberPath, File.WRITE))
+	_f.store_8(_signInRemember.pressed)
+	_f.close()
+
 func _focus(focus: Control, accept: Control, cancel: Control):
 	focus.grab_focus()
 	if _currentAccept != null:

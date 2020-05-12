@@ -1,10 +1,5 @@
 extends Connect
 
-func _on_Remember_pressed() -> void:
-	Utility.ok(_f.open(_rememberPath, File.WRITE))
-	_f.store_8(_signInRemember.pressed)
-	_f.close()
-
 func _ready() -> void:
 	Utility.ok(Firebase.connect("signedIn", self, "_onSignedIn"))
 	Utility.ok(Firebase.connect("signedUp", self, "_onSignedUp"))

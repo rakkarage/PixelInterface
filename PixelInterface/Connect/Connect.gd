@@ -145,13 +145,14 @@ func _showError(response: Array) -> void:
 	_messageTitle.text = "Error"
 	var o = JSON.parse(response[3].get_string_from_ascii()).result
 	_messageText.text = o.error.message.capitalize()
-	_spring(_messageAnchor, _dialog)
+	_spring(_messageAnchor, _dialog, false)
 
 func _hideError() -> void:
 	_clickAudio.play()
 	_spring(_anchor, _dialog)
 
-func _spring(a := _anchor, c := _interface) -> void:
+func _spring(a := _anchor, c := _interface, click := true) -> void:
+	if click: _clickAudio.play()
 	_tween.interpolate_property(c, "anchor_left", null, a.position.x, _time, _trans, _ease)
 	_tween.interpolate_property(c, "anchor_top", null, a.position.y, _time, _trans, _ease)
 	_tween.interpolate_property(c, "anchor_right", null, a.size.x, _time, _trans, _ease)
@@ -159,37 +160,30 @@ func _spring(a := _anchor, c := _interface) -> void:
 	_tween.start()
 
 func _springStatus(click := true) -> void:
-	if click: _clickAudio.play()
 	_focus(_status, _status, null)
-	_spring()
+	_spring(_anchor, _interface, click)
 
 func _springSignIn(click := true) -> void:
-	if click: _clickAudio.play()
 	_focus(_signInEmail, _signInSignIn, _signInClose)
-	_spring(_signInAnchor)
+	_spring(_signInAnchor, _interface, click)
 
 func _springSignUp() -> void:
-	_clickAudio.play()
 	_focus(_signUpEmail, _signUpSignUp, _signUpClose)
 	_spring(_signUpAnchor)
 
 func _springReset() -> void:
-	_clickAudio.play()
 	_focus(_resetEmail, _resetReset, _resetClose)
 	_spring(_resetAnchor)
 
 func _springAccount(click := true) -> void:
-	if click: _clickAudio.play()
 	_focus(_accountSignOut, _accountSignOut, _accountClose)
-	_spring(_accountAnchor)
+	_spring(_accountAnchor, _interface, click)
 
 func _springEmail() -> void:
-	_clickAudio.play()
 	_focus(_emailEmail, _emailChange, _emailClose)
 	_spring(_emailAnchor)
 
 func _springPassword() -> void:
-	_clickAudio.play()
 	_focus(_passwordPassword, _passwordChange, _passwordClose)
 	_spring(_passwordAnchor)
 

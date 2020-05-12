@@ -120,3 +120,101 @@ func _ready():
 	Utility.ok(_dataDelete.connect("pressed", self, "_deleteDoc"))
 
 	Utility.ok(_regex.compile(_pattern))
+
+	if _f.file_exists(_rememberPath):
+		Utility.ok(_f.open(_rememberPath, File.READ))
+		_signInRemember.pressed = bool(_f.get_8())
+		_f.close()
+
+func _focus(focus: Control, accept: Control, cancel: Control):
+	focus.grab_focus()
+	if _currentAccept != null:
+		_currentAccept.shortcut = null
+	if accept != null:
+		_currentAccept = accept
+		_currentAccept.shortcut = _accept
+	if _currentCancel != null:
+		_currentCancel.shortcut = null
+	if cancel != null:
+		_currentCancel = cancel
+		_currentCancel.shortcut = _cancel
+
+func _showError(response: Array) -> void:
+	_errorAudio.play()
+	_messageClose.grab_focus()
+	_messageTitle.text = "Error"
+	var o = JSON.parse(response[3].get_string_from_ascii()).result
+	_messageText.text = o.error.message.capitalize()
+	_spring(_messageAnchor, _dialog)
+
+func _hideError() -> void:
+	_clickAudio.play()
+	_spring(_anchor, _dialog)
+
+func _spring(a := _anchor, c := _interface) -> void:
+	_tween.interpolate_property(c, "anchor_left", null, a.position.x, _time, _trans, _ease)
+	_tween.interpolate_property(c, "anchor_top", null, a.position.y, _time, _trans, _ease)
+	_tween.interpolate_property(c, "anchor_right", null, a.size.x, _time, _trans, _ease)
+	_tween.interpolate_property(c, "anchor_bottom", null, a.size.y, _time, _trans, _ease)
+	_tween.start()
+
+func _springStatus(click := true) -> void:
+	if click: _clickAudio.play()
+	_focus(_status, _status, null)
+	_spring()
+
+func _springSignIn(click := true) -> void:
+	if click: _clickAudio.play()
+	_focus(_signInEmail, _signInSignIn, _signInClose)
+	_spring(_signInAnchor)
+
+func _springSignUp() -> void:
+	_clickAudio.play()
+	_focus(_signUpEmail, _signUpSignUp, _signUpClose)
+	_spring(_signUpAnchor)
+
+func _springReset() -> void:
+	_clickAudio.play()
+	_focus(_resetEmail, _resetReset, _resetClose)
+	_spring(_resetAnchor)
+
+func _springAccount(click := true) -> void:
+	if click: _clickAudio.play()
+	_focus(_accountSignOut, _accountSignOut, _accountClose)
+	_spring(_accountAnchor)
+
+func _springEmail() -> void:
+	_clickAudio.play()
+	_focus(_emailEmail, _emailChange, _emailClose)
+	_spring(_emailAnchor)
+
+func _springPassword() -> void:
+	_clickAudio.play()
+	_focus(_passwordPassword, _passwordChange, _passwordClose)
+	_spring(_passwordAnchor)
+
+func _validEmail(text: String) -> bool: return _regex.search(text) != null
+
+func _validPassword(text: String) -> bool: return text.length() > 2
+
+func _errorClear(controls: Array) -> void:
+	for i in range(controls.size()):
+		controls[i].modulate = Color.white
+
+func _errorSet(control: Control) -> void:
+	_errorAudio.play()
+	control.modulate = _disconnectedColor
+
+func _disableInput(controls: Array) -> void:
+	_enableWait()
+	for control in controls:
+		control.disabled = true
+
+func _enableInput(controls: Array) -> void:
+	_disableWait()
+	for control in controls:
+		control.disabled = false
+
+func _enableWait() -> void: Cursor.wait = true
+
+func _disableWait() -> void: Cursor.wait = false

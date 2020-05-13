@@ -1,4 +1,4 @@
-extends Object
+extends Node
 
 const _storeFile := "user://Store.ini"
 var _store := ConfigFile.new()

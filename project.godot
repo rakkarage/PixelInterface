@@ -112,12 +112,13 @@ _global_script_class_icons={
 
 config/name="PixelInterface"
 config/description="Pixel-perfect fonts and user interface elements."
-run/main_scene="res://Demo.tscn"
+run/main_scene="res://PixelInterface/Connect/ConnectNakama.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Cursor="*res://PixelInterface/Cursor.tscn"
+Store="*res://PixelInterface/Connect/Store.gd"
 Firebase="*res://PixelInterface/Connect/Firebase.gd"
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 

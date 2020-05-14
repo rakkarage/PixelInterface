@@ -4,4 +4,4 @@
 *.sln
 Properties/
 apikey.txt
-NakamaServer/nakama
+NakamaServer/nakama/data/.cookie

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MessageError.png-68da7c76582add6f5e31b9ccbfc7e525.stex"
+path="res://.import/MessageError.png-65348dc18693a8aa887be34414bc51c6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Dialog/MessageError.png"
-dest_files=[ "res://.import/MessageError.png-68da7c76582add6f5e31b9ccbfc7e525.stex" ]
+source_file="res://PixelInterface/Sprite/MessageError.png"
+dest_files=[ "res://.import/MessageError.png-65348dc18693a8aa887be34414bc51c6.stex" ]
 
 [params]
 

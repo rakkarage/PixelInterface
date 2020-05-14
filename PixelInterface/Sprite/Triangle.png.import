@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Triangle.png-806b8d9af1bd873d83094958e1d02c47.stex"
+path="res://.import/Triangle.png-e901e1c35dd3d425147774dad75218ad.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Dialog/Triangle.png"
-dest_files=[ "res://.import/Triangle.png-806b8d9af1bd873d83094958e1d02c47.stex" ]
+source_file="res://PixelInterface/Sprite/Triangle.png"
+dest_files=[ "res://.import/Triangle.png-e901e1c35dd3d425147774dad75218ad.stex" ]
 
 [params]
 

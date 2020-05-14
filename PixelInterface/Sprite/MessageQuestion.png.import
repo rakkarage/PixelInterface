@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MessageQuestion.png-7ab6f3722f3169815e98de0727898582.stex"
+path="res://.import/MessageQuestion.png-daaaf03d46debe1855d434effc894a2f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Dialog/MessageQuestion.png"
-dest_files=[ "res://.import/MessageQuestion.png-7ab6f3722f3169815e98de0727898582.stex" ]
+source_file="res://PixelInterface/Sprite/MessageQuestion.png"
+dest_files=[ "res://.import/MessageQuestion.png-daaaf03d46debe1855d434effc894a2f.stex" ]
 
 [params]
 

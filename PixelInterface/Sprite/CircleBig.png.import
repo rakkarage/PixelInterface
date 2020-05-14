@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CircleBig.png-131456e8c83ee63513adee23ff2f79ad.stex"
+path="res://.import/CircleBig.png-22b9a7fcbac78ff996cdc02ebac2e867.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Dialog/CircleBig.png"
-dest_files=[ "res://.import/CircleBig.png-131456e8c83ee63513adee23ff2f79ad.stex" ]
+source_file="res://PixelInterface/Sprite/CircleBig.png"
+dest_files=[ "res://.import/CircleBig.png-22b9a7fcbac78ff996cdc02ebac2e867.stex" ]
 
 [params]
 

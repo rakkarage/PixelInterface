@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MessageWarning.png-2149c39899dc9d472a24c7f2986b8483.stex"
+path="res://.import/MessageWarning.png-8efcce98ef38137eab36c569e006e23c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Dialog/MessageWarning.png"
-dest_files=[ "res://.import/MessageWarning.png-2149c39899dc9d472a24c7f2986b8483.stex" ]
+source_file="res://PixelInterface/Sprite/MessageWarning.png"
+dest_files=[ "res://.import/MessageWarning.png-8efcce98ef38137eab36c569e006e23c.stex" ]
 
 [params]
 

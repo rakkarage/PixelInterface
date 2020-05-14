@@ -193,7 +193,8 @@ func _springPassword() -> void:
 
 func _validEmail(text: String) -> bool: return _regex.search(text) != null
 
-func _validPassword(text: String) -> bool: return text.length() > 2
+# firebase requires 3 nakama requires 8
+func _validPassword(text: String) -> bool: return text.length() > 7
 
 func _errorClear(controls: Array) -> void:
 	for i in range(controls.size()):

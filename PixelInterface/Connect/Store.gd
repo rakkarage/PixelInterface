@@ -12,3 +12,6 @@ func setValue(section: String, key: String, value: String) -> void:
 
 func getValue(section: String, key: String, default: String) -> String:
 	return _store.get_value(section, key, default)
+
+func clearValue(section: String, key: String) -> void:
+	_store.erase_section_key(section, key)

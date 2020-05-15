@@ -1,6 +1,6 @@
 extends Node
 
-const _storeFile := "user://Store.ini"
+const _storeFile := "user://Store.cfg"
 var _store := ConfigFile.new()
 
 func _ready() -> void:

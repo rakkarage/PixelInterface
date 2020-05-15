@@ -5,44 +5,53 @@ var _session: NakamaSession
 
 const _section = "nakama"
 const _key = "session"
+func SetValue(value: String) -> void: Store.setValue(_section, _key, value)
+func GetValue() -> String: return Store.getValue(_section, _key)
+func ClearValue() -> void: Store.clearValue(_section, _key)
 
-# func _ready() -> void:
-	# var token = Store.getValue(_section, _key, "")
-	# var session = NakamaClient.restore_session(token)
-	# if session.valid and not session.expired:
-	# 	_session = session
-	# 	return
-	# var deviceId = OS.get_unique_id()
-	# _session = yield(_client.authenticate_device_async(deviceId), "completed")
-	# if not _session.is_exception():
-	# 	Store.setValue(_section, _key, _session.token)
-	# print(_session)
+func authenticated() -> bool:
+	return _session == null or _session.created == false or _session.email == ""
+
+func _ready() -> void:
+	if _signInRemember.pressed:
+		var session = NakamaClient.restore_session(GetValue())
+		if session.valid and not session.expired:
+			_session = session
+			return
+		var deviceId = OS.get_unique_id()
+		_disableInput([_status])
+		_session = yield(_client.authenticate_device_async(deviceId), "completed")
+		_enableInput([_status])
+		if not _session.is_exception():
+			SetValue(_session.token)
+
+	_updateStatus()
+	_status.grab_focus()
 
 ### status
 
 func _onStatusPressed() -> void:
-	if _session == null or _session.created == false:
+	if authenticated():
 		_springSignIn()
 	else:
 		_springAccount()
 
 func _updateStatus() -> void:
-	# Firebase.lookup(_http)
-	pass
-
-func _onUpdatedStatus(email: String) -> void:
+	_disableInput([_status])
+	var account : NakamaAPI.ApiAccount = yield(_client.get_account_async(_session), "completed")
+	_enableInput([_status])
+	if account.is_exception():
+		print("Exception: " + account.to_string())
+		return
+	var email = account.email
 	if email.empty():
 		_status.modulate = _disconnectedColor
 		_statusEmail.text = "Welcome."
 		_accountEmail.text = ""
-		_dataSave.disabled = true
-		_dataDelete.disabled = true
 	else:
 		_status.modulate = _connectedColor
 		_statusEmail.text = email
 		_accountEmail.text = email
-		_dataSave.disabled = false
-		_dataDelete.disabled = false
 	# _loadDoc()
 
 ### signIn
@@ -59,20 +68,20 @@ func _onSignInPressed() -> void:
 		_errorSet(_signInPassword)
 		return
 	_disableInput([_signInSignIn])
-	_session = yield(_client.login_async(email, password), "completed")
-	if not _session.is_exception() and _session.valid and not _session.expired:
+	_session = yield(_client.authenticate_email_async(email, password, null, false), "completed")
+	_enableInput([_signInSignIn])
+	if _session.is_exception():
+		_showError(_session.message.to_string())
+		_resetEmail.text = _signInEmail.text
+	elif _session.valid and not _session.expired:
 		_successAudio.play()
 		_signInPassword.text = ""
 		_updateStatus()
 		_springStatus(false)
 		if _signInRemember.pressed:
-			Store.setValue(_section, _key, _session.token)
+			SetValue(_session.token)
 		else:
-			Firebase.tokenClear()
-	else:
-		_showError(_session.to_string())
-		_resetEmail.text = _signInEmail.text
-	_enableInput([_signInSignIn])
+			ClearValue()
 
 ### signUp
 
@@ -92,14 +101,14 @@ func _onSignUpPressed() -> void:
 		_errorSet(_signUpConfirm)
 		return
 	_disableInput([_signUpSignUp])
-	_session = yield(_client.register_async(email, password), "completed")
-	if not _session.is_exception() and _session.valid and not _session.expired:
+	_session = yield(_client.authenticate_email_async(email, password, null, true), "completed")
+	_enableInput([_signUpSignUp])
+	if _session.is_exception():
+		_showError(_session.message.to_string())
+	elif _session.valid and not _session.expired:
 		_successAudio.play()
 		_signInEmail.text = _signUpEmail.text
 		_signUpEmail.text = ""
 		_signUpPassword.text = ""
 		_signUpConfirm.text = ""
 		_springSignIn(false)
-	else:
-		_showError(_session.to_string())
-	_enableInput([_signUpSignUp])

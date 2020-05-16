@@ -1,3 +1,6 @@
 [submodule "Intro"]
 	path = Intro
 	url = ../Intro
+[submodule "Gename"]
+	path = Gename
+	url = ../Gename

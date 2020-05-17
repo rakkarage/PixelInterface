@@ -2,19 +2,14 @@ extends Connect
 
 onready var _client := Nakama.create_client("defaultkey", "127.0.0.1", 7350, "http")
 var _session: NakamaSession
-
-const _section = "nakama"
-const _key = "session"
-func SetValue(value: String) -> void: Store.setValue(_section, _key, value)
-func GetValue() -> String: return Store.getValue(_section, _key)
-func ClearValue() -> void: Store.clearValue(_section, _key)
+var _store = Store.new("nakama", "session")
 
 func authenticated() -> bool:
 	return _session == null or _session.created == false or _session.email == ""
 
 func _ready() -> void:
 	if _signInRemember.pressed:
-		var session = NakamaClient.restore_session(GetValue())
+		var session = NakamaClient.restore_session(_store.getValue())
 		if session.valid and not session.expired:
 			_session = session
 			return
@@ -23,7 +18,7 @@ func _ready() -> void:
 		_session = yield(_client.authenticate_device_async(deviceId), "completed")
 		_enableInput([_status])
 		if not _session.is_exception():
-			SetValue(_session.token)
+			_store.setValue(_session.token)
 
 	_updateStatus()
 	_status.grab_focus()
@@ -82,9 +77,9 @@ func _onSignInPressed() -> void:
 		_updateStatus()
 		_springStatus(false)
 		if _signInRemember.pressed:
-			SetValue(_session.token)
+			_store.setValue(_session.token)
 		else:
-			ClearValue()
+			_store.clearValue()
 
 ### signUp
 

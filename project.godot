@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://PixelInterface/Connect/Connect.gd"
 }, {
+"base": "Object",
+"class": "Gename",
+"language": "GDScript",
+"path": "res://Gename/Gename.gd"
+}, {
 "base": "Reference",
 "class": "NakamaAPI",
 "language": "GDScript",
@@ -91,6 +96,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Connect": "",
+"Gename": "",
 "NakamaAPI": "",
 "NakamaAsyncResult": "",
 "NakamaClient": "",

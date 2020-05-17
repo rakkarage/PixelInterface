@@ -16,6 +16,9 @@ func _ready() -> void:
 	_updateStatus()
 	_status.grab_focus()
 
+	# firebase: no password for change email!?
+	_emailPassword.enabled = false
+
 ### status
 
 func _onStatusPressed() -> void:

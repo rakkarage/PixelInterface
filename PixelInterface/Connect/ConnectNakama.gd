@@ -9,7 +9,7 @@ func authenticated() -> bool:
 
 func _ready() -> void:
 	if _signInRemember.pressed:
-		var session = NakamaClient.restore_session(_store.getValue())
+		var session = NakamaClient.restore_session(_store.data)
 		if session.valid and not session.expired:
 			_session = session
 			return
@@ -18,12 +18,12 @@ func _ready() -> void:
 		_session = yield(_client.authenticate_device_async(deviceId), "completed")
 		_enableInput([_status])
 		if not _session.is_exception():
-			_store.setValue(_session.token)
+			_store.data = _session.token
 
 	_updateStatus()
 	_status.grab_focus()
 
-	# nakama provides no password reset!?
+	# nakama: no password reset!?
 	_signInReset.disabled = true
 
 ### status
@@ -77,9 +77,9 @@ func _onSignInPressed() -> void:
 		_updateStatus()
 		_springStatus(false)
 		if _signInRemember.pressed:
-			_store.setValue(_session.token)
+			_store.data = _session.token
 		else:
-			_store.clearValue()
+			_store.clear()
 
 ### signUp
 
@@ -110,3 +110,70 @@ func _onSignUpPressed() -> void:
 		_signUpPassword.text = ""
 		_signUpConfirm.text = ""
 		_springSignIn(false)
+
+### reset password
+
+### account
+
+func _onSignOutPressed() -> void:
+	_clickAudio.play()
+	_store.clear()
+	_successAudio.play()
+	_updateStatus()
+	_springStatus()
+
+### change email
+
+func _onChangeEmailPressed() -> void:
+	_clickAudio.play()
+	var password = _emailPassword.text
+	var email = _emailEmail.text
+	var confirm = _emailConfirm.text
+	_errorClear([_emailPassword, _emailEmail, _emailConfirm])
+	if password.empty() or not _validPassword(password):
+		_errorSet(_emailPassword)
+		return
+	if email.empty() or not _validEmail(email):
+		_errorSet(_emailEmail)
+		return
+	if confirm != email:
+		_errorSet(_emailConfirm)
+		return
+	_disableInput([_emailChange])
+	_session = yield(_client.link_email_async(_session, email, password), "completed")
+	_enableInput([_emailChange])
+	if _session.is_exception():
+		_showError(_session.message.to_string())
+	elif _session.valid and not _session.expired:
+		_successAudio.play()
+		_emailEmail.text = ""
+		_emailConfirm.text = ""
+		Firebase.tokenSave()
+		_updateStatus()
+		_springAccount(false)
+
+### change password
+
+func _onChangePasswordPressed() -> void:
+	_clickAudio.play()
+	var password = _passwordPassword.text
+	var confirm = _passwordConfirm.text
+	_errorClear([_passwordPassword, _passwordConfirm])
+	if password.empty() or not _validPassword(password):
+		_errorSet(_passwordPassword)
+		return
+	if confirm != password:
+		_errorSet(_passwordConfirm)
+		return
+	_disableInput([_passwordChange])
+	_session = yield(_client.link_email_async(_session, _session.email, password), "completed")
+	_enableInput([_passwordChange])
+	if _session.is_exception():
+		_showError(_session.message.to_string())
+	elif _session.valid and not _session.expired:
+		_successAudio.play()
+		_passwordPassword.text = ""
+		_passwordConfirm.text = ""
+		_updateStatus()
+		_springAccount(false)
+		_store.data = _session.token

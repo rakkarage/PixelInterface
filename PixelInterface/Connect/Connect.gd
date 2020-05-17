@@ -30,6 +30,7 @@ onready var _accountChangeEmail    := $Container/Viewport/Interface/Account/Cent
 onready var _accountChangePassword := $Container/Viewport/Interface/Account/Center/Panel/VBox/HBox/Password
 onready var _accountClose          := $Container/Viewport/Interface/Account/Center/Panel/Close/Close
 
+onready var _emailPassword := $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Password
 onready var _emailEmail    := $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Email
 onready var _emailConfirm  := $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Confirm
 onready var _emailChange   := $Container/Viewport/Interface/Email/Center/Panel/VBox/Change

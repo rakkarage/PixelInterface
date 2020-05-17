@@ -28,6 +28,9 @@ func _ready() -> void:
 	_updateStatus()
 	_status.grab_focus()
 
+	# nakama provides no password reset!?
+	_signInReset.disabled = true
+
 ### status
 
 func _onStatusPressed() -> void:

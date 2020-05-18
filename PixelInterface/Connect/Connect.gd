@@ -14,6 +14,8 @@ onready var _signInSignUp   := $Container/Viewport/Interface/SignIn/Center/Panel
 onready var _signInReset    := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/HBox/Reset
 onready var _signInClose    := $Container/Viewport/Interface/SignIn/Center/Panel/Close/Close
 
+onready var _signUpName     := $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/HBox/Name
+onready var _signUpNext     := $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/HBox/Next
 onready var _signUpEmail    := $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Email
 onready var _signUpPassword := $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Password
 onready var _signUpConfirm  := $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Confirm
@@ -98,6 +100,7 @@ func _ready():
 	Utility.ok(_signInReset.connect("pressed", self, "_springReset"))
 	Utility.ok(_signInClose.connect("pressed", self, "_springStatus"))
 
+	Utility.ok(_signUpNext.connect("pressed", self, "_onSignUpNextPressed"))
 	Utility.ok(_signUpSignUp.connect("pressed", self, "_onSignUpPressed"))
 	Utility.ok(_signUpClose.connect("pressed", self, "_springSignIn"))
 

@@ -53,7 +53,8 @@ __meta__ = {
 
 [node name="Title" type="LineEdit" parent="Center/Panel/VBox/Panel/VBox"]
 margin_right = 198.0
-margin_bottom = 27.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
 focus_neighbour_left = NodePath("../../../HBox/Delete")
 focus_neighbour_top = NodePath("../../../HBox/Delete")
 focus_neighbour_right = NodePath("../Number")
@@ -65,9 +66,9 @@ placeholder_text = "Data"
 placeholder_alpha = 0.5
 
 [node name="Number" type="HSlider" parent="Center/Panel/VBox/Panel/VBox"]
-margin_top = 27.0
+margin_top = 32.0
 margin_right = 198.0
-margin_bottom = 47.0
+margin_bottom = 52.0
 focus_neighbour_left = NodePath("../Title")
 focus_neighbour_top = NodePath("../Title")
 focus_neighbour_right = NodePath("../Text")
@@ -79,7 +80,7 @@ tick_count = 5
 ticks_on_borders = true
 
 [node name="Text" type="TextEdit" parent="Center/Panel/VBox/Panel/VBox"]
-margin_top = 47.0
+margin_top = 52.0
 margin_right = 198.0
 margin_bottom = 164.0
 focus_neighbour_left = NodePath("../Number")

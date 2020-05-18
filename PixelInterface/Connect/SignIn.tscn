@@ -23,9 +23,9 @@ __meta__ = {
 
 [node name="Panel" type="PanelContainer" parent="Center"]
 margin_left = 397.0
-margin_top = 202.0
+margin_top = 197.0
 margin_right = 627.0
-margin_bottom = 398.0
+margin_bottom = 403.0
 rect_min_size = Vector2( 230, 64 )
 custom_styles/panel = ExtResource( 1 )
 
@@ -33,24 +33,25 @@ custom_styles/panel = ExtResource( 1 )
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 187.0
+margin_bottom = 197.0
 custom_constants/separation = 0
 
 [node name="Panel" type="PanelContainer" parent="Center/Panel/VBox"]
 margin_right = 214.0
-margin_bottom = 70.0
+margin_bottom = 80.0
 custom_styles/panel = ExtResource( 5 )
 
 [node name="VBox" type="VBoxContainer" parent="Center/Panel/VBox/Panel"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 206.0
-margin_bottom = 62.0
+margin_bottom = 72.0
 custom_constants/separation = 0
 
 [node name="Email" type="LineEdit" parent="Center/Panel/VBox/Panel/VBox"]
 margin_right = 198.0
-margin_bottom = 27.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
 hint_tooltip = "Enter your email address."
 focus_neighbour_left = NodePath("../../../../Close/Close")
 focus_neighbour_top = NodePath("../../../../Close/Close")
@@ -65,9 +66,10 @@ placeholder_text = "Email"
 placeholder_alpha = 0.5
 
 [node name="Password" type="LineEdit" parent="Center/Panel/VBox/Panel/VBox"]
-margin_top = 27.0
+margin_top = 32.0
 margin_right = 198.0
-margin_bottom = 54.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 32, 32 )
 hint_tooltip = "Enter your password."
 focus_neighbour_left = NodePath("../Email")
 focus_neighbour_top = NodePath("../Email")
@@ -83,9 +85,9 @@ placeholder_text = "Password"
 placeholder_alpha = 0.5
 
 [node name="Remember" type="CheckButton" parent="Center/Panel/VBox"]
-margin_top = 70.0
+margin_top = 80.0
 margin_right = 214.0
-margin_bottom = 106.0
+margin_bottom = 116.0
 hint_tooltip = "Sign in automatically."
 focus_neighbour_left = NodePath("../Panel/VBox/Password")
 focus_neighbour_top = NodePath("../Panel/VBox/Password")
@@ -97,9 +99,9 @@ pressed = true
 text = "Remember Me"
 
 [node name="SignIn" type="Button" parent="Center/Panel/VBox"]
-margin_top = 106.0
+margin_top = 116.0
 margin_right = 214.0
-margin_bottom = 146.0
+margin_bottom = 156.0
 hint_tooltip = "Sign in to an existing account."
 focus_neighbour_left = NodePath("../Remember")
 focus_neighbour_top = NodePath("../Remember")
@@ -114,9 +116,9 @@ shortcut_in_tooltip = false
 text = "Sign In"
 
 [node name="HBox" type="HBoxContainer" parent="Center/Panel/VBox"]
-margin_top = 146.0
+margin_top = 156.0
 margin_right = 214.0
-margin_bottom = 179.0
+margin_bottom = 189.0
 custom_constants/separation = 0
 
 [node name="SignUp" type="Button" parent="Center/Panel/VBox/HBox"]
@@ -156,7 +158,7 @@ anchor_bottom = 0.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 222.0
-margin_bottom = 187.0
+margin_bottom = 197.0
 
 [node name="Close" parent="Center/Panel/Close" index="0"]
 focus_neighbour_left = NodePath("../../VBox/HBox/Reset")

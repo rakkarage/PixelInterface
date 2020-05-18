@@ -3,6 +3,7 @@ extends Connect
 onready var _client := Nakama.create_client("defaultkey", "127.0.0.1", 7350, "http")
 var _session: NakamaSession
 var _store = Store.new("nakama", "session")
+var _gename = Gename.new()
 
 func authenticated() -> bool:
 	return _session == null or _session.created == false or _session.email == ""
@@ -22,6 +23,8 @@ func _ready() -> void:
 
 	_updateStatus()
 	_status.grab_focus()
+
+	_onSignUpNextPressed()
 
 	# nakama: no password reset!?
 	_signInReset.disabled = true
@@ -82,6 +85,10 @@ func _onSignInPressed() -> void:
 			_store.clear()
 
 ### signUp
+
+func _onSignUpNextPressed() -> void:
+	_clickAudio.play()
+	_signUpName.text = _gename.next()
 
 func _onSignUpPressed() -> void:
 	_clickAudio.play()

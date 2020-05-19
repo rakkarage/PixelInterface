@@ -72,7 +72,7 @@ func _onSignInPressed() -> void:
 	_session = yield(_client.authenticate_email_async(email, password, null, false), "completed")
 	_enableInput([_signInSignIn])
 	if _session.is_exception():
-		_showError(_session.message.to_string())
+		_showError(_session.get_exception().message)
 		_resetEmail.text = _signInEmail.text
 	elif _session.valid and not _session.expired:
 		_successAudio.play()
@@ -109,7 +109,7 @@ func _onSignUpPressed() -> void:
 	_session = yield(_client.authenticate_email_async(email, password, null, true), "completed")
 	_enableInput([_signUpSignUp])
 	if _session.is_exception():
-		_showError(_session.message.to_string())
+		_showError(_session.get_exception().message)
 	elif _session.valid and not _session.expired:
 		_successAudio.play()
 		_signInEmail.text = _signUpEmail.text
@@ -150,7 +150,7 @@ func _onChangeEmailPressed() -> void:
 	_session = yield(_client.link_email_async(_session, email, password), "completed")
 	_enableInput([_emailChange])
 	if _session.is_exception():
-		_showError(_session.message.to_string())
+		_showError(_session.get_exception().message)
 	elif _session.valid and not _session.expired:
 		_successAudio.play()
 		_emailEmail.text = ""
@@ -176,7 +176,7 @@ func _onChangePasswordPressed() -> void:
 	_session = yield(_client.link_email_async(_session, _session.email, password), "completed")
 	_enableInput([_passwordChange])
 	if _session.is_exception():
-		_showError(_session.message.to_string())
+		_showError(_session.get_exception().message)
 	elif _session.valid and not _session.expired:
 		_successAudio.play()
 		_passwordPassword.text = ""

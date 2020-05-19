@@ -24,7 +24,7 @@ func _ready() -> void:
 	_updateStatus()
 	_status.grab_focus()
 
-	_onSignUpNextPressed()
+	_signUpName.text = _gename.next()
 
 	# nakama: no password reset!?
 	_signInReset.disabled = true

@@ -17,7 +17,7 @@ func _ready() -> void:
 	_status.grab_focus()
 
 	# firebase: no password for change email!?
-	_emailPassword.enabled = false
+	_emailPassword.editable = false
 
 ### status
 

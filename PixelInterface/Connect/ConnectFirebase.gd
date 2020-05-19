@@ -73,6 +73,7 @@ func _onSignedIn(response: Array) -> void:
 			Firebase.tokenClear()
 	else:
 		_handleError(response)
+		_signUpEmail.text = _signInEmail.text
 		_resetEmail.text = _signInEmail.text
 	_enableInput([_signInSignIn])
 

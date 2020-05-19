@@ -73,6 +73,7 @@ func _onSignInPressed() -> void:
 	_enableInput([_signInSignIn])
 	if _session.is_exception():
 		_showError(_session.get_exception().message)
+		_signUpEmail.text = _signInEmail.text
 		_resetEmail.text = _signInEmail.text
 	elif _session.valid and not _session.expired:
 		_successAudio.play()

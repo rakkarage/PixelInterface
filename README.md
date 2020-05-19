@@ -26,4 +26,3 @@ Pixel-perfect fonts and user interface elements.
   - map folder to persist data as in nakama quickstart and add to .gitignore
   - start detached and let it run
     - `docker-compose up -d`
-

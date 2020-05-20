@@ -109,8 +109,6 @@ func _onSignUpPressed() -> void:
 		_signUpConfirm.text = ""
 		_springSignIn(false)
 
-### reset password
-
 ### account
 
 func _onSignOutPressed() -> void:
@@ -139,9 +137,7 @@ func _onChangeEmailPressed() -> void:
 		_errorSet(_emailConfirm)
 		return
 	_disableInput([_emailChange])
-	# _session 
 	var result = yield(_client.link_email_async(_session, email, password), "completed")
-	print(result)
 	_enableInput([_emailChange])
 	if result.is_exception():
 		_showError(result.get_exception().message)
@@ -167,14 +163,13 @@ func _onChangePasswordPressed() -> void:
 		_errorSet(_passwordConfirm)
 		return
 	_disableInput([_passwordChange])
-	_session = yield(_client.link_email_async(_session, _session.email, password), "completed")
+	var result = yield(_client.link_email_async(_session, _statusEmail.text, password), "completed")
 	_enableInput([_passwordChange])
-	if _session.is_exception():
-		_showError(_session.get_exception().message)
-	elif _session.valid and not _session.expired:
+	if result.is_exception():
+		_showError(result.get_exception().message)
+	else:
 		_successAudio.play()
 		_passwordPassword.text = ""
 		_passwordConfirm.text = ""
 		_updateStatus()
 		_springAccount(false)
-		_store.data = _session.token

@@ -61,6 +61,7 @@ focus_next = NodePath("../Email")
 focus_previous = NodePath("../../../../Close/Close")
 size_flags_horizontal = 3
 size_flags_vertical = 2
+secret = true
 clear_button_enabled = true
 placeholder_text = "Password"
 placeholder_alpha = 0.5

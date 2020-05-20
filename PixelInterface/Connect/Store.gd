@@ -31,3 +31,4 @@ func clear() -> void:
 
 func clearConfig(section: String, key: String) -> void:
 	_store.erase_section_key(section, key)
+	Utility.ok(_store.save(_storeFile))

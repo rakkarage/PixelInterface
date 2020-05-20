@@ -11,11 +11,10 @@ func _ready() -> void:
 func _physics_process(_delta) -> void:
 	global_position = get_global_mouse_position()
 	_sprite.centered = false
-
 	if busy:
 		_sprite.centered = true
 		_sprite.play("Busy")
-	else: if wait:
+	elif wait:
 		_sprite.play("Wait")
 	else:
 		match Input.get_current_cursor_shape():

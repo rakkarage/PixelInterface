@@ -89,9 +89,6 @@ var _acceptStack : Array = [ null ]
 export var _cancel : ShortCut
 var _cancelStack : Array = [ null ]
 
-const _rememberPath := "user://remember.txt"
-var _f := File.new()
-
 func _ready():
 	Utility.ok(_status.connect("pressed", self, "_onStatusPressed"))
 
@@ -126,49 +123,45 @@ func _ready():
 
 	Utility.ok(_regex.compile(_pattern))
 
-	if _f.file_exists(_rememberPath):
-		Utility.ok(_f.open(_rememberPath, File.READ))
-		_signInRemember.pressed = bool(_f.get_8())
-		_f.close()
+	_signInRemember.pressed = Store.data.connect.remember
 
 func _onRememberPressed() -> void:
-	Utility.ok(_f.open(_rememberPath, File.WRITE))
-	_f.store_8(_signInRemember.pressed)
-	_f.close()
+	Store.data.connect.remember = _signInRemember.pressed
+	Store.save()
 
 func _clearFocus() -> void:
-	var oldAccept = _acceptStack[0]
-	if oldAccept != null:
-		oldAccept.shortcut = null
-	var oldCancel = _cancelStack[0]
-	if oldCancel != null:
-		oldCancel.shortcut = null
+	var accept = _acceptStack[0]
+	if accept != null: accept.shortcut = null
+	var cancel = _cancelStack[0]
+	if cancel != null: cancel.shortcut = null
 
-func applyFocus() -> void:
+func _applyFocus() -> void:
 	_focusStack[0].grab_focus()
-	_acceptStack[0].shortcut = _accept
-	_cancelStack[0].shortcut = _cancel
+	var accept = _acceptStack[0]
+	if accept != null: accept.shortcut = _accept
+	var cancel = _cancelStack[0]
+	if cancel != null: cancel.shortcut = _cancel
 
 func _popFocus() -> void:
 	_clearFocus()
 	_focusStack.pop_front()
 	_acceptStack.pop_front()
 	_cancelStack.pop_front()
-	applyFocus()
+	_applyFocus()
 
 func _pushFocus(focus: Control, accept: Control, cancel: Control):
 	_clearFocus()
 	_focusStack.push_front(focus)
 	_acceptStack.push_front(accept)
 	_cancelStack.push_front(cancel)
-	applyFocus()
+	_applyFocus()
 
 func _focus(focus: Control, accept: Control, cancel: Control):
 	_clearFocus()
 	_focusStack[0] = focus
 	_acceptStack[0] = accept
 	_cancelStack[0] = cancel
-	applyFocus()
+	_applyFocus()
 
 func _showError(error: String) -> void:
 	_errorAudio.play()

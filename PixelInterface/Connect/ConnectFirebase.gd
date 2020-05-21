@@ -202,13 +202,11 @@ func _onChangedPassword(response: Array) -> void:
 ### data
 
 var _docExists := true
-
 const _docDefault := {
 	"title": { "stringValue": "" },
 	"number": { "integerValue": "" },
 	"text": { "stringValue": "" }
 }
-
 var _doc = _docDefault.duplicate()
 
 func _setDoc(value: Dictionary):

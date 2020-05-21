@@ -1,34 +1,33 @@
-extends Object
-class_name Store
+extends Node
 
-const _storeFile := "user://Store.cfg"
+const _storeFile := "res://Store.cfg"
+# const _storeFile := "user://Store.cfg"
 var _store := ConfigFile.new()
-var _section := ""
-var _key := ""
+var data := {
+	"connect": {
+		"remember": true,
+		"email": ""
+	},
+	"firebase": {
+		"token": ""
+	},
+	"nakama": {
+		"token": ""
+	}
+}
 
-var data : String setget _setValue, _getValue
+func _init() -> void:
+	_load()
 
-func _init(section: String, key: String) -> void:
+func _load() -> void:
 	Utility.ok(_store.load(_storeFile))
-	_section = section
-	_key = key
+	for section in data.keys():
+		for key in data[section]:
+			var default = data[section][key]
+			data[section][key] = _store.get_value(section, key, default)
 
-func _setValue(value: String) -> void:
-	setConfig(_section, _key, value)
-
-func setConfig(section: String, key: String, value: String) -> void:
-	_store.set_value(section, key, value)
-	Utility.ok(_store.save(_storeFile))
-
-func _getValue() -> String:
-	return getConfig(_section, _key)
-
-func getConfig(section: String, key: String, default: String = "") -> String:
-	return _store.get_value(section, key, default)
-
-func clear() -> void:
-	clearConfig(_section, _key)
-
-func clearConfig(section: String, key: String) -> void:
-	_store.erase_section_key(section, key)
+func _save() -> void:
+	for section in data.keys():
+		for key in data[section]:
+			_store.set_value(section, key, data[section][key])
 	Utility.ok(_store.save(_storeFile))

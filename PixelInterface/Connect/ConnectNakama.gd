@@ -2,7 +2,6 @@ extends Connect
 
 onready var _client := Nakama.create_client("defaultkey", "127.0.0.1", 7350, "http")
 var _session: NakamaSession
-var _store = Store.new("nakama", "session")
 var _gename = Gename.new()
 
 func authenticated() -> bool:
@@ -10,7 +9,7 @@ func authenticated() -> bool:
 
 func _ready() -> void:
 	if _signInRemember.pressed:
-		_session = NakamaClient.restore_session(_store.data)
+		_session = NakamaClient.restore_session(Store.data.nakama.token)
 
 	_updateStatus()
 	_status.grab_focus()
@@ -67,12 +66,12 @@ func _onSignInPressed() -> void:
 	elif _session.valid and not _session.expired:
 		_successAudio.play()
 		_signInPassword.text = ""
+		var remember = Store.data.connect.remember
+		Store.data.nakama.token = _session.token if remember else ""
+		Store.data.connect.email = email if remember else ""
+		Store.save()
 		_updateStatus()
 		_springStatus(false)
-		if _signInRemember.pressed:
-			_store.data = _session.token
-		else:
-			_store.clear()
 
 ### signUp
 
@@ -107,14 +106,18 @@ func _onSignUpPressed() -> void:
 		_signUpEmail.text = ""
 		_signUpPassword.text = ""
 		_signUpConfirm.text = ""
+		Store.data.connect.email = email if Store.data.connect.remember else ""
+		Store.save()
 		_springSignIn(false)
 
 ### account
 
 func _onSignOutPressed() -> void:
 	_clickAudio.play()
-	_store.clear()
 	_session = null
+	Store.data.nakama.token = ""
+	Store.data.connect.email = ""
+	Store.save()
 	_successAudio.play()
 	_updateStatus()
 	_springStatus()
@@ -141,13 +144,13 @@ func _onChangeEmailPressed() -> void:
 	_enableInput([_emailChange])
 	if result.is_exception():
 		_showError(result.get_exception().message)
-	else:
-		_successAudio.play()
-		_emailPassword.text = ""
-		_emailEmail.text = ""
-		_emailConfirm.text = ""
-		_updateStatus()
-		_springAccount(false)
+		return
+	_successAudio.play()
+	_emailPassword.text = ""
+	_emailEmail.text = ""
+	_emailConfirm.text = ""
+	_updateStatus()
+	_springAccount(false)
 
 ### change password
 
@@ -167,9 +170,70 @@ func _onChangePasswordPressed() -> void:
 	_enableInput([_passwordChange])
 	if result.is_exception():
 		_showError(result.get_exception().message)
-	else:
-		_successAudio.play()
-		_passwordPassword.text = ""
-		_passwordConfirm.text = ""
-		_updateStatus()
-		_springAccount(false)
+		return
+	_successAudio.play()
+	_passwordPassword.text = ""
+	_passwordConfirm.text = ""
+	_updateStatus()
+	_springAccount(false)
+
+### data
+
+var _docVersion := "*"
+const _docDefault := {
+	"title": "",
+	"number": "",
+	"text": ""
+}
+var _doc := _docDefault.duplicate()
+
+func _setDoc(value: Dictionary):
+	_doc = value.duplicate()
+	_dataTitle.text = _doc.title
+	_dataNumber.value = int(_doc.number)
+	_dataText.text = _doc.text
+
+func _loadDoc() -> void:
+	_disableInput([_dataSave, _dataDelete])
+	var result : NakamaAPI.ApiStorageObjects = yield(_client.read_storage_objects_async(_session, [
+		NakamaStorageObjectId.new("docs", "doc", _session.user_id),
+	]), "completed")
+	if result.is_exception():
+		_showError(result.get_exception().message)
+		return
+	print("Read objects:")
+	for o in result.objects:
+		print("%s" % o)
+
+func _onSaveDocPressed() -> void:
+	_clickAudio.play()
+	_doc.title = _dataTitle.text
+	_doc.number = str(_dataNumber.value)
+	_doc.text = _dataText.text
+	_disableInput([_dataSave, _dataDelete])
+	var acks : NakamaAPI.ApiStorageObjectAcks = yield(_client.write_storage_objects_async(_session, [
+		NakamaWriteStorageObject.new("docs", "doc", true, true, "wtf", _docVersion),
+	]), "completed")
+	if acks.is_exception():
+		print("An error occured: %s" % acks)
+		return
+	print("Successfully stored objects:")
+	for a in acks.acks:
+		print("%s" % a)
+
+# func _onDeleteDocPressed() -> void:
+# 	_clickAudio.play()
+# 	_disableInput([_dataSave, _dataDelete])
+# 	Firebase.deleteDoc(_http, "users/%s")
+
+# func _onDocChanged(response: Array) -> void:
+# 	_setDoc(_docDefault)
+# 	if response[1] == 404:
+# 		_docExists = false
+# 	if response[1] == 200:
+# 		_successAudio.play()
+# 		var o := JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
+# 		if "fields" in o:
+# 			_setDoc(o.fields)
+# 			_enableInput([_dataSave, _dataDelete])
+# 	_disableWait()

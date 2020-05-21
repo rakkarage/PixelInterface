@@ -90,11 +90,6 @@ _global_script_classes=[ {
 "path": "res://addons/com.heroiclabs.nakama/api/NakamaWriteStorageObject.gd"
 }, {
 "base": "Object",
-"class": "Store",
-"language": "GDScript",
-"path": "res://PixelInterface/Connect/Store.gd"
-}, {
-"base": "Object",
 "class": "Utility",
 "language": "GDScript",
 "path": "res://Intro/Utility.gd"
@@ -116,7 +111,6 @@ _global_script_class_icons={
 "NakamaSocketAdapter": "",
 "NakamaStorageObjectId": "",
 "NakamaWriteStorageObject": "",
-"Store": "",
 "Utility": ""
 }
 
@@ -130,6 +124,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Cursor="*res://PixelInterface/Cursor.tscn"
+Store="*res://PixelInterface/Connect/Store.gd"
 Firebase="*res://PixelInterface/Connect/Firebase.gd"
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 

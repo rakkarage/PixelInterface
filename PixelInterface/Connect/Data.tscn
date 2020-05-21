@@ -62,7 +62,6 @@ focus_neighbour_bottom = NodePath("../Number")
 focus_next = NodePath("../Number")
 focus_previous = NodePath("../../../HBox/Delete")
 clear_button_enabled = true
-placeholder_text = "Data"
 placeholder_alpha = 0.5
 
 [node name="Number" type="HSlider" parent="Center/Panel/VBox/Panel/VBox"]

@@ -83,10 +83,11 @@ const _ease := Tween.EASE_OUT
 var _regex := RegEx.new()
 const _pattern := "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)"
 
+var _focusStack : Array = [ null ]
 export var _accept : ShortCut
-var _currentAccept : Control
+var _acceptStack : Array = [ null ]
 export var _cancel : ShortCut
-var _currentCancel : Control
+var _cancelStack : Array = [ null ]
 
 const _rememberPath := "user://remember.txt"
 var _f := File.new()
@@ -135,18 +136,39 @@ func _onRememberPressed() -> void:
 	_f.store_8(_signInRemember.pressed)
 	_f.close()
 
+func _clearFocus() -> void:
+	var oldAccept = _acceptStack[0]
+	if oldAccept != null:
+		oldAccept.shortcut = null
+	var oldCancel = _cancelStack[0]
+	if oldCancel != null:
+		oldCancel.shortcut = null
+
+func applyFocus() -> void:
+	_focusStack[0].grab_focus()
+	_acceptStack[0].shortcut = _accept
+	_cancelStack[0].shortcut = _cancel
+
+func _popFocus() -> void:
+	_clearFocus()
+	_focusStack.pop_front()
+	_acceptStack.pop_front()
+	_cancelStack.pop_front()
+	applyFocus()
+
+func _pushFocus(focus: Control, accept: Control, cancel: Control):
+	_clearFocus()
+	_focusStack.push_front(focus)
+	_acceptStack.push_front(accept)
+	_cancelStack.push_front(cancel)
+	applyFocus()
+
 func _focus(focus: Control, accept: Control, cancel: Control):
-	focus.grab_focus()
-	if _currentAccept != null:
-		_currentAccept.shortcut = null
-	if accept != null:
-		_currentAccept = accept
-		_currentAccept.shortcut = _accept
-	if _currentCancel != null:
-		_currentCancel.shortcut = null
-	if cancel != null:
-		_currentCancel = cancel
-		_currentCancel.shortcut = _cancel
+	_clearFocus()
+	_focusStack[0] = focus
+	_acceptStack[0] = accept
+	_cancelStack[0] = cancel
+	applyFocus()
 
 func _showError(error: String) -> void:
 	_errorAudio.play()
@@ -154,10 +176,12 @@ func _showError(error: String) -> void:
 	_messageTitle.text = "Error"
 	_messageText.text = error
 	_spring(_messageAnchor, _dialog, false)
+	_pushFocus(_messageClose, _messageClose, _messageClose)
 
 func _onCloseErrorPressed() -> void:
 	_clickAudio.play()
 	_spring(_anchor, _dialog)
+	_popFocus()
 
 func _spring(a := _anchor, c := _interface, click := true) -> void:
 	if click: _clickAudio.play()

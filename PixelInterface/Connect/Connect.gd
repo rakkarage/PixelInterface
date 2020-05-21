@@ -124,10 +124,12 @@ func _ready():
 	Utility.ok(_regex.compile(_pattern))
 
 	_signInRemember.pressed = Store.data.connect.remember
+	if Store.data.connect.remember:
+		_signInEmail.text = Store.data.connect.email
 
 func _onRememberPressed() -> void:
 	Store.data.connect.remember = _signInRemember.pressed
-	Store.save()
+	Store.write()
 
 func _clearFocus() -> void:
 	var accept = _acceptStack[0]

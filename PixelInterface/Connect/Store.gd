@@ -1,8 +1,7 @@
 extends Node
 
-const _storeFile := "res://Store.cfg"
-# const _storeFile := "user://Store.cfg"
-var _store := ConfigFile.new()
+const _path := "user://Store.cfg"
+var _file := ConfigFile.new()
 var data := {
 	"connect": {
 		"remember": true,
@@ -17,17 +16,16 @@ var data := {
 }
 
 func _init() -> void:
-	_load()
+	read()
 
-func _load() -> void:
-	Utility.ok(_store.load(_storeFile))
+func read() -> void:
+	if _file.load(_path) == OK:
+		for section in data.keys():
+			for key in data[section]:
+				data[section][key] = _file.get_value(section, key)
+
+func write() -> void:
 	for section in data.keys():
 		for key in data[section]:
-			var default = data[section][key]
-			data[section][key] = _store.get_value(section, key, default)
-
-func _save() -> void:
-	for section in data.keys():
-		for key in data[section]:
-			_store.set_value(section, key, data[section][key])
-	Utility.ok(_store.save(_storeFile))
+			_file.set_value(section, key, data[section][key])
+	Utility.ok(_file.save(_path))

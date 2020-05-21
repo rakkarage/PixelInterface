@@ -69,7 +69,7 @@ func _onSignInPressed() -> void:
 		var remember = Store.data.connect.remember
 		Store.data.nakama.token = _session.token if remember else ""
 		Store.data.connect.email = email if remember else ""
-		Store.save()
+		Store.write()
 		_updateStatus()
 		_springStatus(false)
 
@@ -107,7 +107,7 @@ func _onSignUpPressed() -> void:
 		_signUpPassword.text = ""
 		_signUpConfirm.text = ""
 		Store.data.connect.email = email if Store.data.connect.remember else ""
-		Store.save()
+		Store.write()
 		_springSignIn(false)
 
 ### account
@@ -117,7 +117,7 @@ func _onSignOutPressed() -> void:
 	_session = null
 	Store.data.nakama.token = ""
 	Store.data.connect.email = ""
-	Store.save()
+	Store.write()
 	_successAudio.play()
 	_updateStatus()
 	_springStatus()

@@ -8,11 +8,13 @@ var data := {
 	},
 	"firebase": {
 		"email": "",
+		"expires": 0,
 		"token": "",
 		"id": ""
 	},
 	"nakama": {
 		"email": "",
+		"expires": 0,
 		"token": ""
 	}
 }

@@ -1,5 +1,7 @@
 extends Connect
 
+var _session: Dictionary
+
 func _ready() -> void:
 	Utility.ok(Firebase.connect("signedIn", self, "_onSignedIn"))
 	Utility.ok(Firebase.connect("signedUp", self, "_onSignedUp"))
@@ -68,10 +70,9 @@ func _onSignedIn(response: Array) -> void:
 		_signInPassword.text = ""
 		_updateStatus()
 		_springStatus(false)
-		if _signInRemember.pressed:
-			Firebase.tokenSave()
-		else:
-			Firebase.tokenClear()
+		# Store.data.firebase.token = response.token if remember else ""
+		# Store.data.firebase.email = email if remember else ""
+		# Store.write()
 	else:
 		_handleError(response)
 		_signUpEmail.text = _signInEmail.text

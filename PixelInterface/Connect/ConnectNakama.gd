@@ -37,10 +37,14 @@ func _updateStatus() -> void:
 		_status.modulate = _disconnectedColor
 		_statusEmail.text = "Welcome."
 		_accountEmail.text = ""
+		_dataSave.disabled = true
+		_dataDelete.disabled = true
 	else:
 		_status.modulate = _connectedColor
 		_statusEmail.text = account.email
 		_accountEmail.text = account.email
+		_dataSave.disabled = false
+		_dataDelete.disabled = false
 		_loadDoc()
 
 ### signIn

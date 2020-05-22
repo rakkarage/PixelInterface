@@ -204,13 +204,14 @@ func _loadDoc() -> void:
 	if result.is_exception():
 		_showError(result.get_exception().message)
 		return
-	var doc = result.objects[0]
-	_docVersion = doc.version
-	_doc = JSON.parse(doc.value).result
-	_dataTitle.text = _doc.title
-	_dataNumber.value = int(_doc.number)
-	_dataText.text = _doc.text
-	_successAudio.play()
+	if result.objects.size() > 0:
+		var doc = result.objects[0]
+		_docVersion = doc.version
+		_doc = JSON.parse(doc.value).result
+		_dataTitle.text = _doc.title
+		_dataNumber.value = int(_doc.number)
+		_dataText.text = _doc.text
+		_successAudio.play()
 
 func _onSaveDocPressed() -> void:
 	_clickAudio.play()

@@ -43,7 +43,7 @@ func _onUpdatedStatus(email: String) -> void:
 		_accountEmail.text = email
 		_dataSave.disabled = false
 		_dataDelete.disabled = false
-	_loadDoc()
+		_loadDoc()
 
 ### signIn
 
@@ -81,6 +81,7 @@ func _onSignedIn(response: Array) -> void:
 
 func _onSignUpPressed() -> void:
 	_clickAudio.play()
+	var name = _signUpName.text
 	var email = _signUpEmail.text
 	var password = _signUpPassword.text
 	var confirm = _signUpConfirm.text
@@ -95,7 +96,7 @@ func _onSignUpPressed() -> void:
 		_errorSet(_signUpConfirm)
 		return
 	_disableInput([_signUpSignUp])
-	Firebase.signUp(_http, email, password)
+	Firebase.signUp(_http, email, password, name)
 
 func _onSignedUp(response: Array) -> void:
 	if response[1] == 200:
@@ -244,7 +245,7 @@ func _onDocChanged(response: Array) -> void:
 		var o := JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
 		if "fields" in o:
 			_setDoc(o.fields)
-			_enableInput([_dataSave, _dataDelete])
+	_enableInput([_dataSave, _dataDelete])
 	_disableWait()
 
 func _handleError(response: Array) -> void:

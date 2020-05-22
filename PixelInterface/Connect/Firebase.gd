@@ -26,6 +26,7 @@ signal signedIn(response)
 signal signedUp(response)
 signal signedOut()
 signal reset(response)
+signal changedName(response)
 signal changedEmail(response)
 signal changedPassword(response)
 signal lookup()
@@ -69,10 +70,12 @@ func signIn(http: HTTPRequest, email: String, password: String) -> void:
 		_setState(_formState(response))
 	emit_signal("signedIn", response)
 
-func signUp(http: HTTPRequest, email : String, password : String) -> void:
+func signUp(http: HTTPRequest, email : String, password : String, name: String) -> void:
 	var body := { "email": email, "password": password }
 	Utility.ok(http.request(_signUpUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	var response = yield(http, "request_completed")
+	if name != "":
+		changeName(http, name)
 	emit_signal("signedUp", response)
 
 func reset(http: HTTPRequest, email: String) -> void:
@@ -101,6 +104,14 @@ func changePassword(http: HTTPRequest, password: String) -> void:
 	if response[1] == 200:
 		_setState(_formState(response))
 	emit_signal("changedPassword", response)
+
+func changeName(http: HTTPRequest, name: String) -> void:
+	var body := { "idToken": _state.token, "displayName": name, "returnSecureToken": true }
+	Utility.ok(http.request(_setUserUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
+	var response = yield(http, "request_completed")
+	if response[1] == 200:
+		_setState(_formState(response))
+	emit_signal("changedName", response)
 
 func lookup(http: HTTPRequest) -> void:
 	var body := { "idToken": _state.token }

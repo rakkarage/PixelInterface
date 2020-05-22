@@ -89,6 +89,8 @@ var _acceptStack : Array = [ null ]
 export var _cancel : ShortCut
 var _cancelStack : Array = [ null ]
 
+var _gename = Gename.new()
+
 func _ready():
 	Utility.ok(_status.connect("pressed", self, "_onStatusPressed"))
 
@@ -98,7 +100,7 @@ func _ready():
 	Utility.ok(_signInReset.connect("pressed", self, "_springReset"))
 	Utility.ok(_signInClose.connect("pressed", self, "_springStatus"))
 
-	Utility.ok(_signUpNext.connect("pressed", self, "_onSignUpNextPressed"))
+	Utility.ok(_signUpNext.connect("pressed", self, "_onNextNamePressed"))
 	Utility.ok(_signUpSignUp.connect("pressed", self, "_onSignUpPressed"))
 	Utility.ok(_signUpClose.connect("pressed", self, "_springSignIn"))
 
@@ -123,9 +125,15 @@ func _ready():
 
 	Utility.ok(_regex.compile(_pattern))
 
+	_signUpName.text = _gename.next()
+
 	_signInRemember.pressed = Store.data.connect.remember
 	if Store.data.connect.remember:
 		_signInEmail.text = Store.data.connect.email
+
+func _onNextNamePressed() -> void:
+	_clickAudio.play()
+	_signUpName.text = _gename.next()
 
 func _onRememberPressed() -> void:
 	Store.data.connect.remember = _signInRemember.pressed

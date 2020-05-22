@@ -179,6 +179,8 @@ func _onChangePasswordPressed() -> void:
 
 ### data
 
+const _collection = "docs"
+const _key = "doc"
 var _docVersion := "*"
 const _docDefault := {
 	"title": "",
@@ -196,13 +198,15 @@ func _setDoc(value: Dictionary):
 func _loadDoc() -> void:
 	_disableInput([_dataSave, _dataDelete])
 	var result : NakamaAPI.ApiStorageObjects = yield(_client.read_storage_objects_async(_session, [
-		NakamaStorageObjectId.new("docs", "doc", _session.user_id),
+		NakamaStorageObjectId.new(_collection, _key, _session.user_id),
 	]), "completed")
 	_enableInput([_dataSave, _dataDelete])
 	if result.is_exception():
 		_showError(result.get_exception().message)
 		return
-	_doc = JSON.parse(result.objects[0].value).result
+	var doc = result.objects[0]
+	_docVersion = doc.version
+	_doc = JSON.parse(doc.value).result
 	_dataTitle.text = _doc.title
 	_dataNumber.value = int(_doc.number)
 	_dataText.text = _doc.text
@@ -215,7 +219,7 @@ func _onSaveDocPressed() -> void:
 	_doc.text = _dataText.text
 	_disableInput([_dataSave, _dataDelete])
 	var result : NakamaAPI.ApiStorageObjectAcks = yield(_client.write_storage_objects_async(_session, [
-		NakamaWriteStorageObject.new("docs", "doc", true, true, JSON.print(_doc), _docVersion),
+		NakamaWriteStorageObject.new(_collection, _key, true, true, JSON.print(_doc), _docVersion),
 	]), "completed")
 	_enableInput([_dataSave, _dataDelete])
 	if result.is_exception():
@@ -223,19 +227,17 @@ func _onSaveDocPressed() -> void:
 		return
 	_successAudio.play()
 
-# func _onDeleteDocPressed() -> void:
-# 	_clickAudio.play()
-# 	_disableInput([_dataSave, _dataDelete])
-# 	Firebase.deleteDoc(_http, "users/%s")
-
-# func _onDocChanged(response: Array) -> void:
-# 	_setDoc(_docDefault)
-# 	if response[1] == 404:
-# 		_docExists = false
-# 	if response[1] == 200:
-# 		_successAudio.play()
-# 		var o := JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
-# 		if "fields" in o:
-# 			_setDoc(o.fields)
-# 			_enableInput([_dataSave, _dataDelete])
-# 	_disableWait()
+func _onDeleteDocPressed() -> void:
+	_clickAudio.play()
+	_disableInput([_dataSave, _dataDelete])
+	var result : NakamaAsyncResult = yield(_client.delete_storage_objects_async(_session, [
+		NakamaStorageObjectId.new(_collection, _key, _session.user_id, _docVersion)
+	]), "completed")
+	_enableInput([_dataSave, _dataDelete])
+	if result.is_exception():
+		_showError(result.get_exception().message)
+		return
+	_dataTitle.text = ""
+	_dataNumber.value = 0
+	_dataText.text = ""
+	_successAudio.play()

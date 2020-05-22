@@ -41,7 +41,7 @@ func _updateStatus() -> void:
 		_status.modulate = _connectedColor
 		_statusEmail.text = account.email
 		_accountEmail.text = account.email
-	# _loadDoc()
+		_loadDoc()
 
 ### signIn
 
@@ -198,12 +198,15 @@ func _loadDoc() -> void:
 	var result : NakamaAPI.ApiStorageObjects = yield(_client.read_storage_objects_async(_session, [
 		NakamaStorageObjectId.new("docs", "doc", _session.user_id),
 	]), "completed")
+	_enableInput([_dataSave, _dataDelete])
 	if result.is_exception():
 		_showError(result.get_exception().message)
 		return
-	print("Read objects:")
-	for o in result.objects:
-		print("%s" % o)
+	_doc = JSON.parse(result.objects[0].value).result
+	_dataTitle.text = _doc.title
+	_dataNumber.value = int(_doc.number)
+	_dataText.text = _doc.text
+	_successAudio.play()
 
 func _onSaveDocPressed() -> void:
 	_clickAudio.play()
@@ -211,15 +214,14 @@ func _onSaveDocPressed() -> void:
 	_doc.number = str(_dataNumber.value)
 	_doc.text = _dataText.text
 	_disableInput([_dataSave, _dataDelete])
-	var acks : NakamaAPI.ApiStorageObjectAcks = yield(_client.write_storage_objects_async(_session, [
-		NakamaWriteStorageObject.new("docs", "doc", true, true, "wtf", _docVersion),
+	var result : NakamaAPI.ApiStorageObjectAcks = yield(_client.write_storage_objects_async(_session, [
+		NakamaWriteStorageObject.new("docs", "doc", true, true, JSON.print(_doc), _docVersion),
 	]), "completed")
-	if acks.is_exception():
-		print("An error occured: %s" % acks)
+	_enableInput([_dataSave, _dataDelete])
+	if result.is_exception():
+		_showError(result.get_exception().message)
 		return
-	print("Successfully stored objects:")
-	for a in acks.acks:
-		print("%s" % a)
+	_successAudio.play()
 
 # func _onDeleteDocPressed() -> void:
 # 	_clickAudio.play()

@@ -5,12 +5,14 @@ var _file := ConfigFile.new()
 var data := {
 	"connect": {
 		"remember": true,
-		"email": ""
 	},
 	"firebase": {
-		"token": ""
+		"email": "",
+		"token": "",
+		"id": ""
 	},
 	"nakama": {
+		"email": "",
 		"token": ""
 	}
 }

@@ -7,7 +7,9 @@ func authenticated() -> bool:
 	return _session != null and _session.valid and not _session.expired
 
 func _ready() -> void:
-	if _signInRemember.pressed:
+	_signInRemember.pressed = Store.data.connect.remember
+	if Store.data.connect.remember:
+		_signInEmail.text = Store.data.nakama.email
 		_session = NakamaClient.restore_session(Store.data.nakama.token)
 
 	_updateStatus()
@@ -69,7 +71,7 @@ func _onSignInPressed() -> void:
 		_signInPassword.text = ""
 		var remember = Store.data.connect.remember
 		Store.data.nakama.token = _session.token if remember else ""
-		Store.data.connect.email = email if remember else ""
+		Store.data.nakama.email = email if remember else ""
 		Store.write()
 		_updateStatus()
 		_springStatus(false)
@@ -103,7 +105,7 @@ func _onSignUpPressed() -> void:
 		_signUpEmail.text = ""
 		_signUpPassword.text = ""
 		_signUpConfirm.text = ""
-		Store.data.connect.email = email if Store.data.connect.remember else ""
+		Store.data.nakama.email = email if Store.data.connect.remember else ""
 		Store.write()
 		_springSignIn(false)
 
@@ -113,7 +115,7 @@ func _onSignOutPressed() -> void:
 	_clickAudio.play()
 	_session = null
 	Store.data.nakama.token = ""
-	Store.data.connect.email = ""
+	Store.data.nakama.email = ""
 	Store.write()
 	_successAudio.play()
 	_updateStatus()

@@ -4,14 +4,14 @@ func _ready() -> void:
 	Utility.ok(Firebase.connect("signedIn", self, "_onSignedIn"))
 	Utility.ok(Firebase.connect("signedUp", self, "_onSignedUp"))
 	Utility.ok(Firebase.connect("reset", self, "_onReset"))
-	Utility.ok(Firebase.connect("signedOut", self, "_onSignedOut"))
 	Utility.ok(Firebase.connect("changedEmail", self, "_onChangedEmail"))
 	Utility.ok(Firebase.connect("changedPassword", self, "_onChangedPassword"))
 	Utility.ok(Firebase.connect("lookup", self, "_onUpdatedStatus"))
 	Utility.ok(Firebase.connect("docChanged", self, "_onDocChanged"))
 
-	if _signInRemember.pressed:
-		Firebase.tokenLoad()
+	_signInRemember.pressed = Store.data.connect.remember
+	if Store.data.connect.remember:
+		_signInEmail.text = Store.data.firebase.email
 
 	_updateStatus()
 	_status.grab_focus()
@@ -30,20 +30,21 @@ func _onStatusPressed() -> void:
 func _updateStatus() -> void:
 	Firebase.lookup(_http)
 
-func _onUpdatedStatus(email: String) -> void:
-	if email.empty():
-		_status.modulate = _disconnectedColor
-		_statusEmail.text = "Welcome."
-		_accountEmail.text = ""
-		_dataSave.disabled = true
-		_dataDelete.disabled = true
-	else:
+func _onUpdatedStatus() -> void:
+	if Firebase.authenticated():
+		var email = Store.data.firebase.email
 		_status.modulate = _connectedColor
 		_statusEmail.text = email
 		_accountEmail.text = email
 		_dataSave.disabled = false
 		_dataDelete.disabled = false
 		_loadDoc()
+	else:
+		_status.modulate = _disconnectedColor
+		_statusEmail.text = "Welcome."
+		_accountEmail.text = ""
+		_dataSave.disabled = true
+		_dataDelete.disabled = true
 
 ### signIn
 
@@ -136,13 +137,13 @@ func _onReset(response: Array) -> void:
 func _onSignOutPressed() -> void:
 	_clickAudio.play()
 	_disableInput([_accountSignOut])
-	Firebase.signOut()
-
-func _onSignedOut() -> void:
+	Store.data.firebase.token = ""
+	Store.data.firebase.email = ""
+	Store.write()
+	_enableInput([_accountSignOut])
 	_successAudio.play()
 	_updateStatus()
 	_springStatus()
-	_enableInput([_accountSignOut])
 
 ### change email
 

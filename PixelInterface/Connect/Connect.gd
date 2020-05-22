@@ -127,10 +127,6 @@ func _ready():
 
 	_signUpName.text = _gename.next()
 
-	_signInRemember.pressed = Store.data.connect.remember
-	if Store.data.connect.remember:
-		_signInEmail.text = Store.data.connect.email
-
 func _onNextNamePressed() -> void:
 	_clickAudio.play()
 	_signUpName.text = _gename.next()

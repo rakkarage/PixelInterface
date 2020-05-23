@@ -3,20 +3,20 @@ extends Connect
 onready var _client := Nakama.create_client("defaultkey", "127.0.0.1", 7350, "http")
 var _session: NakamaSession
 
-func authenticated() -> bool:
-	return _session != null and _session.valid and not _session.expired
-
 func _ready() -> void:
-	_signInRemember.pressed = Store.data.connect.remember
-	if Store.data.connect.remember:
+	_signInRemember.pressed = Store.data.all.remember
+	if Store.data.all.remember:
 		_signInEmail.text = Store.data.nakama.email
-		_session = NakamaClient.restore_session(Store.data.nakama.token)
+		_session = NakamaClient.restore_session(Store.data.n.token)
 
 	_updateStatus()
 	_status.grab_focus()
 
 	# nakama: no password reset!?
 	_signInReset.disabled = true
+
+func authenticated() -> bool:
+	return _session != null and _session.valid and not _session.expired
 
 ### status
 
@@ -69,9 +69,9 @@ func _onSignInPressed() -> void:
 	elif _session.valid and not _session.expired:
 		_successAudio.play()
 		_signInPassword.text = ""
-		var remember = Store.data.connect.remember
-		Store.data.nakama.token = _session.token if remember else ""
-		Store.data.nakama.email = email if remember else ""
+		var remember = Store.data.all.remember
+		Store.data.n.token = _session.token if remember else ""
+		Store.data.n.email = email if remember else ""
 		Store.write()
 		_updateStatus()
 		_springStatus(false)
@@ -102,10 +102,11 @@ func _onSignUpPressed() -> void:
 	elif _session.valid and not _session.expired:
 		_successAudio.play()
 		_signInEmail.text = _signUpEmail.text
+		_signUpName.text = _gename.next()
 		_signUpEmail.text = ""
 		_signUpPassword.text = ""
 		_signUpConfirm.text = ""
-		Store.data.nakama.email = email if Store.data.connect.remember else ""
+		Store.data.n.email = email if Store.data.all.remember else ""
 		Store.write()
 		_springSignIn(false)
 
@@ -114,8 +115,8 @@ func _onSignUpPressed() -> void:
 func _onSignOutPressed() -> void:
 	_clickAudio.play()
 	_session = null
-	Store.data.nakama.token = ""
-	Store.data.nakama.email = ""
+	Store.data.n.token = ""
+	Store.data.n.email = ""
 	Store.write()
 	_successAudio.play()
 	_updateStatus()

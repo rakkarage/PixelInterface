@@ -132,7 +132,7 @@ func _onNextNamePressed() -> void:
 	_signUpName.text = _gename.next()
 
 func _onRememberPressed() -> void:
-	Store.data.connect.remember = _signInRemember.pressed
+	Store.data.all.remember = _signInRemember.pressed
 	Store.write()
 
 func _clearFocus() -> void:

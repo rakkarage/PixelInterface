@@ -5,8 +5,8 @@ const _signUpUrl := "https://identitytoolkit.googleapis.com/v1/accounts:signUp?k
 const _resetUrl := "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=%s"
 const _getUserUrl := "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=%s"
 const _setUserUrl := "https://identitytoolkit.googleapis.com/v1/accounts:update?key=%s"
-const _projectId := "godotconnect"
-const _docsUrl := "https://firestore.googleapis.com/v1/projects/%s/databases/(default)/documents/" % _projectId
+const _docsProject := "godotconnect"
+const _docsUrl := "https://firestore.googleapis.com/v1/projects/%s/databases/(default)/documents/" % _docsProject
 var _apiKey := ""
 
 signal signedIn(response)
@@ -20,8 +20,9 @@ signal docChanged(response)
 
 func _ready() -> void:
 	var file := File.new()
-	Utility.ok(file.open("res://PixelInterface/Connect/apikey.txt", File.READ))
-	_apiKey = file.get_as_text()
+	var error := file.open("res://PixelInterface/Connect/apikey.txt", File.READ)
+	if error != OK:	Utility.ok(error)
+	else: _apiKey = file.get_as_text()
 	file.close()
 
 func signIn(http: HTTPRequest, email: String, password: String) -> void:
@@ -66,33 +67,27 @@ func lookup(http: HTTPRequest, token: String) -> void:
 	var response = yield(http, "request_completed")
 	emit_signal("lookup", response)
 
-func authenticated() -> bool:
-	return not Store.data.firebase.token.empty()
+func _headers(token: String) -> PoolStringArray:
+	return PoolStringArray(["Content-Type: application/json", "Authorization: Bearer " + token])
 
-func _formHeaders() -> PoolStringArray:
-	return PoolStringArray([
-		"Content-Type: application/json",
-		"Authorization: Bearer " + Store.data.firebase.token
-	])
-
-func saveDoc(http: HTTPRequest, path: String, id: String, fields: Dictionary) -> void:
+func saveDoc(http: HTTPRequest, path: String, token: String, id: String, fields: Dictionary) -> void:
 	var body := to_json({ "fields": fields })
-	Utility.ok(http.request(_docsUrl + path % id, _formHeaders(), false, HTTPClient.METHOD_POST, body))
+	Utility.ok(http.request(_docsUrl + path % id, _headers(token), false, HTTPClient.METHOD_POST, body))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
-func loadDoc(http: HTTPRequest, path: String, id: String) -> void:
-	Utility.ok(http.request(_docsUrl + path % id, _formHeaders(), false, HTTPClient.METHOD_GET))
+func loadDoc(http: HTTPRequest, path: String, token: String, id: String) -> void:
+	Utility.ok(http.request(_docsUrl + path % id, _headers(token), false, HTTPClient.METHOD_GET))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
-func updateDoc(http: HTTPRequest, path: String, id: String, fields: Dictionary) -> void:
+func updateDoc(http: HTTPRequest, path: String, token: String, id: String, fields: Dictionary) -> void:
 	var body := to_json({ "fields": fields })
-	Utility.ok(http.request(_docsUrl + path % id, _formHeaders(), false, HTTPClient.METHOD_PATCH, body))
+	Utility.ok(http.request(_docsUrl + path % id, _headers(token), false, HTTPClient.METHOD_PATCH, body))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
-func deleteDoc(http: HTTPRequest, path: String, id: String) -> void:
-	Utility.ok(http.request(_docsUrl + path % id, _formHeaders(), false, HTTPClient.METHOD_DELETE))
+func deleteDoc(http: HTTPRequest, path: String, token: String, id: String) -> void:
+	Utility.ok(http.request(_docsUrl + path % id, _headers(token), false, HTTPClient.METHOD_DELETE))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)

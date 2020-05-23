@@ -11,30 +11,50 @@ func _ready() -> void:
 	Utility.ok(Firebase.connect("lookup", self, "_onUpdatedStatus"))
 	Utility.ok(Firebase.connect("docChanged", self, "_onDocChanged"))
 
-	_signInRemember.pressed = Store.data.connect.remember
-	if Store.data.connect.remember:
-		_signInEmail.text = Store.data.firebase.email
+	_signInRemember.pressed = Store.data.all.remember
+	if Store.data.all.remember:
+		_signInEmail.text = Store.data.f.email
 
-	_updateStatus()
+	_updateStatus(Store.data.f.token)
 	_status.grab_focus()
 
 	# firebase: no password for change email!?
 	_emailPassword.editable = false
 
+func authenticated() -> bool:
+	return not _accountEmail.text.empty()
+
+func setData(response: Array = null) -> void:
+	if response == null:
+		Store.data.f.token = ""
+		Store.data.f.email = ""
+		Store.data.f.id = ""
+	else:
+		var result = _result(response)
+		if users in result:
+			Store.data.f.token = result.users[0].idToken if Store.data.all.remember else ""
+			Store.data.f.email = result.users[0].email if Store.data.all.remember else ""
+			Store.data.f.id = result.users[0].localId
+		else:
+			Store.data.f.token = result.idToken if Store.data.all.remember else ""
+			Store.data.f.email = result.email if Store.data.all.remember else ""
+			Store.data.f.id = result.localId
+
 ### status
 
 func _onStatusPressed() -> void:
-	if not Firebase.authenticated():
-		_springSignIn()
-	else:
+	if authenticated():
 		_springAccount()
+	else:
+		_springSignIn()
 
-func _updateStatus() -> void:
-	Firebase.lookup(_http)
+func _updateStatus(token: String) -> void:
+	Firebase.lookup(_http, token)
 
-func _onUpdatedStatus() -> void:
-	if Firebase.authenticated():
-		var email = Store.data.firebase.email
+func _onUpdatedStatus(response: Array) -> void:
+	if response[1] == 200:
+		_setData(response)
+		var email = result.email
 		_status.modulate = _connectedColor
 		_statusEmail.text = email
 		_accountEmail.text = email
@@ -42,11 +62,13 @@ func _onUpdatedStatus() -> void:
 		_dataDelete.disabled = false
 		_loadDoc()
 	else:
+		_setData()
 		_status.modulate = _disconnectedColor
 		_statusEmail.text = "Welcome."
 		_accountEmail.text = ""
 		_dataSave.disabled = true
 		_dataDelete.disabled = true
+	Store.write()
 
 ### signIn
 
@@ -68,11 +90,8 @@ func _onSignedIn(response: Array) -> void:
 	if response[1] == 200:
 		_successAudio.play()
 		_signInPassword.text = ""
-		_updateStatus()
+		_updateStatus(_result(response).idToken)
 		_springStatus(false)
-		# Store.data.firebase.token = response.token if remember else ""
-		# Store.data.firebase.email = email if remember else ""
-		# Store.write()
 	else:
 		_handleError(response)
 		_signUpEmail.text = _signInEmail.text
@@ -83,7 +102,6 @@ func _onSignedIn(response: Array) -> void:
 
 func _onSignUpPressed() -> void:
 	_clickAudio.play()
-	var name = _signUpName.text
 	var email = _signUpEmail.text
 	var password = _signUpPassword.text
 	var confirm = _signUpConfirm.text
@@ -98,12 +116,16 @@ func _onSignUpPressed() -> void:
 		_errorSet(_signUpConfirm)
 		return
 	_disableInput([_signUpSignUp])
-	Firebase.signUp(_http, email, password, name)
+	Firebase.signUp(_http, email, password)
 
 func _onSignedUp(response: Array) -> void:
 	if response[1] == 200:
+		print(response)
+		# Firebase.changeName(_http, Store.data.f.token, _signUpName.text)
+		# disable name edit in firebase?
 		_successAudio.play()
 		_signInEmail.text = _signUpEmail.text
+		_signUpName.text = _gename.next()
 		_signUpEmail.text = ""
 		_signUpPassword.text = ""
 		_signUpConfirm.text = ""
@@ -138,12 +160,9 @@ func _onReset(response: Array) -> void:
 func _onSignOutPressed() -> void:
 	_clickAudio.play()
 	_disableInput([_accountSignOut])
-	Store.data.firebase.token = ""
-	Store.data.firebase.email = ""
-	Store.write()
+	_updateStatus("")
 	_enableInput([_accountSignOut])
 	_successAudio.play()
-	_updateStatus()
 	_springStatus()
 
 ### change email
@@ -160,19 +179,18 @@ func _onChangeEmailPressed() -> void:
 		_errorSet(_emailConfirm)
 		return
 	_disableInput([_emailChange])
-	Firebase.changeEmail(_http, email)
+	Firebase.changeEmail(_http, Store.data.f.token, email)
 
 func _onChangedEmail(response: Array) -> void:
+	_enableInput([_emailChange])
 	if response[1] == 200:
 		_successAudio.play()
 		_emailEmail.text = ""
 		_emailConfirm.text = ""
-		Firebase.tokenSave()
-		_updateStatus()
+		_updateStatus(_result(response).idToken)
 		_springAccount(false)
 	else:
 		_handleError(response)
-	_enableInput([_emailChange])
 
 ### change password
 
@@ -188,19 +206,18 @@ func _onChangePasswordPressed() -> void:
 		_errorSet(_passwordConfirm)
 		return
 	_disableInput([_passwordChange])
-	Firebase.changePassword(_http, password)
+	Firebase.changePassword(_http, Store.data.f.token, password)
 
 func _onChangedPassword(response: Array) -> void:
+	_enableInput([_passwordChange])
 	if response[1] == 200:
 		_successAudio.play()
 		_passwordPassword.text = ""
 		_passwordConfirm.text = ""
-		Firebase.tokenSave()
-		_updateStatus()
+		_updateStatus(_result(response).idToken)
 		_springAccount(false)
 	else:
 		_handleError(response)
-	_enableInput([_passwordChange])
 
 ### data
 
@@ -220,7 +237,7 @@ func _setDoc(value: Dictionary):
 
 func _loadDoc() -> void:
 	_disableInput([_dataSave, _dataDelete])
-	Firebase.loadDoc(_http, "users/%s")
+	Firebase.loadDoc(_http, Store.data.f.token, Store.data.f.id, "users/%s")
 
 func _onSaveDocPressed() -> void:
 	_clickAudio.play()
@@ -229,14 +246,14 @@ func _onSaveDocPressed() -> void:
 	_doc.text.stringValue = _dataText.text
 	_disableInput([_dataSave, _dataDelete])
 	if _docExists:
-		Firebase.updateDoc(_http, "users/%s", _doc)
+		Firebase.updateDoc(_http, "users/%s", Store.data.f.token, Store.data.f.id, _doc)
 	else:
-		Firebase.saveDoc(_http, "users?documentId=%s", _doc)
+		Firebase.saveDoc(_http, "users?documentId=%s", Store.data.f.token, Store.data.f.id, _doc)
 
 func _onDeleteDocPressed() -> void:
 	_clickAudio.play()
 	_disableInput([_dataSave, _dataDelete])
-	Firebase.deleteDoc(_http, "users/%s")
+	Firebase.deleteDoc(_http, Store.data.f.token, Store.data.f.id, "users/%s")
 
 func _onDocChanged(response: Array) -> void:
 	_setDoc(_docDefault)
@@ -244,12 +261,12 @@ func _onDocChanged(response: Array) -> void:
 		_docExists = false
 	if response[1] == 200:
 		_successAudio.play()
-		var o := JSON.parse(response[3].get_string_from_ascii()).result as Dictionary
-		if "fields" in o:
-			_setDoc(o.fields)
+		_setDoc(_result(response).fields)
 	_enableInput([_dataSave, _dataDelete])
 	_disableWait()
 
+func _result(response: Array) -> Dictionary:
+	return JSON.parse(response[3].get_string_from_ascii()).result
+
 func _handleError(response: Array) -> void:
-	var o = JSON.parse(response[3].get_string_from_ascii()).result
-	_showError(o.error.message.capitalize())
+	_showError(_result(response).error.message.capitalize())

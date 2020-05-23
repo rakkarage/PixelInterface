@@ -3,16 +3,16 @@ extends Node
 const _path := "user://Store.cfg"
 var _file := ConfigFile.new()
 var data := {
-	"connect": {
+	"all": {
 		"remember": true,
 	},
-	"firebase": {
+	"f": {
 		"email": "",
 		"expires": 0,
 		"token": "",
 		"id": ""
 	},
-	"nakama": {
+	"n": {
 		"email": "",
 		"expires": 0,
 		"token": ""
@@ -33,3 +33,6 @@ func write() -> void:
 		for key in data[section]:
 			_file.set_value(section, key, data[section][key])
 	Utility.ok(_file.save(_path))
+
+func _exit_tree() -> void:
+	_file.close()

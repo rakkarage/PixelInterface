@@ -24,21 +24,20 @@ func _ready() -> void:
 func authenticated() -> bool:
 	return not _accountEmail.text.empty()
 
-func setData(response: Array = null) -> void:
-	if response == null:
+func _setData(result: Dictionary = {}) -> void:
+	if result.size() == 0:
 		Store.data.f.token = ""
 		Store.data.f.email = ""
 		Store.data.f.id = ""
 	else:
-		var result = _result(response)
-		if users in result:
-			Store.data.f.token = result.users[0].idToken if Store.data.all.remember else ""
+		if "users" in result:
 			Store.data.f.email = result.users[0].email if Store.data.all.remember else ""
 			Store.data.f.id = result.users[0].localId
 		else:
-			Store.data.f.token = result.idToken if Store.data.all.remember else ""
+			Store.data.f.token = result.idToken
 			Store.data.f.email = result.email if Store.data.all.remember else ""
 			Store.data.f.id = result.localId
+	Store.write()
 
 ### status
 
@@ -53,11 +52,14 @@ func _updateStatus(token: String) -> void:
 
 func _onUpdatedStatus(response: Array) -> void:
 	if response[1] == 200:
-		_setData(response)
-		var email = result.email
+		var result = _result(response)
+		_setData(result)
+		print(result)
+		var email = Store.data.f.email
 		_status.modulate = _connectedColor
 		_statusEmail.text = email
 		_accountEmail.text = email
+		_accountName.text = result.displayName
 		_dataSave.disabled = false
 		_dataDelete.disabled = false
 		_loadDoc()
@@ -66,9 +68,11 @@ func _onUpdatedStatus(response: Array) -> void:
 		_status.modulate = _disconnectedColor
 		_statusEmail.text = "Welcome."
 		_accountEmail.text = ""
+		_dataTitle.text = ""
+		_dataNumber.value = 0
+		_dataText.text = ""
 		_dataSave.disabled = true
 		_dataDelete.disabled = true
-	Store.write()
 
 ### signIn
 
@@ -90,7 +94,9 @@ func _onSignedIn(response: Array) -> void:
 	if response[1] == 200:
 		_successAudio.play()
 		_signInPassword.text = ""
-		_updateStatus(_result(response).idToken)
+		var result = _result(response)
+		_setData(result)
+		_updateStatus(result.idToken)
 		_springStatus(false)
 	else:
 		_handleError(response)
@@ -120,9 +126,7 @@ func _onSignUpPressed() -> void:
 
 func _onSignedUp(response: Array) -> void:
 	if response[1] == 200:
-		print(response)
-		# Firebase.changeName(_http, Store.data.f.token, _signUpName.text)
-		# disable name edit in firebase?
+		Firebase.changeName(_http, Store.data.f.token, _signUpName.text)
 		_successAudio.play()
 		_signInEmail.text = _signUpEmail.text
 		_signUpName.text = _gename.next()
@@ -187,7 +191,9 @@ func _onChangedEmail(response: Array) -> void:
 		_successAudio.play()
 		_emailEmail.text = ""
 		_emailConfirm.text = ""
-		_updateStatus(_result(response).idToken)
+		var result = _result(response)
+		_setData(result)
+		_updateStatus(result.idToken)
 		_springAccount(false)
 	else:
 		_handleError(response)
@@ -214,6 +220,8 @@ func _onChangedPassword(response: Array) -> void:
 		_successAudio.play()
 		_passwordPassword.text = ""
 		_passwordConfirm.text = ""
+		var result = _result(response)
+		_setData(result)
 		_updateStatus(_result(response).idToken)
 		_springAccount(false)
 	else:
@@ -237,7 +245,7 @@ func _setDoc(value: Dictionary):
 
 func _loadDoc() -> void:
 	_disableInput([_dataSave, _dataDelete])
-	Firebase.loadDoc(_http, Store.data.f.token, Store.data.f.id, "users/%s")
+	Firebase.loadDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id)
 
 func _onSaveDocPressed() -> void:
 	_clickAudio.play()
@@ -246,14 +254,14 @@ func _onSaveDocPressed() -> void:
 	_doc.text.stringValue = _dataText.text
 	_disableInput([_dataSave, _dataDelete])
 	if _docExists:
-		Firebase.updateDoc(_http, "users/%s", Store.data.f.token, Store.data.f.id, _doc)
+		Firebase.updateDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id, _doc)
 	else:
-		Firebase.saveDoc(_http, "users?documentId=%s", Store.data.f.token, Store.data.f.id, _doc)
+		Firebase.saveDoc(_http, Store.data.f.token, "users?documentId=%s" % Store.data.f.id, _doc)
 
 func _onDeleteDocPressed() -> void:
 	_clickAudio.play()
 	_disableInput([_dataSave, _dataDelete])
-	Firebase.deleteDoc(_http, Store.data.f.token, Store.data.f.id, "users/%s")
+	Firebase.deleteDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id)
 
 func _onDocChanged(response: Array) -> void:
 	_setDoc(_docDefault)

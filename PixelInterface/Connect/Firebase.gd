@@ -70,24 +70,24 @@ func lookup(http: HTTPRequest, token: String) -> void:
 func _headers(token: String) -> PoolStringArray:
 	return PoolStringArray(["Content-Type: application/json", "Authorization: Bearer " + token])
 
-func saveDoc(http: HTTPRequest, path: String, token: String, id: String, fields: Dictionary) -> void:
+func saveDoc(http: HTTPRequest, token: String, path: String, fields: Dictionary) -> void:
 	var body := to_json({ "fields": fields })
-	Utility.ok(http.request(_docsUrl + path % id, _headers(token), false, HTTPClient.METHOD_POST, body))
+	Utility.ok(http.request(_docsUrl + path, _headers(token), false, HTTPClient.METHOD_POST, body))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
-func loadDoc(http: HTTPRequest, path: String, token: String, id: String) -> void:
-	Utility.ok(http.request(_docsUrl + path % id, _headers(token), false, HTTPClient.METHOD_GET))
+func loadDoc(http: HTTPRequest, token: String, path: String) -> void:
+	Utility.ok(http.request(_docsUrl + path, _headers(token), false, HTTPClient.METHOD_GET))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
-func updateDoc(http: HTTPRequest, path: String, token: String, id: String, fields: Dictionary) -> void:
+func updateDoc(http: HTTPRequest, token: String, path: String, fields: Dictionary) -> void:
 	var body := to_json({ "fields": fields })
-	Utility.ok(http.request(_docsUrl + path % id, _headers(token), false, HTTPClient.METHOD_PATCH, body))
+	Utility.ok(http.request(_docsUrl + path, _headers(token), false, HTTPClient.METHOD_PATCH, body))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)
 
-func deleteDoc(http: HTTPRequest, path: String, token: String, id: String) -> void:
-	Utility.ok(http.request(_docsUrl + path % id, _headers(token), false, HTTPClient.METHOD_DELETE))
+func deleteDoc(http: HTTPRequest, token: String, path: String) -> void:
+	Utility.ok(http.request(_docsUrl + path, _headers(token), false, HTTPClient.METHOD_DELETE))
 	var response = yield(http, "request_completed")
 	emit_signal("docChanged", response)

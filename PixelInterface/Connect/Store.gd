@@ -33,6 +33,3 @@ func write() -> void:
 		for key in data[section]:
 			_file.set_value(section, key, data[section][key])
 	Utility.ok(_file.save(_path))
-
-func _exit_tree() -> void:
-	_file.close()

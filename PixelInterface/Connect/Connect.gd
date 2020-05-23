@@ -26,7 +26,8 @@ onready var _resetEmail := $Container/Viewport/Interface/Reset/Center/Panel/VBox
 onready var _resetReset := $Container/Viewport/Interface/Reset/Center/Panel/VBox/Reset
 onready var _resetClose := $Container/Viewport/Interface/Reset/Center/Panel/Close/Close
 
-onready var _accountEmail          := $Container/Viewport/Interface/Account/Center/Panel/VBox/Panel/Email
+onready var _accountName           := $Container/Viewport/Interface/Account/Center/Panel/VBox/Panel/VBox/Name
+onready var _accountEmail          := $Container/Viewport/Interface/Account/Center/Panel/VBox/Panel/VBox/Email
 onready var _accountSignOut        := $Container/Viewport/Interface/Account/Center/Panel/VBox/SignOut
 onready var _accountChangeEmail    := $Container/Viewport/Interface/Account/Center/Panel/VBox/HBox/Email
 onready var _accountChangePassword := $Container/Viewport/Interface/Account/Center/Panel/VBox/HBox/Password

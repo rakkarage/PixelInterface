@@ -6,6 +6,7 @@ func _ready() -> void:
 	Utility.ok(Firebase.connect("signedIn", self, "_onSignedIn"))
 	Utility.ok(Firebase.connect("signedUp", self, "_onSignedUp"))
 	Utility.ok(Firebase.connect("reset", self, "_onReset"))
+	Utility.ok(Firebase.connect("changedName", self, "_onChangedName"))
 	Utility.ok(Firebase.connect("changedEmail", self, "_onChangedEmail"))
 	Utility.ok(Firebase.connect("changedPassword", self, "_onChangedPassword"))
 	Utility.ok(Firebase.connect("lookup", self, "_onUpdatedStatus"))
@@ -33,10 +34,14 @@ func _setData(result: Dictionary = {}) -> void:
 		if "users" in result:
 			Store.data.f.email = result.users[0].email if Store.data.all.remember else ""
 			Store.data.f.id = result.users[0].localId
+			if "displayName" in result.users[0]:
+				print("NAME: " + result.users[0].displayName)
 		else:
 			Store.data.f.token = result.idToken
 			Store.data.f.email = result.email if Store.data.all.remember else ""
 			Store.data.f.id = result.localId
+			if "displayName" in result:
+				print("NAME: " + result.displayName)
 	Store.write()
 
 ### status
@@ -54,12 +59,11 @@ func _onUpdatedStatus(response: Array) -> void:
 	if response[1] == 200:
 		var result = _result(response)
 		_setData(result)
-		print(result)
 		var email = Store.data.f.email
 		_status.modulate = _connectedColor
 		_statusEmail.text = email
 		_accountEmail.text = email
-		_accountName.text = result.displayName
+#		_accountName.text = result.displayName if "displayName" in result else result.users[0].displayName if "users" in result else ""
 		_dataSave.disabled = false
 		_dataDelete.disabled = false
 		_loadDoc()
@@ -126,7 +130,10 @@ func _onSignUpPressed() -> void:
 
 func _onSignedUp(response: Array) -> void:
 	if response[1] == 200:
-		Firebase.changeName(_http, Store.data.f.token, _signUpName.text)
+		var result = _result(response)
+		var name = _signUpName.text
+		if name != "":
+			_changeName(result.idToken, name)
 		_successAudio.play()
 		_signInEmail.text = _signUpEmail.text
 		_signUpName.text = _gename.next()
@@ -137,6 +144,15 @@ func _onSignedUp(response: Array) -> void:
 	else:
 		_handleError(response)
 	_enableInput([_signUpSignUp])
+
+### change name
+
+func _changeName(token: String, name: String) -> void:
+	print("CangeName: " + name + " : " + token)
+	Firebase.changeName(_http, token, name)
+
+func _onChangedName(response: Array) -> void:
+	_accountName.text = _result(response).displayName if response[1] == 200 else ""
 
 ### reset password
 

@@ -3,15 +3,6 @@ extends Connect
 var _session: Dictionary
 
 func _ready() -> void:
-	Utility.ok(Firebase.connect("signedIn", self, "_onSignedIn"))
-	Utility.ok(Firebase.connect("signedUp", self, "_onSignedUp"))
-	Utility.ok(Firebase.connect("reset", self, "_onReset"))
-	Utility.ok(Firebase.connect("changedName", self, "_onChangedName"))
-	Utility.ok(Firebase.connect("changedEmail", self, "_onChangedEmail"))
-	Utility.ok(Firebase.connect("changedPassword", self, "_onChangedPassword"))
-	Utility.ok(Firebase.connect("lookup", self, "_onUpdatedStatus"))
-	Utility.ok(Firebase.connect("docChanged", self, "_onDocChanged"))
-
 	_signInRemember.pressed = Store.data.all.remember
 	if Store.data.all.remember:
 		_signInEmail.text = Store.data.f.email
@@ -34,14 +25,10 @@ func _setData(result: Dictionary = {}) -> void:
 		if "users" in result:
 			Store.data.f.email = result.users[0].email if Store.data.all.remember else ""
 			Store.data.f.id = result.users[0].localId
-			if "displayName" in result.users[0]:
-				print("NAME: " + result.users[0].displayName)
 		else:
 			Store.data.f.token = result.idToken
 			Store.data.f.email = result.email if Store.data.all.remember else ""
 			Store.data.f.id = result.localId
-			if "displayName" in result:
-				print("NAME: " + result.displayName)
 	Store.write()
 
 ### status
@@ -53,17 +40,15 @@ func _onStatusPressed() -> void:
 		_springSignIn()
 
 func _updateStatus(token: String) -> void:
-	Firebase.lookup(_http, token)
-
-func _onUpdatedStatus(response: Array) -> void:
+	var response = yield(Firebase.lookup(_http, token), "completed")
+	var result = _getResult(response)
 	if response[1] == 200:
-		var result = _result(response)
 		_setData(result)
 		var email = Store.data.f.email
 		_status.modulate = _connectedColor
 		_statusEmail.text = email
 		_accountEmail.text = email
-#		_accountName.text = result.displayName if "displayName" in result else result.users[0].displayName if "users" in result else ""
+		_accountName.text = result.displayName if "displayName" in result else result.users[0].displayName if "users" in result else ""
 		_dataSave.disabled = false
 		_dataDelete.disabled = false
 		_loadDoc()
@@ -92,21 +77,19 @@ func _onSignInPressed() -> void:
 		_errorSet(_signInPassword)
 		return
 	_disableInput([_signInSignIn])
-	Firebase.signIn(_http, email, password)
-
-func _onSignedIn(response: Array) -> void:
+	var response = yield(Firebase.signIn(_http, email, password), "completed")
+	_enableInput([_signInSignIn])
+	var result = _getResult(response)
 	if response[1] == 200:
 		_successAudio.play()
 		_signInPassword.text = ""
-		var result = _result(response)
 		_setData(result)
 		_updateStatus(result.idToken)
 		_springStatus(false)
 	else:
-		_handleError(response)
+		_handleError(result)
 		_signUpEmail.text = _signInEmail.text
 		_resetEmail.text = _signInEmail.text
-	_enableInput([_signInSignIn])
 
 ### signUp
 
@@ -126,11 +109,10 @@ func _onSignUpPressed() -> void:
 		_errorSet(_signUpConfirm)
 		return
 	_disableInput([_signUpSignUp])
-	Firebase.signUp(_http, email, password)
-
-func _onSignedUp(response: Array) -> void:
+	var response = yield(Firebase.signUp(_http, email, password), "completed")
+	_enableInput([_signUpSignUp])
+	var result = _getResult(response)
 	if response[1] == 200:
-		var result = _result(response)
 		var name = _signUpName.text
 		if name != "":
 			_changeName(result.idToken, name)
@@ -142,17 +124,13 @@ func _onSignedUp(response: Array) -> void:
 		_signUpConfirm.text = ""
 		_springSignIn(false)
 	else:
-		_handleError(response)
-	_enableInput([_signUpSignUp])
+		_handleError(result)
 
 ### change name
 
 func _changeName(token: String, name: String) -> void:
-	print("CangeName: " + name + " : " + token)
-	Firebase.changeName(_http, token, name)
-
-func _onChangedName(response: Array) -> void:
-	_accountName.text = _result(response).displayName if response[1] == 200 else ""
+	var response = yield(Firebase.changeName(_http, token, name), "completed")
+	_accountName.text = _getResult(response).displayName if response[1] == 200 else ""
 
 ### reset password
 
@@ -164,16 +142,14 @@ func _onResetPressed() -> void:
 		_errorSet(_resetEmail)
 		return
 	_disableInput([_resetReset])
-	Firebase.reset(_http, _resetEmail.text)
-
-func _onReset(response: Array) -> void:
+	var response = yield(Firebase.reset(_http, _resetEmail.text), "completed")
+	_enableInput([_resetReset])
 	if response[1] == 200:
 		_successAudio.play()
 		_resetEmail.text = ""
 		_springSignIn(false)
 	else:
-		_handleError(response)
-	_enableInput([_resetReset])
+		_handleError(_getResult(response))
 
 ### account
 
@@ -199,20 +175,18 @@ func _onChangeEmailPressed() -> void:
 		_errorSet(_emailConfirm)
 		return
 	_disableInput([_emailChange])
-	Firebase.changeEmail(_http, Store.data.f.token, email)
-
-func _onChangedEmail(response: Array) -> void:
+	var response = yield(Firebase.changeEmail(_http, Store.data.f.token, email), "completed")
 	_enableInput([_emailChange])
+	var result = _getResult(response)
 	if response[1] == 200:
 		_successAudio.play()
 		_emailEmail.text = ""
 		_emailConfirm.text = ""
-		var result = _result(response)
 		_setData(result)
 		_updateStatus(result.idToken)
 		_springAccount(false)
 	else:
-		_handleError(response)
+		_handleError(result)
 
 ### change password
 
@@ -228,20 +202,18 @@ func _onChangePasswordPressed() -> void:
 		_errorSet(_passwordConfirm)
 		return
 	_disableInput([_passwordChange])
-	Firebase.changePassword(_http, Store.data.f.token, password)
-
-func _onChangedPassword(response: Array) -> void:
+	var response = yield(Firebase.changePassword(_http, Store.data.f.token, password), "completed")
 	_enableInput([_passwordChange])
+	var result = _getResult(response)
 	if response[1] == 200:
 		_successAudio.play()
 		_passwordPassword.text = ""
 		_passwordConfirm.text = ""
-		var result = _result(response)
 		_setData(result)
-		_updateStatus(_result(response).idToken)
+		_updateStatus(result.idToken)
 		_springAccount(false)
 	else:
-		_handleError(response)
+		_handleError(result)
 
 ### data
 
@@ -259,9 +231,19 @@ func _setDoc(value: Dictionary):
 	_dataNumber.value = int(_doc.number.integerValue)
 	_dataText.text = _doc.text.stringValue
 
+func _handleDoc(response: Array):
+	_setDoc(_docDefault)
+	if response[1] == 404:
+		_docExists = false
+	if response[1] == 200:
+		_successAudio.play()
+		_setDoc(_getResult(response).fields)
+
 func _loadDoc() -> void:
 	_disableInput([_dataSave, _dataDelete])
-	Firebase.loadDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id)
+	var response = yield (Firebase.loadDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id), "completed")
+	_enableInput([_dataSave, _dataDelete])
+	_handleDoc(response)
 
 func _onSaveDocPressed() -> void:
 	_clickAudio.play()
@@ -269,28 +251,23 @@ func _onSaveDocPressed() -> void:
 	_doc.number.integerValue = str(_dataNumber.value)
 	_doc.text.stringValue = _dataText.text
 	_disableInput([_dataSave, _dataDelete])
+	var response
 	if _docExists:
-		Firebase.updateDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id, _doc)
+		response = yield(Firebase.updateDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id, _doc), "completed")
 	else:
-		Firebase.saveDoc(_http, Store.data.f.token, "users?documentId=%s" % Store.data.f.id, _doc)
+		response = yield(Firebase.saveDoc(_http, Store.data.f.token, "users?documentId=%s" % Store.data.f.id, _doc), "completed")
+	_enableInput([_dataSave, _dataDelete])
+	_handleDoc(response)
 
 func _onDeleteDocPressed() -> void:
 	_clickAudio.play()
 	_disableInput([_dataSave, _dataDelete])
-	Firebase.deleteDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id)
-
-func _onDocChanged(response: Array) -> void:
-	_setDoc(_docDefault)
-	if response[1] == 404:
-		_docExists = false
-	if response[1] == 200:
-		_successAudio.play()
-		_setDoc(_result(response).fields)
+	var response = yield(Firebase.deleteDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id), "completed")
 	_enableInput([_dataSave, _dataDelete])
-	_disableWait()
+	_handleDoc(response)
 
-func _result(response: Array) -> Dictionary:
+func _getResult(response: Array) -> Dictionary:
 	return JSON.parse(response[3].get_string_from_ascii()).result
 
-func _handleError(response: Array) -> void:
-	_showError(_result(response).error.message.capitalize())
+func _handleError(result: Dictionary) -> void:
+	_showError(result.error.message.capitalize())

@@ -1,12 +1,12 @@
 extends Connect
 
-var _session: Dictionary
-
 func _ready() -> void:
-	_signInRemember.pressed = Store.data.all.remember
-	if Store.data.all.remember:
+	var remember = Store.data.all.remember
+	_signInRemember.pressed = remember
+	if remember:
 		_signInEmail.text = Store.data.f.email
-
+	else:
+		Store.data.f.token = ""
 	_updateStatus(Store.data.f.token)
 	_status.grab_focus()
 
@@ -16,20 +16,34 @@ func _ready() -> void:
 func authenticated() -> bool:
 	return not _accountEmail.text.empty()
 
-func _setData(result: Dictionary = {}) -> void:
+func _extractName(result: Dictionary) -> String:
+	return result.displayName if "displayName" in result else result.users[0].displayName if "users" in result else ""
+
+func _extractEmail(result: Dictionary) -> String:
+	return result.email if "email" in result else result.users[0].email if "users" in result else ""
+
+func _extractToken(result: Dictionary) -> String:
+	return result.idToken if "idToken" in result else Store.data.f.token
+
+func _extractId(result: Dictionary) -> String:
+	return result.localId if "localId" in result else result.users[0].localId if "users" in result else ""
+
+func _storeData(result: Dictionary = {}) -> void:
 	if result.size() == 0:
 		Store.data.f.token = ""
 		Store.data.f.email = ""
 		Store.data.f.id = ""
 	else:
-		if "users" in result:
-			Store.data.f.email = result.users[0].email if Store.data.all.remember else ""
-			Store.data.f.id = result.users[0].localId
-		else:
-			Store.data.f.token = result.idToken
-			Store.data.f.email = result.email if Store.data.all.remember else ""
-			Store.data.f.id = result.localId
+		Store.data.f.email = _extractEmail(result) if Store.data.all.remember else ""
+		Store.data.f.token = _extractToken(result) 
+		Store.data.f.id = _extractId(result)
 	Store.write()
+
+func _getResult(response: Array) -> Dictionary:
+	return JSON.parse(response[3].get_string_from_ascii()).result
+
+func _handleError(result: Dictionary) -> void:
+	_showError(result.error.message.capitalize())
 
 ### status
 
@@ -43,8 +57,8 @@ func _updateStatus(token: String) -> void:
 	var response = yield(Firebase.lookup(_http, token), "completed")
 	var result = _getResult(response)
 	if response[1] == 200:
-		_setData(result)
-		var email = Store.data.f.email
+		_storeData(result)
+		var email = result.email if "email" in result else result.users[0].email if "users" in result else ""
 		_status.modulate = _connectedColor
 		_statusEmail.text = email
 		_accountEmail.text = email
@@ -53,7 +67,7 @@ func _updateStatus(token: String) -> void:
 		_dataDelete.disabled = false
 		_loadDoc()
 	else:
-		_setData()
+		_storeData()
 		_status.modulate = _disconnectedColor
 		_statusEmail.text = "Welcome."
 		_accountEmail.text = ""
@@ -83,7 +97,7 @@ func _onSignInPressed() -> void:
 	if response[1] == 200:
 		_successAudio.play()
 		_signInPassword.text = ""
-		_setData(result)
+		_storeData(result)
 		_updateStatus(result.idToken)
 		_springStatus(false)
 	else:
@@ -129,8 +143,8 @@ func _onSignUpPressed() -> void:
 ### change name
 
 func _changeName(token: String, name: String) -> void:
-	var response = yield(Firebase.changeName(_http, token, name), "completed")
-	_accountName.text = _getResult(response).displayName if response[1] == 200 else ""
+	yield(Firebase.changeName(_http, token, name), "completed")
+	_updateStatus(Store.data.f.token)
 
 ### reset password
 
@@ -182,7 +196,7 @@ func _onChangeEmailPressed() -> void:
 		_successAudio.play()
 		_emailEmail.text = ""
 		_emailConfirm.text = ""
-		_setData(result)
+		_storeData(result)
 		_updateStatus(result.idToken)
 		_springAccount(false)
 	else:
@@ -209,7 +223,7 @@ func _onChangePasswordPressed() -> void:
 		_successAudio.play()
 		_passwordPassword.text = ""
 		_passwordConfirm.text = ""
-		_setData(result)
+		_storeData(result)
 		_updateStatus(result.idToken)
 		_springAccount(false)
 	else:
@@ -231,7 +245,7 @@ func _setDoc(value: Dictionary):
 	_dataNumber.value = int(_doc.number.integerValue)
 	_dataText.text = _doc.text.stringValue
 
-func _handleDoc(response: Array):
+func _docChanged(response: Array):
 	_setDoc(_docDefault)
 	if response[1] == 404:
 		_docExists = false
@@ -243,7 +257,7 @@ func _loadDoc() -> void:
 	_disableInput([_dataSave, _dataDelete])
 	var response = yield (Firebase.loadDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id), "completed")
 	_enableInput([_dataSave, _dataDelete])
-	_handleDoc(response)
+	_docChanged(response)
 
 func _onSaveDocPressed() -> void:
 	_clickAudio.play()
@@ -257,17 +271,11 @@ func _onSaveDocPressed() -> void:
 	else:
 		response = yield(Firebase.saveDoc(_http, Store.data.f.token, "users?documentId=%s" % Store.data.f.id, _doc), "completed")
 	_enableInput([_dataSave, _dataDelete])
-	_handleDoc(response)
+	_docChanged(response)
 
 func _onDeleteDocPressed() -> void:
 	_clickAudio.play()
 	_disableInput([_dataSave, _dataDelete])
 	var response = yield(Firebase.deleteDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id), "completed")
 	_enableInput([_dataSave, _dataDelete])
-	_handleDoc(response)
-
-func _getResult(response: Array) -> Dictionary:
-	return JSON.parse(response[3].get_string_from_ascii()).result
-
-func _handleError(result: Dictionary) -> void:
-	_showError(result.error.message.capitalize())
+	_docChanged(response)

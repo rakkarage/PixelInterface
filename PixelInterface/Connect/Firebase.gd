@@ -54,13 +54,13 @@ func lookup(http: HTTPRequest, token: String) -> void:
 func _headers(token: String) -> PoolStringArray:
 	return PoolStringArray(["Content-Type: application/json", "Authorization: Bearer " + token])
 
+func loadDoc(http: HTTPRequest, token: String, path: String) -> void:
+	Utility.ok(http.request(_docsUrl + path, _headers(token), false, HTTPClient.METHOD_GET))
+	return yield(http, "request_completed")
+
 func saveDoc(http: HTTPRequest, token: String, path: String, fields: Dictionary) -> void:
 	var body := to_json({ "fields": fields })
 	Utility.ok(http.request(_docsUrl + path, _headers(token), false, HTTPClient.METHOD_POST, body))
-	return yield(http, "request_completed")
-
-func loadDoc(http: HTTPRequest, token: String, path: String) -> void:
-	Utility.ok(http.request(_docsUrl + path, _headers(token), false, HTTPClient.METHOD_GET))
 	return yield(http, "request_completed")
 
 func updateDoc(http: HTTPRequest, token: String, path: String, fields: Dictionary) -> void:

@@ -8,13 +8,11 @@ var data := {
 	},
 	"f": {
 		"email": "",
-		"expires": 0,
 		"token": "",
 		"id": ""
 	},
 	"n": {
 		"email": "",
-		"expires": 0,
 		"token": ""
 	}
 }

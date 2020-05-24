@@ -28,6 +28,11 @@ func _extractToken(result: Dictionary) -> String:
 func _extractId(result: Dictionary) -> String:
 	return result.localId if "localId" in result else result.users[0].localId if "users" in result else ""
 
+func _extractExpires(result: Dictionary) -> int:
+	return int(result.expiresIn if "expiresIn" in result else _expires)
+
+var _expires := 0
+
 func _storeData(result: Dictionary = {}) -> void:
 	if result.size() == 0:
 		Store.data.f.token = ""
@@ -37,7 +42,25 @@ func _storeData(result: Dictionary = {}) -> void:
 		Store.data.f.email = _extractEmail(result) if Store.data.all.remember else ""
 		Store.data.f.token = _extractToken(result) 
 		Store.data.f.id = _extractId(result)
+		# print(result)
+		# print("1: %s" % _expires)
+		_expires = _extractExpires(result)
+		# print("2: %s" % _expires)
 	Store.write()
+	# print(_expires)
+	if _expires > 0:
+		_timer.stop()
+		_timer.start(30)#!!!!!!!!!!!!!!!!!!!!!!!!!!!_expires - 120)
+		yield(_timer, "timeout")
+		print("expired: " + Store.data.f.token)
+		var response = yield(Firebase.refresh(_http, Store.data.f.token), "completed")
+		print(response)
+		var r = _getResult(response)
+		if response[1] == 200:
+			_storeData(r)
+			_updateStatus(r.idToken)
+		else:
+			_updateStatus("")
 
 func _getResult(response: Array) -> Dictionary:
 	return JSON.parse(response[3].get_string_from_ascii()).result

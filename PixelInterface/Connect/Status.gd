@@ -4,18 +4,21 @@ const _time = 0.333
 const _trans = Tween.TRANS_EXPO
 const _ease = Tween.EASE_OUT
 
+onready var _tip = $Margin
+onready var _tween = $Tween
+
 func _ready():
 	Utility.ok(connect("mouse_entered", self, "mouseEntered"))
 	Utility.ok(connect("mouse_exited", self, "mouseExited"))
 
 func mouseEntered():
-	$Tween.stop_all()
-	$Tween.interpolate_property($Margin, "rect_rotation", null, 0, _time, _trans, _ease)
-	$Tween.interpolate_property($Margin, "modulate", null, Color(1, 1, 1, 0.75), _time, _trans, _ease)
-	$Tween.start()
+	_tween.stop_all()
+	_tween.interpolate_property(_tip, "rect_rotation", null, 0, _time, _trans, _ease)
+	_tween.interpolate_property(_tip, "modulate", null, Color(1, 1, 1, 0.75), _time, _trans, _ease)
+	_tween.start()
 
 func mouseExited():
-	$Tween.stop_all()
-	$Tween.interpolate_property($Margin, "rect_rotation", null, -90, _time, _trans, _ease)
-	$Tween.interpolate_property($Margin, "modulate", null, Color(0, 0, 0, 0), _time, _trans, _ease)
-	$Tween.start()
+	_tween.stop_all()
+	_tween.interpolate_property(_tip, "rect_rotation", null, -90, _time, _trans, _ease)
+	_tween.interpolate_property(_tip, "modulate", null, Color(0, 0, 0, 0), _time, _trans, _ease)
+	_tween.start()

@@ -58,6 +58,7 @@ onready var _dataDelete := $Container/Viewport/Interface/Data/Center/Panel/VBox/
 
 onready var _http := $HTTPRequest
 onready var _tween := $Tween
+onready var _timer := $Timer
 onready var _clickAudio := $Click
 onready var _errorAudio := $Error
 onready var _successAudio := $Success

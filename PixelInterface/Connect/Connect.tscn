@@ -47,31 +47,7 @@ anchor_bottom = 1.0
 
 [node name="Data" parent="Container/Viewport/Interface" instance=ExtResource( 16 )]
 
-[node name="Panel" parent="Container/Viewport/Interface/Data/Center" index="0"]
-margin_left = 141.0
-margin_top = 35.0
-margin_right = 371.0
-margin_bottom = 265.0
-
-[node name="Title" parent="Container/Viewport/Interface/Data/Center/Panel/VBox/Panel/VBox" index="0"]
-focus_neighbour_left = NodePath("../../../../../../../Status/Panel/Status")
-focus_neighbour_top = NodePath("../../../../../../../Status/Panel/Status")
-focus_previous = NodePath("../../../../../../../Status/Panel/Status")
-
-[node name="Delete" parent="Container/Viewport/Interface/Data/Center/Panel/VBox/HBox" index="1"]
-focus_neighbour_right = NodePath("../../../../../../Status/Panel/Status")
-focus_neighbour_bottom = NodePath("../../../../../../Status/Panel/Status")
-focus_next = NodePath("../../../../../../Status/Panel/Status")
-
 [node name="Status" parent="Container/Viewport/Interface" instance=ExtResource( 1 )]
-
-[node name="Status" parent="Container/Viewport/Interface/Status/Panel" index="1"]
-focus_neighbour_left = NodePath("../../../Data/Center/Panel/VBox/HBox/Delete")
-focus_neighbour_top = NodePath("../../../Data/Center/Panel/VBox/HBox/Delete")
-focus_neighbour_right = NodePath("../../../Data/Center/Panel/VBox/Panel/VBox/Title")
-focus_neighbour_bottom = NodePath("../../../Data/Center/Panel/VBox/Panel/VBox/Title")
-focus_next = NodePath("../../../Data/Center/Panel/VBox/Panel/VBox/Title")
-focus_previous = NodePath("../../../Data/Center/Panel/VBox/HBox/Delete")
 
 [node name="SignIn" parent="Container/Viewport/Interface" instance=ExtResource( 2 )]
 anchor_top = -1.0
@@ -117,6 +93,8 @@ anchor_right = 0.0
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )

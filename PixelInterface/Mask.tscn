@@ -3,17 +3,18 @@
 [ext_resource path="res://PixelInterface/Mask.shader" type="Shader" id=1]
 [ext_resource path="res://PixelInterface/Sprite/MaskGate.png" type="Texture" id=2]
 
-
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/color = Color( 0.247059, 0.494118, 0.74902, 1 )
 shader_param/scale = 2.0
-shader_param/pivot = Vector2( 0.5, 0.5 )
 shader_param/mask = ExtResource( 2 )
 
 [node name="Mask" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource( 1 )

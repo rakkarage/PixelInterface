@@ -5,7 +5,7 @@ const _signUpUrl := "https://identitytoolkit.googleapis.com/v1/accounts:signUp?k
 const _resetUrl := "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=%s"
 const _getUserUrl := "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=%s"
 const _setUserUrl := "https://identitytoolkit.googleapis.com/v1/accounts:update?key=%s"
-const _refreshUrl := "https://securetoken.googleapis.com/v1/token?key="
+const _refreshUrl := "https://securetoken.googleapis.com/v1/token?key=%s"
 const _docsProject := "godotconnect"
 const _docsUrl := "https://firestore.googleapis.com/v1/projects/%s/databases/(default)/documents/" % _docsProject
 var _apiKey := ""
@@ -52,9 +52,9 @@ func lookup(http: HTTPRequest, token: String) -> void:
 	Utility.ok(http.request(_getUserUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body)))
 	return yield(http, "request_completed")
 
-func refresh(http: HTTPRequest, token: String) -> void:
-	var body := { "grant_type": "refresh_token", "refresh_token": token }
-	Utility.ok(http.request(_refreshUrl, ["Content-Type: application/json"], true, HTTPClient.METHOD_POST, to_json(body)))
+func refresh(http: HTTPRequest, refresh: String) -> void:
+	var body := { "grant_type": "refresh_token", "refresh_token": refresh }
+	Utility.ok(http.request(_refreshUrl % _apiKey, ["Content-Type: application/json"], true, HTTPClient.METHOD_POST, to_json(body)))
 	return yield(http, "request_completed")
 
 func _headers(token: String) -> PoolStringArray:

@@ -220,7 +220,7 @@ func _onSaveDocPressed() -> void:
 	_doc.text = _dataText.text
 	_disableInput([_dataSave, _dataDelete])
 	var result : NakamaAPI.ApiStorageObjectAcks = yield(_client.write_storage_objects_async(_session, [
-		NakamaWriteStorageObject.new(_collection, _key, true, true, JSON.print(_doc), _docVersion),
+		NakamaWriteStorageObject.new(_collection, _key, true, true, to_json(_doc), _docVersion),
 	]), "completed")
 	_enableInput([_dataSave, _dataDelete])
 	if result.is_exception():

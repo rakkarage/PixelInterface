@@ -7,8 +7,9 @@ var data := {
 		"remember": true,
 	},
 	"f": {
-		"email": "",
 		"token": "",
+		"email": "",
+		"refresh": "",
 		"id": ""
 	},
 	"n": {

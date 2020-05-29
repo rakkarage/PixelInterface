@@ -2,7 +2,7 @@ extends Node
 
 const _path := "user://Store.cfg"
 var _file := ConfigFile.new()
-var data := {
+var _dataDefault := {
 	"all": {
 		"remember": true,
 	},
@@ -13,10 +13,11 @@ var data := {
 		"id": ""
 	},
 	"n": {
-		"email": "",
-		"token": ""
+		"token": "",
+		"email": ""
 	}
 }
+var data := _dataDefault.duplicate()
 
 func _init() -> void:
 	read()
@@ -32,3 +33,6 @@ func write() -> void:
 		for key in data[section]:
 			_file.set_value(section, key, data[section][key])
 	Utility.ok(_file.save(_path))
+
+func clear() -> void:
+	data = _dataDefault.duplicate()

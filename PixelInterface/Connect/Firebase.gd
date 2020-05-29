@@ -53,8 +53,8 @@ func lookup(http: HTTPRequest, token: String) -> void:
 	return yield(http, "request_completed")
 
 func refresh(http: HTTPRequest, refresh: String) -> void:
-	var body := { "grant_type": "refresh_token", "refresh_token": refresh }
-	Utility.ok(http.request(_refreshUrl % _apiKey, ["Content-Type: application/json"], true, HTTPClient.METHOD_POST, to_json(body)))
+	var query := "grant_type=refresh_token&refresh_token=%s" % refresh
+	Utility.ok(http.request(_refreshUrl % _apiKey, ["Content-Type: application/x-www-form-urlencoded"], true, HTTPClient.METHOD_POST, query))
 	return yield(http, "request_completed")
 
 func _headers(token: String) -> PoolStringArray:

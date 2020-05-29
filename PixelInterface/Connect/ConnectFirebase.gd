@@ -7,8 +7,11 @@ func _ready() -> void:
 		_signInEmail.text = Store.data.f.email
 	else:
 		Store.data.f.token = ""
-	_updateStatus(Store.data.f.token)
+	_onRefreshToken()
+	# _updateStatus(Store.data.f.token)
 	_status.grab_focus()
+
+	Utility.ok(_timer.connect("timeout", self, "_onRefreshToken"))
 
 	# firebase: no password for change email!?
 	_emailPassword.editable = false
@@ -26,13 +29,10 @@ func _extractToken(result: Dictionary) -> String:
 	return result.idToken if "idToken" in result else Store.data.f.token
 
 func _extractRefresh(result: Dictionary) -> String:
-	return result.idToken if "refreshToken" in result else Store.data.f.refresh
+	return result.refreshToken if "refreshToken" in result else Store.data.f.refresh
 
 func _extractId(result: Dictionary) -> String:
 	return result.localId if "localId" in result else result.users[0].localId if "users" in result else ""
-
-func _extractExpires(result: Dictionary) -> int:
-	return int(result.expiresIn if "expiresIn" in result else _expires)
 
 var _expires := 0
 
@@ -47,22 +47,13 @@ func _storeData(result: Dictionary = {}) -> void:
 		Store.data.f.email = _extractEmail(result) if Store.data.all.remember else ""
 		Store.data.f.refresh = _extractRefresh(result)
 		Store.data.f.id = _extractId(result)
-		print(_extractRefresh(result))
-		# print("1: %s" % _expires)
-		_expires = _extractExpires(result)
-		# print("2: %s" % _expires)
+		if "expiresIn" in result:
+			_expires = int(result.expiresIn)
 	Store.write()
-	# print(_expires)
 	if _expires > 0:
-		_expires = 0;
-		_timer.stop()
+		print(_expires)
 		_timer.start(10)#!!!!!!!!!!!!!!!!!!!!!!!!!!!_expires - 120)
-		yield(_timer, "timeout")
-		print("expired! " + Store.data.f.refresh)
-		var response = yield(Firebase.refresh(_http, Store.data.f.refresh), "completed")
-		print(_getResult(response))
-		if response[1] != 200:
-			_updateStatus("")
+		_expires = 0;
 
 func _getResult(response: Array) -> Dictionary:
 	return JSON.parse(response[3].get_string_from_utf8()).result
@@ -78,6 +69,7 @@ func _onStatusPressed() -> void:
 	else:
 		_springSignIn()
 
+# store should call update not the other way!?
 func _updateStatus(token: String) -> void:
 	var response = yield(Firebase.lookup(_http, token), "completed")
 	var result = _getResult(response)
@@ -101,6 +93,16 @@ func _updateStatus(token: String) -> void:
 		_dataText.text = ""
 		_dataSave.disabled = true
 		_dataDelete.disabled = true
+
+func _onRefreshToken() -> void:
+	print("_onRefrshToken")
+	var response = yield(Firebase.refresh(_http, Store.data.f.refresh), "completed")
+	if response[1] == 200:
+		# need to pass in the refresh and expires in pas the whole fuck in
+		_storeData(_getResult(response))
+		_updateStatus(Store.data.f.token)
+	else:
+		_updateStatus("")
 
 ### signIn
 

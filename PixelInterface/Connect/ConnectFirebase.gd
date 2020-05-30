@@ -142,15 +142,15 @@ func _onSignUpPressed() -> void:
 	_enableInput([_signUpSignUp])
 	var result = _getResult(response)
 	if response[1] == 200:
-		var name = _signUpName.text
-		if name != "":
-			_changeName(result.idToken, name)
 		_successAudio.play()
 		_signUpName.text = _gename.next()
 		_signUpEmail.text = ""
 		_signUpPassword.text = ""
 		_signUpConfirm.text = ""
 		_springStatus(false)
+		var name = _signUpName.text
+		if name != "":
+			yield(_changeName(result.idToken, name), "completed")
 	else:
 		_handleError(result)
 	yield(_onAuthChanged(response), "completed")
@@ -268,7 +268,6 @@ func _docChanged(response: Array) -> void:
 	if response[1] == 200:
 		var result = _getResult(response)
 		if result.size() > 0 and "fields" in result:
-			_successAudio.play()
 			_setDoc(result.fields)
 
 func _loadDoc() -> void:

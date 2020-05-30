@@ -6,7 +6,7 @@ var _session: NakamaSession
 func _ready() -> void:
 	_signInRemember.pressed = Store.data.all.remember
 	if Store.data.all.remember:
-		_signInEmail.text = Store.data.nakama.email
+		_signInEmail.text = Store.data.n.email
 		_session = NakamaClient.restore_session(Store.data.n.token)
 
 	_updateStatus()
@@ -108,7 +108,8 @@ func _onSignUpPressed() -> void:
 		_signUpConfirm.text = ""
 		Store.data.n.email = email if Store.data.all.remember else ""
 		Store.write()
-		_springSignIn(false)
+		_updateStatus()
+		_springStatus(false)
 
 ### account
 

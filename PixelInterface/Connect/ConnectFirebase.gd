@@ -86,11 +86,11 @@ func _onStatusPressed() -> void:
 
 func _lookup() -> void:
 	var response = yield(Firebase.lookup(_http, Store.data.f.token), "completed")
-	_onAuthChanged(response)
+	yield(_onAuthChanged(response), "completed")
 
 func _onRefreshToken() -> void:
 	var response = yield(Firebase.refresh(_http, Store.data.f.refresh), "completed")
-	_onAuthChanged(response)
+	yield(_onAuthChanged(response), "completed")
 
 ### signIn
 
@@ -117,7 +117,7 @@ func _onSignInPressed() -> void:
 		_handleError(result)
 		_signUpEmail.text = _signInEmail.text
 		_resetEmail.text = _signInEmail.text
-	_onAuthChanged(response);
+	yield(_onAuthChanged(response), "completed")
 
 ### signUp
 
@@ -152,13 +152,13 @@ func _onSignUpPressed() -> void:
 		_springStatus(false)
 	else:
 		_handleError(result)
-	_onAuthChanged(response);
+	yield(_onAuthChanged(response), "completed")
 
 ### change name
 
 func _changeName(token: String, name: String) -> void:
 	var response = yield(Firebase.changeName(_http, token, name), "completed")
-	_onAuthChanged(response)
+	yield(_onAuthChanged(response), "completed")
 
 ### reset password
 
@@ -184,7 +184,7 @@ func _onResetPressed() -> void:
 func _onSignOutPressed() -> void:
 	_clickAudio.play()
 	_disableInput([_accountSignOut])
-	_onAuthChanged([])
+	yield(_onAuthChanged([]), "completed")
 	_enableInput([_accountSignOut])
 	_successAudio.play()
 	_springStatus()
@@ -213,7 +213,7 @@ func _onChangeEmailPressed() -> void:
 		_springAccount(false)
 	else:
 		_handleError(result)
-	_onAuthChanged(response)
+	yield(_onAuthChanged(response), "completed")
 
 ### change password
 
@@ -239,7 +239,7 @@ func _onChangePasswordPressed() -> void:
 		_springAccount(false)
 	else:
 		_handleError(result)
-	_onAuthChanged(response)
+	yield(_onAuthChanged(response), "completed")
 
 ### data
 

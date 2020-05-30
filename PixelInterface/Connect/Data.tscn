@@ -108,6 +108,7 @@ focus_neighbour_bottom = NodePath("../Delete")
 focus_next = NodePath("../Delete")
 focus_previous = NodePath("../../Panel/VBox/Text")
 size_flags_horizontal = 3
+disabled = true
 text = "Save"
 
 [node name="Delete" type="Button" parent="Center/Panel/VBox/HBox"]
@@ -121,4 +122,5 @@ focus_neighbour_bottom = NodePath("../../Panel/VBox/Title")
 focus_next = NodePath("../../Panel/VBox/Title")
 focus_previous = NodePath("../Save")
 size_flags_horizontal = 3
+disabled = true
 text = "Delete"

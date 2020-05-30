@@ -35,6 +35,7 @@ func _extractId(result: Dictionary) -> String:
 	return result.localId if "localId" in result else result.users[0].localId if "users" in result else Store.data.f.id
 
 func _onAuthChanged(response: Array) -> void:
+	yield(get_tree(), "idle_frame") 
 	if response.size() > 0 and response[1] == 200:
 		var result = _getResult(response)
 		var email = _extractEmail(result)

@@ -68,7 +68,7 @@ func _onAuthChanged(response: Array) -> void:
 	Store.write()
 	if _expires > 0:
 		_timer.start(_expires - _expiresOffset)
-		_expires = 0;
+		_expires = 0
 
 func _getResult(response: Array) -> Dictionary:
 	return JSON.parse(response[3].get_string_from_utf8()).result
@@ -272,7 +272,7 @@ func _docChanged(response: Array) -> void:
 
 func _loadDoc() -> void:
 	_disableInput([_dataSave, _dataDelete])
-	var response = yield (Firebase.loadDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id), "completed")
+	var response = yield(Firebase.loadDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id), "completed")
 	_enableInput([_dataSave, _dataDelete])
 	_docChanged(response)
 

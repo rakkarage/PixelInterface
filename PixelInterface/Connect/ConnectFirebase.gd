@@ -10,7 +10,8 @@ func _ready() -> void:
 	_signInRemember.pressed = remember
 	if remember:
 		_signInEmail.text = Store.data.f.email
-	_onRefreshToken()
+	yield(_onRefreshToken(), "completed")
+	yield(_lookup(), "completed")
 
 	# firebase: no password for change email!?
 	_emailPassword.editable = false
@@ -22,7 +23,7 @@ func _extractName(result: Dictionary) -> String:
 	return result.displayName if "displayName" in result else result.users[0].displayName if "users" in result else ""
 
 func _extractEmail(result: Dictionary) -> String:
-	return result.email if "email" in result else result.users[0].email if "users" in result else ""
+	return result.email if "email" in result else result.users[0].email if "users" in result else Store.data.f.email
 
 func _extractToken(result: Dictionary) -> String:
 	return result.idToken if "idToken" in result else result.id_token if "id_token" in result else Store.data.f.token
@@ -31,7 +32,7 @@ func _extractRefresh(result: Dictionary) -> String:
 	return result.refreshToken if "refreshToken" in result else result.refresh_token if "refresh_token" in result else Store.data.f.refresh
 
 func _extractId(result: Dictionary) -> String:
-	return result.localId if "localId" in result else result.users[0].localId if "users" in result else ""
+	return result.localId if "localId" in result else result.users[0].localId if "users" in result else Store.data.f.id
 
 func _onAuthChanged(response: Array) -> void:
 	if response.size() > 0 and response[1] == 200:
@@ -51,7 +52,7 @@ func _onAuthChanged(response: Array) -> void:
 		_accountName.text = _extractName(result)
 		_dataSave.disabled = false
 		_dataDelete.disabled = false
-		_loadDoc()
+		yield(_loadDoc(), "completed")
 	else:
 		Store.data.f.token = ""
 		Store.data.f.email = ""
@@ -66,8 +67,7 @@ func _onAuthChanged(response: Array) -> void:
 		_clearDoc()
 	Store.write()
 	if _expires > 0:
-		print_debug("_expires > 0")
-		_timer.start(10)#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!_expires - _expiresOffset)
+		_timer.start(_expires - _expiresOffset)
 		_expires = 0;
 
 func _getResult(response: Array) -> Dictionary:
@@ -89,7 +89,6 @@ func _lookup() -> void:
 	_onAuthChanged(response)
 
 func _onRefreshToken() -> void:
-	print_debug("refresh")
 	var response = yield(Firebase.refresh(_http, Store.data.f.refresh), "completed")
 	_onAuthChanged(response)
 
@@ -266,9 +265,9 @@ func _docChanged(response: Array) -> void:
 	if response[1] == 404:
 		_docExists = false
 	if response[1] == 200:
-		_successAudio.play()
 		var result = _getResult(response)
-		if result.size() > 0:
+		if result.size() > 0 and "fields" in result:
+			_successAudio.play()
 			_setDoc(result.fields)
 
 func _loadDoc() -> void:

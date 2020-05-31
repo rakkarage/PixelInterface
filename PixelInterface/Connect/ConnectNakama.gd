@@ -36,12 +36,14 @@ func _updateStatus() -> void:
 		_status.modulate = _disconnectedColor
 		_statusEmail.text = "Welcome."
 		_accountEmail.text = ""
+		_accountName.text = ""
 		_dataSave.disabled = true
 		_dataDelete.disabled = true
 	else:
 		_status.modulate = _connectedColor
 		_statusEmail.text = account.email
 		_accountEmail.text = account.email
+		_accountName.text = account.name
 		_dataSave.disabled = false
 		_dataDelete.disabled = false
 		_loadDoc()
@@ -119,6 +121,7 @@ func _onSignOutPressed() -> void:
 	Store.data.n.token = ""
 	Store.data.n.email = ""
 	Store.write()
+	_clearDoc()
 	_successAudio.play()
 	_updateStatus()
 	_springStatus()
@@ -190,11 +193,14 @@ const _docDefault := {
 }
 var _doc := _docDefault.duplicate()
 
-func _setDoc(value: Dictionary):
+func _setDoc(value: Dictionary) -> void:
 	_doc = value.duplicate()
 	_dataTitle.text = _doc.title
 	_dataNumber.value = int(_doc.number)
 	_dataText.text = _doc.text
+
+func _clearDoc() -> void:
+	_setDoc(_docDefault.duplicate())
 
 func _loadDoc() -> void:
 	_disableInput([_dataSave, _dataDelete])

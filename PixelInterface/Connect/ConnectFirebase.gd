@@ -187,6 +187,7 @@ func _onSignOutPressed() -> void:
 	_disableInput([_accountSignOut])
 	yield(_onAuthChanged([]), "completed")
 	_enableInput([_accountSignOut])
+	_clearDoc()
 	_successAudio.play()
 	_springStatus()
 

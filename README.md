@@ -13,6 +13,16 @@ Pixel-perfect fonts and user interface elements.
 - Example ui to test & demo theme.
 - Example connection and storage to firebase or nakama to test and demo ui.
 
+## Submodules
+
+To include submodules, clone with the --recursive flag:
+
+`git clone --recursive https://bitbucket.org/rakkarage/PixelInterface.git`
+
+or download a zip from bitbucket (bitbucket-pipelines.yml) which includes all submodules.
+
+<https://bitbucket.org/rakkarage/pixelinterface/downloads/>
+
 ## Firebase & Firestore
 
 - Add api key in file @ res://PixelInterface/Connect/apikey.txt that is ignored by git.

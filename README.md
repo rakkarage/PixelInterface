@@ -40,7 +40,7 @@ or download a zip from bitbucket (bitbucket-pipelines.yml) which includes all su
       - <https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker>
 
 - <https://heroiclabs.com/docs/install-docker-quickstart/>
-  - make a folder and a docker-compose.yml as in nakama quickstart
-  - map folder to persist data as in nakama quickstart and add to .gitignore
-  - start detached and let it run
+  - Make a folder and a docker-compose.yml as in nakama quickstart or edit the included example.
+    - Map a sub folder to persist data as in nakama quickstart and add to .gitignore.
+  - Start detached and let it run.
     - `docker-compose up -d`

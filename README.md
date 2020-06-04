@@ -4,6 +4,7 @@ Pixel-perfect fonts and user interface elements.
 
 - <https://godotmarketplace.com/publisher/henry-software/>
 - <https://bitbucket.org/rakkarage/pixelinterface/issues>
+- <https://github.com/rakkarage/pixelinterface/issues>
 
 ## What this is
 

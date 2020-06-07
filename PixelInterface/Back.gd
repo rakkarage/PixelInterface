@@ -1,10 +1,10 @@
 tool
 extends TextureRect
 
-func _ready():
-	Utility.ok(get_node("..").connect("resized", self, "_on_Control_resized"))
+func _ready() -> void:
+	Utility.ok(get_node("..").connect("resized", self, "_onResized"))
 
-func _on_Control_resized():
+func _onResized() -> void:
 	var tex = rect_size
 	var win = get_viewport_rect().size
 	if win.x > win.y:

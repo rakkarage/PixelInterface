@@ -1,5 +1,5 @@
 tool
-extends TextureRect
+extends Control
 
 func _ready() -> void:
 	Utility.ok(get_node("..").connect("resized", self, "_onResized"))

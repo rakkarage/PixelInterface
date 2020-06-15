@@ -5,8 +5,8 @@ func _ready() -> void:
 	Utility.ok(get_node("..").connect("resized", self, "_onResized"))
 
 func _onResized() -> void:
-	var tex = rect_size
-	var win = get_viewport_rect().size
+	var tex := rect_size
+	var win := get_viewport_rect().size
 	if win.x > win.y:
 		rect_rotation = 90
 		rect_scale = Vector2(win.y / tex.x, win.x / tex.y)

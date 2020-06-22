@@ -35,11 +35,11 @@ func _extractId(result: Dictionary) -> String:
 	return result.localId if "localId" in result else result.users[0].localId if "users" in result else Store.data.f.id
 
 func _onAuthChanged(response: Array) -> void:
-	yield(get_tree(), "idle_frame") 
+	yield(get_tree(), "idle_frame")
 	if response.size() > 0 and response[1] == 200:
 		var result = _getResult(response)
 		var email = _extractEmail(result)
-		Store.data.f.token = _extractToken(result) 
+		Store.data.f.token = _extractToken(result)
 		Store.data.f.email = email if Store.data.all.remember else ""
 		Store.data.f.refresh = _extractRefresh(result)
 		Store.data.f.id = _extractId(result)
@@ -72,7 +72,7 @@ func _onAuthChanged(response: Array) -> void:
 		_expires = 0
 
 func _getResult(response: Array) -> Dictionary:
-	return JSON.parse(response[3].get_string_from_utf8()).result
+	return json_parse(response[3].get_string_from_utf8()).result
 
 func _handleError(result: Dictionary) -> void:
 	_showError(result.error.message.capitalize())

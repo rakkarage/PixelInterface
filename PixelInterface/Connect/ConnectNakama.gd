@@ -214,7 +214,7 @@ func _loadDoc() -> void:
 	if result.objects.size() > 0:
 		var doc = result.objects[0]
 		_docVersion = doc.version
-		_doc = JSON.parse(doc.value).result
+		_doc = json_parse(doc.value).result
 		_dataTitle.text = _doc.title
 		_dataNumber.value = int(_doc.number)
 		_dataText.text = _doc.text

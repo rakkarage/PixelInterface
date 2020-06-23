@@ -36,14 +36,14 @@ func _updateStatus() -> void:
 		_status.modulate = _disconnectedColor
 		_statusEmail.text = "Welcome."
 		_accountEmail.text = ""
-		_accountName.text = ""
+		_accountName.text = _gename.next()
 		_dataSave.disabled = true
 		_dataDelete.disabled = true
 	else:
 		_status.modulate = _connectedColor
 		_statusEmail.text = account.email
 		_accountEmail.text = account.email
-		_accountName.text = account.name
+		_accountName.text = _session.username
 		_dataSave.disabled = false
 		_dataDelete.disabled = false
 		_loadDoc()

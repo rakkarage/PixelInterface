@@ -72,7 +72,7 @@ func _onAuthChanged(response: Array) -> void:
 		_expires = 0
 
 func _getResult(response: Array) -> Dictionary:
-	return json_parse(response[3].get_string_from_utf8()).result
+	return JSON.parse(response[3].get_string_from_utf8()).result
 
 func _handleError(result: Dictionary) -> void:
 	_showError(result.error.message.capitalize())

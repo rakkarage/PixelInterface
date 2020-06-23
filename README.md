@@ -33,7 +33,7 @@ or download a zip from bitbucket (bitbucket-pipelines.yml) which includes all su
   - get project id from project settings
     - put project id in Connect/Firebase.gd
   - create firestore database
-    - set rule: `allow read, write: if request.auth.uid != null;`
+    - test mode or rule: `allow read, write: if request.auth.uid != null;`
     - collection name is defined in Connect/Firebase.gd it will create this collection when data is saved
 
 ## Nakama Server

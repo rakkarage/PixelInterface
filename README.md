@@ -6,13 +6,7 @@ Pixel-perfect fonts and user interface elements.
 - <https://bitbucket.org/rakkarage/pixelinterface/issues>
 - <https://github.com/rakkarage/pixelinterface/issues>
 
-## What is this?
-
 ![Screenshot](https://imgur.com/V6YELkN.png)
-
-- Example Godot theme to test & demo project.
-- Example ui to test & demo theme.
-- Example connection and storage to firebase or nakama to test and demo ui.
 
 ## Submodules
 

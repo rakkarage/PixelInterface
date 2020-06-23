@@ -7,6 +7,7 @@ const _getUserUrl := "https://identitytoolkit.googleapis.com/v1/accounts:lookup?
 const _setUserUrl := "https://identitytoolkit.googleapis.com/v1/accounts:update?key=%s"
 const _refreshUrl := "https://securetoken.googleapis.com/v1/token?key=%s"
 const _docsProject := "godotconnect"
+const _docsCollection := "users"
 const _docsUrl := "https://firestore.googleapis.com/v1/projects/%s/databases/(default)/documents/" % _docsProject
 var _apiKey := ""
 
@@ -60,20 +61,20 @@ func refresh(http: HTTPRequest, refresh: String) -> void:
 func _headers(token: String) -> PoolStringArray:
 	return PoolStringArray(["Content-Type: application/json", "Authorization: Bearer " + token])
 
-func loadDoc(http: HTTPRequest, token: String, path: String) -> void:
-	Utility.ok(http.request(_docsUrl + path, _headers(token), false, HTTPClient.METHOD_GET))
+func loadDoc(http: HTTPRequest, token: String, id: String) -> void:
+	Utility.ok(http.request(_docsUrl + "%s/%s" % [_docsCollection, id], _headers(token), false, HTTPClient.METHOD_GET))
 	return yield(http, "request_completed")
 
-func saveDoc(http: HTTPRequest, token: String, path: String, fields: Dictionary) -> void:
+func saveDoc(http: HTTPRequest, token: String, id: String, fields: Dictionary) -> void:
 	var body := to_json({ "fields": fields })
-	Utility.ok(http.request(_docsUrl + path, _headers(token), false, HTTPClient.METHOD_POST, body))
+	Utility.ok(http.request(_docsUrl + "%s?documentId=%s" % [_docsCollection, id], _headers(token), false, HTTPClient.METHOD_POST, body))
 	return yield(http, "request_completed")
 
-func updateDoc(http: HTTPRequest, token: String, path: String, fields: Dictionary) -> void:
+func updateDoc(http: HTTPRequest, token: String, id: String, fields: Dictionary) -> void:
 	var body := to_json({ "fields": fields })
-	Utility.ok(http.request(_docsUrl + path, _headers(token), false, HTTPClient.METHOD_PATCH, body))
+	Utility.ok(http.request(_docsUrl + "%s/%s" % [_docsCollection, id], _headers(token), false, HTTPClient.METHOD_PATCH, body))
 	return yield(http, "request_completed")
 
-func deleteDoc(http: HTTPRequest, token: String, path: String) -> void:
-	Utility.ok(http.request(_docsUrl + path, _headers(token), false, HTTPClient.METHOD_DELETE))
+func deleteDoc(http: HTTPRequest, token: String, id: String) -> void:
+	Utility.ok(http.request(_docsUrl + "%s/%s" % [_docsCollection, id], _headers(token), false, HTTPClient.METHOD_DELETE))
 	return yield(http, "request_completed")

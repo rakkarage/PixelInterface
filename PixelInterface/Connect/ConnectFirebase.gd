@@ -273,7 +273,7 @@ func _docChanged(response: Array) -> void:
 
 func _loadDoc() -> void:
 	_disableInput([_dataSave, _dataDelete])
-	var response = yield(Firebase.loadDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id), "completed")
+	var response = yield(Firebase.loadDoc(_http, Store.data.f.token, Store.data.f.id), "completed")
 	_enableInput([_dataSave, _dataDelete])
 	_docChanged(response)
 
@@ -285,15 +285,15 @@ func _onSaveDocPressed() -> void:
 	_disableInput([_dataSave, _dataDelete])
 	var response
 	if _docExists:
-		response = yield(Firebase.updateDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id, _doc), "completed")
+		response = yield(Firebase.updateDoc(_http, Store.data.f.token, Store.data.f.id, _doc), "completed")
 	else:
-		response = yield(Firebase.saveDoc(_http, Store.data.f.token, "users?documentId=%s" % Store.data.f.id, _doc), "completed")
+		response = yield(Firebase.saveDoc(_http, Store.data.f.token, Store.data.f.id, _doc), "completed")
 	_enableInput([_dataSave, _dataDelete])
 	_docChanged(response)
 
 func _onDeleteDocPressed() -> void:
 	_clickAudio.play()
 	_disableInput([_dataSave, _dataDelete])
-	var response = yield(Firebase.deleteDoc(_http, Store.data.f.token, "users/%s" % Store.data.f.id), "completed")
+	var response = yield(Firebase.deleteDoc(_http, Store.data.f.token, Store.data.f.id), "completed")
 	_enableInput([_dataSave, _dataDelete])
 	_docChanged(response)

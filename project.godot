@@ -118,7 +118,7 @@ _global_script_class_icons={
 
 config/name="PixelInterface"
 config/description="Pixel-perfect fonts and user interface elements."
-run/main_scene="res://DemoNakama.tscn"
+run/main_scene="res://DemoFirebase.tscn"
 config/icon="res://icon.png"
 
 [autoload]

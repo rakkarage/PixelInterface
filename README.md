@@ -26,10 +26,15 @@ or download a zip from bitbucket (bitbucket-pipelines.yml) which includes all su
 
 ## Firebase & Firestore
 
-- Add api key in file @ res://PixelInterface/Connect/apikey.txt that is ignored by git.
-- Replace 'godotconnect' Firestore project id in Firebase.gd.
-- set Firestore project database rules to something like
-  - `allow read, write: if request.auth.uid != null;`
+- make new project @ <https://console.firebase.google.com/>
+  - enable email authentication access
+  - get api key from project settings
+    - put api key in Connect/apikey.txt
+  - get project id from project settings
+    - put project id in Connect/Firebase.gd
+  - create firestore database
+    - set rule: `allow read, write: if request.auth.uid != null;`
+    - collection name is defined in Connect/Firebase.gd it will create this collection when data is saved
 
 ## Nakama Server
 

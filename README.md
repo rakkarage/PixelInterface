@@ -6,7 +6,7 @@ Pixel-perfect fonts and user interface elements.
 - <https://bitbucket.org/rakkarage/pixelinterface/issues>
 - <https://github.com/rakkarage/pixelinterface/issues>
 
-## What this is
+## What is this?
 
 ![Screenshot](https://imgur.com/V6YELkN.png)
 
@@ -38,15 +38,11 @@ or download a zip from bitbucket (bitbucket-pipelines.yml) which includes all su
 
 ## Nakama Server
 
-- install and setup docker
-  - <https://docs.docker.com/engine/install/ubuntu/>
-  - <https://docs.docker.com/engine/install/linux-postinstall/>
-    - Container management software suggestions
-      - <https://www.portainer.io/>
-      - <https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker>
-
 - <https://heroiclabs.com/docs/install-docker-quickstart/>
-  - Make a folder and a docker-compose.yml as in nakama quickstart or edit the included example.
-    - Map a sub folder to persist data as in nakama quickstart and add to .gitignore.
-  - Start detached and let it run.
-    - `docker-compose up -d`
+  - install and setup docker
+    - <https://docs.docker.com/engine/install/ubuntu/>
+    - <https://docs.docker.com/engine/install/linux-postinstall/>
+  - make a folder and a docker-compose.yml as in nakama quick start or edit the **included example**
+    - map a folder to persist data as in nakama quick start
+  - start detached and let it run
+    - `./up.sh` or `docker-compose up -d`

@@ -18,7 +18,11 @@ or download a zip from bitbucket (bitbucket-pipelines.yml) which includes all su
 
 <https://bitbucket.org/rakkarage/pixelinterface/downloads/>
 
-## Firebase & Firestore
+## Setup
+
+- <https://youtu.be/wi0EYtasicM>
+
+### Firebase & Firestore
 
 - make new project @ <https://console.firebase.google.com/>
   - enable email authentication access
@@ -30,7 +34,7 @@ or download a zip from bitbucket (bitbucket-pipelines.yml) which includes all su
     - test mode or rule: `allow read, write: if request.auth.uid != null;`
     - collection name is defined in Connect/Firebase.gd it will create this collection when data is saved
 
-## Nakama Server
+### Nakama Server
 
 - <https://heroiclabs.com/docs/install-docker-quickstart/>
   - install and setup docker

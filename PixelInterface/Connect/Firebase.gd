@@ -14,7 +14,7 @@ var _apiKey := ""
 func _ready() -> void:
 	var file := File.new()
 	var error := file.open("res://PixelInterface/Connect/apikey.txt", File.READ)
-	if error != OK:	Utility.ok(error)
+	if error != OK: Utility.ok(error)
 	else: _apiKey = file.get_as_text()
 	file.close()
 

@@ -46,9 +46,9 @@ onready var _passwordClose    := $Container/Viewport/Interface/Password/Center/P
 
 onready var _dialog := $Container/Viewport/Dialog
 
-onready var _messageTitle := $Container/Viewport/Dialog/Message/Center/Panel/VBox/Title
-onready var _messageText  := $Container/Viewport/Dialog/Message/Center/Panel/VBox/Panel/Text
-onready var _messageClose := $Container/Viewport/Dialog/Message/Center/Panel/Close/Close
+onready var _messageTitle := $Container/Viewport/Dialog/Center/Panel/VBox/Title
+onready var _messageText  := $Container/Viewport/Dialog/Center/Panel/VBox/Panel/Text
+onready var _messageClose := $Container/Viewport/Dialog/Center/Panel/Close/Close
 
 onready var _dataTitle :=  $Container/Viewport/Interface/Data/Center/Panel/VBox/Panel/VBox/Title
 onready var _dataNumber := $Container/Viewport/Interface/Data/Center/Panel/VBox/Panel/VBox/Number
@@ -73,7 +73,8 @@ const _accountAnchor := Rect2(0, -1, 1, 0)
 const _emailAnchor := Rect2(1, -1, 2, 0)
 const _passwordAnchor := Rect2(-1, -1, 0, 0)
 
-const _messageAnchor := Rect2(1, 0, 2, 1)
+const _messageAnchor := Rect2(0, 0, 1, 1)
+const _messageAnchorBack := Rect2(-1, 0, 0, 1)
 
 const _connectedColor := Color(0.5, 0.75, 0.5)
 const _disconnectedColor := Color(0.75, 0.5, 0.5)
@@ -182,7 +183,7 @@ func _showError(error: String) -> void:
 
 func _onCloseErrorPressed() -> void:
 	_clickAudio.play()
-	_spring(_anchor, _dialog)
+	_spring(_messageAnchorBack, _dialog)
 	_popFocus()
 
 func _spring(a := _anchor, c := _interface, click := true) -> void:

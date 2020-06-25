@@ -7,7 +7,7 @@
 [ext_resource path="res://PixelInterface/Style/Paper.tres" type="StyleBox" id=5]
 
 [node name="Message" type="Control"]
-anchor_right = 1.0
+anchor_left = -1.0
 anchor_bottom = 1.0
 theme = ExtResource( 3 )
 __meta__ = {
@@ -19,9 +19,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Panel" type="PanelContainer" parent="Center"]
-margin_left = 124.0
+margin_left = 125.0
 margin_top = 341.0
-margin_right = 324.0
+margin_right = 325.0
 margin_bottom = 459.0
 rect_min_size = Vector2( 200, 64 )
 custom_styles/panel = ExtResource( 1 )

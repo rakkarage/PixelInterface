@@ -128,6 +128,7 @@ func _ready():
 	Utility.ok(_regex.compile(_pattern))
 
 	_signUpName.text = _gename.next()
+	_focus(_status, _status, null)
 
 func _onNextNamePressed() -> void:
 	_clickAudio.play()

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Excalmation.png-e1136b2049f3d05a0fe639e23c3e6805.stex"
+path="res://.import/Exclamation.png-a3d3f7b5427f10c16f87cfba9eff0451.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PixelInterface/Sprite/Excalmation.png"
-dest_files=[ "res://.import/Excalmation.png-e1136b2049f3d05a0fe639e23c3e6805.stex" ]
+source_file="res://PixelInterface/Sprite/Exclamation.png"
+dest_files=[ "res://.import/Exclamation.png-a3d3f7b5427f10c16f87cfba9eff0451.stex" ]
 
 [params]
 

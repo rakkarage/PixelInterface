@@ -2,7 +2,7 @@ tool
 extends Control
 
 func _ready() -> void:
-	Utility.ok(get_node("..").connect("resized", self, "_onResized"))
+	assert(get_node("..").connect("resized", self, "_onResized") == OK)
 
 func _onResized() -> void:
 	var tex := rect_size

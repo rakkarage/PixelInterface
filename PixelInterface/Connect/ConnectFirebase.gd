@@ -4,7 +4,7 @@ var _expires := 0
 var _expiresOffset := 120
 
 func _ready() -> void:
-	Utility.ok(_timer.connect("timeout", self, "_onRefreshToken"))
+	assert(_timer.connect("timeout", self, "_onRefreshToken") == OK)
 
 	var remember = Store.data.all.remember
 	_signInRemember.pressed = remember

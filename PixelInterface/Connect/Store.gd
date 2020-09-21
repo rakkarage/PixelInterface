@@ -32,7 +32,7 @@ func write() -> void:
 	for section in data.keys():
 		for key in data[section]:
 			_file.set_value(section, key, data[section][key])
-	Utility.ok(_file.save(_path))
+	assert(_file.save(_path) == OK)
 
 func clear() -> void:
 	data = _dataDefault.duplicate()

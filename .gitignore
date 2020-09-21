@@ -3,5 +3,6 @@
 *.csproj
 *.sln
 Properties/
+export_presets.cfg
 apikey.txt
 NakamaServer/nakama/data/.cookie

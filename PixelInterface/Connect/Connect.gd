@@ -95,38 +95,38 @@ var _cancelStack : Array = [ null ]
 var _gename = Gename.new()
 
 func _ready():
-	Utility.ok(_status.connect("pressed", self, "_onStatusPressed"))
+	assert.ok(_status.connect("pressed", self, "_onStatusPressed") == OK)
 
-	Utility.ok(_signInRemember.connect("pressed", self, "_onRememberPressed"))
-	Utility.ok(_signInSignIn.connect("pressed", self, "_onSignInPressed"))
-	Utility.ok(_signInSignUp.connect("pressed", self, "_springSignUp"))
-	Utility.ok(_signInReset.connect("pressed", self, "_springReset"))
-	Utility.ok(_signInClose.connect("pressed", self, "_springStatus"))
+	assert.ok(_signInRemember.connect("pressed", self, "_onRememberPressed") == OK)
+	assert.ok(_signInSignIn.connect("pressed", self, "_onSignInPressed") == OK)
+	assert.ok(_signInSignUp.connect("pressed", self, "_springSignUp") == OK)
+	assert.ok(_signInReset.connect("pressed", self, "_springReset") == OK)
+	assert.ok(_signInClose.connect("pressed", self, "_springStatus") == OK)
 
-	Utility.ok(_signUpNext.connect("pressed", self, "_onNextNamePressed"))
-	Utility.ok(_signUpSignUp.connect("pressed", self, "_onSignUpPressed"))
-	Utility.ok(_signUpClose.connect("pressed", self, "_springSignIn"))
+	assert.ok(_signUpNext.connect("pressed", self, "_onNextNamePressed") == OK)
+	assert.ok(_signUpSignUp.connect("pressed", self, "_onSignUpPressed") == OK)
+	assert.ok(_signUpClose.connect("pressed", self, "_springSignIn") == OK)
 
-	Utility.ok(_resetReset.connect("pressed", self, "_onResetPressed"))
-	Utility.ok(_resetClose.connect("pressed", self, "_springSignIn"))
+	assert.ok(_resetReset.connect("pressed", self, "_onResetPressed") == OK)
+	assert.ok(_resetClose.connect("pressed", self, "_springSignIn") == OK)
 
-	Utility.ok(_accountSignOut.connect("pressed", self, "_onSignOutPressed"))
-	Utility.ok(_accountChangeEmail.connect("pressed", self, "_springEmail"))
-	Utility.ok(_accountChangePassword.connect("pressed", self, "_springPassword"))
-	Utility.ok(_accountClose.connect("pressed", self, "_springStatus"))
+	assert.ok(_accountSignOut.connect("pressed", self, "_onSignOutPressed") == OK)
+	assert.ok(_accountChangeEmail.connect("pressed", self, "_springEmail") == OK)
+	assert.ok(_accountChangePassword.connect("pressed", self, "_springPassword") == OK)
+	assert.ok(_accountClose.connect("pressed", self, "_springStatus") == OK)
 
-	Utility.ok(_emailChange.connect("pressed", self, "_onChangeEmailPressed"))
-	Utility.ok(_emailClose.connect("pressed", self, "_springAccount"))
+	assert.ok(_emailChange.connect("pressed", self, "_onChangeEmailPressed") == OK)
+	assert.ok(_emailClose.connect("pressed", self, "_springAccount") == OK)
 
-	Utility.ok(_passwordChange.connect("pressed", self, "_onChangePasswordPressed"))
-	Utility.ok(_passwordClose.connect("pressed", self, "_springAccount"))
+	assert.ok(_passwordChange.connect("pressed", self, "_onChangePasswordPressed") == OK)
+	assert.ok(_passwordClose.connect("pressed", self, "_springAccount") == OK)
 
-	Utility.ok(_messageClose.connect("pressed", self, "_onCloseErrorPressed"))
+	assert.ok(_messageClose.connect("pressed", self, "_onCloseErrorPressed") == OK)
 
-	Utility.ok(_dataSave.connect("pressed", self, "_onSaveDocPressed"))
-	Utility.ok(_dataDelete.connect("pressed", self, "_onDeleteDocPressed"))
+	assert.ok(_dataSave.connect("pressed", self, "_onSaveDocPressed") == OK)
+	assert.ok(_dataDelete.connect("pressed", self, "_onDeleteDocPressed") == OK)
 
-	Utility.ok(_regex.compile(_pattern))
+	assert.ok(_regex.compile(_pattern) == OK)
 
 	_signUpName.text = _gename.next()
 	_focus(_status, _status, null)

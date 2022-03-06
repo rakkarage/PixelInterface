@@ -8,8 +8,8 @@ onready var _tip = $Margin
 onready var _tween = $Tween
 
 func _ready():
-	assert(connect("mouse_entered", self, "mouseEntered") == OK)
-	assert(connect("mouse_exited", self, "mouseExited") == OK)
+	connect("mouse_entered", self, "mouseEntered")
+	connect("mouse_exited", self, "mouseExited")
 
 func mouseEntered():
 	_tween.stop_all()

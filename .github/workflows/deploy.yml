@@ -1,0 +1,75 @@
+on: [push, workflow_dispatch]
+env:
+  GODOT_VERSION: 3.3.4
+  FILE_NAME: PixelInterface
+  ITCHIO_GAME: godot-pixel-interface
+  ITCHIO_USERNAME: henrysoftware
+  BUTLER_API_KEY: ${{secrets.BUTLER_API_KEY}}
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:3.3.4
+    strategy:
+      matrix:
+        include:
+          - channel: windows
+            type: Windows Desktop
+            file: ${FILE_NAME}
+            ext: exe
+          - channel: linux
+            type: Linux/X11
+            file: ${FILE_NAME}
+            ext: x86_64
+          - channel: mac
+            type: Mac OSX
+            file: ${FILE_NAME}
+            ext: zip
+          - channel: web
+            type: HTML5
+            file: index
+            ext: html
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: source
+        if: ${{matrix.channel == 'web'}}
+        uses: actions/upload-artifact@v1
+        with:
+          name: source
+          path: ./
+      - if: ${{matrix.channel == 'web'}}
+        uses: actions/download-artifact@v3
+        with:
+          name: source
+          path: source/
+      - name: export
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mkdir -v -p ./build/${{matrix.channel}}
+          godot -v --export "${{matrix.type}}" ./build/${{matrix.channel}}/${{matrix.file}}.${{matrix.ext}}
+      - name: rsync
+        if: ${{matrix.channel == 'web'}}
+        run: apt-get update && apt-get install -y rsync
+      - name: gh-pages
+        if: ${{matrix.channel == 'web'}}
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          branch: gh-pages
+          folder: ./build/${{matrix.channel}}
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{matrix.channel}}
+          path: ./build/${{matrix.channel}}
+      - name: butler
+        run: |
+          apt-get update && apt-get install -y curl
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+          ./butler push ./build/${{matrix.channel}} ${ITCHIO_USERNAME}/${ITCHIO_GAME}:${{matrix.channel}}
+      - name: butler source
+        if: ${{matrix.channel == 'web'}}
+        run: ./butler push source/ ${ITCHIO_USERNAME}/${ITCHIO_GAME}:source

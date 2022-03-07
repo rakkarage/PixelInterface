@@ -15,9 +15,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="Panel" parent="."]
 anchor_top = 1.0
@@ -41,9 +38,6 @@ rect_rotation = -90.0
 rect_pivot_offset = Vector2( -8, 16 )
 mouse_filter = 2
 size_flags_horizontal = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="PanelContainer" parent="Panel/Margin"]
 margin_right = 121.0
@@ -52,9 +46,6 @@ rect_min_size = Vector2( 32, 32 )
 mouse_filter = 2
 size_flags_horizontal = 0
 custom_styles/panel = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Email" type="Label" parent="Panel/Margin/Panel"]
 margin_left = 16.0
@@ -86,8 +77,5 @@ custom_styles/focus = ExtResource( 8 )
 custom_styles/disabled = ExtResource( 7 )
 custom_styles/normal = ExtResource( 2 )
 shortcut_in_tooltip = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tween" type="Tween" parent="Panel"]

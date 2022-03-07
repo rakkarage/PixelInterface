@@ -7,16 +7,10 @@
 [node name="Fonts" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="PanelContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBox" type="VBoxContainer" parent="Panel"]
 margin_left = 7.0
@@ -24,9 +18,6 @@ margin_top = 7.0
 margin_right = 1017.0
 margin_bottom = 593.0
 custom_constants/separation = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="SuperBlack" type="Label" parent="Panel/VBox"]
 margin_right = 1010.0
@@ -38,9 +29,6 @@ text = "! !\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`ab
 align = 1
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="SuperWhite" type="Label" parent="Panel/VBox"]
 margin_top = 195.0

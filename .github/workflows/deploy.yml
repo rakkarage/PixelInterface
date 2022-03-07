@@ -15,15 +15,15 @@ jobs:
         include:
           - channel: windows
             type: Windows Desktop
-            file: ${FILE_NAME}
+            file: $FILE_NAME
             ext: exe
           - channel: linux
             type: Linux/X11
-            file: ${FILE_NAME}
+            file: $FILE_NAME
             ext: x86_64
           - channel: mac
             type: Mac OSX
-            file: ${FILE_NAME}
+            file: $FILE_NAME
             ext: zip
           - channel: web
             type: HTML5
@@ -32,7 +32,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
           submodules: true
       - name: source
         if: ${{matrix.channel == 'web'}}
@@ -48,7 +47,7 @@ jobs:
       - name: export
         run: |
           mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/templates/$GODOT_VERSION.stable ~/.local/share/godot/templates/$GODOT_VERSION.stable
           mkdir -v -p ./build/${{matrix.channel}}
           godot -v --export "${{matrix.type}}" ./build/${{matrix.channel}}/${{matrix.file}}.${{matrix.ext}}
       - name: rsync
@@ -70,7 +69,7 @@ jobs:
           curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
           unzip butler.zip
           chmod +x butler
-          ./butler push ./build/${{matrix.channel}} ${ITCHIO_USERNAME}/${ITCHIO_GAME}:${{matrix.channel}}
+          ./butler push ./build/${{matrix.channel}} $ITCHIO_USERNAME/$ITCHIO_GAME:${{matrix.channel}}
       - name: butler source
         if: ${{matrix.channel == 'web'}}
-        run: ./butler push source/ ${ITCHIO_USERNAME}/${ITCHIO_GAME}:source
+        run: ./butler push source/ $ITCHIO_USERNAME/$ITCHIO_GAME:source

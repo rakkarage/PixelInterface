@@ -10,12 +10,11 @@ jobs:
         with:
           githubToken: ${{secrets.GITHUB_TOKEN}}
           compressOnly: true
-          ignorePaths: ./icon.png
-      - uses: 2428392/gh-truncate-string-action@v1
+      - uses: 2428392/gh-truncate-string-action@v1.0.0
         id: truncate
         with:
           stringToTruncate: ${{steps.calibre.outputs.markdown}}
-          maxLength: 3333
+          maxLength: 65535
       - uses: peter-evans/create-pull-request@v3
         if: steps.calibre.outputs.markdown != ''
         with:

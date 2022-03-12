@@ -1,4 +1,5 @@
-on: [push, workflow_dispatch]
+on:
+  workflow_dispatch:
 env:
   GODOT_VERSION: 3.3.4
   FILE_NAME: PixelInterface

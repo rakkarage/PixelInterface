@@ -5,16 +5,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - id: calibre
-        uses: calibreapp/image-actions@main
+      - uses: calibreapp/image-actions@main
+        id: calibre
         with:
           githubToken: ${{secrets.GITHUB_TOKEN}}
           compressOnly: true
           ignorePaths: ./icon.png
-      - if: steps.calibre.outputs.markdown != ''
-        uses: peter-evans/create-pull-request@v3
+      - uses: 2428392/gh-truncate-string-action@v1
+        id: truncate
+        with:
+          stringToTruncate: ${{steps.calibre.outputs.markdown}}
+          maxLength: 3333
+      - uses: peter-evans/create-pull-request@v3
+        if: steps.calibre.outputs.markdown != ''
         with:
           title: Compress Images
           branch-suffix: timestamp
           commit-message: Compress Images
-          body: ${{steps.calibre.outputs.markdown}}
+          body: ${{steps.truncate.outputs.string}}

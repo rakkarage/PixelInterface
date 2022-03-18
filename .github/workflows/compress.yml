@@ -11,13 +11,13 @@ jobs:
           githubToken: ${{secrets.GITHUB_TOKEN}}
           compressOnly: true
       - uses: 2428392/gh-truncate-string-action@v1.0.0
-        if: steps.calibre.outputs.markdown != ''
+        if: ${{steps.calibre.outputs.markdown != ''}}
         id: truncate
         with:
           stringToTruncate: ${{steps.calibre.outputs.markdown}}
           maxLength: 65535
       - uses: peter-evans/create-pull-request@v3
-        if: steps.calibre.outputs.markdown != ''
+        if: ${{steps.calibre.outputs.markdown != ''}}
         with:
           title: Compress Images
           branch-suffix: timestamp

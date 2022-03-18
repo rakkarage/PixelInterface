@@ -34,17 +34,16 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - name: source
+      - uses: actions/upload-artifact@v1
         if: ${{matrix.channel == 'web'}}
-        uses: actions/upload-artifact@v1
         with:
           name: source
           path: ./
-      - if: ${{matrix.channel == 'web'}}
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v3
+        if: ${{matrix.channel == 'web'}}
         with:
           name: source
-          path: source/
+          path: ./source
       - name: export
         run: |
           mkdir -v -p ~/.local/share/godot/templates
@@ -54,9 +53,8 @@ jobs:
       - name: rsync
         if: ${{matrix.channel == 'web'}}
         run: apt-get update && apt-get install -y rsync
-      - name: gh-pages
+      - uses: JamesIves/github-pages-deploy-action@releases/v4
         if: ${{matrix.channel == 'web'}}
-        uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           branch: gh-pages
           folder: ./build/${{matrix.channel}}
@@ -67,10 +65,10 @@ jobs:
       - name: butler
         run: |
           apt-get update && apt-get install -y curl
-          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
-          unzip butler.zip
-          chmod +x butler
-          ./butler push ./build/${{matrix.channel}} $ITCHIO_USERNAME/$ITCHIO_GAME:${{matrix.channel}}
+          curl -L -o ./butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip ./butler.zip
+          chmod +x ./butler
+          ./butler push --if-changed ./build/${{matrix.channel}} $ITCHIO_USERNAME/$ITCHIO_GAME:${{matrix.channel}}
       - name: butler source
         if: ${{matrix.channel == 'web'}}
-        run: ./butler push source/ $ITCHIO_USERNAME/$ITCHIO_GAME:source
+        run: ./butler push --if-changed ./source $ITCHIO_USERNAME/$ITCHIO_GAME:source

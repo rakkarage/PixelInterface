@@ -9,5 +9,5 @@ Pixel-perfect fonts and user interface elements.
 - 📃 <http://guthub.com/rakkarage/PixelInterface>
 - 📃 <http://bitbucket.org/rakkarage/PixelInterface>
 
-[![.github/workflows/compress.yml](https://github.com/rakkarage/PixelInterface/actions/workflows/compress.yml/badge.svg)](https://github.com/rakkarage/PixelInterface/actions/workflows/deploy.yml)
+[![.github/workflows/compress.yml](https://github.com/rakkarage/PixelInterface/actions/workflows/compress.yml/badge.svg)](https://github.com/rakkarage/PixelInterface/actions/workflows/compress.yml)
 [![.github/workflows/deploy.yml](https://github.com/rakkarage/PixelInterface/actions/workflows/deploy.yml/badge.svg)](https://github.com/rakkarage/PixelInterface/actions/workflows/deploy.yml)

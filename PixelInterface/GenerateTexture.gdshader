@@ -1,9 +1,9 @@
 shader_type canvas_item;
 
-uniform sampler2D noise: hint_white;
+uniform sampler2D noise: hint_default_white;
 uniform sampler2D gradient;
 uniform float speed = 1.0;
-uniform vec4 color: hint_color;
+uniform vec4 color: source_color;
 const float factor = 0.333;
 const float boost = 1.333;
 

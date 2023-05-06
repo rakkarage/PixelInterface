@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform vec4 color: hint_color;
+uniform vec4 color: source_color;
 uniform float radius = 0.75;
 uniform float softness = 0.45;
 

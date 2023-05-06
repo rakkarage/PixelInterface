@@ -1,67 +1,66 @@
 extends Control
 class_name Connect
 
-onready var _interface := $Container/Viewport/Interface
+@onready var _interface := $Container/SubViewport/Interface
 
-onready var _status      := $Container/Viewport/Interface/Status/Panel/Status
-onready var _statusEmail := $Container/Viewport/Interface/Status/Panel/Margin/Panel/Email
+@onready var _status      := $Container/SubViewport/Interface/Status/Panel/Status
+@onready var _statusEmail := $Container/SubViewport/Interface/Status/Panel/Margin/Panel/Email
 
-onready var _signInEmail    := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Email
-onready var _signInPassword := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Password
-onready var _signInRemember := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/Remember
-onready var _signInSignIn   := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/SignIn
-onready var _signInSignUp   := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/HBox/SignUp
-onready var _signInReset    := $Container/Viewport/Interface/SignIn/Center/Panel/VBox/HBox/Reset
-onready var _signInClose    := $Container/Viewport/Interface/SignIn/Center/Panel/Close/Close
+@onready var _signInEmail    := $Container/SubViewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Email
+@onready var _signInPassword := $Container/SubViewport/Interface/SignIn/Center/Panel/VBox/Panel/VBox/Password
+@onready var _signInRemember := $Container/SubViewport/Interface/SignIn/Center/Panel/VBox/Remember
+@onready var _signInSignIn   := $Container/SubViewport/Interface/SignIn/Center/Panel/VBox/SignIn
+@onready var _signInSignUp   := $Container/SubViewport/Interface/SignIn/Center/Panel/VBox/HBox/SignUp
+@onready var _signInReset    := $Container/SubViewport/Interface/SignIn/Center/Panel/VBox/HBox/Reset
+@onready var _signInClose    := $Container/SubViewport/Interface/SignIn/Center/Panel/Close/Close
 
-onready var _signUpName     := $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/HBox/Name
-onready var _signUpNext     := $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/HBox/Next
-onready var _signUpEmail    := $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Email
-onready var _signUpPassword := $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Password
-onready var _signUpConfirm  := $Container/Viewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Confirm
-onready var _signUpSignUp   := $Container/Viewport/Interface/SignUp/Center/Panel/VBox/SignUp
-onready var _signUpClose    := $Container/Viewport/Interface/SignUp/Center/Panel/Close/Close
+@onready var _signUpName     := $Container/SubViewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/HBox/Name
+@onready var _signUpNext     := $Container/SubViewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/HBox/Next
+@onready var _signUpEmail    := $Container/SubViewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Email
+@onready var _signUpPassword := $Container/SubViewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Password
+@onready var _signUpConfirm  := $Container/SubViewport/Interface/SignUp/Center/Panel/VBox/Panel/VBox/Confirm
+@onready var _signUpSignUp   := $Container/SubViewport/Interface/SignUp/Center/Panel/VBox/SignUp
+@onready var _signUpClose    := $Container/SubViewport/Interface/SignUp/Center/Panel/Close/Close
 
-onready var _resetEmail := $Container/Viewport/Interface/Reset/Center/Panel/VBox/Panel/Email
-onready var _resetReset := $Container/Viewport/Interface/Reset/Center/Panel/VBox/Reset
-onready var _resetClose := $Container/Viewport/Interface/Reset/Center/Panel/Close/Close
+@onready var _resetEmail := $Container/SubViewport/Interface/Reset/Center/Panel/VBox/Panel/Email
+@onready var _resetReset := $Container/SubViewport/Interface/Reset/Center/Panel/VBox/Reset
+@onready var _resetClose := $Container/SubViewport/Interface/Reset/Center/Panel/Close/Close
 
-onready var _accountName           := $Container/Viewport/Interface/Account/Center/Panel/VBox/Panel/VBox/Name
-onready var _accountEmail          := $Container/Viewport/Interface/Account/Center/Panel/VBox/Panel/VBox/Email
-onready var _accountSignOut        := $Container/Viewport/Interface/Account/Center/Panel/VBox/SignOut
-onready var _accountChangeEmail    := $Container/Viewport/Interface/Account/Center/Panel/VBox/HBox/Email
-onready var _accountChangePassword := $Container/Viewport/Interface/Account/Center/Panel/VBox/HBox/Password
-onready var _accountClose          := $Container/Viewport/Interface/Account/Center/Panel/Close/Close
+@onready var _accountName           := $Container/SubViewport/Interface/Account/Center/Panel/VBox/Panel/VBox/Name
+@onready var _accountEmail          := $Container/SubViewport/Interface/Account/Center/Panel/VBox/Panel/VBox/Email
+@onready var _accountSignOut        := $Container/SubViewport/Interface/Account/Center/Panel/VBox/SignOut
+@onready var _accountChangeEmail    := $Container/SubViewport/Interface/Account/Center/Panel/VBox/HBox/Email
+@onready var _accountChangePassword := $Container/SubViewport/Interface/Account/Center/Panel/VBox/HBox/Password
+@onready var _accountClose          := $Container/SubViewport/Interface/Account/Center/Panel/Close/Close
 
-onready var _emailPassword := $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Password
-onready var _emailEmail    := $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Email
-onready var _emailConfirm  := $Container/Viewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Confirm
-onready var _emailChange   := $Container/Viewport/Interface/Email/Center/Panel/VBox/Change
-onready var _emailClose    := $Container/Viewport/Interface/Email/Center/Panel/Close/Close
+@onready var _emailPassword := $Container/SubViewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Password
+@onready var _emailEmail    := $Container/SubViewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Email
+@onready var _emailConfirm  := $Container/SubViewport/Interface/Email/Center/Panel/VBox/Panel/VBox/Confirm
+@onready var _emailChange   := $Container/SubViewport/Interface/Email/Center/Panel/VBox/Change
+@onready var _emailClose    := $Container/SubViewport/Interface/Email/Center/Panel/Close/Close
 
-onready var _passwordPassword := $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Password
-onready var _passwordConfirm  := $Container/Viewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Confirm
-onready var _passwordChange   := $Container/Viewport/Interface/Password/Center/Panel/VBox/Change
-onready var _passwordClose    := $Container/Viewport/Interface/Password/Center/Panel/Close/Close
+@onready var _passwordPassword := $Container/SubViewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Password
+@onready var _passwordConfirm  := $Container/SubViewport/Interface/Password/Center/Panel/VBox/Panel/VBox/Confirm
+@onready var _passwordChange   := $Container/SubViewport/Interface/Password/Center/Panel/VBox/Change
+@onready var _passwordClose    := $Container/SubViewport/Interface/Password/Center/Panel/Close/Close
 
-onready var _dialog := $Container/Viewport/Dialog
+@onready var _dialog := $Container/SubViewport/Dialog
 
-onready var _messageTitle := $Container/Viewport/Dialog/Center/Panel/VBox/Title
-onready var _messageText  := $Container/Viewport/Dialog/Center/Panel/VBox/Panel/Text
-onready var _messageClose := $Container/Viewport/Dialog/Center/Panel/Close/Close
+@onready var _messageTitle := $Container/SubViewport/Dialog/Center/Panel/VBox/Title
+@onready var _messageText  := $Container/SubViewport/Dialog/Center/Panel/VBox/Panel/Text
+@onready var _messageClose := $Container/SubViewport/Dialog/Center/Panel/Close/Close
 
-onready var _dataTitle :=  $Container/Viewport/Interface/Data/Center/Panel/VBox/Panel/VBox/Title
-onready var _dataNumber := $Container/Viewport/Interface/Data/Center/Panel/VBox/Panel/VBox/Number
-onready var _dataText :=   $Container/Viewport/Interface/Data/Center/Panel/VBox/Panel/VBox/Text
-onready var _dataSave :=   $Container/Viewport/Interface/Data/Center/Panel/VBox/HBox/Save
-onready var _dataDelete := $Container/Viewport/Interface/Data/Center/Panel/VBox/HBox/Delete
+@onready var _dataTitle :=  $Container/SubViewport/Interface/Data/Center/Panel/VBox/Panel/VBox/Title
+@onready var _dataNumber := $Container/SubViewport/Interface/Data/Center/Panel/VBox/Panel/VBox/Number
+@onready var _dataText :=   $Container/SubViewport/Interface/Data/Center/Panel/VBox/Panel/VBox/Text
+@onready var _dataSave :=   $Container/SubViewport/Interface/Data/Center/Panel/VBox/HBox/Save
+@onready var _dataDelete := $Container/SubViewport/Interface/Data/Center/Panel/VBox/HBox/Delete
 
-onready var _http := $HTTPRequest
-onready var _tween := $Tween
-onready var _timer := $Timer
-onready var _clickAudio := $Click
-onready var _errorAudio := $Error
-onready var _successAudio := $Success
+@onready var _http := $HTTPRequest
+@onready var _timer := $Timer
+@onready var _clickAudio := $Click
+@onready var _errorAudio := $Error
+@onready var _successAudio := $Success
 
 const _anchor := Rect2(0, 0, 1, 1)
 
@@ -87,44 +86,44 @@ var _regex := RegEx.new()
 const _pattern := "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)"
 
 var _focusStack : Array = [ null ]
-export var _accept : ShortCut
+@export var _accept : Shortcut
 var _acceptStack : Array = [ null ]
-export var _cancel : ShortCut
+@export var _cancel : Shortcut
 var _cancelStack : Array = [ null ]
 
 var _gename = Gename.new()
 
 func _ready():
-	_status.connect("pressed", self, "_onStatusPressed")
+	_status.connect("pressed", Callable(self, "_onStatusPressed"))
 
-	_signInRemember.connect("pressed", self, "_onRememberPressed")
-	_signInSignIn.connect("pressed", self, "_onSignInPressed")
-	_signInSignUp.connect("pressed", self, "_springSignUp")
-	_signInReset.connect("pressed", self, "_springReset")
-	_signInClose.connect("pressed", self, "_springStatus")
+	_signInRemember.connect("pressed", Callable(self, "_onRememberPressed"))
+	_signInSignIn.connect("pressed", Callable(self, "_onSignInPressed"))
+	_signInSignUp.connect("pressed", Callable(self, "_springSignUp"))
+	_signInReset.connect("pressed", Callable(self, "_springReset"))
+	_signInClose.connect("pressed", Callable(self, "_springStatus"))
 
-	_signUpNext.connect("pressed", self, "_onNextNamePressed")
-	_signUpSignUp.connect("pressed", self, "_onSignUpPressed")
-	_signUpClose.connect("pressed", self, "_springSignIn")
+	_signUpNext.connect("pressed", Callable(self, "_onNextNamePressed"))
+	_signUpSignUp.connect("pressed", Callable(self, "_onSignUpPressed"))
+	_signUpClose.connect("pressed", Callable(self, "_springSignIn"))
 
-	_resetReset.connect("pressed", self, "_onResetPressed")
-	_resetClose.connect("pressed", self, "_springSignIn")
+	_resetReset.connect("pressed", Callable(self, "_onResetPressed"))
+	_resetClose.connect("pressed", Callable(self, "_springSignIn"))
 
-	_accountSignOut.connect("pressed", self, "_onSignOutPressed")
-	_accountChangeEmail.connect("pressed", self, "_springEmail")
-	_accountChangePassword.connect("pressed", self, "_springPassword")
-	_accountClose.connect("pressed", self, "_springStatus")
+	_accountSignOut.connect("pressed", Callable(self, "_onSignOutPressed"))
+	_accountChangeEmail.connect("pressed", Callable(self, "_springEmail"))
+	_accountChangePassword.connect("pressed", Callable(self, "_springPassword"))
+	_accountClose.connect("pressed", Callable(self, "_springStatus"))
 
-	_emailChange.connect("pressed", self, "_onChangeEmailPressed")
-	_emailClose.connect("pressed", self, "_springAccount")
+	_emailChange.connect("pressed", Callable(self, "_onChangeEmailPressed"))
+	_emailClose.connect("pressed", Callable(self, "_springAccount"))
 
-	_passwordChange.connect("pressed", self, "_onChangePasswordPressed")
-	_passwordClose.connect("pressed", self, "_springAccount")
+	_passwordChange.connect("pressed", Callable(self, "_onChangePasswordPressed"))
+	_passwordClose.connect("pressed", Callable(self, "_springAccount"))
 
-	_messageClose.connect("pressed", self, "_onCloseErrorPressed")
+	_messageClose.connect("pressed", Callable(self, "_onCloseErrorPressed"))
 
-	_dataSave.connect("pressed", self, "_onSaveDocPressed")
-	_dataDelete.connect("pressed", self, "_onDeleteDocPressed")
+	_dataSave.connect("pressed", Callable(self, "_onSaveDocPressed"))
+	_dataDelete.connect("pressed", Callable(self, "_onDeleteDocPressed"))
 
 	_regex.compile(_pattern)
 
@@ -188,11 +187,12 @@ func _onCloseErrorPressed() -> void:
 
 func _spring(a := _anchor, c := _interface, click := true) -> void:
 	if click: _clickAudio.play()
-	_tween.interpolate_property(c, "anchor_left", null, a.position.x, _time, _trans, _ease)
-	_tween.interpolate_property(c, "anchor_top", null, a.position.y, _time, _trans, _ease)
-	_tween.interpolate_property(c, "anchor_right", null, a.size.x, _time, _trans, _ease)
-	_tween.interpolate_property(c, "anchor_bottom", null, a.size.y, _time, _trans, _ease)
-	_tween.start()
+	var tween = get_tree().create_tween()
+	tween.interpolate_property(c, "anchor_left", null, a.position.x, _time, _trans, _ease)
+	tween.interpolate_property(c, "anchor_top", null, a.position.y, _time, _trans, _ease)
+	tween.interpolate_property(c, "anchor_right", null, a.size.x, _time, _trans, _ease)
+	tween.interpolate_property(c, "anchor_bottom", null, a.size.y, _time, _trans, _ease)
+	tween.start()
 
 func _springStatus(click := true) -> void:
 	_focus(_status, _status, null)
@@ -229,7 +229,7 @@ func _validPassword(text: String) -> bool: return text.length() > 7
 
 func _errorClear(controls: Array) -> void:
 	for i in range(controls.size()):
-		controls[i].modulate = Color.white
+		controls[i].modulate = Color.WHITE
 
 func _errorSet(control: Control) -> void:
 	_errorAudio.play()

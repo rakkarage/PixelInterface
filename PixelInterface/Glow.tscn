@@ -1,16 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cwt1hfmpp8lp2"]
 
-[ext_resource path="res://PixelInterface/Sprite/Particle/Glow1.png" type="Texture" id=1]
-[ext_resource path="res://PixelInterface/Glow.tres" type="Material" id=2]
+[ext_resource type="Texture2D" uid="uid://b8ppx43nin54x" path="res://PixelInterface/Sprite/Particle/Glow1.png" id="1"]
+[ext_resource type="Material" uid="uid://5qptk575u8dh" path="res://PixelInterface/Glow.tres" id="2"]
 
 [node name="Glow" type="Node2D"]
 
-[node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( 512, 300 )
-scale = Vector2( 2, 2 )
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(512, 300)
+scale = Vector2(2, 2)
 amount = 10
+process_material = ExtResource("2")
+texture = ExtResource("1")
 lifetime = 3.33
 preprocess = 30.0
 randomness = 1.0
-process_material = ExtResource( 2 )
-texture = ExtResource( 1 )

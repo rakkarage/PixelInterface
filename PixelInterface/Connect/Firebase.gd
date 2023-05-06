@@ -12,68 +12,68 @@ const _docsUrl := "https://firestore.googleapis.com/v1/projects/%s/databases/(de
 var _apiKey := ""
 
 func _ready() -> void:
-	var file := File.new()
-	if file.open("res://PixelInterface/Connect/apikey.txt", File.READ) == OK:
+	var file := FileAccess.open("res://PixelInterface/Connect/apikey.txt", FileAccess.READ)
+	if file:
 		_apiKey = file.get_as_text()
-	file.close()
+		file.close()
 
-func signIn(http: HTTPRequest, email: String, password: String) -> Array:
+func signIn(http: HTTPRequest, email: String, password: String):
 	var body := { "email": email, "password": password, "returnSecureToken": true }
-	http.request(_signInUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body))
-	return yield(http, "request_completed")
+	http.request(_signInUrl % _apiKey, [], HTTPClient.METHOD_POST, JSON.stringify(body))
+	return await http.request_completed
 
-func signUp(http: HTTPRequest, email : String, password : String) -> Array:
-	var body := { "email": email, "password": password }
-	http.request(_signUpUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body))
-	return yield(http, "request_completed")
+func signUp(http: HTTPRequest, email : String, text : String):
+	var body := { "email": email, "password": text }
+	http.request(_signUpUrl % _apiKey, [], HTTPClient.METHOD_POST, JSON.stringify(body))
+	return await http.request_completed
 
 func reset(http: HTTPRequest, email: String) -> Array:
 	var body := { "requestType": "PASSWORD_RESET", "email": email }
-	http.request(_resetUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body))
-	return yield(http, "request_completed")
+	http.request(_resetUrl % _apiKey, [], HTTPClient.METHOD_POST, JSON.stringify(body))
+	return await http.request_completed
 
-func changeEmail(http: HTTPRequest, token: String, email: String) -> void:
-	var body := { "idToken": token, "email": email, "returnSecureToken": true }
-	http.request(_setUserUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body))
-	return yield(http, "request_completed")
+func changeEmail(http: HTTPRequest, token: String, text: String):
+	var body := { "idToken": token, "email": text, "returnSecureToken": true }
+	http.request(_setUserUrl % _apiKey, [], HTTPClient.METHOD_POST, JSON.stringify(body))
+	return await http.request_completed
 
-func changePassword(http: HTTPRequest, token: String, password: String) -> void:
-	var body := { "idToken": token, "password": password, "returnSecureToken": true }
-	http.request(_setUserUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body))
-	return yield(http, "request_completed")
+func changePassword(http: HTTPRequest, token: String, text: String):
+	var body := { "idToken": token, "password": text, "returnSecureToken": true }
+	http.request(_setUserUrl % _apiKey, [], HTTPClient.METHOD_POST, JSON.stringify(body))
+	return await http.request_completed
 
-func changeName(http: HTTPRequest, token: String, name: String) -> void:
-	var body := { "idToken": token, "displayName": name, "returnSecureToken": true }
-	http.request(_setUserUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body))
-	return yield(http, "request_completed")
+func changeName(http: HTTPRequest, token: String, text: String):
+	var body := { "idToken": token, "displayName": text, "returnSecureToken": true }
+	http.request(_setUserUrl % _apiKey, [], HTTPClient.METHOD_POST, JSON.stringify(body))
+	return await http.request_completed
 
-func lookup(http: HTTPRequest, token: String) -> void:
+func lookup(http: HTTPRequest, token: String):
 	var body := { "idToken": token }
-	http.request(_getUserUrl % _apiKey, [], false, HTTPClient.METHOD_POST, to_json(body))
-	return yield(http, "request_completed")
+	http.request(_getUserUrl % _apiKey, [], HTTPClient.METHOD_POST, JSON.stringify(body))
+	return await http.request_completed
 
-func refresh(http: HTTPRequest, refresh: String) -> void:
-	var query := "grant_type=refresh_token&refresh_token=%s" % refresh
-	http.request(_refreshUrl % _apiKey, ["Content-Type: application/x-www-form-urlencoded"], true, HTTPClient.METHOD_POST, query)
-	return yield(http, "request_completed")
+func refresh(http: HTTPRequest, text: String):
+	var query := "grant_type=refresh_token&refresh_token=%s" % text
+	http.request(_refreshUrl % _apiKey, ["Content-Type: application/x-www-form-urlencoded"], HTTPClient.METHOD_POST, query)
+	return await http.request_completed
 
-func _headers(token: String) -> PoolStringArray:
-	return PoolStringArray(["Content-Type: application/json", "Authorization: Bearer " + token])
+func _headers(token: String) -> PackedStringArray:
+	return PackedStringArray(["Content-Type: application/json", "Authorization: Bearer " + token])
 
-func loadDoc(http: HTTPRequest, token: String, id: String) -> void:
-	http.request(_docsUrl + "%s/%s" % [_docsCollection, id], _headers(token), false, HTTPClient.METHOD_GET)
-	return yield(http, "request_completed")
+func loadDoc(http: HTTPRequest, token: String, id: String):
+	http.request(_docsUrl + "%s/%s" % [_docsCollection, id], _headers(token), HTTPClient.METHOD_GET)
+	return await http.request_completed
 
-func saveDoc(http: HTTPRequest, token: String, id: String, fields: Dictionary) -> void:
-	var body := to_json({ "fields": fields })
-	http.request(_docsUrl + "%s?documentId=%s" % [_docsCollection, id], _headers(token), false, HTTPClient.METHOD_POST, body)
-	return yield(http, "request_completed")
+func saveDoc(http: HTTPRequest, token: String, id: String, fields: Dictionary):
+	var body := JSON.stringify({ "fields": fields })
+	http.request(_docsUrl + "%s?documentId=%s" % [_docsCollection, id], _headers(token), HTTPClient.METHOD_POST, body)
+	return await http.request_completed
 
-func updateDoc(http: HTTPRequest, token: String, id: String, fields: Dictionary) -> void:
-	var body := to_json({ "fields": fields })
-	http.request(_docsUrl + "%s/%s" % [_docsCollection, id], _headers(token), false, HTTPClient.METHOD_PATCH, body)
-	return yield(http, "request_completed")
+func updateDoc(http: HTTPRequest, token: String, id: String, fields: Dictionary):
+	var body := JSON.stringify({ "fields": fields })
+	http.request(_docsUrl + "%s/%s" % [_docsCollection, id], _headers(token), HTTPClient.METHOD_PATCH, body)
+	return await http.request_completed
 
-func deleteDoc(http: HTTPRequest, token: String, id: String) -> void:
-	http.request(_docsUrl + "%s/%s" % [_docsCollection, id], _headers(token), false, HTTPClient.METHOD_DELETE)
-	return yield(http, "request_completed")
+func deleteDoc(http: HTTPRequest, token: String, id: String):
+	http.request(_docsUrl + "%s/%s" % [_docsCollection, id], _headers(token), HTTPClient.METHOD_DELETE)
+	return await http.request_completed

@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
-uniform vec4 color: hint_color;
-uniform sampler2D mask: hint_albedo;
+uniform vec4 color: source_color;
+uniform sampler2D mask: source_color;
 uniform float scale = 2.0;
 const float pivot = 0.5;
 

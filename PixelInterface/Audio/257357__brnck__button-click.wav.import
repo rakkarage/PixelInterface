@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/257357__brnck__button-click.wav-0f180cb7bb96fe0bbcd6bf133e69f00b.sample"
+type="AudioStreamWAV"
+uid="uid://dir60qvo3pom2"
+path="res://.godot/imported/257357__brnck__button-click.wav-0f180cb7bb96fe0bbcd6bf133e69f00b.sample"
 
 [deps]
 
 source_file="res://PixelInterface/Audio/257357__brnck__button-click.wav"
-dest_files=[ "res://.import/257357__brnck__button-click.wav-0f180cb7bb96fe0bbcd6bf133e69f00b.sample" ]
+dest_files=["res://.godot/imported/257357__brnck__button-click.wav-0f180cb7bb96fe0bbcd6bf133e69f00b.sample"]
 
 [params]
 

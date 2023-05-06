@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://PixelInterface/Vignette.shader" type="Shader" id=1]
+[ext_resource path="res://PixelInterface/Vignette.gdshader" type="Shader" id=1]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )

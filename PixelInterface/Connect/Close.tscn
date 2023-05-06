@@ -1,43 +1,45 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://c2hdl0nqi2g8c"]
 
-[ext_resource path="res://PixelInterface/Style/CloseDisable.tres" type="StyleBox" id=1]
-[ext_resource path="res://PixelInterface/Sprite/No.png" type="Texture" id=2]
-[ext_resource path="res://PixelInterface/Style/CloseHover.tres" type="StyleBox" id=3]
-[ext_resource path="res://PixelInterface/Style/Close.tres" type="StyleBox" id=4]
-[ext_resource path="res://PixelInterface/Style/ClosePress.tres" type="StyleBox" id=5]
-[ext_resource path="res://PixelInterface/Style/CloseFocus.tres" type="StyleBox" id=6]
+[ext_resource type="StyleBox" uid="uid://c2nuq3grlwn7e" path="res://PixelInterface/Style/CloseDisable.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://mm7kfos2ru5x" path="res://PixelInterface/Sprite/No.png" id="2"]
+[ext_resource type="StyleBox" uid="uid://bmirogtq1pbij" path="res://PixelInterface/Style/CloseHover.tres" id="3"]
+[ext_resource type="StyleBox" uid="uid://cnfmu3g7otr1h" path="res://PixelInterface/Style/Close.tres" id="4"]
+[ext_resource type="StyleBox" uid="uid://dywhwcxbfnvvu" path="res://PixelInterface/Style/ClosePress.tres" id="5"]
+[ext_resource type="StyleBox" uid="uid://5v8myu1h5a2y" path="res://PixelInterface/Style/CloseFocus.tres" id="6"]
 
 [node name="Close" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="Close" type="Button" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 40, 40 )
-hint_tooltip = "Close."
-custom_styles/hover = ExtResource( 3 )
-custom_styles/pressed = ExtResource( 5 )
-custom_styles/focus = ExtResource( 6 )
-custom_styles/disabled = ExtResource( 1 )
-custom_styles/normal = ExtResource( 4 )
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+tooltip_text = "Close."
+theme_override_styles/normal = ExtResource("4")
+theme_override_styles/hover = ExtResource("3")
+theme_override_styles/pressed = ExtResource("5")
+theme_override_styles/disabled = ExtResource("1")
+theme_override_styles/focus = ExtResource("6")
 shortcut_in_tooltip = false
 
 [node name="Center" type="CenterContainer" parent="Close"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 36, 36 )
-mouse_filter = 1
 
-[node name="Texture" type="TextureRect" parent="Close/Center"]
-modulate = Color( 0.74902, 0.498039, 0.498039, 1 )
-margin_left = 9.0
-margin_top = 9.0
-margin_right = 31.0
-margin_bottom = 31.0
-texture = ExtResource( 2 )
+[node name="Texture2D" type="TextureRect" parent="Close/Center"]
+modulate = Color(0.74902, 0.498039, 0.498039, 1)
+layout_mode = 2
+texture = ExtResource("2")

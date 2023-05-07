@@ -1,19 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cg75q0f0pxnt1"]
 
-[ext_resource path="res://PixelInterface/Vignette.gdshader" type="Shader" id=1]
+[ext_resource type="Shader" path="res://PixelInterface/Vignette.gdshader" id="1"]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 1 )
-shader_param/color = Color( 1, 0, 0, 1 )
-shader_param/radius = 0.75
-shader_param/softness = 0.45
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("1")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/radius = 0.75
+shader_parameter/softness = 0.45
 
 [node name="Vignette" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource( 1 )
+material = SubResource("1")
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2

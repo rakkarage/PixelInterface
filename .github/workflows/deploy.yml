@@ -18,16 +18,16 @@ jobs:
             type: Windows Desktop
             file: $FILE_NAME
             ext: exe
-          - channel: linux
-            type: Linux/X11
-            file: $FILE_NAME
-            ext: x86_64
-          - channel: mac
-            type: Mac OSX
-            file: $FILE_NAME
-            ext: zip
+        #   - channel: linux
+        #     type: Linux/X11
+        #     file: $FILE_NAME
+        #     ext: x86_64
+        #   - channel: mac
+        #     type: macOS
+        #     file: $FILE_NAME
+        #     ext: zip
           - channel: web
-            type: HTML5
+            type: Web
             file: index
             ext: html
     steps:

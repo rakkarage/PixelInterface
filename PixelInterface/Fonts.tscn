@@ -1,55 +1,41 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://bhwff27vnqwru"]
 
-[ext_resource path="res://PixelInterface/Font/Venice.fnt" type="FontFile" id=1]
-[ext_resource path="res://PixelInterface/Font/SuperWhite.fnt" type="FontFile" id=2]
-[ext_resource path="res://PixelInterface/Font/SuperBlack.fnt" type="FontFile" id=3]
+[ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://PixelInterface/Font/Venice.fnt" id="1"]
+[ext_resource type="FontFile" uid="uid://vxvgk6iccvf3" path="res://PixelInterface/Font/SuperWhite.fnt" id="2"]
+[ext_resource type="FontFile" uid="uid://bn2nxiytfv00k" path="res://PixelInterface/Font/SuperBlack.fnt" id="3"]
 
 [node name="Fonts" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBox" type="VBoxContainer" parent="Panel"]
-offset_left = 7.0
-offset_top = 7.0
-offset_right = 1017.0
-offset_bottom = 593.0
+layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="SuperBlack" type="Label" parent="Panel/VBox"]
-offset_right = 1010.0
-offset_bottom = 195.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource( 3 )
+theme_override_fonts/font = ExtResource("3")
 text = "! !\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
-align = 1
-valign = 1
-autowrap = true
 
 [node name="SuperWhite" type="Label" parent="Panel/VBox"]
-offset_top = 195.0
-offset_right = 1010.0
-offset_bottom = 390.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource("2")
 text = "! !\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
-align = 1
-valign = 1
-autowrap = true
 
 [node name="Venice" type="Label" parent="Panel/VBox"]
-offset_top = 390.0
-offset_right = 1010.0
-offset_bottom = 586.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource( 1 )
+theme_override_fonts/font = ExtResource("1")
 text = "! !\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
-align = 1
-valign = 1
-autowrap = true

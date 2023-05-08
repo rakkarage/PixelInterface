@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b15i2ifa7acjt"]
+
+[ext_resource type="Shader" path="res://PixelInterface/Generate/Test.gdshader" id="1_1sqo8"]
+[ext_resource type="Texture2D" uid="uid://dr8x180d2jmsr" path="res://PixelInterface/Generate/GenerateTexture.png" id="2_8wuqx"]
+
+[resource]
+shader = ExtResource("1_1sqo8")
+shader_parameter/noise = ExtResource("2_8wuqx")

@@ -9,33 +9,39 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Panel" type="PanelContainer" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBox" type="VBoxContainer" parent="Panel"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
 layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 0
 
-[node name="SuperBlack" type="Label" parent="Panel/VBox"]
+[node name="SuperBlack" type="Label" parent="Panel/CenterContainer/VBox"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3")
 text = "! !\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
 
-[node name="SuperWhite" type="Label" parent="Panel/VBox"]
+[node name="SuperWhite" type="Label" parent="Panel/CenterContainer/VBox"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2")
 text = "! !\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
 
-[node name="Venice" type="Label" parent="Panel/VBox"]
+[node name="Venice" type="Label" parent="Panel/CenterContainer/VBox"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1")
 text = "! !\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"

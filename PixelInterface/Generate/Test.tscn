@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://oq6tmbkr2kmq"]
+
+[ext_resource type="Material" uid="uid://b15i2ifa7acjt" path="res://PixelInterface/Generate/Test.tres" id="1_42p8w"]
+[ext_resource type="Texture2D" uid="uid://0bn7yg3pr5j3" path="res://icon.png" id="1_meqvm"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("1_42p8w")
+texture = ExtResource("1_meqvm")

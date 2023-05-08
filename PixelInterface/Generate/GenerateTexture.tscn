@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://caaeobklf06sh"]
+[gd_scene load_steps=11 format=3 uid="uid://duo8m8xeadq38"]
 
-[ext_resource type="Shader" path="res://PixelInterface/GenerateTextureRed.gdshader" id="1"]
-[ext_resource type="Shader" path="res://PixelInterface/GenerateTextureGreen.gdshader" id="2"]
-[ext_resource type="Shader" path="res://PixelInterface/GenerateTextureBlue.gdshader" id="3"]
-[ext_resource type="Shader" path="res://PixelInterface/GenerateTexture.gdshader" id="4"]
-[ext_resource type="Script" path="res://PixelInterface/GenerateTexture.gd" id="5"]
+[ext_resource type="Shader" path="res://PixelInterface/Generate/GenerateTextureRed.gdshader" id="1"]
+[ext_resource type="Shader" path="res://PixelInterface/Generate/GenerateTextureGreen.gdshader" id="2"]
+[ext_resource type="Shader" path="res://PixelInterface/Generate/GenerateTextureBlue.gdshader" id="3"]
+[ext_resource type="Shader" path="res://PixelInterface/Generate/GenerateTexture.gdshader" id="4"]
+[ext_resource type="Script" path="res://PixelInterface/Generate/GenerateTexture.gd" id="5"]
 
 [sub_resource type="ShaderMaterial" id="4"]
 shader = ExtResource("4")

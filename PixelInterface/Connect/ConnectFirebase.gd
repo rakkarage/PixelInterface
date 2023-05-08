@@ -149,17 +149,17 @@ func _onSignUpPressed() -> void:
 		_signUpPassword.text = ""
 		_signUpConfirm.text = ""
 		_springStatus(false)
-		var name = _signUpName.text
-		if name != "":
-			await _changeName(result.idToken, name)
+		var text = _signUpName.text
+		if text != "":
+			await _changeName(result.idToken, text)
 	else:
 		_handleError(result)
 	await _onAuthChanged(response)
 
 ### change name
 
-func _changeName(token: String, name: String) -> void:
-	var response = await Firebase.changeName(_http, token, name)
+func _changeName(token: String, text: String) -> void:
+	var response = await Firebase.changeName(_http, token, text)
 	await _onAuthChanged(response)
 
 ### reset password

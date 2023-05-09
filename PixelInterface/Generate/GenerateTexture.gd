@@ -59,6 +59,7 @@ func _ready() -> void:
 	call_deferred("_loadSettings")
 
 func _generatePressed() -> void:
+	# TODO: remove seed from options if not even really using it?
 	var old := _noise.seed
 	_noise.seed += randi() % _seedMax
 	var image1 := _noise.get_seamless_image(_size, _size)

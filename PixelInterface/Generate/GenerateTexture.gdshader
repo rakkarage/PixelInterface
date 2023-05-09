@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform sampler2D noise: hint_default_white;
+uniform sampler2D noise: hint_default_white, filter_linear, repeat_enable;
 uniform sampler2D gradient;
 uniform float speed = 1.0;
 uniform vec4 color: source_color;

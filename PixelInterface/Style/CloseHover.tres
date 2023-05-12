@@ -1,7 +1,0 @@
-[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://bmirogtq1pbij"]
-
-[ext_resource type="Texture2D" uid="uid://4py61k66umm7" path="res://PixelInterface/Sprite/Circle.png" id="1"]
-
-[resource]
-texture = ExtResource("1")
-modulate_color = Color(0.74902, 0.74902, 0.74902, 1)

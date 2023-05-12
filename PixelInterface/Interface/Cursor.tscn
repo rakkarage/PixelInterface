@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://PixelInterface/Interface/Cursor.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://PixelInterface/Interface/Cursors.tres" id="2"]
+
+[node name="Cursor" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 4096
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2")
+animation = &"Arrow"
+centered = false

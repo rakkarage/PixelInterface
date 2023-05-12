@@ -1,0 +1,6 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dsh04tn1j3m51"]
+
+[ext_resource type="Texture2D" uid="uid://hgfvdhupm0q3" path="res://PixelInterface/Interface/Sprite/Cloud.png" id="1_ypgfq"]
+
+[resource]
+texture = ExtResource("1_ypgfq")

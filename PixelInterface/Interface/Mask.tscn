@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvc13pjhcku4f"]
+
+[ext_resource type="PackedScene" path="res://PixelInterface/Interface/Back.tscn" id="1_qtcot"]
+[ext_resource type="Shader" path="res://PixelInterface/Interface/Mask.gdshader" id="2_ld45x"]
+[ext_resource type="Texture2D" uid="uid://dqves8j4iyty5" path="res://PixelInterface/Interface/Sprite/MaskGate.png" id="3_iqf8b"]
+
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("2_ld45x")
+shader_parameter/color = Color(0, 0, 0, 0)
+shader_parameter/scale = 0.0
+shader_parameter/mask = ExtResource("3_iqf8b")
+
+[sub_resource type="Animation" id="2"]
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_param/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(3.33, 3.33),
+"update": 0,
+"values": [0.0, 333.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_param/color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.22, 0.22),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x8m7l"]
+_data = {
+"Go": SubResource("2")
+}
+
+[node name="Mask" type="Node"]
+
+[node name="Back" parent="." instance=ExtResource("1_qtcot")]
+
+[node name="Mask" type="ColorRect" parent="."]
+material = SubResource("1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Mask"]
+libraries = {
+"": SubResource("AnimationLibrary_x8m7l")
+}

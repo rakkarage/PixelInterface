@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cyoy7e67adete"]
+
+[ext_resource type="Texture2D" uid="uid://b52l3ts52mneh" path="res://PixelInterface/Interface/Sprite/ButtonFocus.png" id="1_jf6x1"]
+
+[resource]
+texture = ExtResource("1_jf6x1")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+modulate_color = Color(0.623529, 0.690196, 1, 1)

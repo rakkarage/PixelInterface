@@ -1,0 +1,16 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://vxvgk6iccvf3"
+path="res://.godot/imported/SuperWhite.fnt-4360a911369b544bd833c0136c2414c7.fontdata"
+
+[deps]
+
+source_file="res://PixelInterface/Interface/Font/SuperWhite.fnt"
+dest_files=["res://.godot/imported/SuperWhite.fnt-4360a911369b544bd833c0136c2414c7.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true

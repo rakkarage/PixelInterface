@@ -1,0 +1,14 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://jtwwnp5o8hku"]
+
+[ext_resource type="Texture2D" uid="uid://b7o71b1u0jttv" path="res://PixelInterface/Interface/Sprite/Stone.png" id="1_hukr0"]
+
+[resource]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 9.0
+texture = ExtResource("1_hukr0")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0

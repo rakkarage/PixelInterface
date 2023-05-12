@@ -1,0 +1,244 @@
+[gd_resource type="Theme" load_steps=29 format=3]
+
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/Tooltip.tres" id="1"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/Panel.tres" id="2"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/ButtonPress.tres" id="3"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/Button.tres" id="4"]
+[ext_resource type="FontFile" uid="uid://vxvgk6iccvf3" path="res://PixelInterface/Interface/Font/SuperWhite.fnt" id="5"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/Input.tres" id="6"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/ButtonHover.tres" id="7"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/ButtonDisable.tres" id="8"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/Tab.tres" id="9"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/ButtonFocus.tres" id="10"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/InputDisable.tres" id="11"]
+[ext_resource type="Texture2D" uid="uid://dbh78gwvkpile" path="res://PixelInterface/Interface/Sprite/ArrowNorth.png" id="12"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/ScrollTrack.tres" id="13"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/ScrollProgress.tres" id="14"]
+[ext_resource type="Texture2D" uid="uid://bay3kb7jpgj5d" path="res://PixelInterface/Interface/Sprite/ArrowSouth.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://b1fc2nn0h7ipe" path="res://PixelInterface/Interface/Sprite/ScrollThumb.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://ci4loqr1adm15" path="res://PixelInterface/Interface/Sprite/TickNorth.png" id="17"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/Check.tres" id="18"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/CheckDisable.tres" id="19"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/CheckPress.tres" id="20"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/CheckHover.tres" id="21"]
+[ext_resource type="Texture2D" uid="uid://tx27226cytf1" path="res://PixelInterface/Interface/Sprite/Yes.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://mm7kfos2ru5x" path="res://PixelInterface/Interface/Sprite/No.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://cm3gctoje4kfw" path="res://PixelInterface/Interface/Sprite/Off.png" id="24"]
+[ext_resource type="Texture2D" uid="uid://hyhm61ydt3sd" path="res://PixelInterface/Interface/Sprite/On.png" id="25"]
+[ext_resource type="Texture2D" uid="uid://bvpjfiua3xq7c" path="res://PixelInterface/Interface/Sprite/ArrowWest.png" id="26"]
+[ext_resource type="Texture2D" uid="uid://j10cct6ej7qe" path="res://PixelInterface/Interface/Sprite/ArrowEast.png" id="27"]
+[ext_resource type="Texture2D" uid="uid://cno0av34v1puq" path="res://PixelInterface/Interface/Sprite/TickWest.png" id="28"]
+
+[resource]
+default_font = ExtResource("5")
+Button/colors/font_color = Color(0.88, 0.88, 0.88, 1)
+Button/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
+Button/colors/font_color_hover = Color(0.94, 0.94, 0.94, 1)
+Button/colors/font_color_pressed = Color(1, 1, 1, 1)
+Button/constants/hseparation = 2
+Button/fonts/font = ExtResource("5")
+Button/styles/disabled = ExtResource("8")
+Button/styles/focus = ExtResource("10")
+Button/styles/hover = ExtResource("7")
+Button/styles/normal = ExtResource("4")
+Button/styles/pressed = ExtResource("3")
+CheckBox/colors/font_color = Color(0.88, 0.88, 0.88, 1)
+CheckBox/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
+CheckBox/colors/font_color_hover = Color(0.94, 0.94, 0.94, 1)
+CheckBox/colors/font_color_hover_pressed = Color(1, 1, 1, 1)
+CheckBox/colors/font_color_pressed = Color(1, 1, 1, 1)
+CheckBox/constants/check_vadjust = 0
+CheckBox/constants/hseparation = 4
+CheckBox/fonts/font = ExtResource("5")
+CheckBox/icons/checked = ExtResource("22")
+CheckBox/icons/radio_checked = null
+CheckBox/icons/radio_unchecked = null
+CheckBox/icons/unchecked = ExtResource("23")
+CheckBox/styles/disabled = ExtResource("19")
+CheckBox/styles/focus = ExtResource("10")
+CheckBox/styles/hover = ExtResource("21")
+CheckBox/styles/hover_pressed = ExtResource("20")
+CheckBox/styles/normal = ExtResource("18")
+CheckBox/styles/pressed = ExtResource("20")
+CheckButton/colors/font_color = Color(0.88, 0.88, 0.88, 1)
+CheckButton/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
+CheckButton/colors/font_color_hover = Color(0.94, 0.94, 0.94, 1)
+CheckButton/colors/font_color_hover_pressed = Color(1, 1, 1, 1)
+CheckButton/colors/font_color_pressed = Color(1, 1, 1, 1)
+CheckButton/constants/check_vadjust = 0
+CheckButton/constants/hseparation = 4
+CheckButton/fonts/font = ExtResource("5")
+CheckButton/icons/off = ExtResource("24")
+CheckButton/icons/off_disabled = null
+CheckButton/icons/on = ExtResource("25")
+CheckButton/icons/on_disabled = null
+CheckButton/styles/disabled = ExtResource("19")
+CheckButton/styles/focus = ExtResource("10")
+CheckButton/styles/hover = ExtResource("21")
+CheckButton/styles/hover_pressed = ExtResource("20")
+CheckButton/styles/normal = ExtResource("18")
+CheckButton/styles/pressed = ExtResource("20")
+HScrollBar/icons/decrement = ExtResource("26")
+HScrollBar/icons/decrement_highlight = ExtResource("26")
+HScrollBar/icons/increment = ExtResource("27")
+HScrollBar/icons/increment_highlight = ExtResource("27")
+HScrollBar/styles/grabber = ExtResource("14")
+HScrollBar/styles/grabber_highlight = ExtResource("14")
+HScrollBar/styles/grabber_pressed = ExtResource("14")
+HScrollBar/styles/scroll = ExtResource("13")
+HScrollBar/styles/scroll_focus = null
+HSlider/icons/grabber = ExtResource("16")
+HSlider/icons/grabber_disabled = ExtResource("16")
+HSlider/icons/grabber_highlight = ExtResource("16")
+HSlider/icons/tick = ExtResource("17")
+HSlider/styles/grabber_area = ExtResource("14")
+HSlider/styles/slider = ExtResource("13")
+LineEdit/colors/clear_button_color = Color(0.623529, 0.690196, 1, 1)
+LineEdit/colors/clear_button_color_pressed = Color(0.623529, 0.690196, 1, 1)
+LineEdit/colors/cursor_color = Color(0.623529, 0.690196, 1, 1)
+LineEdit/colors/font_color = Color(0.88, 0.88, 0.88, 1)
+LineEdit/colors/font_color_selected = Color(0, 0, 0, 1)
+LineEdit/colors/font_color_uneditable = Color(0.88, 0.88, 0.88, 0.5)
+LineEdit/colors/selection_color = Color(0.49, 0.49, 0.49, 1)
+LineEdit/constants/minimum_spaces = 12
+LineEdit/fonts/font = ExtResource("5")
+LineEdit/icons/clear = null
+LineEdit/styles/focus = ExtResource("10")
+LineEdit/styles/normal = ExtResource("6")
+LineEdit/styles/read_only = ExtResource("11")
+Panel/styles/panel = ExtResource("2")
+PanelContainer/styles/panel = ExtResource("2")
+TabBar/colors/font_color_bg = Color(0.69, 0.69, 0.69, 1)
+TabBar/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
+TabBar/colors/font_color_fg = Color(0.94, 0.94, 0.94, 1)
+TabBar/constants/hseparation = 4
+TabBar/constants/label_valign_bg = 2
+TabBar/constants/label_valign_fg = 0
+TabBar/constants/top_margin = 24
+TabBar/fonts/font = ExtResource("5")
+TabBar/icons/close = null
+TabBar/icons/decrement = null
+TabBar/icons/decrement_highlight = null
+TabBar/icons/increment = null
+TabBar/icons/increment_highlight = null
+TabBar/styles/button = ExtResource("9")
+TabBar/styles/button_pressed = ExtResource("9")
+TabBar/styles/panel = ExtResource("9")
+TabBar/styles/tab_bg = ExtResource("9")
+TabBar/styles/tab_disabled = ExtResource("9")
+TabBar/styles/tab_fg = ExtResource("9")
+TabContainer/colors/font_color_bg = Color(0.69, 0.69, 0.69, 1)
+TabContainer/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
+TabContainer/colors/font_color_fg = Color(0.94, 0.94, 0.94, 1)
+TabContainer/constants/hseparation = 4
+TabContainer/constants/label_valign_bg = 2
+TabContainer/constants/label_valign_fg = 0
+TabContainer/constants/side_margin = 8
+TabContainer/constants/top_margin = 24
+TabContainer/fonts/font = ExtResource("5")
+TabContainer/icons/decrement = null
+TabContainer/icons/decrement_highlight = null
+TabContainer/icons/increment = null
+TabContainer/icons/increment_highlight = null
+TabContainer/icons/menu = null
+TabContainer/icons/menu_highlight = null
+TabContainer/styles/panel = ExtResource("9")
+TabContainer/styles/tab_bg = ExtResource("9")
+TabContainer/styles/tab_disabled = ExtResource("9")
+TabContainer/styles/tab_fg = ExtResource("9")
+TextEdit/colors/background_color = Color(0, 0, 0, 0)
+TextEdit/colors/bookmark_color = Color(0.08, 0.49, 0.98, 1)
+TextEdit/colors/brace_mismatch_color = Color(1, 0.2, 0.2, 1)
+TextEdit/colors/breakpoint_color = Color(0.8, 0.8, 0.4, 0.2)
+TextEdit/colors/caret_background_color = Color(0, 0, 0, 1)
+TextEdit/colors/caret_color = Color(0.623529, 0.690196, 1, 1)
+TextEdit/colors/code_folding_color = Color(0.8, 0.8, 0.8, 0.8)
+TextEdit/colors/completion_background_color = Color(0.17, 0.16, 0.2, 1)
+TextEdit/colors/completion_existing_color = Color(0.87, 0.87, 0.87, 0.13)
+TextEdit/colors/completion_font_color = Color(0.67, 0.67, 0.67, 1)
+TextEdit/colors/completion_scroll_color = Color(1, 1, 1, 1)
+TextEdit/colors/completion_selected_color = Color(0.26, 0.26, 0.27, 1)
+TextEdit/colors/current_line_color = Color(0.25, 0.25, 0.26, 0.8)
+TextEdit/colors/executing_line_color = Color(0.2, 0.8, 0.2, 0.4)
+TextEdit/colors/font_color = Color(0.88, 0.88, 0.88, 1)
+TextEdit/colors/font_color_readonly = Color(0.88, 0.88, 0.88, 0.5)
+TextEdit/colors/font_color_selected = Color(0, 0, 0, 1)
+TextEdit/colors/function_color = Color(0.4, 0.64, 0.81, 1)
+TextEdit/colors/line_number_color = Color(0.67, 0.67, 0.67, 0.4)
+TextEdit/colors/mark_color = Color(1, 0.4, 0.4, 0.4)
+TextEdit/colors/member_variable_color = Color(0.9, 0.31, 0.35, 1)
+TextEdit/colors/number_color = Color(0.92, 0.58, 0.2, 1)
+TextEdit/colors/safe_line_number_color = Color(0.67, 0.78, 0.67, 0.6)
+TextEdit/colors/selection_color = Color(0.49, 0.49, 0.49, 1)
+TextEdit/colors/symbol_color = Color(0.94, 0.94, 0.94, 1)
+TextEdit/colors/word_highlighted_color = Color(0.8, 0.9, 0.9, 0.15)
+TextEdit/constants/completion_lines = 7
+TextEdit/constants/completion_max_width = 50
+TextEdit/constants/completion_scroll_width = 3
+TextEdit/constants/line_spacing = 4
+TextEdit/fonts/font = ExtResource("5")
+TextEdit/icons/fold = null
+TextEdit/icons/folded = null
+TextEdit/icons/space = null
+TextEdit/icons/tab = null
+TextEdit/styles/completion = ExtResource("6")
+TextEdit/styles/focus = ExtResource("10")
+TextEdit/styles/normal = ExtResource("6")
+TextEdit/styles/read_only = ExtResource("11")
+TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
+TooltipLabel/colors/font_color_shadow = Color(0.231373, 0.262745, 0.321569, 1)
+TooltipLabel/constants/shadow_offset_x = 3
+TooltipLabel/constants/shadow_offset_y = 3
+TooltipLabel/fonts/font = ExtResource("5")
+TooltipPanel/styles/panel = ExtResource("1")
+Tree/colors/custom_button_font_highlight = Color(0.94, 0.94, 0.94, 1)
+Tree/colors/drop_position_color = Color(1, 0.3, 0.2, 1)
+Tree/colors/font_color = Color(0.69, 0.69, 0.69, 1)
+Tree/colors/font_color_selected = Color(1, 1, 1, 1)
+Tree/colors/guide_color = Color(0, 0, 0, 0.1)
+Tree/colors/relationship_line_color = Color(0.27, 0.27, 0.27, 1)
+Tree/colors/title_button_color = Color(0.88, 0.88, 0.88, 1)
+Tree/constants/button_margin = 4
+Tree/constants/draw_guides = 1
+Tree/constants/draw_relationship_lines = 0
+Tree/constants/hseparation = 4
+Tree/constants/item_margin = 12
+Tree/constants/scroll_border = 4
+Tree/constants/scroll_speed = 12
+Tree/constants/vseparation = 4
+Tree/fonts/font = ExtResource("5")
+Tree/fonts/title_button_font = ExtResource("5")
+Tree/icons/arrow = null
+Tree/icons/arrow_collapsed = null
+Tree/icons/checked = null
+Tree/icons/select_arrow = null
+Tree/icons/unchecked = null
+Tree/icons/updown = null
+Tree/styles/bg = ExtResource("2")
+Tree/styles/bg_focus = null
+Tree/styles/button_pressed = null
+Tree/styles/cursor = null
+Tree/styles/cursor_unfocused = null
+Tree/styles/custom_button = null
+Tree/styles/custom_button_hover = null
+Tree/styles/custom_button_pressed = null
+Tree/styles/selected = null
+Tree/styles/selected_focus = null
+Tree/styles/title_button_hover = null
+Tree/styles/title_button_normal = null
+Tree/styles/title_button_pressed = null
+VScrollBar/icons/decrement = ExtResource("12")
+VScrollBar/icons/decrement_highlight = ExtResource("12")
+VScrollBar/icons/increment = ExtResource("15")
+VScrollBar/icons/increment_highlight = ExtResource("15")
+VScrollBar/styles/grabber = ExtResource("14")
+VScrollBar/styles/grabber_highlight = ExtResource("14")
+VScrollBar/styles/grabber_pressed = ExtResource("14")
+VScrollBar/styles/scroll = ExtResource("13")
+VScrollBar/styles/scroll_focus = null
+VSlider/icons/grabber = ExtResource("16")
+VSlider/icons/grabber_disabled = ExtResource("16")
+VSlider/icons/grabber_highlight = ExtResource("16")
+VSlider/icons/tick = ExtResource("28")
+VSlider/styles/grabber_area = ExtResource("14")
+VSlider/styles/slider = ExtResource("13")

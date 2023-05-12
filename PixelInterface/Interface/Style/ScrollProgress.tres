@@ -1,0 +1,15 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cmu10fkxihqlg"]
+
+[ext_resource type="Texture2D" uid="uid://byq1ldl51lnrd" path="res://PixelInterface/Interface/Sprite/ScrollProgress.png" id="1_ii7sl"]
+
+[resource]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("1_ii7sl")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+modulate_color = Color(0.623529, 0.690196, 1, 1)

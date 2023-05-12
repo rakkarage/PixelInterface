@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2hdl0nqi2g8c"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="StyleBox" uid="uid://c2nuq3grlwn7e" path="res://PixelInterface/Style/CloseDisable.tres" id="1"]
-[ext_resource type="Texture2D" uid="uid://mm7kfos2ru5x" path="res://PixelInterface/Sprite/No.png" id="2"]
-[ext_resource type="StyleBox" uid="uid://bmirogtq1pbij" path="res://PixelInterface/Style/CloseHover.tres" id="3"]
-[ext_resource type="StyleBox" uid="uid://cnfmu3g7otr1h" path="res://PixelInterface/Style/Close.tres" id="4"]
-[ext_resource type="StyleBox" uid="uid://dywhwcxbfnvvu" path="res://PixelInterface/Style/ClosePress.tres" id="5"]
-[ext_resource type="StyleBox" uid="uid://5v8myu1h5a2y" path="res://PixelInterface/Style/CloseFocus.tres" id="6"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/CloseDisable.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://mm7kfos2ru5x" path="res://PixelInterface/Interface/Sprite/No.png" id="2"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/CloseHover.tres" id="3"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/Close.tres" id="4"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/ClosePress.tres" id="5"]
+[ext_resource type="StyleBox" path="res://PixelInterface/Interface/Style/CloseFocus.tres" id="6"]
 
 [node name="Close" type="Control"]
 layout_mode = 3

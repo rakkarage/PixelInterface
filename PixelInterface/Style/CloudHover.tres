@@ -1,7 +1,0 @@
-[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dfyllp578jwct"]
-
-[ext_resource type="Texture2D" uid="uid://hgfvdhupm0q3" path="res://PixelInterface/Sprite/Cloud.png" id="1"]
-
-[resource]
-texture = ExtResource("1")
-modulate_color = Color(0.74902, 0.74902, 0.74902, 1)

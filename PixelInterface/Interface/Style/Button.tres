@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://c5wrxcygqjq53"]
+
+[ext_resource type="Texture2D" uid="uid://c8k2bp7ksv744" path="res://PixelInterface/Interface/Sprite/Button.png" id="1_oobkj"]
+
+[resource]
+texture = ExtResource("1_oobkj")
+texture_margin_left = 16.0
+texture_margin_top = 13.0
+texture_margin_right = 16.0
+texture_margin_bottom = 19.0
+modulate_color = Color(0.623529, 0.690196, 1, 1)

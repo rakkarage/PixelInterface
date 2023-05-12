@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://d2xs4fv7wb6b6"]
+
+[ext_resource type="Texture2D" uid="uid://cwhtoqyqd71rf" path="res://PixelInterface/Interface/Sprite/Input.png" id="1_qky8x"]
+
+[resource]
+texture = ExtResource("1_qky8x")
+texture_margin_left = 16.0
+texture_margin_top = 13.0
+texture_margin_right = 16.0
+texture_margin_bottom = 19.0

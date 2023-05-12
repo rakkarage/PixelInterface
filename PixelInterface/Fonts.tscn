@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhwff27vnqwru"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://PixelInterface/Font/Venice.fnt" id="1"]
-[ext_resource type="FontFile" uid="uid://vxvgk6iccvf3" path="res://PixelInterface/Font/SuperWhite.fnt" id="2"]
-[ext_resource type="FontFile" uid="uid://bn2nxiytfv00k" path="res://PixelInterface/Font/SuperBlack.fnt" id="3"]
+[ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://PixelInterface/Interface/Font/Venice.fnt" id="1"]
+[ext_resource type="FontFile" uid="uid://vxvgk6iccvf3" path="res://PixelInterface/Interface/Font/SuperWhite.fnt" id="2"]
+[ext_resource type="FontFile" uid="uid://bn2nxiytfv00k" path="res://PixelInterface/Interface/Font/SuperBlack.fnt" id="3"]
 
 [node name="Fonts" type="Control"]
 layout_mode = 3

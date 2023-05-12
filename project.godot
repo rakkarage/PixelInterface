@@ -22,7 +22,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Cursor="*res://PixelInterface/Cursor.tscn"
+Cursor="*res://PixelInterface/Interface/Cursor.tscn"
 Store="*res://PixelInterface/Connect/Store.gd"
 Firebase="*res://PixelInterface/Connect/Firebase.gd"
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
@@ -32,7 +32,7 @@ Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation="sensor"
-mouse_cursor/custom_image="res://PixelInterface/Sprite/Cursor/Default.png"
+mouse_cursor/custom_image="res://PixelInterface/Interface/Sprite/Cursor/Default.png"
 
 [rendering]
 

@@ -1,0 +1,16 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://bn2nxiytfv00k"
+path="res://.godot/imported/SuperBlack.fnt-d4f0fa27ad4d6b174682314b2e8e1ed7.fontdata"
+
+[deps]
+
+source_file="res://PixelInterface/Interface/Font/SuperBlack.fnt"
+dest_files=["res://.godot/imported/SuperBlack.fnt-d4f0fa27ad4d6b174682314b2e8e1ed7.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true

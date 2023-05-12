@@ -1,0 +1,7 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3]
+
+[ext_resource type="AudioStream" uid="uid://dir60qvo3pom2" path="res://PixelInterface/Interface/Audio/257357__brnck__button-click.wav" id="1"]
+
+[resource]
+audio_stream = ExtResource( 1 )
+random_pitch = 1.22

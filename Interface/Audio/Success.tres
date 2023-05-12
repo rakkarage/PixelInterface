@@ -1,0 +1,9 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://c2uphq441vufl"]
+
+[ext_resource type="AudioStream" uid="uid://dbybe48g7l45x" path="res://Interface/Audio/388046__paep3nguin__beep-up.wav" id="1"]
+
+[resource]
+streams_count = 1
+random_pitch = 1.22
+stream_0/stream = ExtResource("1")
+stream_0/weight = 1.0

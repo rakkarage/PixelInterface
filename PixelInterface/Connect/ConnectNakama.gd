@@ -1,10 +1,10 @@
 extends Connect
 
-onready var _client := Nakama.create_client("defaultkey", "127.0.0.1", 7350, "http")
+@onready var _client := Nakama.create_client("defaultkey", "127.0.0.1", 7350, "http")
 var _session: NakamaSession
 
 func _ready() -> void:
-	_signInRemember.pressed = Store.data.all.remember
+	_signInRemember.button_pressed = Store.data.all.remember
 	if Store.data.all.remember:
 		_signInEmail.text = Store.data.n.email
 		_session = NakamaClient.restore_session(Store.data.n.token)
@@ -30,9 +30,9 @@ func _updateStatus() -> void:
 	var account : NakamaAPI.ApiAccount = null
 	if _session != null:
 		_disableInput([_status])
-		account = yield(_client.get_account_async(_session), "completed")
+		account = await _client.get_account_async(_session)
 		_enableInput([_status])
-	if account == null or account.is_exception() or account.email.empty():
+	if account == null or account.is_exception() or account.email.is_empty():
 		_status.modulate = _disconnectedColor
 		_statusEmail.text = "Welcome."
 		_accountEmail.text = ""
@@ -55,14 +55,14 @@ func _onSignInPressed() -> void:
 	var email = _signInEmail.text
 	var password = _signInPassword.text
 	_errorClear([_signInEmail, _signInPassword])
-	if email.empty() or not _validEmail(email):
+	if email.is_empty() or not _validEmail(email):
 		_errorSet(_signInEmail)
 		return
-	if password.empty() or not _validPassword(password):
+	if password.is_empty() or not _validPassword(password):
 		_errorSet(_signInPassword)
 		return
 	_disableInput([_signInSignIn])
-	_session = yield(_client.authenticate_email_async(email, password, null, false), "completed")
+	_session = await _client.authenticate_email_async(email, password, null, false)
 	_enableInput([_signInSignIn])
 	if _session.is_exception():
 		_showError(_session.get_exception().message)
@@ -87,17 +87,17 @@ func _onSignUpPressed() -> void:
 	var password = _signUpPassword.text
 	var confirm = _signUpConfirm.text
 	_errorClear([_signUpEmail, _signUpPassword, _signUpConfirm])
-	if email.empty() or not _validEmail(email):
+	if email.is_empty() or not _validEmail(email):
 		_errorSet(_signUpEmail)
 		return
-	if password.empty() or not _validPassword(password):
+	if password.is_empty() or not _validPassword(password):
 		_errorSet(_signUpPassword)
 		return
 	if confirm != password:
 		_errorSet(_signUpConfirm)
 		return
 	_disableInput([_signUpSignUp])
-	_session = yield(_client.authenticate_email_async(email, password, name, true), "completed")
+	_session = await _client.authenticate_email_async(email, password, name, true)
 	_enableInput([_signUpSignUp])
 	if _session.is_exception():
 		_showError(_session.get_exception().message)
@@ -134,17 +134,17 @@ func _onChangeEmailPressed() -> void:
 	var email = _emailEmail.text
 	var confirm = _emailConfirm.text
 	_errorClear([_emailPassword, _emailEmail, _emailConfirm])
-	if password.empty() or not _validPassword(password):
+	if password.is_empty() or not _validPassword(password):
 		_errorSet(_emailPassword)
 		return
-	if email.empty() or not _validEmail(email):
+	if email.is_empty() or not _validEmail(email):
 		_errorSet(_emailEmail)
 		return
 	if confirm != email:
 		_errorSet(_emailConfirm)
 		return
 	_disableInput([_emailChange])
-	var result = yield(_client.link_email_async(_session, email, password), "completed")
+	var result = await _client.link_email_async(_session, email, password)
 	_enableInput([_emailChange])
 	if result.is_exception():
 		_showError(result.get_exception().message)
@@ -163,14 +163,14 @@ func _onChangePasswordPressed() -> void:
 	var password = _passwordPassword.text
 	var confirm = _passwordConfirm.text
 	_errorClear([_passwordPassword, _passwordConfirm])
-	if password.empty() or not _validPassword(password):
+	if password.is_empty() or not _validPassword(password):
 		_errorSet(_passwordPassword)
 		return
 	if confirm != password:
 		_errorSet(_passwordConfirm)
 		return
 	_disableInput([_passwordChange])
-	var result = yield(_client.link_email_async(_session, _statusEmail.text, password), "completed")
+	var result = await _client.link_email_async(_session, _statusEmail.text, password)
 	_enableInput([_passwordChange])
 	if result.is_exception():
 		_showError(result.get_exception().message)
@@ -204,9 +204,9 @@ func _clearDoc() -> void:
 
 func _loadDoc() -> void:
 	_disableInput([_dataSave, _dataDelete])
-	var result : NakamaAPI.ApiStorageObjects = yield(_client.read_storage_objects_async(_session, [
+	var result : NakamaAPI.ApiStorageObjects = await _client.read_storage_objects_async(_session, [
 		NakamaStorageObjectId.new(_collection, _key, _session.user_id),
-	]), "completed")
+	])
 	_enableInput([_dataSave, _dataDelete])
 	if result.is_exception():
 		_showError(result.get_exception().message)
@@ -214,7 +214,7 @@ func _loadDoc() -> void:
 	if result.objects.size() > 0:
 		var doc = result.objects[0]
 		_docVersion = doc.version
-		_doc = JSON.parse(doc.value).result
+		_doc = JSON.parse_string(doc.value).result
 		_dataTitle.text = _doc.title
 		_dataNumber.value = int(_doc.number)
 		_dataText.text = _doc.text
@@ -226,9 +226,9 @@ func _onSaveDocPressed() -> void:
 	_doc.number = str(_dataNumber.value)
 	_doc.text = _dataText.text
 	_disableInput([_dataSave, _dataDelete])
-	var result : NakamaAPI.ApiStorageObjectAcks = yield(_client.write_storage_objects_async(_session, [
-		NakamaWriteStorageObject.new(_collection, _key, true, true, to_json(_doc), _docVersion),
-	]), "completed")
+	var result : NakamaAPI.ApiStorageObjectAcks = await _client.write_storage_objects_async(_session, [
+		NakamaWriteStorageObject.new(_collection, _key, true, true, JSON.stringify(_doc), _docVersion),
+	])
 	_enableInput([_dataSave, _dataDelete])
 	if result.is_exception():
 		_showError(result.get_exception().message)
@@ -238,9 +238,9 @@ func _onSaveDocPressed() -> void:
 func _onDeleteDocPressed() -> void:
 	_clickAudio.play()
 	_disableInput([_dataSave, _dataDelete])
-	var result : NakamaAsyncResult = yield(_client.delete_storage_objects_async(_session, [
+	var result : NakamaAsyncResult = await _client.delete_storage_objects_async(_session, [
 		NakamaStorageObjectId.new(_collection, _key, _session.user_id, _docVersion)
-	]), "completed")
+	])
 	_enableInput([_dataSave, _dataDelete])
 	if result.is_exception():
 		_showError(result.get_exception().message)

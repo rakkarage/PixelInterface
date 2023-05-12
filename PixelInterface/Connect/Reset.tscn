@@ -1,90 +1,89 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://dev88y3mtsf00"]
 
-[ext_resource path="res://PixelInterface/Style/Stone.tres" type="StyleBox" id=1]
-[ext_resource path="res://PixelInterface/Connect/Close.tscn" type="PackedScene" id=2]
-[ext_resource path="res://PixelInterface/Theme.tres" type="Theme" id=3]
-[ext_resource path="res://PixelInterface/Font/Venice.fnt" type="BitmapFont" id=4]
-[ext_resource path="res://PixelInterface/Style/Paper.tres" type="StyleBox" id=5]
+[ext_resource type="StyleBox" uid="uid://dfng67omw6d7h" path="res://Interface/Theme/Stone.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://doqu4m0nhvbi3" path="res://PixelInterface/Connect/Close.tscn" id="2"]
+[ext_resource type="Theme" uid="uid://dl0c724jkee55" path="res://Interface/Theme/Theme.tres" id="3"]
+[ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://Interface/Font/Venice.fnt" id="4"]
+[ext_resource type="StyleBox" uid="uid://cl1qbh8ekypku" path="res://Interface/Theme/Paper.tres" id="5"]
 
 [node name="Reset" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 3 )
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3")
 
 [node name="Center" type="CenterContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Panel" type="PanelContainer" parent="Center"]
-margin_left = 124.0
-margin_top = 347.0
-margin_right = 324.0
-margin_bottom = 452.0
-rect_min_size = Vector2( 200, 64 )
-custom_styles/panel = ExtResource( 1 )
+custom_minimum_size = Vector2(200, 64)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1")
 
 [node name="VBox" type="VBoxContainer" parent="Center/Panel"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 192.0
-margin_bottom = 96.0
-custom_constants/separation = 0
+layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="Panel" type="PanelContainer" parent="Center/Panel/VBox"]
-margin_right = 184.0
-margin_bottom = 48.0
-custom_styles/panel = ExtResource( 5 )
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5")
 
 [node name="Email" type="LineEdit" parent="Center/Panel/VBox/Panel"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 176.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 32, 32 )
-hint_tooltip = "Enter your email address."
-focus_neighbour_left = NodePath("../../../Close/Close")
-focus_neighbour_top = NodePath("../../../Close/Close")
-focus_neighbour_right = NodePath("../../Reset")
-focus_neighbour_bottom = NodePath("../../Reset")
-focus_next = NodePath("../../Reset")
-focus_previous = NodePath("../../../Close/Close")
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
-clear_button_enabled = true
+tooltip_text = "Enter your email address."
+focus_neighbor_left = NodePath("../../../Close/Close")
+focus_neighbor_top = NodePath("../../../Close/Close")
+focus_neighbor_right = NodePath("../../Reset")
+focus_neighbor_bottom = NodePath("../../Reset")
+focus_next = NodePath("../../Reset")
+focus_previous = NodePath("../../../Close/Close")
 placeholder_text = "Email"
-placeholder_alpha = 0.5
+clear_button_enabled = true
 
 [node name="Reset" type="Button" parent="Center/Panel/VBox"]
-margin_top = 48.0
-margin_right = 184.0
-margin_bottom = 88.0
-hint_tooltip = "Reset your password."
-focus_neighbour_left = NodePath("../Panel/Email")
-focus_neighbour_top = NodePath("../Panel/Email")
-focus_neighbour_right = NodePath("../../Close/Close")
-focus_neighbour_bottom = NodePath("../../Close/Close")
-focus_next = NodePath("../../Close/Close")
-focus_previous = NodePath("../Panel/Email")
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 4 )
+tooltip_text = "Reset your password."
+focus_neighbor_left = NodePath("../Panel/Email")
+focus_neighbor_top = NodePath("../Panel/Email")
+focus_neighbor_right = NodePath("../../Close/Close")
+focus_neighbor_bottom = NodePath("../../Close/Close")
+focus_next = NodePath("../../Close/Close")
+focus_previous = NodePath("../Panel/Email")
+theme_override_fonts/font = ExtResource("4")
 shortcut_in_tooltip = false
 text = "Reset"
 
-[node name="Close" parent="Center/Panel" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 192.0
-margin_bottom = 96.0
+[node name="Close" parent="Center/Panel" instance=ExtResource("2")]
+layout_mode = 2
 
 [node name="Close" parent="Center/Panel/Close" index="0"]
-focus_neighbour_left = NodePath("../../VBox/Reset")
-focus_neighbour_top = NodePath("../../VBox/Reset")
-focus_neighbour_right = NodePath("../../VBox/Panel/Email")
-focus_neighbour_bottom = NodePath("../../VBox/Panel/Email")
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 40.0
+offset_bottom = 40.0
+focus_neighbor_left = NodePath("../../VBox/Reset")
+focus_neighbor_top = NodePath("../../VBox/Reset")
+focus_neighbor_right = NodePath("../../VBox/Panel/Email")
+focus_neighbor_bottom = NodePath("../../VBox/Panel/Email")
 focus_next = NodePath("../../VBox/Panel/Email")
 focus_previous = NodePath("../../VBox/Reset")
+
+[node name="Center" parent="Center/Panel/Close/Close" index="0"]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 36.0
+offset_bottom = 36.0
 
 [editable path="Center/Panel/Close"]

@@ -1,0 +1,263 @@
+[gd_scene load_steps=11 format=3 uid="uid://duo8m8xeadq38"]
+
+[ext_resource type="Shader" path="res://PixelInterface/Generate/GenerateTextureRed.gdshader" id="1"]
+[ext_resource type="Shader" path="res://PixelInterface/Generate/GenerateTextureGreen.gdshader" id="2"]
+[ext_resource type="Shader" path="res://PixelInterface/Generate/GenerateTextureBlue.gdshader" id="3"]
+[ext_resource type="Shader" path="res://PixelInterface/Generate/GenerateTexture.gdshader" id="4"]
+[ext_resource type="Script" path="res://PixelInterface/Generate/GenerateTexture.gd" id="5"]
+
+[sub_resource type="ShaderMaterial" id="4"]
+shader = ExtResource("4")
+shader_parameter/speed = 1.0
+shader_parameter/color = null
+
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("2")
+
+[sub_resource type="ShaderMaterial" id="2"]
+shader = ExtResource("1")
+
+[sub_resource type="ShaderMaterial" id="3"]
+shader = ExtResource("3")
+
+[sub_resource type="ShaderMaterial" id="5"]
+shader = ExtResource("4")
+shader_parameter/speed = 1.0
+shader_parameter/color = null
+
+[node name="GenerateTexture" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="Center"]
+layout_mode = 2
+script = ExtResource("5")
+
+[node name="Big" type="ColorRect" parent="Center/Panel"]
+material = SubResource("4")
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Center/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBox" type="HBoxContainer" parent="Center/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Right" type="VBoxContainer" parent="Center/Panel/Margin/HBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Top" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Right"]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="Center/Panel/Margin/HBox/Right/Top"]
+layout_mode = 2
+
+[node name="Green" type="TextureRect" parent="Center/Panel/Margin/HBox/Right/Top/Panel"]
+material = SubResource("1")
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="Middle" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Right"]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel1" type="PanelContainer" parent="Center/Panel/Margin/HBox/Right/Middle"]
+layout_mode = 2
+
+[node name="Red" type="TextureRect" parent="Center/Panel/Margin/HBox/Right/Middle/Panel1"]
+material = SubResource("2")
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="Panel2" type="PanelContainer" parent="Center/Panel/Margin/HBox/Right/Middle"]
+layout_mode = 2
+
+[node name="Texture2D" type="TextureRect" parent="Center/Panel/Margin/HBox/Right/Middle/Panel2"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="Panel3" type="PanelContainer" parent="Center/Panel/Margin/HBox/Right/Middle"]
+layout_mode = 2
+
+[node name="Blue" type="TextureRect" parent="Center/Panel/Margin/HBox/Right/Middle/Panel3"]
+material = SubResource("3")
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="Bottom" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Right"]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="Center/Panel/Margin/HBox/Right/Bottom"]
+layout_mode = 2
+
+[node name="Preview" type="ColorRect" parent="Center/Panel/Margin/HBox/Right/Bottom/Panel"]
+material = SubResource("5")
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="Left" type="VBoxContainer" parent="Center/Panel/Margin/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Settings" type="VBoxContainer" parent="Center/Panel/Margin/HBox/Left"]
+layout_mode = 2
+alignment = 1
+
+[node name="Color" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/Panel/Margin/HBox/Left/Settings/Color"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "Color"
+
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Color"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+
+[node name="ColorPicker" type="ColorPickerButton" parent="Center/Panel/Margin/HBox/Left/Settings/Color"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+
+[node name="Seed" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/Panel/Margin/HBox/Left/Settings/Seed"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "Seed"
+
+[node name="SpinBox" type="SpinBox" parent="Center/Panel/Margin/HBox/Left/Settings/Seed"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Seed"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+max_value = 2e+08
+
+[node name="Octaves" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/Panel/Margin/HBox/Left/Settings/Octaves"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "Octaves"
+
+[node name="SpinBox" type="SpinBox" parent="Center/Panel/Margin/HBox/Left/Settings/Octaves"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Octaves"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+min_value = 1.0
+max_value = 9.0
+value = 1.0
+
+[node name="Frequency" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/Panel/Margin/HBox/Left/Settings/Frequency"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "Frequency"
+
+[node name="SpinBox" type="SpinBox" parent="Center/Panel/Margin/HBox/Left/Settings/Frequency"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Frequency"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+min_value = 0.001
+step = 0.01
+value = 0.101
+
+[node name="Gain" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/Panel/Margin/HBox/Left/Settings/Gain"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "Gain"
+
+[node name="SpinBox" type="SpinBox" parent="Center/Panel/Margin/HBox/Left/Settings/Gain"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Gain"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Lacunarity" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/Panel/Margin/HBox/Left/Settings/Lacunarity"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "Lacunarity"
+
+[node name="SpinBox" type="SpinBox" parent="Center/Panel/Margin/HBox/Left/Settings/Lacunarity"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Lacunarity"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+min_value = 0.1
+max_value = 4.0
+step = 0.01
+value = 0.1
+
+[node name="Buttons" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left"]
+layout_mode = 2
+alignment = 1
+
+[node name="Generate" type="Button" parent="Center/Panel/Margin/HBox/Left/Buttons"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Generate"
+
+[node name="Reset" type="Button" parent="Center/Panel/Margin/HBox/Left/Buttons"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Reset"
+
+[node name="Save" type="Button" parent="Center/Panel/Margin/HBox/Left/Buttons"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Save"

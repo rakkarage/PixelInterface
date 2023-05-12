@@ -1,24 +1,16 @@
-[gd_resource type="ParticlesMaterial" load_steps=3 format=2]
+[gd_resource type="ParticleProcessMaterial" load_steps=2 format=3 uid="uid://k3snelvdd5ay"]
 
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.5, 1 )
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
-width = 15
+[ext_resource type="Texture2D" uid="uid://blj1ceemtdewk" path="res://PixelInterface/GlowRamp.tres" id="1_vm03s"]
 
 [resource]
 lifetime_randomness = 0.5
-flag_disable_z = true
-gravity = Vector3( 0, 0, 0 )
-angular_velocity = 64.0
-angular_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-angle_random = 1.0
-scale = 1.33
-scale_random = 1.0
-color_ramp = SubResource( 2 )
-hue_variation = 0.22
-hue_variation_random = 0.22
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+angular_velocity_min = 1.0
+angular_velocity_max = 33.0
+radial_accel_min = 1.0
+radial_accel_max = 333.0
+angle_max = 360.0
+scale_max = 10.0
+color_ramp = ExtResource("1_vm03s")

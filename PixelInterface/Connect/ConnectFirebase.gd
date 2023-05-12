@@ -4,20 +4,20 @@ var _expires := 0
 var _expiresOffset := 120
 
 func _ready() -> void:
-	_timer.connect("timeout", self, "_onRefreshToken")
+	await _onRefreshToken
 
 	var remember = Store.data.all.remember
-	_signInRemember.pressed = remember
+	_signInRemember.button_pressed = remember
 	if remember:
 		_signInEmail.text = Store.data.f.email
-	yield(_onRefreshToken(), "completed")
-	yield(_lookup(), "completed")
+	await _onRefreshToken()
+	await _lookup()
 
 	# firebase: no password for change email!?
 	_emailPassword.editable = false
 
 func authenticated() -> bool:
-	return not _accountEmail.text.empty()
+	return not _accountEmail.text.is_empty()
 
 func _extractName(result: Dictionary) -> String:
 	return result.displayName if "displayName" in result else result.users[0].displayName if "users" in result else ""
@@ -35,7 +35,7 @@ func _extractId(result: Dictionary) -> String:
 	return result.localId if "localId" in result else result.users[0].localId if "users" in result else Store.data.f.id
 
 func _onAuthChanged(response: Array) -> void:
-	yield(get_tree(), "idle_frame")
+	await get_tree().process_frame
 	if response.size() > 0 and response[1] == 200:
 		var result = _getResult(response)
 		var email = _extractEmail(result)
@@ -53,7 +53,7 @@ func _onAuthChanged(response: Array) -> void:
 		_accountName.text = _extractName(result)
 		_dataSave.disabled = false
 		_dataDelete.disabled = false
-		yield(_loadDoc(), "completed")
+		await _loadDoc()
 	else:
 		Store.data.f.token = ""
 		Store.data.f.email = ""
@@ -68,11 +68,12 @@ func _onAuthChanged(response: Array) -> void:
 		_clearDoc()
 	Store.write()
 	if _expires > 0:
-		_timer.start(_expires - _expiresOffset)
+		await get_tree().create_timer(_expires - _expiresOffset).timeout
+		_timer.start()
 		_expires = 0
 
 func _getResult(response: Array) -> Dictionary:
-	return JSON.parse(response[3].get_string_from_utf8()).result
+	return JSON.parse_string(response[3].get_string_from_utf8()).result
 
 func _handleError(result: Dictionary) -> void:
 	_showError(result.error.message.capitalize())
@@ -86,12 +87,12 @@ func _onStatusPressed() -> void:
 		_springSignIn()
 
 func _lookup() -> void:
-	var response = yield(Firebase.lookup(_http, Store.data.f.token), "completed")
-	yield(_onAuthChanged(response), "completed")
+	var response = await Firebase.lookup(_http, Store.data.f.token)
+	await _onAuthChanged(response)
 
 func _onRefreshToken() -> void:
-	var response = yield(Firebase.refresh(_http, Store.data.f.refresh), "completed")
-	yield(_onAuthChanged(response), "completed")
+	var response = await Firebase.refresh(_http, Store.data.f.refresh)
+	await _onAuthChanged(response)
 
 ### signIn
 
@@ -100,14 +101,14 @@ func _onSignInPressed() -> void:
 	var email = _signInEmail.text
 	var password = _signInPassword.text
 	_errorClear([_signInEmail, _signInPassword])
-	if email.empty() or not _validEmail(email):
+	if email.is_empty() or not _validEmail(email):
 		_errorSet(_signInEmail)
 		return
-	if password.empty() or not _validPassword(password):
+	if password.is_empty() or not _validPassword(password):
 		_errorSet(_signInPassword)
 		return
 	_disableInput([_signInSignIn])
-	var response = yield(Firebase.signIn(_http, email, password), "completed")
+	var response = await Firebase.signIn(_http, email, password)
 	_enableInput([_signInSignIn])
 	var result = _getResult(response)
 	if response[1] == 200:
@@ -118,7 +119,7 @@ func _onSignInPressed() -> void:
 		_handleError(result)
 		_signUpEmail.text = _signInEmail.text
 		_resetEmail.text = _signInEmail.text
-	yield(_onAuthChanged(response), "completed")
+	await _onAuthChanged(response)
 
 ### signUp
 
@@ -128,17 +129,17 @@ func _onSignUpPressed() -> void:
 	var password = _signUpPassword.text
 	var confirm = _signUpConfirm.text
 	_errorClear([_signUpEmail, _signUpPassword, _signUpConfirm])
-	if email.empty() or not _validEmail(email):
+	if email.is_empty() or not _validEmail(email):
 		_errorSet(_signUpEmail)
 		return
-	if password.empty() or not _validPassword(password):
+	if password.is_empty() or not _validPassword(password):
 		_errorSet(_signUpPassword)
 		return
 	if confirm != password:
 		_errorSet(_signUpConfirm)
 		return
 	_disableInput([_signUpSignUp])
-	var response = yield(Firebase.signUp(_http, email, password), "completed")
+	var response = await Firebase.signUp(_http, email, password)
 	_enableInput([_signUpSignUp])
 	var result = _getResult(response)
 	if response[1] == 200:
@@ -148,18 +149,18 @@ func _onSignUpPressed() -> void:
 		_signUpPassword.text = ""
 		_signUpConfirm.text = ""
 		_springStatus(false)
-		var name = _signUpName.text
-		if name != "":
-			yield(_changeName(result.idToken, name), "completed")
+		var text = _signUpName.text
+		if text != "":
+			await _changeName(result.idToken, text)
 	else:
 		_handleError(result)
-	yield(_onAuthChanged(response), "completed")
+	await _onAuthChanged(response)
 
 ### change name
 
-func _changeName(token: String, name: String) -> void:
-	var response = yield(Firebase.changeName(_http, token, name), "completed")
-	yield(_onAuthChanged(response), "completed")
+func _changeName(token: String, text: String) -> void:
+	var response = await Firebase.changeName(_http, token, text)
+	await _onAuthChanged(response)
 
 ### reset password
 
@@ -167,11 +168,11 @@ func _onResetPressed() -> void:
 	_clickAudio.play()
 	var email = _resetEmail.text
 	_errorClear([_resetEmail])
-	if email.empty() or not _validEmail(email):
+	if email.is_empty() or not _validEmail(email):
 		_errorSet(_resetEmail)
 		return
 	_disableInput([_resetReset])
-	var response = yield(Firebase.reset(_http, _resetEmail.text), "completed")
+	var response = await Firebase.reset(_http, _resetEmail.text)
 	_enableInput([_resetReset])
 	if response[1] == 200:
 		_successAudio.play()
@@ -185,7 +186,7 @@ func _onResetPressed() -> void:
 func _onSignOutPressed() -> void:
 	_clickAudio.play()
 	_disableInput([_accountSignOut])
-	yield(_onAuthChanged([]), "completed")
+	await _onAuthChanged([])
 	_enableInput([_accountSignOut])
 	_clearDoc()
 	_successAudio.play()
@@ -198,14 +199,14 @@ func _onChangeEmailPressed() -> void:
 	var email = _emailEmail.text
 	var confirm = _emailConfirm.text
 	_errorClear([_emailEmail, _emailConfirm])
-	if email.empty() or not _validEmail(email):
+	if email.is_empty() or not _validEmail(email):
 		_errorSet(_emailEmail)
 		return
 	if confirm != email:
 		_errorSet(_emailConfirm)
 		return
 	_disableInput([_emailChange])
-	var response = yield(Firebase.changeEmail(_http, Store.data.f.token, email), "completed")
+	var response = await Firebase.changeEmail(_http, Store.data.f.token, email)
 	_enableInput([_emailChange])
 	var result = _getResult(response)
 	if response[1] == 200:
@@ -215,7 +216,7 @@ func _onChangeEmailPressed() -> void:
 		_springAccount(false)
 	else:
 		_handleError(result)
-	yield(_onAuthChanged(response), "completed")
+	await _onAuthChanged(response)
 
 ### change password
 
@@ -224,14 +225,14 @@ func _onChangePasswordPressed() -> void:
 	var password = _passwordPassword.text
 	var confirm = _passwordConfirm.text
 	_errorClear([_passwordPassword, _passwordConfirm])
-	if password.empty() or not _validPassword(password):
+	if password.is_empty() or not _validPassword(password):
 		_errorSet(_passwordPassword)
 		return
 	if confirm != password:
 		_errorSet(_passwordConfirm)
 		return
 	_disableInput([_passwordChange])
-	var response = yield(Firebase.changePassword(_http, Store.data.f.token, password), "completed")
+	var response = await Firebase.changePassword(_http, Store.data.f.token, password)
 	_enableInput([_passwordChange])
 	var result = _getResult(response)
 	if response[1] == 200:
@@ -241,7 +242,7 @@ func _onChangePasswordPressed() -> void:
 		_springAccount(false)
 	else:
 		_handleError(result)
-	yield(_onAuthChanged(response), "completed")
+	await _onAuthChanged(response)
 
 ### data
 
@@ -273,7 +274,7 @@ func _docChanged(response: Array) -> void:
 
 func _loadDoc() -> void:
 	_disableInput([_dataSave, _dataDelete])
-	var response = yield(Firebase.loadDoc(_http, Store.data.f.token, Store.data.f.id), "completed")
+	var response = await Firebase.loadDoc(_http, Store.data.f.token, Store.data.f.id)
 	_enableInput([_dataSave, _dataDelete])
 	_docChanged(response)
 
@@ -285,15 +286,15 @@ func _onSaveDocPressed() -> void:
 	_disableInput([_dataSave, _dataDelete])
 	var response
 	if _docExists:
-		response = yield(Firebase.updateDoc(_http, Store.data.f.token, Store.data.f.id, _doc), "completed")
+		response = await Firebase.updateDoc(_http, Store.data.f.token, Store.data.f.id, _doc)
 	else:
-		response = yield(Firebase.saveDoc(_http, Store.data.f.token, Store.data.f.id, _doc), "completed")
+		response = await Firebase.saveDoc(_http, Store.data.f.token, Store.data.f.id, _doc)
 	_enableInput([_dataSave, _dataDelete])
 	_docChanged(response)
 
 func _onDeleteDocPressed() -> void:
 	_clickAudio.play()
 	_disableInput([_dataSave, _dataDelete])
-	var response = yield(Firebase.deleteDoc(_http, Store.data.f.token, Store.data.f.id), "completed")
+	var response = await Firebase.deleteDoc(_http, Store.data.f.token, Store.data.f.id)
 	_enableInput([_dataSave, _dataDelete])
 	_docChanged(response)

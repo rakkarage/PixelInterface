@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://mrw5enuj7q7s" path="res://PixelInterface/Interface.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://PixelInterface/Connect/Dialog.tscn" id="8"]
-[ext_resource type="AudioStream" path="res://PixelInterface/Interface/Audio/Error.tres" id="10"]
-[ext_resource type="AudioStream" path="res://PixelInterface/Interface/Audio/Click.tres" id="11"]
-[ext_resource type="PackedScene" path="res://PixelInterface/Interface/Back.tscn" id="12"]
-[ext_resource type="AudioStream" path="res://PixelInterface/Interface/Audio/Success.tres" id="13"]
+[ext_resource type="AudioStream" path="res://Interface/Audio/Error.tres" id="10"]
+[ext_resource type="AudioStream" path="res://Interface/Audio/Click.tres" id="11"]
+[ext_resource type="PackedScene" uid="uid://caqguoa83kyec" path="res://Interface/Back.tscn" id="12"]
+[ext_resource type="AudioStream" path="res://Interface/Audio/Success.tres" id="13"]
 
 [node name="Connect" type="Control"]
 layout_mode = 3

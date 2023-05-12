@@ -1,14 +1,14 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=10 format=3 uid="uid://bw2pded1snd5s"]
 
-[ext_resource type="StyleBox" uid="uid://dpwtyapk8ccj3" path="res://Interface/Style/Tooltip.tres" id="1"]
-[ext_resource type="StyleBox" uid="uid://dsh04tn1j3m51" path="res://Interface/Style/Cloud.tres" id="2"]
-[ext_resource type="StyleBox" path="res://Interface/Style/CloudPress.tres" id="3"]
-[ext_resource type="StyleBox" uid="uid://d3lciv7nk7e13" path="res://Interface/Style/CloudHover.tres" id="4"]
-[ext_resource type="Theme" path="res://Interface/Theme.tres" id="5"]
+[ext_resource type="StyleBox" uid="uid://b2e015svwotqq" path="res://Interface/Theme/Tooltip.tres" id="1"]
+[ext_resource type="StyleBox" uid="uid://iupkkski71ei" path="res://Interface/Theme/Cloud.tres" id="2"]
+[ext_resource type="StyleBox" uid="uid://bt8b50l76jqdq" path="res://Interface/Theme/CloudPress.tres" id="3"]
+[ext_resource type="StyleBox" uid="uid://cdagyvg7ij3i6" path="res://Interface/Theme/CloudHover.tres" id="4"]
+[ext_resource type="Theme" uid="uid://dl0c724jkee55" path="res://Interface/Theme/Theme.tres" id="5"]
 [ext_resource type="Script" path="res://PixelInterface/Connect/Status.gd" id="6"]
-[ext_resource type="StyleBox" uid="uid://b1jfham3itb0y" path="res://Interface/Style/CloudDisable.tres" id="7"]
-[ext_resource type="StyleBox" uid="uid://cq0hr02qcnhls" path="res://Interface/Style/CloudFocus.tres" id="8"]
-[ext_resource type="StyleBox" uid="uid://7vy4vjjk653k" path="res://Interface/Style/PanelCorner.tres" id="9"]
+[ext_resource type="StyleBox" uid="uid://dhso2s2gg051c" path="res://Interface/Theme/CloudDisable.tres" id="7"]
+[ext_resource type="StyleBox" uid="uid://brig7jpu0e5b0" path="res://Interface/Theme/CloudFocus.tres" id="8"]
+[ext_resource type="StyleBox" uid="uid://caf5hwu8tbd71" path="res://Interface/Theme/PanelCorner.tres" id="9"]
 
 [node name="Status" type="Control"]
 layout_mode = 3

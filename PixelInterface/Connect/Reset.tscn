@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://dev88y3mtsf00"]
 
-[ext_resource type="StyleBox" uid="uid://jtwwnp5o8hku" path="res://Interface/Style/Stone.tres" id="1"]
-[ext_resource type="PackedScene" path="res://PixelInterface/Connect/Close.tscn" id="2"]
-[ext_resource type="Theme" path="res://Interface/Theme.tres" id="3"]
+[ext_resource type="StyleBox" uid="uid://dfng67omw6d7h" path="res://Interface/Theme/Stone.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://doqu4m0nhvbi3" path="res://PixelInterface/Connect/Close.tscn" id="2"]
+[ext_resource type="Theme" uid="uid://dl0c724jkee55" path="res://Interface/Theme/Theme.tres" id="3"]
 [ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://Interface/Font/Venice.fnt" id="4"]
-[ext_resource type="StyleBox" uid="uid://bbppglyiat0w8" path="res://Interface/Style/Paper.tres" id="5"]
+[ext_resource type="StyleBox" uid="uid://cl1qbh8ekypku" path="res://Interface/Theme/Paper.tres" id="5"]
 
 [node name="Reset" type="Control"]
 layout_mode = 3

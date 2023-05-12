@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://tt5l3uyabc1t"]
+[gd_scene load_steps=3 format=3 uid="uid://djv0odcxemfgh"]
 
 [ext_resource type="Script" path="res://Interface/Cursor.gd" id="1"]
-[ext_resource type="SpriteFrames" path="res://Interface/Cursors.tres" id="2"]
+[ext_resource type="SpriteFrames" uid="uid://vn4ek6rlyni7" path="res://Interface/Cursor.tres" id="2"]
 
 [node name="Cursor" type="Node2D"]
 script = ExtResource("1")

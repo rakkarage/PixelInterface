@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://b7dpi3oovkssm"]
 
 [ext_resource type="Texture2D" uid="uid://b8ppx43nin54x" path="res://Interface/Sprite/Particle/Glow1.png" id="1"]
 [ext_resource type="Material" uid="uid://k3snelvdd5ay" path="res://PixelInterface/Glow.tres" id="2"]

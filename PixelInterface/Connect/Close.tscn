@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://doqu4m0nhvbi3"]
 
-[ext_resource type="StyleBox" uid="uid://1ol4tmq0aq31" path="res://Interface/Style/CloseDisable.tres" id="1"]
+[ext_resource type="StyleBox" uid="uid://dbd38rackqisk" path="res://Interface/Theme/CloseDisable.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://mm7kfos2ru5x" path="res://Interface/Sprite/No.png" id="2"]
-[ext_resource type="StyleBox" uid="uid://de4ar4y1gasdi" path="res://Interface/Style/CloseHover.tres" id="3"]
-[ext_resource type="StyleBox" path="res://Interface/Style/Close.tres" id="4"]
-[ext_resource type="StyleBox" uid="uid://bf2n8bnls4b4u" path="res://Interface/Style/ClosePress.tres" id="5"]
-[ext_resource type="StyleBox" uid="uid://de84aa43udlkg" path="res://Interface/Style/CloseFocus.tres" id="6"]
+[ext_resource type="StyleBox" uid="uid://b2hdfkhsts1w8" path="res://Interface/Theme/CloseHover.tres" id="3"]
+[ext_resource type="StyleBox" uid="uid://b54sv5l5o7idq" path="res://Interface/Theme/Close.tres" id="4"]
+[ext_resource type="StyleBox" uid="uid://b8fll6fpqm3lx" path="res://Interface/Theme/ClosePress.tres" id="5"]
+[ext_resource type="StyleBox" uid="uid://cn5adisoi6tia" path="res://Interface/Theme/CloseFocus.tres" id="6"]
 
 [node name="Close" type="Control"]
 layout_mode = 3

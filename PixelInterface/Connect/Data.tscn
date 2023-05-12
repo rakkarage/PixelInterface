@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://snb1itm2do1i"]
 
-[ext_resource type="Theme" path="res://Interface/Theme.tres" id="1"]
-[ext_resource type="StyleBox" uid="uid://jtwwnp5o8hku" path="res://Interface/Style/Stone.tres" id="2"]
-[ext_resource type="StyleBox" uid="uid://bbppglyiat0w8" path="res://Interface/Style/Paper.tres" id="3"]
+[ext_resource type="Theme" uid="uid://dl0c724jkee55" path="res://Interface/Theme/Theme.tres" id="1"]
+[ext_resource type="StyleBox" uid="uid://dfng67omw6d7h" path="res://Interface/Theme/Stone.tres" id="2"]
+[ext_resource type="StyleBox" uid="uid://cl1qbh8ekypku" path="res://Interface/Theme/Paper.tres" id="3"]
 
 [node name="Data" type="Control"]
 layout_mode = 3

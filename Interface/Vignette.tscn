@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://coi7hfevm3eax"]
 
 [ext_resource type="Shader" path="res://Interface/Vignette.gdshader" id="1"]
 

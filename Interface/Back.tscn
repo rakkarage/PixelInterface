@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://duxvn3lxkn12f"]
+[gd_scene load_steps=3 format=3 uid="uid://caqguoa83kyec"]
 
 [ext_resource type="Texture2D" uid="uid://dfu1o1nk0x3lx" path="res://Interface/Sprite/Back.png" id="1_551di"]
 [ext_resource type="Script" path="res://Interface/Back.gd" id="2_ld25t"]
@@ -22,7 +22,7 @@ offset_top = -512.0
 offset_right = 384.0
 offset_bottom = 512.0
 rotation = 1.5708
-scale = Vector2(1.16536, 1.21191)
+scale = Vector2(0.844, 1.125)
 pivot_offset = Vector2(384, 512)
 texture = ExtResource("1_551di")
 expand_mode = 1

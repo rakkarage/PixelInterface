@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://ccdw3ocpwp07j"]
 
 [ext_resource type="PackedScene" uid="uid://mrw5enuj7q7s" path="res://PixelInterface/Interface.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://PixelInterface/Connect/Dialog.tscn" id="8"]
-[ext_resource type="AudioStream" path="res://Interface/Audio/Error.tres" id="10"]
-[ext_resource type="AudioStream" path="res://Interface/Audio/Click.tres" id="11"]
+[ext_resource type="PackedScene" uid="uid://bqwfe5msi56u1" path="res://PixelInterface/Connect/Dialog.tscn" id="8"]
+[ext_resource type="AudioStream" uid="uid://ndu6nscug467" path="res://Interface/Audio/Error.tres" id="10"]
+[ext_resource type="AudioStream" uid="uid://cjpohu2qt1pma" path="res://Interface/Audio/Click.tres" id="11"]
 [ext_resource type="PackedScene" uid="uid://caqguoa83kyec" path="res://Interface/Back.tscn" id="12"]
-[ext_resource type="AudioStream" path="res://Interface/Audio/Success.tres" id="13"]
+[ext_resource type="AudioStream" uid="uid://c2uphq441vufl" path="res://Interface/Audio/Success.tres" id="13"]
 
 [node name="Connect" type="Control"]
 layout_mode = 3
@@ -34,16 +34,8 @@ limit_right = 1024
 limit_bottom = 600
 
 [node name="Back" parent="Container/SubViewport" instance=ExtResource("12")]
-layout_mode = 3
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Interface" parent="Container/SubViewport" instance=ExtResource("1")]
-layout_mode = 3
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Dialog" parent="Container/SubViewport" instance=ExtResource("8")]
 

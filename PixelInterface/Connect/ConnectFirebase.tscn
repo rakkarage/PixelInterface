@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://be80jcmeplofv"]
 
-[ext_resource type="PackedScene" uid="uid://dg3n6fhn781e8" path="res://PixelInterface/Connect/Connect.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://ccdw3ocpwp07j" path="res://PixelInterface/Connect/Connect.tscn" id="1"]
 [ext_resource type="Script" path="res://PixelInterface/Connect/ConnectFirebase.gd" id="2"]
 [ext_resource type="Shortcut" uid="uid://dp73kaw1cbb3w" path="res://PixelInterface/Connect/Cancel.tres" id="3"]
 [ext_resource type="Shortcut" uid="uid://bve5dfshsxnt2" path="res://PixelInterface/Connect/Accept.tres" id="4"]

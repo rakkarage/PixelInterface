@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://dev88y3mtsf00"]
 
-[ext_resource type="StyleBox" uid="uid://dfng67omw6d7h" path="res://Interface/Theme/Stone.tres" id="1"]
+[ext_resource type="Theme" uid="uid://cka558yiv861g" path="res://Interface/Theme.tres" id="1_opx0r"]
 [ext_resource type="PackedScene" uid="uid://doqu4m0nhvbi3" path="res://PixelInterface/Connect/Close.tscn" id="2"]
-[ext_resource type="Theme" uid="uid://dl0c724jkee55" path="res://Interface/Theme/Theme.tres" id="3"]
+[ext_resource type="StyleBox" uid="uid://dr3uqk85tasgn" path="res://Interface/Style/Stone.tres" id="2_3f4q1"]
+[ext_resource type="StyleBox" uid="uid://cqp5dkxpppvpn" path="res://Interface/Style/Paper.tres" id="3_1322g"]
 [ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://Interface/Font/Venice.fnt" id="4"]
-[ext_resource type="StyleBox" uid="uid://cl1qbh8ekypku" path="res://Interface/Theme/Paper.tres" id="5"]
 
 [node name="Reset" type="Control"]
 layout_mode = 3
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3")
+theme = ExtResource("1_opx0r")
 
 [node name="Center" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -23,7 +23,7 @@ anchor_bottom = 1.0
 [node name="Panel" type="PanelContainer" parent="Center"]
 custom_minimum_size = Vector2(200, 64)
 layout_mode = 2
-theme_override_styles/panel = ExtResource("1")
+theme_override_styles/panel = ExtResource("2_3f4q1")
 
 [node name="VBox" type="VBoxContainer" parent="Center/Panel"]
 layout_mode = 2
@@ -31,7 +31,7 @@ theme_override_constants/separation = 0
 
 [node name="Panel" type="PanelContainer" parent="Center/Panel/VBox"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("5")
+theme_override_styles/panel = ExtResource("3_1322g")
 
 [node name="Email" type="LineEdit" parent="Center/Panel/VBox/Panel"]
 custom_minimum_size = Vector2(32, 32)

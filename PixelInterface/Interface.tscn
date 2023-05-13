@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://mrw5enuj7q7s"]
 
-[ext_resource type="PackedScene" uid="uid://d35kb1xo4d7d2" path="res://PixelInterface/Connect/Password.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://c7s0l5nsmuvb3" path="res://PixelInterface/Connect/Account.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://bj0oidgmyueci" path="res://PixelInterface/Connect/SignUp.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://61q8iyidgr3a" path="res://PixelInterface/Connect/SignIn.tscn" id="5"]
-[ext_resource type="PackedScene" uid="uid://b2qt5ghra5ss8" path="res://PixelInterface/Connect/Status.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://begt23pkha28t" path="res://PixelInterface/Connect/Reset.tscn" id="7"]
-[ext_resource type="PackedScene" uid="uid://dr533bx64xm7p" path="res://PixelInterface/Connect/Email.tscn" id="8"]
-[ext_resource type="PackedScene" uid="uid://d01gscpk2u6fw" path="res://PixelInterface/Connect/Data.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://csxjn4gb0skec" path="res://PixelInterface/Connect/Password.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://noo4jnaa33tw" path="res://PixelInterface/Connect/Account.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b6e8pm54rnem7" path="res://PixelInterface/Connect/SignUp.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://byx1csxi0gea3" path="res://PixelInterface/Connect/SignIn.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bw2pded1snd5s" path="res://PixelInterface/Connect/Status.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://dev88y3mtsf00" path="res://PixelInterface/Connect/Reset.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://ds5aq4kpdxd58" path="res://PixelInterface/Connect/Email.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://snb1itm2do1i" path="res://PixelInterface/Connect/Data.tscn" id="9"]
 
 [node name="Interface" type="Control"]
 layout_mode = 3

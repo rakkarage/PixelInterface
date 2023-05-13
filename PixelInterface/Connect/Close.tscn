@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://doqu4m0nhvbi3"]
 
-[ext_resource type="StyleBox" uid="uid://dbd38rackqisk" path="res://Interface/Theme/CloseDisable.tres" id="1"]
+[ext_resource type="StyleBox" uid="uid://dr3uqk85tasgn" path="res://Interface/Style/Stone.tres" id="1"]
+[ext_resource type="StyleBox" uid="uid://d134xgoiwheph" path="res://Interface/Style/Close.tres" id="1_syunf"]
 [ext_resource type="Texture2D" uid="uid://mm7kfos2ru5x" path="res://Interface/Sprite/No.png" id="2"]
-[ext_resource type="StyleBox" uid="uid://b2hdfkhsts1w8" path="res://Interface/Theme/CloseHover.tres" id="3"]
-[ext_resource type="StyleBox" uid="uid://b54sv5l5o7idq" path="res://Interface/Theme/Close.tres" id="4"]
-[ext_resource type="StyleBox" uid="uid://b8fll6fpqm3lx" path="res://Interface/Theme/ClosePress.tres" id="5"]
-[ext_resource type="StyleBox" uid="uid://cn5adisoi6tia" path="res://Interface/Theme/CloseFocus.tres" id="6"]
+[ext_resource type="StyleBox" uid="uid://c4qcujcwcf5b4" path="res://Interface/Style/CloseHover.tres" id="2_qp71i"]
+[ext_resource type="StyleBox" uid="uid://csdn2jwlstjyd" path="res://Interface/Style/ClosePress.tres" id="3_xq7w0"]
+[ext_resource type="StyleBox" uid="uid://cymq0lxs4xhyd" path="res://Interface/Style/CloseFocus.tres" id="5_ojn4j"]
 
 [node name="Close" type="Control"]
 layout_mode = 3
@@ -26,11 +26,11 @@ offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 tooltip_text = "Close."
-theme_override_styles/normal = ExtResource("4")
-theme_override_styles/hover = ExtResource("3")
-theme_override_styles/pressed = ExtResource("5")
+theme_override_styles/normal = ExtResource("1_syunf")
+theme_override_styles/hover = ExtResource("2_qp71i")
+theme_override_styles/pressed = ExtResource("3_xq7w0")
 theme_override_styles/disabled = ExtResource("1")
-theme_override_styles/focus = ExtResource("6")
+theme_override_styles/focus = ExtResource("5_ojn4j")
 shortcut_in_tooltip = false
 
 [node name="Center" type="CenterContainer" parent="Close"]

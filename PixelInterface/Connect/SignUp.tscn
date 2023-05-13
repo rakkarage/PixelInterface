@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://b6e8pm54rnem7"]
 
-[ext_resource type="StyleBox" uid="uid://dfng67omw6d7h" path="res://Interface/Theme/Stone.tres" id="1"]
+[ext_resource type="Theme" uid="uid://cka558yiv861g" path="res://Interface/Theme.tres" id="1_ms6qv"]
 [ext_resource type="PackedScene" uid="uid://doqu4m0nhvbi3" path="res://PixelInterface/Connect/Close.tscn" id="2"]
-[ext_resource type="Theme" uid="uid://dl0c724jkee55" path="res://Interface/Theme/Theme.tres" id="3"]
+[ext_resource type="StyleBox" uid="uid://dr3uqk85tasgn" path="res://Interface/Style/Stone.tres" id="2_eytd7"]
+[ext_resource type="StyleBox" uid="uid://cqp5dkxpppvpn" path="res://Interface/Style/Paper.tres" id="3_61qto"]
 [ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://Interface/Font/Venice.fnt" id="4"]
-[ext_resource type="StyleBox" uid="uid://cl1qbh8ekypku" path="res://Interface/Theme/Paper.tres" id="5"]
 [ext_resource type="Texture2D" uid="uid://bohq4qsrtbkgq" path="res://Interface/Sprite/IconRefresh.png" id="9"]
 
 [node name="SignUp" type="Control"]
@@ -14,7 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3")
+theme = ExtResource("1_ms6qv")
 
 [node name="Center" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -25,7 +25,7 @@ tooltip_text = "Generate new name."
 [node name="Panel" type="PanelContainer" parent="Center"]
 custom_minimum_size = Vector2(200, 64)
 layout_mode = 2
-theme_override_styles/panel = ExtResource("1")
+theme_override_styles/panel = ExtResource("2_eytd7")
 
 [node name="VBox" type="VBoxContainer" parent="Center/Panel"]
 layout_mode = 2
@@ -33,7 +33,7 @@ theme_override_constants/separation = 0
 
 [node name="Panel" type="PanelContainer" parent="Center/Panel/VBox"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("5")
+theme_override_styles/panel = ExtResource("3_61qto")
 
 [node name="VBox" type="VBoxContainer" parent="Center/Panel/VBox/Panel"]
 layout_mode = 2

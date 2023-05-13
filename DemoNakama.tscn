@@ -3,8 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://bscwq737mfkbq" path="res://PixelInterface/Connect/ConnectNakama.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dwkeeiuo87ffy" path="res://Intro/Intro.tscn" id="2"]
 
-[node name="Demo" type="Node"]
+[node name="Demo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Connect" parent="." instance=ExtResource("1")]
+layout_mode = 1
 
 [node name="Intro" parent="." instance=ExtResource("2")]
+layout_mode = 1

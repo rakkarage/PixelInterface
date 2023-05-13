@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Random="*res://Core/Random.gd"
 Cursor="*res://Interface/Cursor.tscn"
 Store="*res://PixelInterface/Connect/Store.gd"
 Firebase="*res://PixelInterface/Connect/Firebase.gd"
@@ -33,6 +34,11 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation="sensor"
 mouse_cursor/custom_image="res://Interface/Sprite/Cursor/Default.png"
+
+[gui]
+
+theme/custom="res://Interface/Theme.tres"
+theme/custom_font="res://Interface/Font/SuperWhite.fnt"
 
 [rendering]
 

@@ -1,9 +1,12 @@
-[submodule "Intro"]
-	path = Intro
-	url = ../Intro
+[submodule "Core"]
+	path = Core
+	url = ../Core
 [submodule "Gename"]
 	path = Gename
 	url = ../Gename
-[submodule "Core"]
-	path = Core
-	url = http://github.com/rakkarage/Core
+[submodule "Interface"]
+	path = Interface
+	url = ../Interface
+[submodule "Intro"]
+	path = Intro
+	url = ../Intro

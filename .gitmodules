@@ -4,3 +4,6 @@
 [submodule "Gename"]
 	path = Gename
 	url = ../Gename
+[submodule "Core"]
+	path = Core
+	url = http://github.com/rakkarage/Core

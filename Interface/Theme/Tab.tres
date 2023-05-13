@@ -1,8 +1,0 @@
-[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://c0x40f47d4tqa"]
-
-[ext_resource type="Texture2D" uid="uid://cacv72oxlgio4" path="res://Interface/Sprite/Panel.png" id="1_7gdx6"]
-
-[resource]
-texture = ExtResource("1_7gdx6")
-region_rect = Rect2(0, 0, 32, 16)
-modulate_color = Color(0.231373, 0.262745, 0.321569, 1)

@@ -4,7 +4,7 @@ var _expires := 0
 var _expiresOffset := 120
 
 func _ready() -> void:
-	await _onRefreshToken
+	await _onRefreshToken()
 
 	var remember = Store.data.all.remember
 	_signInRemember.button_pressed = remember

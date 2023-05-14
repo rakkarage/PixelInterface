@@ -1,6 +1,8 @@
 extends Control
 class_name Connect
 
+@warning_ignore("unused_private_class_variable")
+
 @onready var _interface := $Container/SubViewport/Interface
 
 @onready var _status      := $Container/SubViewport/Interface/Status/Panel/Status

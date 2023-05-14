@@ -82,22 +82,22 @@ func _onSignInPressed() -> void:
 
 func _onSignUpPressed() -> void:
 	_clickAudio.play()
-	var name = _signUpName.text
-	var email = _signUpEmail.text
-	var password = _signUpPassword.text
-	var confirm = _signUpConfirm.text
+	var n = _signUpName.text
+	var e = _signUpEmail.text
+	var p = _signUpPassword.text
+	var c = _signUpConfirm.text
 	_errorClear([_signUpEmail, _signUpPassword, _signUpConfirm])
-	if email.is_empty() or not _validEmail(email):
+	if e.is_empty() or not _validEmail(e):
 		_errorSet(_signUpEmail)
 		return
-	if password.is_empty() or not _validPassword(password):
+	if p.is_empty() or not _validPassword(p):
 		_errorSet(_signUpPassword)
 		return
-	if confirm != password:
+	if c != p:
 		_errorSet(_signUpConfirm)
 		return
 	_disableInput([_signUpSignUp])
-	_session = await _client.authenticate_email_async(email, password, name, true)
+	_session = await _client.authenticate_email_async(e, p, n, true)
 	_enableInput([_signUpSignUp])
 	if _session.is_exception():
 		_showError(_session.get_exception().message)
@@ -108,7 +108,7 @@ func _onSignUpPressed() -> void:
 		_signUpEmail.text = ""
 		_signUpPassword.text = ""
 		_signUpConfirm.text = ""
-		Store.data.n.email = email if Store.data.all.remember else ""
+		Store.data.n.email = e if Store.data.all.remember else ""
 		Store.write()
 		_updateStatus()
 		_springStatus(false)

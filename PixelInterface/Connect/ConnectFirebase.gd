@@ -68,8 +68,9 @@ func _onAuthChanged(response: Array) -> void:
 		_clearDoc()
 	Store.write()
 	if _expires > 0:
-		await get_tree().create_timer(_expires - _expiresOffset).timeout
-		_timer.start()
+		var timer = get_tree().create_timer(_expires - _expiresOffset)
+		await timer.timeout
+		timer.start()
 		_expires = 0
 
 func _getResult(response: Array) -> Dictionary:

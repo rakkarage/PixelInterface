@@ -57,7 +57,6 @@ class_name Connect
 @onready var _dataDelete := $Container/SubViewport/Interface/Data/Center/Panel/VBox/HBox/Delete
 
 @onready var _http := $HTTPRequest
-@onready var _timer := $Timer
 @onready var _clickAudio := $Click
 @onready var _errorAudio := $Error
 @onready var _successAudio := $Success

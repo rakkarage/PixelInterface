@@ -12,10 +12,12 @@ func _ready():
 
 func _mouseEntered():
 	var tween := create_tween()
-	tween.interpolate_property(_tip, "rotation", null, 0, _time, _trans, _ease)
-	tween.parallel().interpolate_property(_tip, "modulate", null, Color(1, 1, 1, 0.75), _time, _trans, _ease)
+	tween.set_trans(_trans).set_ease(_ease)
+	tween.tween_property(_tip, "rotation", 0, _time)
+	tween.parallel().tween_property(_tip, "modulate", Color(1, 1, 1, 0.75), _time)
 
 func _mouseExited():
 	var tween := create_tween()
-	tween.interpolate_property(_tip, "rotation", null, -90, _time, _trans, _ease)
-	tween.parallel().interpolate_property(_tip, "modulate", null, Color(0, 0, 0, 0), _time, _trans, _ease)
+	tween.set_trans(_trans).set_ease(_ease)
+	tween.tween_property(_tip, "rotation", -90, _time)
+	tween.parallel().tween_property(_tip, "modulate", Color(0, 0, 0, 0), _time)

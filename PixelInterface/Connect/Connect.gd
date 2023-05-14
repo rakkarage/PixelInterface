@@ -187,11 +187,11 @@ func _onCloseErrorPressed() -> void:
 func _spring(a := _anchor, c := _interface, click := true) -> void:
 	if click: _clickAudio.play()
 	var tween = create_tween()
-	# TODO: need parallel!? test use pos for single tween
-	tween.interpolate_property(c, "anchor_left", null, a.position.x, _time, _trans, _ease)
-	tween.interpolate_property(c, "anchor_top", null, a.position.y, _time, _trans, _ease)
-	tween.interpolate_property(c, "anchor_right", null, a.size.x, _time, _trans, _ease)
-	tween.interpolate_property(c, "anchor_bottom", null, a.size.y, _time, _trans, _ease)
+	tween.set_trans(_trans).set_ease(_ease)
+	tween.tween_property(c, "anchor_left", a.position.x, _time)
+	tween.parallel().tween_property(c, "anchor_top", a.position.y, _time)
+	tween.parallel().tween_property(c, "anchor_right", a.size.x, _time)
+	tween.parallel().tween_property(c, "anchor_bottom", a.size.y, _time)
 
 func _springStatus(click := true) -> void:
 	_focus(_status, _status, null)

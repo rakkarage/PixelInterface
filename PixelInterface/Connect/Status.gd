@@ -19,5 +19,5 @@ func _mouseEntered():
 func _mouseExited():
 	var tween := create_tween()
 	tween.set_trans(_trans).set_ease(_ease)
-	tween.tween_property(_tip, "rotation", -90, _time)
+	tween.tween_property(_tip, "rotation", deg_to_rad(-90), _time)
 	tween.parallel().tween_property(_tip, "modulate", Color(0, 0, 0, 0), _time)

@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://noo4jnaa33tw"]
+[gd_scene load_steps=5 format=3 uid="uid://noo4jnaa33tw"]
 
-[ext_resource type="Theme" uid="uid://cka558yiv861g" path="res://Interface/Theme.tres" id="1_x6mnb"]
 [ext_resource type="PackedScene" uid="uid://doqu4m0nhvbi3" path="res://PixelInterface/Connect/Close.tscn" id="2"]
 [ext_resource type="StyleBox" uid="uid://dr3uqk85tasgn" path="res://Interface/Style/Stone.tres" id="2_5qpjh"]
 [ext_resource type="StyleBox" uid="uid://cqp5dkxpppvpn" path="res://Interface/Style/Paper.tres" id="3_245pr"]
@@ -13,7 +12,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_x6mnb")
 
 [node name="Center" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -117,25 +115,3 @@ text = "Password"
 
 [node name="Close" parent="Center/Panel" instance=ExtResource("2")]
 layout_mode = 2
-
-[node name="Close" parent="Center/Panel/Close" index="0"]
-anchor_left = 0.0
-anchor_right = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 40.0
-offset_bottom = 40.0
-focus_neighbor_left = NodePath("../../VBox/HBox/Password")
-focus_neighbor_top = NodePath("../../VBox/HBox/Password")
-focus_neighbor_right = NodePath("../../VBox/Panel/Email")
-focus_neighbor_bottom = NodePath("../../VBox/Panel/Email")
-focus_next = NodePath("../../VBox/HBox/Email")
-focus_previous = NodePath("../../VBox/HBox/Password")
-
-[node name="Center" parent="Center/Panel/Close/Close" index="0"]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 36.0
-offset_bottom = 36.0
-
-[editable path="Center/Panel/Close"]

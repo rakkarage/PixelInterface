@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqwfe5msi56u1"]
+[gd_scene load_steps=5 format=3 uid="uid://bqwfe5msi56u1"]
 
-[ext_resource type="Theme" uid="uid://cka558yiv861g" path="res://Interface/Theme.tres" id="1_fi3fd"]
 [ext_resource type="PackedScene" uid="uid://doqu4m0nhvbi3" path="res://PixelInterface/Connect/Close.tscn" id="2"]
 [ext_resource type="StyleBox" uid="uid://dr3uqk85tasgn" path="res://Interface/Style/Stone.tres" id="2_fu4p2"]
 [ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://Interface/Font/Venice.fnt" id="4"]
@@ -10,7 +9,6 @@
 layout_mode = 3
 anchor_left = -1.0
 anchor_bottom = 1.0
-theme = ExtResource("1_fi3fd")
 
 [node name="Center" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -18,7 +16,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Panel" type="PanelContainer" parent="Center"]
-custom_minimum_size = Vector2(200, 64)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_fu4p2")
 
@@ -32,34 +29,15 @@ theme_override_fonts/font = ExtResource("4")
 text = "Title"
 
 [node name="Panel" type="PanelContainer" parent="Center/Panel/VBox"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("4_3onkj")
 
 [node name="Text" type="Label" parent="Center/Panel/VBox/Panel"]
 layout_mode = 2
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+autowrap_mode = 1
 
 [node name="Close" parent="Center/Panel" instance=ExtResource("2")]
 layout_mode = 2
-
-[node name="Close" parent="Center/Panel/Close" index="0"]
-anchor_left = 0.0
-anchor_right = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 40.0
-offset_bottom = 40.0
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath(".")
-focus_next = NodePath(".")
-focus_previous = NodePath(".")
-
-[node name="Center" parent="Center/Panel/Close/Close" index="0"]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 36.0
-offset_bottom = 36.0
-
-[editable path="Center/Panel/Close"]

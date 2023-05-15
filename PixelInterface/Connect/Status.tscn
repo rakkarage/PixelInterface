@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://bw2pded1snd5s"]
+[gd_scene load_steps=9 format=3 uid="uid://bw2pded1snd5s"]
 
-[ext_resource type="Theme" uid="uid://cka558yiv861g" path="res://Interface/Theme.tres" id="1_cafx8"]
 [ext_resource type="StyleBox" uid="uid://b4vv3i3axmui" path="res://Interface/Style/PanelCorner.tres" id="2_lxnov"]
 [ext_resource type="StyleBox" uid="uid://bbrlrkarnrpnv" path="res://Interface/Style/Cloud.tres" id="4_c1py5"]
 [ext_resource type="StyleBox" uid="uid://r04uoejq72mj" path="res://Interface/Style/Tooltip.tres" id="4_r6hew"]
@@ -18,7 +17,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_cafx8")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(64, 64)

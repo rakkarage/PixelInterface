@@ -4,6 +4,8 @@ extends Connect
 var _session: NakamaSession
 
 func _ready() -> void:
+	super._ready()
+
 	_signInRemember.button_pressed = Store.data.all.remember
 	if Store.data.all.remember:
 		_signInEmail.text = Store.data.n.email

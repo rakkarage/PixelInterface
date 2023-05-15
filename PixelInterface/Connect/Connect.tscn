@@ -28,10 +28,7 @@ size = Vector2i(576, 324)
 render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="Container/SubViewport"]
-limit_left = 0
-limit_top = 0
-limit_right = 1024
-limit_bottom = 600
+anchor_mode = 0
 
 [node name="Back" parent="Container/SubViewport" instance=ExtResource("12")]
 

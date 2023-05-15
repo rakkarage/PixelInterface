@@ -61,11 +61,11 @@ func _ready() -> void:
 func _generatePressed() -> void:
 	var old := _noise.seed
 	# _noise.seed += 0
-	var image1 := _noise.get_seamless_image(_size, _size)
+	var image1 := _noise.get_seamless_image(_size, _size, false, false, 0.333)
 	_noise.seed += 1
-	var image2 := _noise.get_seamless_image(_size, _size)
+	var image2 := _noise.get_seamless_image(_size, _size, false, false, 0.333)
 	_noise.seed += 2
-	var image3 := _noise.get_seamless_image(_size, _size)
+	var image3 := _noise.get_seamless_image(_size, _size, false, false, 0.333)
 	_noise.seed = old;
 	for y in range(_size):
 		for x in range(_size):

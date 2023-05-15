@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://byaxqw4yf5s8u"]
 
-[ext_resource type="StyleBox" uid="uid://b4vv3i3axmui" path="res://Interface/Style/PanelCorner10.tres" id="2_lxnov"]
+[ext_resource type="StyleBox" uid="uid://daptn8ls2bs3e" path="res://Interface/Style/PanelCorner00.tres" id="1_qjxmk"]
 [ext_resource type="StyleBox" uid="uid://bbrlrkarnrpnv" path="res://Interface/Style/Cloud.tres" id="4_c1py5"]
 [ext_resource type="StyleBox" uid="uid://r04uoejq72mj" path="res://Interface/Style/Tooltip.tres" id="4_r6hew"]
 [ext_resource type="StyleBox" uid="uid://cq3ehvxopevhe" path="res://Interface/Style/CloudHover.tres" id="5_jyy08"]
@@ -25,7 +25,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -64.0
 offset_right = 64.0
-theme_override_styles/panel = ExtResource("2_lxnov")
+theme_override_styles/panel = ExtResource("1_qjxmk")
 script = ExtResource("6")
 
 [node name="Margin" type="MarginContainer" parent="Panel"]

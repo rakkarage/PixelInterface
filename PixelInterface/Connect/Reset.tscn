@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dev88y3mtsf00"]
+[gd_scene load_steps=4 format=3 uid="uid://dev88y3mtsf00"]
 
 [ext_resource type="PackedScene" uid="uid://doqu4m0nhvbi3" path="res://PixelInterface/Connect/Close.tscn" id="2"]
 [ext_resource type="StyleBox" uid="uid://dr3uqk85tasgn" path="res://Interface/Style/Stone.tres" id="2_3f4q1"]
 [ext_resource type="StyleBox" uid="uid://cqp5dkxpppvpn" path="res://Interface/Style/Paper.tres" id="3_1322g"]
-[ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://Interface/Font/Venice.fnt" id="4"]
 
 [node name="Reset" type="Control"]
 layout_mode = 3
@@ -57,7 +56,6 @@ focus_neighbor_right = NodePath("../../Close/Close")
 focus_neighbor_bottom = NodePath("../../Close/Close")
 focus_next = NodePath("../../Close/Close")
 focus_previous = NodePath("../Panel/Email")
-theme_override_fonts/font = ExtResource("4")
 shortcut_in_tooltip = false
 text = "Reset"
 

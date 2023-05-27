@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6e8pm54rnem7"]
+[gd_scene load_steps=5 format=3 uid="uid://b6e8pm54rnem7"]
 
 [ext_resource type="PackedScene" uid="uid://doqu4m0nhvbi3" path="res://PixelInterface/Connect/Close.tscn" id="2"]
 [ext_resource type="StyleBox" uid="uid://dr3uqk85tasgn" path="res://Interface/Style/Stone.tres" id="2_eytd7"]
 [ext_resource type="StyleBox" uid="uid://cqp5dkxpppvpn" path="res://Interface/Style/Paper.tres" id="3_61qto"]
-[ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://Interface/Font/Venice.fnt" id="4"]
 [ext_resource type="Texture2D" uid="uid://bohq4qsrtbkgq" path="res://Interface/Sprite/IconRefresh.png" id="9"]
 
 [node name="SignUp" type="Control"]
@@ -121,7 +120,6 @@ focus_neighbor_right = NodePath("../../Close/Close")
 focus_neighbor_bottom = NodePath("../../Close/Close")
 focus_next = NodePath("../../Close/Close")
 focus_previous = NodePath("../Panel/VBox/Confirm")
-theme_override_fonts/font = ExtResource("4")
 shortcut_in_tooltip = false
 text = "Sign Up"
 

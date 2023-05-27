@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://byx1csxi0gea3"]
+[gd_scene load_steps=4 format=3 uid="uid://byx1csxi0gea3"]
 
 [ext_resource type="PackedScene" uid="uid://doqu4m0nhvbi3" path="res://PixelInterface/Connect/Close.tscn" id="2"]
 [ext_resource type="StyleBox" uid="uid://dr3uqk85tasgn" path="res://Interface/Style/Stone.tres" id="2_kvxeu"]
 [ext_resource type="StyleBox" uid="uid://cqp5dkxpppvpn" path="res://Interface/Style/Paper.tres" id="3_kl3mh"]
-[ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://Interface/Font/Venice.fnt" id="4"]
 
 [node name="SignIn" type="Control"]
 layout_mode = 3
@@ -88,7 +87,6 @@ focus_neighbor_right = NodePath("../HBox/SignUp")
 focus_neighbor_bottom = NodePath("../HBox/SignUp")
 focus_next = NodePath("../HBox/SignUp")
 focus_previous = NodePath("../Remember")
-theme_override_fonts/font = ExtResource("4")
 shortcut_in_tooltip = false
 text = "Sign In"
 

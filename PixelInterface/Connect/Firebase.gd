@@ -12,7 +12,7 @@ const _docsUrl := "https://firestore.googleapis.com/v1/projects/%s/databases/(de
 var _apiKey := ""
 
 func _ready() -> void:
-	var file := FileAccess.open("res://PixelInterface/Connect/apikey.txt", FileAccess.READ)
+	var file := FileAccess.open("res://PixelInterface/Connect/apiKey.txt", FileAccess.READ)
 	if file:
 		_apiKey = file.get_as_text()
 		file.close()

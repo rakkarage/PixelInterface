@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ccdw3ocpwp07j"]
 
-[ext_resource type="PackedScene" uid="uid://mrw5enuj7q7s" path="res://PixelInterface/Interface.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://mrw5enuj7q7s" path="res://PixelInterface/Connect/Interface.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bqwfe5msi56u1" path="res://PixelInterface/Connect/Dialog.tscn" id="8"]
 [ext_resource type="AudioStream" uid="uid://r78j1gp4d24h" path="res://Interface/Audio/Error.tres" id="10"]
 [ext_resource type="AudioStream" uid="uid://dehlbqwls3osw" path="res://Interface/Audio/Click.tres" id="11"]

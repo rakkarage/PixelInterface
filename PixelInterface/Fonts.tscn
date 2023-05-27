@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://drkdvu2nti58c"]
+[gd_scene load_steps=5 format=3 uid="uid://drkdvu2nti58c"]
 
 [ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://Interface/Font/Venice.fnt" id="1"]
+[ext_resource type="PackedScene" uid="uid://b7dpi3oovkssm" path="res://Interface/Glow.tscn" id="1_rrqco"]
 [ext_resource type="FontFile" uid="uid://vxvgk6iccvf3" path="res://Interface/Font/SuperWhite.fnt" id="2"]
 [ext_resource type="FontFile" uid="uid://bn2nxiytfv00k" path="res://Interface/Font/SuperBlack.fnt" id="3"]
 
@@ -21,6 +22,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="Glow" parent="Panel/CenterContainer" instance=ExtResource("1_rrqco")]
 layout_mode = 2
 
 [node name="VBox" type="VBoxContainer" parent="Panel/CenterContainer"]

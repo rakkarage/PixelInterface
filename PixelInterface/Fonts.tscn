@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://drkdvu2nti58c"]
 
 [ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://Interface/Font/Venice.fnt" id="1"]
-[ext_resource type="PackedScene" uid="uid://b7dpi3oovkssm" path="res://Interface/Glow.tscn" id="1_rrqco"]
+[ext_resource type="PackedScene" uid="uid://vnyrm60vceqr" path="res://Interface/Glow.tscn" id="1_rrqco"]
 [ext_resource type="FontFile" uid="uid://vxvgk6iccvf3" path="res://Interface/Font/SuperWhite.fnt" id="2"]
 [ext_resource type="FontFile" uid="uid://bn2nxiytfv00k" path="res://Interface/Font/SuperBlack.fnt" id="3"]
 
@@ -36,16 +36,16 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3")
-text = "! !\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+text = "! !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
 
 [node name="SuperWhite" type="Label" parent="Panel/CenterContainer/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2")
-text = "! !\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+text = "! !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
 
 [node name="Venice" type="Label" parent="Panel/CenterContainer/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1")
-text = "! !\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+text = "! !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"

@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3331gbyxkov0"]
+[gd_scene load_steps=3 format=3 uid="uid://c3331gbyxkov0"]
 
 [ext_resource type="PackedScene" uid="uid://drsech2gjfoav" path="res://PixelInterface/ViewFnt.tscn" id="1_4j4xq"]
+[ext_resource type="Texture2D" uid="uid://b2fannk8xx5ry" path="res://Interface/Font/SuperWhite.png" id="2_01xmx"]
 
 [node name="ViewFnt" instance=ExtResource("1_4j4xq")]
 _fontData = "res://Interface/Font/SuperWhite.fnt"
+
+[node name="TextureAtlas" parent="." index="0"]
+texture = ExtResource("2_01xmx")

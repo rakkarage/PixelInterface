@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://uddxl8rxo4q0"]
+[gd_scene load_steps=3 format=3 uid="uid://uddxl8rxo4q0"]
 
 [ext_resource type="PackedScene" uid="uid://drsech2gjfoav" path="res://PixelInterface/ViewFnt.tscn" id="1_80058"]
+[ext_resource type="Texture2D" uid="uid://bvlpfrvftm8fs" path="res://Interface/Font/Venice.png" id="2_ik8q1"]
 
 [node name="ViewFnt" instance=ExtResource("1_80058")]
 _fontData = "res://Interface/Font/Venice.fnt"
+
+[node name="TextureAtlas" parent="." index="0"]
+offset_right = 171.0
+offset_bottom = 79.0
+texture = ExtResource("2_ik8q1")

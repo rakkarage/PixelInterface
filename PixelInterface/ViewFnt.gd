@@ -10,9 +10,9 @@ var _imagePath: String
 var _size: Vector2i
 var _lineHeight: int
 var _base: int
-var _zoomFactor := 1.1
 var _points: Array
-const _width := 800
+const _zoomFactor := 1.1
+const _width := 1000
 
 func _ready() -> void:
 	if _fontData.is_empty():

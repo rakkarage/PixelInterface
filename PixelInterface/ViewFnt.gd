@@ -7,10 +7,12 @@ extends Control
 var _font: Resource
 var _characters: Dictionary
 var _imagePath: String
+var _size: Vector2i
 var _lineHeight: int
 var _base: int
 var _zoomFactor := 1.1
-var _points : Array
+var _points: Array
+const _width := 800
 
 func _ready() -> void:
 	if _fontData.is_empty():
@@ -18,12 +20,13 @@ func _ready() -> void:
 		return
 	_parseFont()
 	_points = [
-		Vector2(0, -_lineHeight + _base + 0.5), Vector2(600, - _lineHeight + _base + 0.5), # base
-		Vector2(0, -_lineHeight + 0.5), Vector2(600, -_lineHeight + 0.5), # lineHeight
-		Vector2(0, 0.5), Vector2(600, 0.5) # lineHeight
+		Vector2(0, -_lineHeight + _base + 0.5), Vector2(_width, - _lineHeight + _base + 0.5), # base
+		Vector2(0, -_lineHeight + 0.5), Vector2(_width, -_lineHeight + 0.5), # lineHeight
+		Vector2(0, 0.5), Vector2(_width, 0.5) # lineHeight
 	]
 	_atlas.texture = load(_fontData.get_base_dir() + "/" + _imagePath)
 	_atlas.scale = Vector2(4, 4)
+	_atlas.size = _size
 	_atlas.connect("draw", _drawAtlas)
 	_font = load(_fontData)
 	_preview.connect("draw", _drawPreview)
@@ -52,6 +55,7 @@ func parseHeader() -> void:
 			var info := parseLine(line)
 			_lineHeight = info["lineHeight"]
 			_base = info["base"]
+			_size = Vector2i(info["scaleW"], info["scaleH"])
 
 func parseLine(line: String) -> Dictionary:
 	var info := {}

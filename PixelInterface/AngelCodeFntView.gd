@@ -1,8 +1,10 @@
+@tool
 extends Control
 
 @onready var _preview := $TexturePreview
 @onready var _atlas := $TextureAtlas
 @export_file("*.fnt") var _fontData: String
+var _font: Resource
 var _characters: Dictionary
 var _imagePath: String
 var _lineHeight: int
@@ -16,14 +18,15 @@ func _ready() -> void:
 		return
 	_parseFont()
 	_points = [
-		Vector2(0, -_lineHeight + _base + 0.5), Vector2(600, - _lineHeight + _base + 0.5),
-		Vector2(0, -_lineHeight + 0.5), Vector2(600, -_lineHeight + 0.5),
-		Vector2(0, 0.5), Vector2(600, 0.5)
+		Vector2(0, -_lineHeight + _base + 0.5), Vector2(600, - _lineHeight + _base + 0.5), # base
+		Vector2(0, -_lineHeight + 0.5), Vector2(600, -_lineHeight + 0.5), # lineHeight
+		Vector2(0, 0.5), Vector2(600, 0.5) # lineHeight
 	]
-	_preview.connect("draw", _drawPreview)
 	_atlas.texture = load(_fontData.get_base_dir() + "/" + _imagePath)
 	_atlas.scale = Vector2(4, 4)
 	_atlas.connect("draw", _drawAtlas)
+	_font = load(_fontData)
+	_preview.connect("draw", _drawPreview)
 
 func _parseFont() -> void:
 	var file = FileAccess.open(_fontData, FileAccess.READ)
@@ -63,19 +66,19 @@ func parseLine(line: String) -> Dictionary:
 			info[key] = value
 	return info
 
-func _drawPreview() -> void:
-	var text := "! !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
-	_preview.draw_line(_points[0], _points[1], Color(1, 0, 0, 0.5), 1)
-	_preview.draw_line(_points[2], _points[3], Color(0, 0, 1, 0.5), 1)
-	_preview.draw_line(_points[4], _points[5], Color(0, 0, 1, 0.5), 1)
-	_preview.draw_string(load(_fontData), Vector2.ZERO, text, HORIZONTAL_ALIGNMENT_LEFT)
-
 func _drawAtlas() -> void:
-	_atlas.draw_rect(Rect2(Vector2.ZERO, size), Color(0.5, 0.5, 0.5, 0.5), false)
+	_atlas.draw_rect(Rect2(Vector2.ZERO, _atlas.size), Color(0.5, 0.5, 0.5, 0.5), false, 2)
 	for i in _characters.keys():
 		var c = _characters[i]
 		var r := Rect2(c["x"], c["y"], c["width"], c["height"])
 		_atlas.draw_rect(r, Color(0, 1, 0, 0.5), false)
+
+func _drawPreview() -> void:
+	_preview.draw_line(_points[0], _points[1], Color(1, 0, 0, 0.5), 1) # base
+	_preview.draw_line(_points[2], _points[3], Color(0, 0, 1, 0.5), 1) # lineHeight
+	_preview.draw_line(_points[4], _points[5], Color(0, 0, 1, 0.5), 1) # lineHeight
+	var text := "! !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+	_preview.draw_string(_font, Vector2.ZERO, text, HORIZONTAL_ALIGNMENT_LEFT)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

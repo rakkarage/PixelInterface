@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://drkdvu2nti58c"]
+[gd_scene load_steps=6 format=3 uid="uid://drkdvu2nti58c"]
 
 [ext_resource type="FontFile" uid="uid://bafxu0ve0uy3c" path="res://Interface/Font/Venice.fnt" id="1"]
+[ext_resource type="Script" path="res://PixelInterface/Grid.gd" id="1_gu7di"]
 [ext_resource type="PackedScene" uid="uid://vnyrm60vceqr" path="res://Interface/Glow.tscn" id="1_rrqco"]
 [ext_resource type="FontFile" uid="uid://vxvgk6iccvf3" path="res://Interface/Font/SuperWhite.fnt" id="2"]
 [ext_resource type="FontFile" uid="uid://bn2nxiytfv00k" path="res://Interface/Font/SuperBlack.fnt" id="3"]
@@ -20,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gu7di")
 
 [node name="CenterContainer" type="CenterContainer" parent="Panel"]
 layout_mode = 2

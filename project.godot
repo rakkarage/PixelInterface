@@ -38,7 +38,7 @@ mouse_cursor/custom_image="res://Interface/Sprite/Cursor/Default.png"
 [gui]
 
 theme/custom="res://Interface/Theme.tres"
-theme/custom_font="res://Interface/Font/SuperWhite.tres"
+theme/custom_font="res://Interface/Font/SuperWhite.fnt"
 
 [rendering]
 

@@ -19,11 +19,15 @@ func _ready() -> void:
 		printerr("Set font file in inspector.")
 		return
 	_parseFont()
-	_points = [
-		Vector2(0, -_lineHeight + _base + 0.5), Vector2(_width, - _lineHeight + _base + 0.5), # base
-		Vector2(0, -_lineHeight + 0.5), Vector2(_width, -_lineHeight + 0.5), # lineHeight
-		Vector2(0, 0.5), Vector2(_width, 0.5) # lineHeight
-	]
+	var offset = _lineHeight - _base
+	var half := int(_lineHeight / 2.0)
+	var base1 := Vector2(0, offset - 0.5)
+	var base2 := Vector2(_width, offset - 0.5)
+	var top1 := Vector2(0, -half - offset - 0.5)
+	var top2 := Vector2(_width, -half - offset - 0.5)
+	var bottom1 := Vector2(0, offset + offset + 0.5)
+	var bottom2 := Vector2(_width, offset + offset + 0.5)
+	_points = [base1, base2, top1, top2, bottom1, bottom2]
 	_atlas.texture = load(_fontData.get_base_dir() + "/" + _imagePath)
 	_atlas.scale = Vector2(4, 4)
 	_atlas.size = _size

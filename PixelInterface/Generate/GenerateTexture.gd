@@ -31,42 +31,39 @@ extends Control
 var _output : Image
 
 func _ready() -> void:
-	_colorEdit.connect("text_changed", Callable(self, "_colorEditChanged"))
-	_colorPicker.connect("color_changed", Callable(self, "_colorPickerChanged"))
+	_colorEdit.connect("text_changed", _colorEditChanged)
+	_colorPicker.connect("color_changed", _colorPickerChanged)
 	_seedSlider.share(_seedEdit)
-	_seedEdit.connect("value_changed", Callable(self, "_seedEditChanged"))
-	_seedSlider.connect("value_changed", Callable(self, "_seedSliderChanged"))
+	_seedEdit.connect("value_changed", _seedEditChanged)
+	_seedSlider.connect("value_changed", _seedSliderChanged)
 	_octavesSlider.share(_octavesEdit)
-	_octavesEdit.connect("value_changed", Callable(self, "_octavesEditChanged"))
-	_octavesSlider.connect("value_changed", Callable(self, "_octavesSliderChanged"))
+	_octavesEdit.connect("value_changed", _octavesEditChanged)
+	_octavesSlider.connect("value_changed", _octavesSliderChanged)
 	_frequencySlider.share(_frequencyEdit)
-	_frequencyEdit.connect("value_changed", Callable(self, "_frequencyEditChanged"))
-	_frequencySlider.connect("value_changed", Callable(self, "_frequencySliderChanged"))
+	_frequencyEdit.connect("value_changed", _frequencyEditChanged)
+	_frequencySlider.connect("value_changed", _frequencySliderChanged)
 	_gainSlider.share(_gainEdit)
-	_gainEdit.connect("value_changed", Callable(self, "_gainEditChanged"))
-	_gainSlider.connect("value_changed", Callable(self, "_gainSliderChanged"))
+	_gainEdit.connect("value_changed", _gainEditChanged)
+	_gainSlider.connect("value_changed", _gainSliderChanged)
 	_lacunaritySlider.share(_lacunarityEdit)
-	_lacunarityEdit.connect("value_changed", Callable(self, "_lacunarityEditChanged"))
-	_lacunaritySlider.connect("value_changed", Callable(self, "_lacunaritySliderChanged"))
-	_generateButton.connect("pressed", Callable(self, "_generatePressed"))
-	_resetButton.connect("pressed", Callable(self, "_resetPressed"))
-	_saveButton.connect("pressed", Callable(self, "_savePressed"))
+	_lacunarityEdit.connect("value_changed", _lacunarityEditChanged)
+	_lacunaritySlider.connect("value_changed", _lacunaritySliderChanged)
+	_generateButton.connect("pressed", _generatePressed)
+	_resetButton.connect("pressed", _resetPressed)
+	_saveButton.connect("pressed", _savePressed)
 	_noise = FastNoiseLite.new()
-	_noise.seed = randi()
 	_preview.get_material().set_shader_parameter("color", Color.WHITE)
 	_big.get_material().set_shader_parameter("color", Color.WHITE)
 	_output = Image.create(_size, _size, false, Image.FORMAT_RGBA8)
 	call_deferred("_loadSettings")
 
 func _generatePressed() -> void:
-	var old := _noise.seed
-	# _noise.seed += 0
+	_noise.seed = randi()
 	var image1 := _noise.get_seamless_image(_size, _size, false, false, 0.333)
 	_noise.seed += 1
 	var image2 := _noise.get_seamless_image(_size, _size, false, false, 0.333)
 	_noise.seed += 2
 	var image3 := _noise.get_seamless_image(_size, _size, false, false, 0.333)
-	_noise.seed = old;
 	for y in range(_size):
 		for x in range(_size):
 			var r = image1.get_pixel(x, y).r

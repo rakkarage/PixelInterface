@@ -1,10 +1,10 @@
 extends Panel
 
+@onready var _tip = $Margin
+
 const _time = 0.333
 const _trans = Tween.TRANS_EXPO
 const _ease = Tween.EASE_OUT
-
-@onready var _tip = $Margin
 
 func _ready():
 	connect("mouse_entered", _mouse_enter)

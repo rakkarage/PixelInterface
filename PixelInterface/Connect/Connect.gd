@@ -133,8 +133,8 @@ func _on_next_name_pressed() -> void:
 	_sign_up_name.text = _gename.next()
 
 func _on_remember_pressed() -> void:
-	Store.data.all.remember = _sign_in_remember.pressed
-	Store.write()
+	ConnectStore.data.all.remember = _sign_in_remember.pressed
+	ConnectStore.write()
 
 func _clear_focus() -> void:
 	var accept = _accept_stack[0]

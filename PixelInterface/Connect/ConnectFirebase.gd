@@ -6,10 +6,10 @@ var _expiresOffset := 120
 func _ready() -> void:
 	super._ready()
 
-	var remember = Store.data.all.remember
+	var remember = ConnectStore.data.all.remember
 	_sign_in_remember.button_pressed = remember
 	if remember:
-		_sign_in_email.text = Store.data.f.email
+		_sign_in_email.text = ConnectStore.data.f.email
 	await _on_refresh_token()
 	await _lookup()
 
@@ -23,26 +23,26 @@ func _extract_name(result: Dictionary) -> String:
 	return result.displayName if "displayName" in result else result.users[0].displayName if "users" in result else ""
 
 func _extract_email(result: Dictionary) -> String:
-	return result.email if "email" in result else result.users[0].email if "users" in result else Store.data.f.email
+	return result.email if "email" in result else result.users[0].email if "users" in result else ConnectStore.data.f.email
 
 func _extract_token(result: Dictionary) -> String:
-	return result.idToken if "idToken" in result else result.id_token if "id_token" in result else Store.data.f.token
+	return result.idToken if "idToken" in result else result.id_token if "id_token" in result else ConnectStore.data.f.token
 
 func _extract_refresh(result: Dictionary) -> String:
-	return result.refreshToken if "refreshToken" in result else result.refresh_token if "refresh_token" in result else Store.data.f.refresh
+	return result.refreshToken if "refreshToken" in result else result.refresh_token if "refresh_token" in result else ConnectStore.data.f.refresh
 
 func _extract_id(result: Dictionary) -> String:
-	return result.localId if "localId" in result else result.users[0].localId if "users" in result else Store.data.f.id
+	return result.localId if "localId" in result else result.users[0].localId if "users" in result else ConnectStore.data.f.id
 
 func _on_auth_changed(response: Array) -> void:
 	await get_tree().process_frame
 	if response.size() > 0 and response[1] == 200:
 		var result = _get_result(response)
 		var email = _extract_email(result)
-		Store.data.f.token = _extract_token(result)
-		Store.data.f.email = email if Store.data.all.remember else ""
-		Store.data.f.refresh = _extract_refresh(result)
-		Store.data.f.id = _extract_id(result)
+		ConnectStore.data.f.token = _extract_token(result)
+		ConnectStore.data.f.email = email if ConnectStore.data.all.remember else ""
+		ConnectStore.data.f.refresh = _extract_refresh(result)
+		ConnectStore.data.f.id = _extract_id(result)
 		if "expiresIn" in result:
 			_expires = int(result.expiresIn)
 		elif "expires_in" in result:
@@ -55,10 +55,10 @@ func _on_auth_changed(response: Array) -> void:
 		_data_delete.disabled = false
 		await _load_doc()
 	else:
-		Store.data.f.token = ""
-		Store.data.f.email = ""
-		Store.data.f.refresh = ""
-		Store.data.f.id = ""
+		ConnectStore.data.f.token = ""
+		ConnectStore.data.f.email = ""
+		ConnectStore.data.f.refresh = ""
+		ConnectStore.data.f.id = ""
 		_status.modulate = _disconnected_color
 		_status_email.text = "Welcome."
 		_account_email.text = ""
@@ -66,7 +66,7 @@ func _on_auth_changed(response: Array) -> void:
 		_data_save.disabled = true
 		_data_delete.disabled = true
 		_clear_doc()
-	Store.write()
+	ConnectStore.write()
 	if _expires > 0:
 		var timer = get_tree().create_timer(_expires - _expiresOffset)
 		await timer.timeout
@@ -88,11 +88,11 @@ func _on_status_pressed() -> void:
 		_spring_sign_in()
 
 func _lookup() -> void:
-	var response = await Firebase.lookup(_http, Store.data.f.token)
+	var response = await Firebase.lookup(_http, ConnectStore.data.f.token)
 	await _on_auth_changed(response)
 
 func _on_refresh_token() -> void:
-	var response = await Firebase.refresh(_http, Store.data.f.refresh)
+	var response = await Firebase.refresh(_http, ConnectStore.data.f.refresh)
 	await _on_auth_changed(response)
 
 ### signIn
@@ -207,7 +207,7 @@ func _on_change_email_pressed() -> void:
 		_error_set(_email_confirm)
 		return
 	_disable_input([_email_change])
-	var response = await Firebase.change_email(_http, Store.data.f.token, email)
+	var response = await Firebase.change_email(_http, ConnectStore.data.f.token, email)
 	_enable_input([_email_change])
 	var result = _get_result(response)
 	if response[1] == 200:
@@ -233,7 +233,7 @@ func _on_change_password_pressed() -> void:
 		_error_set(_password_confirm)
 		return
 	_disable_input([_password_change])
-	var response = await Firebase.change_password(_http, Store.data.f.token, password)
+	var response = await Firebase.change_password(_http, ConnectStore.data.f.token, password)
 	_enable_input([_password_change])
 	var result = _get_result(response)
 	if response[1] == 200:
@@ -275,7 +275,7 @@ func _doc_changed(response: Array) -> void:
 
 func _load_doc() -> void:
 	_disable_input([_data_save, _data_delete])
-	var response = await Firebase.load_doc(_http, Store.data.f.token, Store.data.f.id)
+	var response = await Firebase.load_doc(_http, ConnectStore.data.f.token, ConnectStore.data.f.id)
 	_enable_input([_data_save, _data_delete])
 	_doc_changed(response)
 
@@ -287,15 +287,15 @@ func _on_save_doc_pressed() -> void:
 	_disable_input([_data_save, _data_delete])
 	var response
 	if _doc_exists:
-		response = await Firebase.update_doc(_http, Store.data.f.token, Store.data.f.id, _doc)
+		response = await Firebase.update_doc(_http, ConnectStore.data.f.token, ConnectStore.data.f.id, _doc)
 	else:
-		response = await Firebase.save_doc(_http, Store.data.f.token, Store.data.f.id, _doc)
+		response = await Firebase.save_doc(_http, ConnectStore.data.f.token, ConnectStore.data.f.id, _doc)
 	_enable_input([_data_save, _data_delete])
 	_doc_changed(response)
 
 func _on_delete_doc_pressed() -> void:
 	Audio.click()
 	_disable_input([_data_save, _data_delete])
-	var response = await Firebase.delete_doc(_http, Store.data.f.token, Store.data.f.id)
+	var response = await Firebase.delete_doc(_http, ConnectStore.data.f.token, ConnectStore.data.f.id)
 	_enable_input([_data_save, _data_delete])
 	_doc_changed(response)

@@ -5,10 +5,10 @@ var _session: NakamaSession
 
 func _ready() -> void:
 	super._ready()
-	_sign_in_remember.button_pressed = Store.data.all.remember
-	if Store.data.all.remember:
-		_sign_in_email.text = Store.data.n.email
-		_session = NakamaClient.restore_session(Store.data.n.token)
+	_sign_in_remember.button_pressed = ConnectStore.data.all.remember
+	if ConnectStore.data.all.remember:
+		_sign_in_email.text = ConnectStore.data.n.email
+		_session = NakamaClient.restore_session(ConnectStore.data.n.token)
 	_update_status()
 	_status.grab_focus()
 	# nakama: no password reset!?
@@ -70,10 +70,10 @@ func _on_sign_in_pressed() -> void:
 	elif _session.valid and not _session.expired:
 		Audio.success()
 		_sign_in_password.text = ""
-		var remember = Store.data.all.remember
-		Store.data.n.token = _session.token if remember else ""
-		Store.data.n.email = email if remember else ""
-		Store.write()
+		var remember = ConnectStore.data.all.remember
+		ConnectStore.data.n.token = _session.token if remember else ""
+		ConnectStore.data.n.email = email if remember else ""
+		ConnectStore.write()
 		_update_status()
 		_spring_status(false)
 
@@ -107,8 +107,8 @@ func _on_sign_up_pressed() -> void:
 		_sign_up_email.text = ""
 		_sign_up_password.text = ""
 		_sign_up_confirm.text = ""
-		Store.data.n.email = e if Store.data.all.remember else ""
-		Store.write()
+		ConnectStore.data.n.email = e if ConnectStore.data.all.remember else ""
+		ConnectStore.write()
 		_update_status()
 		_spring_status(false)
 
@@ -117,9 +117,9 @@ func _on_sign_up_pressed() -> void:
 func _on_sign_out_pressed() -> void:
 	Audio.click()
 	_session = null
-	Store.data.n.token = ""
-	Store.data.n.email = ""
-	Store.write()
+	ConnectStore.data.n.token = ""
+	ConnectStore.data.n.email = ""
+	ConnectStore.write()
 	_clear_doc()
 	Audio.success()
 	_update_status()

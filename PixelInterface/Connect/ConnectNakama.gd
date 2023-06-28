@@ -5,249 +5,246 @@ var _session: NakamaSession
 
 func _ready() -> void:
 	super._ready()
-
-	_signInRemember.button_pressed = Store.data.all.remember
+	_sign_in_remember.button_pressed = Store.data.all.remember
 	if Store.data.all.remember:
-		_signInEmail.text = Store.data.n.email
+		_sign_in_email.text = Store.data.n.email
 		_session = NakamaClient.restore_session(Store.data.n.token)
-
-	_updateStatus()
+	_update_status()
 	_status.grab_focus()
-
 	# nakama: no password reset!?
-	_signInReset.disabled = true
+	_sign_in_reset.disabled = true
 
 func authenticated() -> bool:
 	return _session != null and _session.valid and not _session.expired
 
 ### status
 
-func _onStatusPressed() -> void:
+func _on_status_pressed() -> void:
 	if authenticated():
-		_springAccount()
+		_spring_account()
 	else:
-		_springSignIn()
+		_spring_sign_in()
 
-func _updateStatus() -> void:
+func _update_status() -> void:
 	var account : NakamaAPI.ApiAccount = null
 	if _session != null:
-		_disableInput([_status])
+		_disable_input([_status])
 		account = await _client.get_account_async(_session)
-		_enableInput([_status])
+		_enable_input([_status])
 	if account == null or account.is_exception() or account.email.is_empty():
-		_status.modulate = _disconnectedColor
-		_statusEmail.text = "Welcome."
-		_accountEmail.text = ""
-		_accountName.text = _gename.next()
-		_dataSave.disabled = true
-		_dataDelete.disabled = true
+		_status.modulate = _disconnected_color
+		_status_email.text = "Welcome."
+		_account_email.text = ""
+		_account_name.text = _gename.next()
+		_data_save.disabled = true
+		_data_delete.disabled = true
 	else:
-		_status.modulate = _connectedColor
-		_statusEmail.text = account.email
-		_accountEmail.text = account.email
-		_accountName.text = _session.username
-		_dataSave.disabled = false
-		_dataDelete.disabled = false
-		_loadDoc()
+		_status.modulate = _connected_color
+		_status_email.text = account.email
+		_account_email.text = account.email
+		_account_name.text = _session.username
+		_data_save.disabled = false
+		_data_delete.disabled = false
+		_load_doc()
 
 ### signIn
 
-func _onSignInPressed() -> void:
-	_clickAudio.play()
-	var email = _signInEmail.text
-	var password = _signInPassword.text
-	_errorClear([_signInEmail, _signInPassword])
-	if email.is_empty() or not _validEmail(email):
-		_errorSet(_signInEmail)
+func _on_sign_in_pressed() -> void:
+	Audio.click()
+	var email = _sign_in_email.text
+	var password = _sign_in_password.text
+	_error_clear([_sign_in_email, _sign_in_password])
+	if email.is_empty() or not _valid_email(email):
+		_error_set(_sign_in_email)
 		return
-	if password.is_empty() or not _validPassword(password):
-		_errorSet(_signInPassword)
+	if password.is_empty() or not _valid_password(password):
+		_error_set(_sign_in_password)
 		return
-	_disableInput([_signInSignIn])
+	_disable_input([_sign_in_sign_in])
 	_session = await _client.authenticate_email_async(email, password, null, false)
-	_enableInput([_signInSignIn])
+	_enable_input([_sign_in_sign_in])
 	if _session.is_exception():
-		_showError(_session.get_exception().message)
-		_signUpEmail.text = _signInEmail.text
-		_resetEmail.text = _signInEmail.text
+		_show_error(_session.get_exception().message)
+		_sign_up_email.text = _sign_in_email.text
+		_reset_email.text = _sign_in_email.text
 	elif _session.valid and not _session.expired:
-		_successAudio.play()
-		_signInPassword.text = ""
+		Audio.success()
+		_sign_in_password.text = ""
 		var remember = Store.data.all.remember
 		Store.data.n.token = _session.token if remember else ""
 		Store.data.n.email = email if remember else ""
 		Store.write()
-		_updateStatus()
-		_springStatus(false)
+		_update_status()
+		_spring_status(false)
 
 ### signUp
 
-func _onSignUpPressed() -> void:
-	_clickAudio.play()
-	var n = _signUpName.text
-	var e = _signUpEmail.text
-	var p = _signUpPassword.text
-	var c = _signUpConfirm.text
-	_errorClear([_signUpEmail, _signUpPassword, _signUpConfirm])
-	if e.is_empty() or not _validEmail(e):
-		_errorSet(_signUpEmail)
+func _on_sign_up_pressed() -> void:
+	Audio.click()
+	var n = _sign_up_name.text
+	var e = _sign_up_email.text
+	var p = _sign_up_password.text
+	var c = _sign_up_confirm.text
+	_error_clear([_sign_up_email, _sign_up_password, _sign_up_confirm])
+	if e.is_empty() or not _valid_email(e):
+		_error_set(_sign_up_email)
 		return
-	if p.is_empty() or not _validPassword(p):
-		_errorSet(_signUpPassword)
+	if p.is_empty() or not _valid_password(p):
+		_error_set(_sign_up_password)
 		return
 	if c != p:
-		_errorSet(_signUpConfirm)
+		_error_set(_sign_up_confirm)
 		return
-	_disableInput([_signUpSignUp])
+	_disable_input([_sign_up_sign_up])
 	_session = await _client.authenticate_email_async(e, p, n, true)
-	_enableInput([_signUpSignUp])
+	_enable_input([_sign_up_sign_up])
 	if _session.is_exception():
-		_showError(_session.get_exception().message)
+		_show_error(_session.get_exception().message)
 	elif _session.valid and not _session.expired:
-		_successAudio.play()
-		_signInEmail.text = _signUpEmail.text
-		_signUpName.text = _gename.next()
-		_signUpEmail.text = ""
-		_signUpPassword.text = ""
-		_signUpConfirm.text = ""
+		Audio.success()
+		_sign_in_email.text = _sign_up_email.text
+		_sign_up_name.text = _gename.next()
+		_sign_up_email.text = ""
+		_sign_up_password.text = ""
+		_sign_up_confirm.text = ""
 		Store.data.n.email = e if Store.data.all.remember else ""
 		Store.write()
-		_updateStatus()
-		_springStatus(false)
+		_update_status()
+		_spring_status(false)
 
 ### account
 
-func _onSignOutPressed() -> void:
-	_clickAudio.play()
+func _on_sign_out_pressed() -> void:
+	Audio.click()
 	_session = null
 	Store.data.n.token = ""
 	Store.data.n.email = ""
 	Store.write()
-	_clearDoc()
-	_successAudio.play()
-	_updateStatus()
-	_springStatus()
+	_clear_doc()
+	Audio.success()
+	_update_status()
+	_spring_status()
 
 ### change email
 
-func _onChangeEmailPressed() -> void:
-	_clickAudio.play()
-	var password = _emailPassword.text
-	var email = _emailEmail.text
-	var confirm = _emailConfirm.text
-	_errorClear([_emailPassword, _emailEmail, _emailConfirm])
-	if password.is_empty() or not _validPassword(password):
-		_errorSet(_emailPassword)
+func _on_change_email_pressed() -> void:
+	Audio.click()
+	var password = _email_password.text
+	var email = _email_email.text
+	var confirm = _email_confirm.text
+	_error_clear([_email_password, _email_email, _email_confirm])
+	if password.is_empty() or not _valid_password(password):
+		_error_set(_email_password)
 		return
-	if email.is_empty() or not _validEmail(email):
-		_errorSet(_emailEmail)
+	if email.is_empty() or not _valid_email(email):
+		_error_set(_email_email)
 		return
 	if confirm != email:
-		_errorSet(_emailConfirm)
+		_error_set(_email_confirm)
 		return
-	_disableInput([_emailChange])
+	_disable_input([_email_change])
 	var result = await _client.link_email_async(_session, email, password)
-	_enableInput([_emailChange])
+	_enable_input([_email_change])
 	if result.is_exception():
-		_showError(result.get_exception().message)
+		_show_error(result.get_exception().message)
 		return
-	_successAudio.play()
-	_emailPassword.text = ""
-	_emailEmail.text = ""
-	_emailConfirm.text = ""
-	_updateStatus()
-	_springAccount(false)
+	Audio.success()
+	_email_password.text = ""
+	_email_email.text = ""
+	_email_confirm.text = ""
+	_update_status()
+	_spring_account(false)
 
 ### change password
 
-func _onChangePasswordPressed() -> void:
-	_clickAudio.play()
-	var password = _passwordPassword.text
-	var confirm = _passwordConfirm.text
-	_errorClear([_passwordPassword, _passwordConfirm])
-	if password.is_empty() or not _validPassword(password):
-		_errorSet(_passwordPassword)
+func _on_change_password_pressed() -> void:
+	Audio.click()
+	var password = _password_password.text
+	var confirm = _password_confirm.text
+	_error_clear([_password_password, _password_confirm])
+	if password.is_empty() or not _valid_password(password):
+		_error_set(_password_password)
 		return
 	if confirm != password:
-		_errorSet(_passwordConfirm)
+		_error_set(_password_confirm)
 		return
-	_disableInput([_passwordChange])
-	var result = await _client.link_email_async(_session, _statusEmail.text, password)
-	_enableInput([_passwordChange])
+	_disable_input([_password_change])
+	var result = await _client.link_email_async(_session, _status_email.text, password)
+	_enable_input([_password_change])
 	if result.is_exception():
-		_showError(result.get_exception().message)
+		_show_error(result.get_exception().message)
 		return
-	_successAudio.play()
-	_passwordPassword.text = ""
-	_passwordConfirm.text = ""
-	_updateStatus()
-	_springAccount(false)
+	Audio.success()
+	_password_password.text = ""
+	_password_confirm.text = ""
+	_update_status()
+	_spring_account(false)
 
 ### data
 
 const _collection = "docs"
 const _key = "doc"
-var _docVersion := "*"
-const _docDefault := {
+var _doc_version := "*"
+const _doc_default := {
 	"title": "",
 	"number": "",
 	"text": ""
 }
-var _doc := _docDefault.duplicate()
+var _doc := _doc_default.duplicate()
 
-func _setDoc(value: Dictionary) -> void:
+func _set_doc(value: Dictionary) -> void:
 	_doc = value.duplicate()
-	_dataTitle.text = _doc.title
-	_dataNumber.value = int(_doc.number)
-	_dataText.text = _doc.text
+	_data_title.text = _doc.title
+	_data_number.value = int(_doc.number)
+	_data_text.text = _doc.text
 
-func _clearDoc() -> void:
-	_setDoc(_docDefault.duplicate())
+func _clear_doc() -> void:
+	_set_doc(_doc_default.duplicate())
 
-func _loadDoc() -> void:
-	_disableInput([_dataSave, _dataDelete])
+func _load_doc() -> void:
+	_disable_input([_data_save, _data_delete])
 	var result : NakamaAPI.ApiStorageObjects = await _client.read_storage_objects_async(_session, [
 		NakamaStorageObjectId.new(_collection, _key, _session.user_id),
 	])
-	_enableInput([_dataSave, _dataDelete])
+	_enable_input([_data_save, _data_delete])
 	if result.is_exception():
-		_showError(result.get_exception().message)
+		_show_error(result.get_exception().message)
 		return
 	if result.objects.size() > 0:
 		var doc = result.objects[0]
-		_docVersion = doc.version
+		_doc_version = doc.version
 		_doc = JSON.parse_string(doc.value).result
-		_dataTitle.text = _doc.title
-		_dataNumber.value = int(_doc.number)
-		_dataText.text = _doc.text
-		_successAudio.play()
+		_data_title.text = _doc.title
+		_data_number.value = int(_doc.number)
+		_data_text.text = _doc.text
+		Audio.success()
 
-func _onSaveDocPressed() -> void:
-	_clickAudio.play()
-	_doc.title = _dataTitle.text
-	_doc.number = str(_dataNumber.value)
-	_doc.text = _dataText.text
-	_disableInput([_dataSave, _dataDelete])
+func _on_save_doc_pressed() -> void:
+	Audio.click()
+	_doc.title = _data_title.text
+	_doc.number = str(_data_number.value)
+	_doc.text = _data_text.text
+	_disable_input([_data_save, _data_delete])
 	var result : NakamaAPI.ApiStorageObjectAcks = await _client.write_storage_objects_async(_session, [
-		NakamaWriteStorageObject.new(_collection, _key, true, true, JSON.stringify(_doc), _docVersion),
+		NakamaWriteStorageObject.new(_collection, _key, true, true, JSON.stringify(_doc), _doc_version),
 	])
-	_enableInput([_dataSave, _dataDelete])
+	_enable_input([_data_save, _data_delete])
 	if result.is_exception():
-		_showError(result.get_exception().message)
+		_show_error(result.get_exception().message)
 		return
-	_successAudio.play()
+	Audio.success()
 
-func _onDeleteDocPressed() -> void:
-	_clickAudio.play()
-	_disableInput([_dataSave, _dataDelete])
+func _on_delete_doc_pressed() -> void:
+	Audio.click()
+	_disable_input([_data_save, _data_delete])
 	var result : NakamaAsyncResult = await _client.delete_storage_objects_async(_session, [
-		NakamaStorageObjectId.new(_collection, _key, _session.user_id, _docVersion)
+		NakamaStorageObjectId.new(_collection, _key, _session.user_id, _doc_version)
 	])
-	_enableInput([_dataSave, _dataDelete])
+	_enable_input([_data_save, _data_delete])
 	if result.is_exception():
-		_showError(result.get_exception().message)
+		_show_error(result.get_exception().message)
 		return
-	_dataTitle.text = ""
-	_dataNumber.value = 0
-	_dataText.text = ""
-	_successAudio.play()
+	_data_title.text = ""
+	_data_number.value = 0
+	_data_text.text = ""
+	Audio.success()

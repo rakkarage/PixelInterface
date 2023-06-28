@@ -1,5 +1,6 @@
-## Used to offset the yoffset of a font file.
-## This is useful for fonts that 'centered' incorrectly.
+## Used to offset the yoffset of a BMFont text file.
+## This is useful for design time editing of fnt files that are 'centered' incorrectly.
+## Right click on script in the Godot script editor and select "Run" to execute the script.
 @tool
 extends EditorScript
 

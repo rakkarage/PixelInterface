@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccdw3ocpwp07j"]
+[gd_scene load_steps=4 format=3 uid="uid://ccdw3ocpwp07j"]
 
 [ext_resource type="PackedScene" uid="uid://mrw5enuj7q7s" path="res://PixelInterface/Connect/Interface.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bqwfe5msi56u1" path="res://PixelInterface/Connect/Dialog.tscn" id="8"]
-[ext_resource type="AudioStream" uid="uid://r78j1gp4d24h" path="res://Interface/Audio/Error.tres" id="10"]
-[ext_resource type="AudioStream" uid="uid://dehlbqwls3osw" path="res://Interface/Audio/Click.tres" id="11"]
 [ext_resource type="PackedScene" uid="uid://cpwpn22g1oh61" path="res://Interface/Back.tscn" id="12"]
-[ext_resource type="AudioStream" uid="uid://x4om0qpl51fd" path="res://Interface/Audio/Success.tres" id="13"]
 
 [node name="Connect" type="Control"]
 layout_mode = 3
@@ -37,17 +34,3 @@ anchor_mode = 0
 [node name="Dialog" parent="Container/SubViewport" instance=ExtResource("8")]
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
-
-[node name="Click" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11")
-volume_db = -15.0
-
-[node name="Error" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10")
-volume_db = -15.0
-pitch_scale = 2.0
-
-[node name="Success" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13")
-volume_db = -15.0
-pitch_scale = 2.0

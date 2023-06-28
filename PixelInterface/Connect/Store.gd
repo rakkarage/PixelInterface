@@ -2,7 +2,7 @@ extends Node
 
 const _path := "user://Store.cfg"
 var _file := ConfigFile.new()
-var _dataDefault := {
+var _default := {
 	"all": {
 		"remember": true,
 	},
@@ -17,7 +17,7 @@ var _dataDefault := {
 		"email": ""
 	}
 }
-var data := _dataDefault.duplicate()
+var data := _default.duplicate()
 
 func _init() -> void:
 	read()
@@ -35,4 +35,4 @@ func write() -> void:
 	_file.save(_path)
 
 func clear() -> void:
-	data = _dataDefault.duplicate()
+	data = _default.duplicate()

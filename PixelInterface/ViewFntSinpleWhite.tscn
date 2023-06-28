@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b2fannk8xx5ry" path="res://Interface/Font/SuperWhite.png" id="2_01xmx"]
 
 [node name="ViewFnt" instance=ExtResource("1_4j4xq")]
-_fontData = "res://Interface/Font/SuperWhite.fnt"
+_font_data = "res://Interface/Font/SuperWhite.fnt"
 
 [node name="TextureAtlas" parent="." index="0"]
 texture = ExtResource("2_01xmx")

@@ -1,42 +1,44 @@
+## Display BMFont file.
 @tool
 extends Control
 
 @onready var _preview := $TexturePreview
 @onready var _atlas := $TextureAtlas
-@export_file("*.fnt") var _fontData: String
+
+@export_file("*.fnt") var _font_data: String
 var _font: Resource
 var _characters: Dictionary
-var _imagePath: String
+var _image_path: String
 var _size: Vector2i
-var _lineHeight: int
+var _line_height: int
 var _base: int
 var _points: Array
-const _zoomFactor := 1.1
+const _zoom_factor := Vector2(1.1, 1.1)
 const _width := 1000
 
 func _ready() -> void:
-	if _fontData.is_empty():
-		printerr("Set font file in inspector.")
+	if _font_data.is_empty():
+		printerr("ViewFnt: Set font file in inspector.")
 		return
 	_parseFont()
-	var offset = _lineHeight - _base
-	var half := int(_lineHeight / 2.0)
-	var base1 := Vector2(0, offset - 0.5)
-	var base2 := Vector2(_width, offset - 0.5)
+	var offset = _line_height - _base
+	var half := int(_line_height / 2.0)
+	var base_1 := Vector2(0, offset - 0.5)
+	var base_2 := Vector2(_width, offset - 0.5)
 	var top1 := Vector2(0, -half - offset - 0.5)
 	var top2 := Vector2(_width, -half - offset - 0.5)
-	var bottom1 := Vector2(0, offset + offset + 0.5)
-	var bottom2 := Vector2(_width, offset + offset + 0.5)
-	_points = [base1, base2, top1, top2, bottom1, bottom2]
-	_atlas.texture = load(_fontData.get_base_dir() + "/" + _imagePath)
+	var bottom_1 := Vector2(0, offset + offset + 0.5)
+	var bottom_2 := Vector2(_width, offset + offset + 0.5)
+	_points = [base_1, base_2, top1, top2, bottom_1, bottom_2]
+	_atlas.texture = load(_font_data.get_base_dir() + "/" + _image_path)
 	_atlas.scale = Vector2(4, 4)
 	_atlas.size = _size
 	_atlas.connect("draw", _drawAtlas)
-	_font = load(_fontData)
+	_font = load(_font_data)
 	_preview.connect("draw", _drawPreview)
 
 func _parseFont() -> void:
-	var file = FileAccess.open(_fontData, FileAccess.READ)
+	var file = FileAccess.open(_font_data, FileAccess.READ)
 	if not file: return
 	parseHeader()
 	while !file.eof_reached():
@@ -48,16 +50,16 @@ func _parseFont() -> void:
 			_characters[charCode] = info
 
 func parseHeader() -> void:
-	var file = FileAccess.open(_fontData, FileAccess.READ)
+	var file = FileAccess.open(_font_data, FileAccess.READ)
 	if not file: return
 	while !file.eof_reached():
 		var line = file.get_line()
 		if line.begins_with("page id=0"):
 			var info := parseLine(line)
-			_imagePath = info["file"].replace("\"", "")
+			_image_path = info["file"].replace("\"", "")
 		if line.begins_with("common"):
 			var info := parseLine(line)
-			_lineHeight = info["lineHeight"]
+			_line_height = info["lineHeight"]
 			_base = info["base"]
 			_size = Vector2i(info["scaleW"], info["scaleH"])
 
@@ -91,9 +93,9 @@ func _drawPreview() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			scale /= Vector2(_zoomFactor, _zoomFactor)
+			scale /= _zoom_factor
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			scale *= Vector2(_zoomFactor, _zoomFactor)
+			scale *= _zoom_factor
 	elif event is InputEventMouseMotion:
 		if event.button_mask & MOUSE_BUTTON_MASK_MIDDLE:
 			position += event.relative

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://drsech2gjfoav"]
+[gd_scene load_steps=3 format=3 uid="uid://drsech2gjfoav"]
 
 [ext_resource type="Script" path="res://PixelInterface/ViewFnt.gd" id="1_oukxk"]
+[ext_resource type="PackedScene" uid="uid://duu286rnt5mdl" path="res://PixelInterface/Grid.tscn" id="2_u2h7u"]
 
 [node name="ViewFnt" type="Control"]
 layout_mode = 3
@@ -10,6 +11,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oukxk")
+
+[node name="Grid" parent="." instance=ExtResource("2_u2h7u")]
+layout_mode = 1
 
 [node name="TextureAtlas" type="TextureRect" parent="."]
 layout_mode = 1

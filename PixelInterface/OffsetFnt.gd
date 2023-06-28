@@ -1,11 +1,19 @@
+## Used to offset the yoffset of a font file.
+## This is useful for fonts that 'centered' incorrectly.
 @tool
 extends EditorScript
 
 const _font := "res://Interface/Font/Venice.fnt"
 const _offset := -1
 
+func _get_file_text(path: String) -> String:
+	return FileAccess.open(path, FileAccess.READ).get_as_text()
+
+func _set_file_text(path: String, text: String) -> void:
+	FileAccess.open(path, FileAccess.READ_WRITE).store_string(text)
+
 func _run() -> void:
-	var lines := _getFileText(_font).split("\n")
+	var lines := _get_file_text(_font).split("\n")
 	for i in range(lines.size()):
 		if lines[i].begins_with("char id="):
 			var start := lines[i].find("yoffset=") + len("yoffset=")
@@ -16,10 +24,4 @@ func _run() -> void:
 	var last := lines.size() - 1
 	if lines[last].is_empty():
 		lines.remove_at(last)
-	_setFileText(_font, "\n".join(lines))
-
-func _getFileText(path: String) -> String:
-	return FileAccess.open(path, FileAccess.READ).get_as_text()
-
-func _setFileText(path: String, text: String) -> void:
-	FileAccess.open(path, FileAccess.READ_WRITE).store_string(text)
+	_set_file_text(_font, "\n".join(lines))

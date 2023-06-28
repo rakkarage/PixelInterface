@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bvlpfrvftm8fs" path="res://Interface/Font/Venice.png" id="2_ik8q1"]
 
 [node name="ViewFnt" instance=ExtResource("1_80058")]
-_fontData = "res://Interface/Font/Venice.fnt"
+_font_data = "res://Interface/Font/Venice.fnt"
 
 [node name="TextureAtlas" parent="." index="0"]
 offset_right = 171.0

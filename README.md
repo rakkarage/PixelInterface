@@ -6,7 +6,7 @@ Pixel-perfect fonts and user interface elements.
 
 - 📦 <http://henrysoftware.itch.io/godot-pixel-interface> : more pixel assets
 - 🌐 <http://rakkarage.github.io/PixelInterface> : run in browser
-- 📃 <http://guthub.com/rakkarage/PixelInterface> : you are here, maybe
+- 📃 <http://github.com/rakkarage/PixelInterface> : you are here, maybe
 
 ## Installation
 

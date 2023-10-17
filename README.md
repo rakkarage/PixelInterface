@@ -10,7 +10,7 @@ Pixel-perfect fonts and user interface elements.
 
 ## Installation
 
-- `git clone --recurse-submodules http://guthub.com/rakkarage/PixelInterface`
+- `git clone --recurse-submodules http://github.com/rakkarage/PixelInterface`
 - Or `git submodule init` and `git submodule update`.
 
 ---
